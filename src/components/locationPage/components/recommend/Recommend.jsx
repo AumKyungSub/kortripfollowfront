@@ -21,7 +21,7 @@ const Recommend = () => {
         setLoading(true);
 
         // fetch(`http://localhost:3000/rankings/${id}`)
-        fetch(`http://https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`)
+        fetch(`https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`)
         .then(res => res.json())
         .then(data => {
             setRegion(data);

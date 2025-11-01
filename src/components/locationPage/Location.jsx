@@ -22,7 +22,7 @@ const Location = () => {
         setLoading(true);
         try {
             // const url = `http://localhost:3000/rankings/${id}`;
-            const url = `http://https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
+            const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
             const response = await fetch(url);
             const data = await response.json();
             setRanking(data);
