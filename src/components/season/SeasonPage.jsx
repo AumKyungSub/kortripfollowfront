@@ -18,7 +18,8 @@ const SeasonPage = () => {
 
   // seasons 테이블
   const getSeasons =async() => {
-        let url = `http://localhost:3000/seasons`;
+        // let url = `http://localhost:3000/seasons`;
+        let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
         let response = await fetch(url);
         let data = await response.json();
         setSeasonBanner(data);
