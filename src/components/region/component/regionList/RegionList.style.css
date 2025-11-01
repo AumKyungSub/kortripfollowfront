@@ -7,6 +7,10 @@
     cursor: pointer;
 }
 
+.regionListCover:last-of-type {
+    margin-bottom: 25px;
+}
+
 .regionListCover img {
     width: 100%;
 }
