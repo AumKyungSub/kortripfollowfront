@@ -47,6 +47,10 @@ const Banner = () => {
       getRanking()
     },[])
 
+    
+    // rankingList가 로드될 때만 Swiper 렌더링
+    if (rankingList.length === 0) return null;
+
   return (
     <div>
         <Swiper
@@ -66,8 +70,8 @@ const Banner = () => {
             modules={[Autoplay, Pagination]}
             className="mySwiper"
         >            
-          {rankingList.map((menu)=>(
-            <SwiperSlide className="swiper-slide">
+          {rankingList.map((menu, idx)=>(
+            <SwiperSlide className="swiper-slide" key={idx}>
                 <BannerComponent item={menu}/>
             </SwiperSlide>
           ))}
