@@ -28,9 +28,8 @@ const Banner = () => {
     const [rankingList, setRankingList] = useState([]);
 
     const getRanking =async()=>{
-      let url = `http://172.30.1.1:3000/rankings`;
       // let url = `http://localhost:3000/rankings`;
-      // let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+      let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
       let response = await fetch(url);
       let data = await response.json();
 
