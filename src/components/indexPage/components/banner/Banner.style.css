@@ -24,12 +24,12 @@ div[class*="swiper-text0"] {
   width: 100%;
   height: 75px;
   padding: 7px;
-  background-color: rgba(207, 204, 174, 0.7);
+  background-color: rgba(186, 186, 186, 0.6);
   margin: auto;
   white-space: pre-wrap;
   text-align: center;
   /* Font */
-  letter-spacing: -1.5px;
+  letter-spacing: 0.02em;
   /* Flex */
   display: flex;
   flex-direction: column;
@@ -43,27 +43,26 @@ div[class*="swiper-text0"] {
 
 div[class*="swiper-text0"] strong {
   /* Font */
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 700;
   color: #2B291A;
-  letter-spacing: -1.5px !important;
+  line-height: 0.9;
 }
 
 div[class*="swiper-text0"] span {
   border-bottom: none !important;
   /* Font */
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 0.625rem;
+  font-weight: 500;
 }
 
 
 div[class*="swiper-text0"] p {
   /* Font */
-  font-size: 0.7rem;
-  color: #6F6056;
+  font-size: 0.75rem;
+  color: #533D2E;
   font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: -1.5px !important;
+  line-height: 1.1;
 }
 
 .play_bar_pc_cover {
@@ -111,26 +110,6 @@ div[class*="swiper-text0"] p {
   .swiper-slide {
     width: 62vw !important;
   }
-
-  div[class*="swiper-text0"] {
-    height: 12.887vw;
-    padding-top: 1.546vw;
-  }
-  
-  div[class*="swiper-text0"] strong {
-    /* Font */
-    font-size: 2vw;
-  }
-  
-  div[class*="swiper-text0"] span {
-    /* Font */
-    font-size: 2vw;
-  }
-  
-  div[class*="swiper-text0"] p {
-    /* Font */
-    font-size: 1.8vw;
-  }
 }
 
 /* PC */
@@ -138,42 +117,34 @@ div[class*="swiper-text0"] p {
   .swiper-slide {
     max-width: 2560px;
   }
+  
+  div[class*="swiper-text0"] {
+    height: 150px;
+    justify-content: center;
+  }
+
+div[class*="swiper-text0"] strong {
+  margin-bottom: 15px;
+  /* Font */
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2B291A;
+  line-height: 0.9;
 }
 
-/* -------------------------------------------------------- */
-/* 임시 css 보관 */
+div[class*="swiper-text0"] span {
+  border-bottom: none !important;
+  /* Font */
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 
-/* .next_prev_spot_cover {
-  width: 5.8vw !important;
-  height: 2.062vw;
-  Flex
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  Position
-  position: absolute;
-  top: 50px;
-} */
 
-/* .swiper-button-prev,
-.swiper-button-next {
-  width: 2.062vw !important;
-  height: 0.155vw !important;
-  display: block;
-  background-image: url("../images/flagship/icon/next.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  margin-top: 0 !important;
-  Position
-  position: static;
-} */
-
-/* .swiper-button-prev {
-  transform: rotate(180deg);
-} */
-
-/* .swiper-button-next::after,
-.swiper-button-prev::after {
-  content: none;
-} */
+div[class*="swiper-text0"] p {
+  /* Font */
+  font-size: 1.4rem;
+  color: #533D2E;
+  font-weight: 500;
+  line-height: 1.1;
+}
+}

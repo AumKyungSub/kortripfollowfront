@@ -1,5 +1,7 @@
 .seasons {
-    padding: 20px 15px;
+    width: 100%;
+    height: auto;
+    padding: 20px 16px;
 }
 .seasons h3 {
     width: 100%;
@@ -12,19 +14,24 @@
 .seasons .cards {
     /* Flex */
     display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
+    justify-content: space-between;
 }
 
 .seasons .card {
-    width: 48%;
+    /* (162/343)*100 = 47.23032069970846 */
+    width: 47.23032069970846%;
     height: 100px;
     background: rgb(242 242 247);
-    padding: 16px;
+    padding: 18px 16px 8px;
     border: 1px solid #ddd;
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     /* Position */
     position: relative;
 }
@@ -38,11 +45,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Position */
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -30%);
 }
 
 .seasons .card img {
@@ -60,11 +62,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Position */
-  position: absolute;
-  left: 50%;
-  bottom: 10%;
-  transform: translate(-50%, -20%);
 }
 
 /* ---------------------------------------------------- */
@@ -72,19 +69,54 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
+@media only all and (min-width: 480px) and (max-width: 767px) {
+    .seasons {
+        padding: 20px;
+    }
+
     .seasons .cards {
-        max-width: 700px;
-        margin: 15px auto 0;
+        /* Flex */
+        justify-content: center;
+    }
+
+    .seasons .card {
+        /* (249/767)*100 = 32.46414602346806 */
+        /* (249/727)*100 = 34.25034387895461 */
+        width: 34.25034387895461%;
+        margin: 0 10px;
     }
 }
 
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+
     .seasons .cards {
         /* Flex */
-        justify-content: space-between;
+        justify-content: center;
     }
-    .seasons h3 {
-        text-align: left;
+
+    .seasons .card {
+        /* (357/991)*100 = 36.02421796165489 */
+        width: 36.02421796165489%;
+        /* width: 357px; */
+        margin: 0 10px;
+    }
+}
+
+@media only all and (min-width: 1024px) and (max-width: 1439px) {
+}
+
+@media only all and (min-width: 1024px) {
+	/*Max Width: 1440px*/
+
+    .seasons .cards {
+        /* Flex */
+        justify-content: center;
+    }
+
+    .seasons .card {
+        /* (323/1408)*100 = 22.94034090909091 */
+        width: 22.94034090909091%;
+        /* width: 357px; */
+        margin: 0 10px;
     }
 }

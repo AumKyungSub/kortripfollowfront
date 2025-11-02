@@ -3,9 +3,9 @@ footer {
   background: #333;
   color: #fff;
   text-align: left;
-  padding: 15px;
+  padding: 20px 16px;
   /* margin-top: 40px; */
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 footer a {
   color: #fff;
@@ -14,4 +14,9 @@ footer a {
 }
 footer p {
   margin: 15px 5px 0px;
+}
+
+footer .warnings {
+  /* Font */
+  font-size: 0.625rem;
 }
