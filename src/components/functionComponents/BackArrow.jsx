@@ -13,7 +13,7 @@ const BackArrow = () => {
 
   return (
     <div className='backArrowCover' onClick={backToMain}>
-        <img src="/images/icon/backIcon.png" alt="backIcon" />
+        <img src="/images/icon/backIcon.png" alt="backIcon" className='backArrowImg'/>
     </div>
   )
 }

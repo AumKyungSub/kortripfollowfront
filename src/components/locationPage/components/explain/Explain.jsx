@@ -29,14 +29,13 @@ const Explain = ({item}) => {
             level={3} // 지도 확대 레벨
         >
             <MapMarker position={{ lat: lat, lng: lng }} />
-        </Map>
         <div className="topaLinkCover">
             <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer" className='topA'>
-                <br/>길찾기
+                <p>길찾기</p>
             </a>
         </div>
+        </Map>
       </div>
-      <div className="emptyLine"></div>
     </div>
   )
 }

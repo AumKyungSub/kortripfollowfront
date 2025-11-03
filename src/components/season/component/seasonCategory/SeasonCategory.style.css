@@ -1,17 +1,21 @@
+.seasonCateWholeCover {
+    width: 100%;
+    padding: 8px 16px 0;
+}
 .seasonCategoryCover {
-    width: 95%;
+    width: 100%;
     height: 51px;
-    margin: 10px auto 0;
-    padding: 5px 0;
     background: rgb(229 231 235 / 0.6);
     border-radius: 9999px;
+    /* Flex */
+    display: flex;
+    align-items: center;
 }
 
 .seasonCategoryUI {
-    width: 95%;
+    width: 100%;
     height: 41px;
-    padding: 0;
-    margin: 0 auto;
+    padding: 0 10px;
 }
 
 .seasonCategoryLi {
@@ -31,6 +35,7 @@
 .seasonCategoryLi.active {  
   background-color: #fff;
   /* Font */
+  font-size: 1rem;
   font-weight: 700;
   color: #4285f4;
 }
@@ -42,6 +47,10 @@
 }
 
 @media only all and (min-width: 480px) {
+    .seasonCateWholeCover {
+    width: 100%;
+    padding: 8px 20px 0;
+}
 }
 
 @media only all and (min-width: 1024px) {

@@ -1,6 +1,9 @@
+.seasonBannerWholeCover {
+    padding: 20px 16px;
+}
+
 .seasonBannerCover {
-    width: 95%;
-    margin: 12px auto;
+    width: 100%;
     border-radius: 15px;
     overflow: hidden;
     /* Position */
@@ -13,8 +16,7 @@
 
 .seasonBannerText {
     width: 100%;
-    height: 54px;
-    margin: 24px 24px;
+    padding: 16px;
     /* Font */
     color: #fff;
     /* Flex */
@@ -27,6 +29,7 @@
 }
 
 .seasonBannerH3 {
+    margin-bottom: 10px;
     /* Font */
     font-size: 1.5rem;
     font-weight: 700;
@@ -34,7 +37,7 @@
 
 .seasonBannerP {
     /* Font */
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     
 }
 
@@ -45,7 +48,7 @@
 
 @media only all and (min-width: 480px) {
     .seasonBannerCover {
-        height: 300px;
+        aspect-ratio: 16 / 4;
     }
 
     .seasonBannerImg {
@@ -62,4 +65,9 @@
 }
 
 @media only all and (min-width: 1024px) {
+    .seasonBannerWholeCover {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px 16px;
+    }
 }

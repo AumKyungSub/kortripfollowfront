@@ -1,10 +1,10 @@
 .seasonListCover {
-    width: 95%;
-    margin: 0 auto 25px;
+    width: 100%;
+    padding: 0 16px 20px;
 }
 
 .seasonListH3 {
-    padding: 16px 0 8px;
+    margin-bottom: 6px;
     /* Font */
     font-size: 1.3rem;
     font-weight: 700;
@@ -18,7 +18,8 @@
 }
 
 .seasonSwiper{
-    width: 70% !important;
+    /* (240/343)*100 = 69.97084548104957 */
+    width: 69.97084548104957% !important;
     overflow: hidden;
     border-radius: 15px;
     background-color: transparent;
@@ -29,6 +30,7 @@
 
 .seasonListImg img {
     width: 100%;
+    aspect-ratio: 12 / 16;
 }
 
 .seasonListH4, .seasonListP {
@@ -52,9 +54,9 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 700px) and (max-width: 1023px) {
-    .seasonListImg {
-        height: 250px; /* 태블릿 이미지 높이 */
+@media only all and (min-width: 480px) and (max-width: 1023px) {
+    .seasonListImg img {
+        aspect-ratio: 16 / 9;
     }
 
     .seasonSwiper {
@@ -63,8 +65,13 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .seasonListImg {
-        height: 380px; /* PC 이미지 높이 */
+    .seasonListCover {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .seasonListImg img {
+        aspect-ratio: 16 / 9;
     }
 
     .seasonSwiper {

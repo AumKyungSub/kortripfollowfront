@@ -1,7 +1,6 @@
 .explainCover {
-    width: 95%;
-    margin: 15px auto 0;
-    padding: 8px;
+    width: 100%;
+    padding: 20px 16px 0;
     border-radius: 10px;
     white-space: pre-wrap;
     word-break: break-all;
@@ -11,38 +10,38 @@
 
 .explainCover .explainTitle {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     text-align: center;
     /* Font */
-    font-size: 1.6rem;
+    font-size: 1.563rem;
     font-weight: 900;
 }
 
 .explainCover .explain {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     /* Font */
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
-    letter-spacing: 1.1px;
-    line-height: 1.6;
+    letter-spacing: 0.02em;
+    line-height: 25px;
 }
 
 .explainCover .explainLast {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     text-align: center;
     /* Font */
-    color: darkgray;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    line-height: 1.2;
+    color: #757575;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 20px;
 }
 
 .topMap {
     width: 100%;
-    height: 300px;
+    aspect-ratio: 1/1;
 }
 
 .topaLinkCover {
@@ -55,21 +54,24 @@
     /* 배경 이미지 */
     background: center no-repeat url("/images/kakaomap.png");
     background-size: cover;
-    /* Font */
-    color: #fff;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 1.1px;
-    line-height: 1.5;
     /* Flex */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     /* Position */
     position: absolute;
-    right: 0;
+    right: 16px;
     bottom: 0;
     z-index: 99;
+}
+
+.topA p {
+    margin-bottom: 4px;
+    /* Font */
+    color: #fff;
+    font-size: 0.688rem;
+    font-weight: 900;
+    letter-spacing: 0.01em;
 }
 
 /* ---------------------------------------------------- */
@@ -77,37 +79,91 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 800px) {
+@media only all and (min-width: 480px) and (max-width: 767px) {
     .explainCover {
-    width: 95%;
-    margin: 15px auto 0;
-    padding: 8px;
-    border-radius: 10px;
-    white-space: pre-wrap;
-    word-break: break-all;
-    /* Flex */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* Position */
-    position: relative;
-    }
-    
-    .explainTextCover {
-        width: 60%;
-        text-align: center;
+        padding: 20px 20px 0;
     }
 
+    .explainCover .explain  {
+        max-width: 517px;
+        margin: 0 auto 16px;        
+    }
+    
     .topMap {
-        width: 40%;
-        height: 350px;
+        width: 100%;
+        aspect-ratio: 2.423/1;
     }
 
     .topaLinkCover {
-        width: 50px;
-        height: 50px;
+        /* Position */
+        right: 20px;
+    }
+}
+
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+    .explainCover {
+        padding: 30px 20px 0px;
+        /* Flex */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .explainTextCover {
+        /* 100-38.45371312309258 = 61.54628687690742 */
+        width: calc(61.54628687690742% - 16px);
+        text-align: center;
+    }
+
+    .explainCover .explain  {
+        max-width: 517px;
+        margin: 0 auto 16px; 
+        text-align: left;       
+    }
+
+    .topMap {
+        /* (378/983)*100 = 38.45371312309258 */
+        width: 38.45371312309258%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .topaLinkCover {
+        /* Position */
+        right: 20px;
     }
 }
 
 @media only all and (min-width: 1024px) {
+    .explainCover {
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 30px 20px 0px;
+        /* Flex */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .explainTextCover {
+        /* 100-26.25 = 73.75 */
+        width: calc(73.75% - 16px);
+        text-align: center;
+    }
+
+    .explainCover .explain  {
+        max-width: 517px;
+        margin: 0 auto 16px; 
+        text-align: left;       
+    }
+
+    .topMap {
+        /* (378/1440)*100 = 26.25 */
+        width: 26.25%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .topaLinkCover {
+        /* Position */
+        right: 20px;
+    }
 }

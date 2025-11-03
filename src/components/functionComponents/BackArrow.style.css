@@ -3,7 +3,7 @@
     height: 40px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.5);
-    margin: 10px;
+    margin: 16px;
     padding: 7px;
     cursor: pointer;
     /* Position */
@@ -13,3 +13,12 @@
     z-index: 99;
 }
 
+.backArrowImg {
+    width: 100%;
+}
+
+@media only all and (min-width: 480px) {
+    .backArrowCover {
+        margin: 20px;
+    }
+}

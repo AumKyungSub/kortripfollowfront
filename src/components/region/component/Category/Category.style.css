@@ -49,9 +49,6 @@
 }
 
 @media only all and (min-width: 480px) {
-    .categoryCover.fixed {
-        position: static;
-    }
 
 }
 

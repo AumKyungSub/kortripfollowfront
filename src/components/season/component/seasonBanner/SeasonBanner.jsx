@@ -5,7 +5,7 @@ import './SeasonBanner.style.css'
 
 const SeasonBanner = ({item}) => {
   return (
-    <>
+    <div className='seasonBannerWholeCover'>
         <div className='seasonBannerCover'>
             <div className="seasonBannerImg">
                 <img src={item?.img} alt={item?.img} />
@@ -15,7 +15,7 @@ const SeasonBanner = ({item}) => {
                 <p className="seasonBannerP">{item?.text}</p>
             </div>
         </div>
-    </>
+    </div>
         
   )
 }

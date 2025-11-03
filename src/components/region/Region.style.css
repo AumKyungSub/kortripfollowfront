@@ -1,4 +1,6 @@
-
+.regionListWholeCover {
+    padding: 20px 16px;
+}
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -7,12 +9,21 @@
 
 @media only all and (min-width: 480px) {
     .regionListWholeCover {
+        padding: 20px 20px;
+    }
+
+    .regionListWholeCover {
     /* Flex */
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     flex-wrap: wrap;
+    gap: 20px;
     }
 }
 
 @media only all and (min-width: 1024px) {
+    .regionListWholeCover {
+        max-width: 1480px;
+        margin: 0 auto;
+    }
 }

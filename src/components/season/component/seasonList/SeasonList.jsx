@@ -13,12 +13,12 @@ import './SeasonList.style.css'
 const SeasonList = ({bannerList, list, location}) => {
 
     const navigate = useNavigate();
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
 
     // 화면 크기 변경 감지
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 700);
+            setIsMobile(window.innerWidth < 480);
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);

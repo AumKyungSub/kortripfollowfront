@@ -9,7 +9,7 @@ const SeasonCategory = ({selected, setSelected}) => {
   const season = ["봄", "여름", "가을", "겨울"];
 
   return (
-    <>
+    <div className='seasonCateWholeCover'>
       <div className='seasonCategoryCover'>
         <ul className="seasonCategoryUI">
           {season.map((sea)=>(
@@ -23,7 +23,7 @@ const SeasonCategory = ({selected, setSelected}) => {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   )
 }
 

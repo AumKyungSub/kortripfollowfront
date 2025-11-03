@@ -16,7 +16,7 @@ const Location = () => {
     const { id } = useParams();
     const [ranking, setRanking] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1023);
 
     const getRankingDetail = async () => {
         setLoading(true);
@@ -39,7 +39,7 @@ const Location = () => {
     
     // 화면 크기 변경 시 모바일 여부 감지
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 480);
+        const handleResize = () => setIsMobile(window.innerWidth <= 1023);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
