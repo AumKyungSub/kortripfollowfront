@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>국트따라</title>
+    <link>https://kortripfollow.shop/</link>
+    <description>실제 리뷰와 직접 찍은 사진을 통해 (방문하지 못한 곳은 그림으로 대체) 숨어있는 국내 명소 및 여행지를 소개하는 사이트 입니다.</description>
+    <language>ko</language>
+    <managingEditor>qnzldmad91@gmail.com (국트따라)</managingEditor>
+    <webMaster>qnzldmad91@gmail.com (국트따라)</webMaster>
+    <lastBuildDate>Wed, 05 Nov 2025 09:00:00 +0900</lastBuildDate>
+    
+    <!-- 최신 여행지 10개 (id 높은 순) -->
+    <item>
+      <title>카페산</title>
+      <link>https://kortripfollow.shop/location/9</link>
+      <description>충북 단양의 하늘 위 카페 — 패러글라이딩 활공장 옆 특별한 휴식 공간</description>
+      <guid>https://kortripfollow.shop/location/9</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>비둘기낭폭포</title>
+      <link>https://kortripfollow.shop/location/8</link>
+      <description>천연기념물 제537호로 지정된 한탄강 협곡 속의 신비한 폭포</description>
+      <guid>https://kortripfollow.shop/location/8</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>아침고요수목원</title>
+      <link>https://kortripfollow.shop/location/7</link>
+      <description>경기도 가평의 대표 정원 — 자연의 고요함이 머무는 곳</description>
+      <guid>https://kortripfollow.shop/location/7</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>서오릉</title>
+      <link>https://kortripfollow.shop/location/6</link>
+      <description>조선 왕들이 잠든 고양의 세계문화유산, 서오릉</description>
+      <guid>https://kortripfollow.shop/location/6</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>고석정</title>
+      <link>https://kortripfollow.shop/location/5</link>
+      <description>철원 9경 중 하나, 한탄강의 절경이 담긴 고석정</description>
+      <guid>https://kortripfollow.shop/location/5</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>남이섬</title>
+      <link>https://kortripfollow.shop/location/4</link>
+      <description>사계절 내내 낭만이 흐르는 강원도 춘천의 대표 여행지</description>
+      <guid>https://kortripfollow.shop/location/4</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>어달삼거리</title>
+      <link>https://kortripfollow.shop/location/3</link>
+      <description>동해의 시원한 바다를 향해 뻗은 감성 포토스팟</description>
+      <guid>https://kortripfollow.shop/location/3</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>연미정</title>
+      <link>https://kortripfollow.shop/location/2</link>
+      <description>강화도의 역사와 물길이 만나는 고려시대 정자</description>
+      <guid>https://kortripfollow.shop/location/2</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>에델바이스 스위스 테마파크</title>
+      <link>https://kortripfollow.shop/location/1</link>
+      <description>스위스의 감성과 동화마을이 살아 숨쉬는 가평의 명소</description>
+      <guid>https://kortripfollow.shop/location/1</guid>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+  </channel>
+</rss>
