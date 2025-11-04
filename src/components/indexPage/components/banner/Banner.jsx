@@ -23,7 +23,7 @@ const Banner = () => {
     
     const {isMobile} = useResponsive();
     // 슬라이드 수 설정
-    const slidesView = isMobile ? 1 : 1.6;
+    const slidesView = isMobile ? 1 : 1.584;
     
     const [rankingList, setRankingList] = useState([]);
 
@@ -68,10 +68,10 @@ const Banner = () => {
             }}
             navigation={false}
             modules={[Autoplay, Pagination]}
-            className="mySwiper"
+            className="mySwiper mainBannerSwiper"
         >            
           {rankingList.map((menu, idx)=>(
-            <SwiperSlide className="swiper-slide" key={idx}>
+            <SwiperSlide className="mainBannerSlide" key={idx}>
                 <BannerComponent item={menu}/>
             </SwiperSlide>
           ))}

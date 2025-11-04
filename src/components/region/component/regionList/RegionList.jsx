@@ -14,7 +14,7 @@ const RegionList = ({item}) => {
     <>
             <div className='regionListCover' onClick={locationDetail}>
                 <div className="regionImgCover">
-                    <img src={item?.imgName+"3.jpg"} alt={item?.imgName+"3.jpg"} />
+                    <img src={item?.imgName+"3R.jpg"} alt={item?.imgName+"3R.jpg"} />
                 </div>
                 <div className="regionTextCover">
                     <p className="regionName">{item?.region}</p>

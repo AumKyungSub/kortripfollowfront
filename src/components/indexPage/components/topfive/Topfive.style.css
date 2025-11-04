@@ -36,6 +36,10 @@
   position: relative;
 }
 
+.top-places .card:nth-of-type(2) img {
+  height: 110%;
+}
+
 .top-places .card img {
   width: 100%;
   height: auto;
@@ -103,6 +107,10 @@ a {
     margin-right: auto;
   }
 
+  .top-places .card:nth-of-type(2) img {
+    height: auto;
+  }
+
   .top-places .card:nth-of-type(2) {
     /* (323/518)*100 = 62.35521235521235 */
     width: 62.35521235521235%;
@@ -152,6 +160,10 @@ a {
     /* height: 190px; */
   }
 
+  .top-places .card:nth-of-type(2) img {
+    height: auto;
+  }
+  
   .top-places .card:nth-of-type(3),
   .top-places .card:nth-of-type(4),
   .top-places .card:nth-of-type(5),
@@ -194,6 +206,10 @@ a {
     /* height: 190px; */
   }
 
+  .top-places .card:nth-of-type(2) img {
+    height: auto;
+  }
+  
   .top-places .card:nth-of-type(3),
   .top-places .card:nth-of-type(4),
   .top-places .card:nth-of-type(5),

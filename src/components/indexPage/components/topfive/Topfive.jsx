@@ -18,10 +18,10 @@ const Topfive = () => {
       let data = await response.json();
 
       // id가 1~5인 항목만 필터링
-      const topFive = data.filter(item => item.id >= 1 && item.id <= 5);
+      const topFive = data.filter(item => item.top >= 1 && item.top <= 5);
 
       // id 순으로 정렬 (혹시 순서가 섞일 경우 대비)
-      topFive.sort((a, b) => a.id - b.id);
+      topFive.sort((a, b) => a.top - b.top);
 
       // console.log(topFive);
       setRankingList(topFive);

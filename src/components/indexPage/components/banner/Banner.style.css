@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.swiper-slide {
+.mainBannerSlide {
   width: 100vw !important;
   height: 100%;
   text-align: center;
@@ -13,7 +13,7 @@
   background-color: #f6f4f1;
 }
 
-.swiper-slide img {
+.mainBannerSlide img {
   display: block;
   width: 100%;
   height: auto;
@@ -87,6 +87,7 @@ div[class*="swiper-text0"] p {
   background-color: transparent;
   /* Position */
   position: relative;
+  z-index: 99;
 }
 
 .swiper-pagination-progressbar-fill {
@@ -105,17 +106,20 @@ div[class*="swiper-text0"] p {
 }
 
 /* Table (테블릿) */
-@media only all and (min-width: 480px) {
-  /* and (max-width: 1023px) */
-  .swiper-slide {
+@media only all and (min-width: 480px) and (max-width: 1023px) {
+  .mainBannerSlide {
     width: 62vw !important;
   }
 }
 
 /* PC */
 @media only all and (min-width: 1024px) {  
-  .swiper-slide {
-    max-width: 2560px;
+  .mainBannerSlide {
+    width: 62vw !important;
+    aspect-ratio: 16/6;    
+  }
+  .mainBannerSlide img {
+    aspect-ratio: 16/6;
   }
   
   div[class*="swiper-text0"] {

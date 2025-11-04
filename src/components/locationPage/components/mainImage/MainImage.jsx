@@ -8,11 +8,19 @@ import './MainImage.style.css'
 
 const MainImage = ({item}) => {
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1023);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 479);
+  const [isTablet, setIsTablet] = useState(window.innerWidth <= 1023);
       
   // 화면 크기 변경 시 모바일 여부 감지
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1023);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+      
+  // 화면 크기 변경 시 모바일 여부 감지
+  useEffect(() => {
+    const handleResize = () => setIsTablet(window.innerWidth <= 1023);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -21,9 +29,12 @@ const MainImage = ({item}) => {
   return (
     <div>
       <div className='mainImageCover'>
-        {isMobile && <HomeIcon />}
+        {isTablet && <HomeIcon />}
         <div>
-          <img src={item.imgName+"2.jpg"} alt={item.imgName+"2.jpg"} className='mainImage' />
+          <img src={isMobile?item.imgName+"2M.jpg"
+            :isTablet?item.imgName+"2T.jpg"
+            :item.imgName+"2.jpg"
+          } alt={item.imgName+"2.jpg"} className='mainImage' />
         </div>
         <div className='mainImageTextCover'>
           <div>
