@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react'
 
 // Components
 import Header from '../Header/Header'
+import RegionBanner from './component/regionBanner/RegionBanner'
 import Category from './component/Category/Category'
 import RegionList from './component/regionList/RegionList'
+import RegionCount from './component/regionCount/RegionCount'
+import RegionBottom from './component/regionBottom/RegionBottom'
 import Footer from '../footer/Footer'
 
 
@@ -14,6 +17,7 @@ const Region = () => {
 
     const [locationList, setLocationList] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('전체'); // 선택된 지역
+    const [isPc, setIsPc] = useState(window.innerWidth <= 1023);
 
     const getLocation = async () => {
         // let url = `http://localhost:3000/rankings`;
@@ -33,17 +37,27 @@ const Region = () => {
         ? locationList
         : locationList.filter(item => item.region === selectedRegion)
     ).sort(() => Math.random() - 0.5);
+        
+    // 화면 크기 변경 시 모바일 여부 감지
+    useEffect(() => {
+        const handleResize = () => setIsPc(window.innerWidth <= 1023);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
   return (
     <div>
         <Header/>
         <div className="emptyLine1px"></div>
-        <Category selected={selectedRegion} setSelected={setSelectedRegion} />
+        {!isPc && <RegionBanner filteredList={filteredList} />}
+        <Category selected={selectedRegion} setSelected={setSelectedRegion} isPc={isPc} />
+        <RegionCount selectedRegion={selectedRegion} filteredList={filteredList} isPc={isPc} />
         <div className="regionListWholeCover">
           {filteredList.map((reg)=>(
             <RegionList key={reg.id} item={reg}/>
           ))}
         </div>
+        <RegionBottom/>
         <Footer/>
     </div>
   )

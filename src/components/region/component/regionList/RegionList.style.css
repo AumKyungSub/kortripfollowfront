@@ -33,14 +33,22 @@
 .regionName, .regionText {
     /* Font */
     font-size: 1rem;
-    color: #6c757d;
+    color: #757575;
+}
+
+.regionName img {
+    width: 16px;
+    aspect-ratio: 1/1;
 }
 
 .regionLocation {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     /* Font */
     font-size: 1.5rem;
     font-weight: 700;
-    color: #212529;
+    color: #000000;
 }
 
 /* ---------------------------------------------------- */
@@ -61,14 +69,12 @@
     .regionName, .regionText {
         /* Font */
         font-size: 0.75rem;
-        color: #6c757d;
     }
 
     .regionLocation {
         /* Font */
         font-size: 1.25rem;
         font-weight: 700;
-        color: #212529;
     }
 
 }
@@ -86,20 +92,18 @@
     .regionName, .regionText {
         /* Font */
         font-size: 0.75rem;
-        color: #6c757d;
     }
 
     .regionLocation {
         /* Font */
         font-size: 1rem;
         font-weight: 700;
-        color: #212529;
     }
 }
 
-@media only all and (min-width: 926px) and (max-width: 1239px) {
+@media only all and (min-width: 926px) and (max-width: 1023px) {
     .regionListCover {
-        width: calc((100% - 80px) / 4); 
+        width: calc((100% - 60px) / 4); 
         margin: 0;
     }
 
@@ -110,21 +114,18 @@
     .regionName, .regionText {
         /* Font */
         font-size: 0.75rem;
-        color: #6c757d;
     }
 
     .regionLocation {
         /* Font */
         font-size: 1rem;
         font-weight: 700;
-        color: #212529;
     }
-
 }
 
-@media only all and (min-width: 1240px) {
+@media only all and (min-width: 1024px) {
     .regionListCover {
-        width: calc((100% - 100px) / 6); 
+        width: calc((100% - 60px) / 4); 
         margin: 0;
     }
 
@@ -134,14 +135,12 @@
 
     .regionName, .regionText {
         /* Font */
-        font-size: 0.75rem;
-        color: #6c757d;
+        font-size: 1rem;
     }
 
     .regionLocation {
         /* Font */
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: 700;
-        color: #212529;
     }
 }

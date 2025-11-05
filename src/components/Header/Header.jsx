@@ -14,6 +14,14 @@ const Header = () => {
   const goToAbout=()=>{
     navigate('/about');
   }
+
+  const goToRegion=()=>{
+    navigate('/region');
+  }
+
+  const goToSeason=()=>{
+    navigate('/season');
+  }
   
   return (
   <div>
@@ -22,8 +30,15 @@ const Header = () => {
         <img src="/images/logo/logoIcon.png" alt="logoIcon" />
         <img src="/images/logo/logoText.png" alt="logoText" />
       </div>
+      <div className="gnbPc">
+        <ul>
+          <li className="gnbPcLi" onClick={goToRegion}>지역별</li>
+          <li className="gnbPcLi" onClick={goToSeason}>계절별</li>
+          <li className="gnbPcLi" onClick={goToAbout}>사이트 소개</li>
+        </ul>
+      </div>
       <div className='search'>
-        {/* <img src="/images/search.png" alt="search" /> */} {/*검색기능 추가 후 오픈*/}
+        {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
         <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/>
       </div>
     </header>

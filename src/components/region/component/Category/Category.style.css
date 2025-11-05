@@ -19,7 +19,6 @@
     height: inherit;
     padding: 0;
     margin: 0;
-    border-bottom: solid 1px #ccc;
 }
 
 .categoryLi {
@@ -53,4 +52,39 @@
 }
 
 @media only all and (min-width: 1024px) {
+    .categoryCover {
+        max-width: 1440px;
+        margin: 0 auto;
+        overflow-x: visible;
+    }
+
+    .categoryUl {
+        width: 100%;
+        /* Flex */
+        display: flex;
+        justify-content: center;
+    }
+
+    .categoryLi {
+        width: calc((100% - 35px) / 8);
+        margin-right: 5px;
+        padding: 0;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .categoryLi:last-of-type {
+        margin-right: 0;
+    }
+
+    .categoryLi.active::after {
+      content: '';
+      display: block;
+      width: 25%;
+      height: 3px; /* 밑줄 두께 */
+      background-color: #4285f4;
+    }
 }

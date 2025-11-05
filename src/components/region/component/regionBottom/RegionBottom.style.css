@@ -1,0 +1,125 @@
+.regionBottomWholeCover {
+    width: 100%;
+    padding: 16px 16px 20px;
+    background-color: #f2f2f7;
+}
+
+.regionBottomTextCover {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.regionBottomText {
+    width: 100%;
+}
+
+.regionBottomText h3 {
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.regionBottomText p {
+    margin: 5px 0;
+    /* Font */
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.regionBottomBox{
+    width: 100%;
+    height: 100%;
+    /* Flex */
+    display: flex;
+    justify-content: space-around;
+}
+
+.regionBottomBox span {
+    width: calc((100% - 10px) / 2);
+    border: solid 1px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 16px;
+}
+
+.regionBottomLeftBox {
+    background-color: #eff6ff;
+    color: #625dfc;
+}
+
+.regionBottomLeftBox a,
+.regionBottomRightBox a {
+    color: #000;
+}
+
+.regionBottomRightBox {
+    background-color: #f0fdf4;
+    color: #00a63e;
+}
+
+.regionBottomImgCover {
+    border: solid 1px;
+}
+.regionBottomImgCover img {
+    width: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+
+}
+
+@media only all and (min-width: 1024px) {
+    .regionBottomCover {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        /* Flex */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .regionBottomTextCover {
+        width: 60%;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .regionBottomImgCover {
+        width: 30%   
+    }
+
+    .regionBottomText h3 {
+        /* Font */
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .regionBottomText p {
+        margin: 20px 0;
+        /* Font */
+        font-size: 1.375rem;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    .regionBottomLeftBox,
+    .regionBottomRightBox {
+        /* Font */
+        font-size: 1.25rem;
+    }
+}

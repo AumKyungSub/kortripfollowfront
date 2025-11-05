@@ -33,6 +33,11 @@ header .logo img {
   margin-left: 5px;
 }
 
+/* GNB는 1023 이상 */
+.gnbPc {
+  display: none;
+}
+
 /* /Header.jsx */
 /* --------------------------------------------------------- */
 
@@ -55,20 +60,37 @@ header .logo img {
   }
 }
 
-@media only all and (min-width: 1024px) and (max-width: 1439px) {
-  .header {
-    max-width: 1440px;
-    margin: 0 auto;
-    /* (323/1920)*100 = 16.822916666666668 */
-    padding: 16px 16.822916666666668%;
+@media only all and (min-width: 1024px) {
+  .gnbPc {
+    height: 100%;
+    display: inline-block;
   }
+  
+  .gnbPc ul {
+    height: 100%;
+    /* Flex */
+    display: flex;
+    align-items: center;
+  }
+
+  .gnbPc ul .gnbPcLi {
+    cursor: pointer;
+    margin: 0 15px;
+    /* Font */
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* 검색기능 추가후 활성화 */
+  /* .search img:last-of-type {
+    display: none;
+  } */
 }
 
-@media only all and (min-width: 1440px) {
+@media only all and (min-width: 1024px) {
   .header {
     max-width: 1440px;
     margin: 0 auto;
-    /* (83/1440)*100 = 5.763888888888889 */
-    padding: 16px 5.763888888888889%;
+    padding: 16px;
   }
 }
