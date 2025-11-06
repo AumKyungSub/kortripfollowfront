@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // Components
 import TopfiveComponent from './TopfiveComponent'
+import TopfiveComponentCardImg from './TopfiveComponentCardImg'
 
 // Page CSS
 import './Topfive.style.css'
@@ -10,6 +11,8 @@ import './Topfive.style.css'
 const Topfive = () => {
 
     const [rankingList, setRankingList] = useState([]);
+    const [isPc, setIsPc] = useState(window.innerWidth >= 1024);
+    const [selectedAll, setSelectedAll] = useState(null);
 
     const getRanking =async()=>{
       // let url = `http://localhost:3000/rankings`;
@@ -25,11 +28,30 @@ const Topfive = () => {
 
       // console.log(topFive);
       setRankingList(topFive);
-    }
+
+      //첫 접근시 1번 선택
+      if (topFive.length > 0) {
+        setSelectedAll(topFive[0]);
+      }
+    };
 
     useEffect(()=>{
       getRanking()
     },[])
+    
+        // 화면 크기 변경 시 반응형 처리
+    useEffect(() => {
+      const handleResize = () => {
+        setIsPc(window.innerWidth >= 1024);
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // 카드 클릭 시 호출되는 함수
+    const handleSelect = (item) => {
+      setSelectedAll(item);
+    };
   
   return (
     <div>
@@ -39,9 +61,17 @@ const Topfive = () => {
           <div className="cardsTitle768">
             <h3>채널 추천 여행지 TOP 5</h3>
           </div>
-          {rankingList.map((menu)=>(
+          {!isPc?(
+            rankingList.map((menu)=>(
             <TopfiveComponent key={menu.id} item={menu} />
-          ))}
+            ))
+          ):(
+          <TopfiveComponentCardImg
+            rankingList={rankingList}
+            onSelect={handleSelect}
+            selectedAll={selectedAll}
+          />
+          )}
         </div>
       </section>
     </div>

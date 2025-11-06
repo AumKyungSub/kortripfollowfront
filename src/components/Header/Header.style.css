@@ -75,16 +75,19 @@ header .logo img {
 
   .gnbPc ul .gnbPcLi {
     cursor: pointer;
-    margin: 0 15px;
+    margin: 0 25px;
     /* Font */
-    font-size: 0.875rem;
+    font-size: 1.25rem;
     font-weight: 500;
   }
 
-  /* 검색기능 추가후 활성화 */
-  /* .search img:last-of-type {
+  .gnbPc ul .gnbPcLi:first-of-type {
+    margin-left: 0;
+  }
+
+  .search{
     display: none;
-  } */
+  }
 }
 
 @media only all and (min-width: 1024px) {

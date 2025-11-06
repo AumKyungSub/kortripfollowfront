@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useLocation } from 'react-router-dom';
 
 // Components
 import Header from '../Header/Header'
@@ -14,9 +15,12 @@ import Footer from '../footer/Footer'
 import './Region.style.css'
 
 const Region = () => {
+    const location = useLocation(); // ✅ HomeRegion에서 navigate로 전달한 state 받기
+    const initialRegion = location.state?.selectedRegion || '전체'; // ✅ 전달된 지역이 없으면 '전체'
 
     const [locationList, setLocationList] = useState([]);
-    const [selectedRegion, setSelectedRegion] = useState('전체'); // 선택된 지역
+    // const [selectedRegion, setSelectedRegion] = useState('전체'); // 선택된 지역
+    const [selectedRegion, setSelectedRegion] = useState(initialRegion);
     const [isPc, setIsPc] = useState(window.innerWidth <= 1023);
 
     const getLocation = async () => {
@@ -30,7 +34,12 @@ const Region = () => {
 
     useEffect(()=>{
         getLocation();
-    },[])
+        
+        //HomeRegion.jsx 에서 넘어온 state
+        if (location.state?.selectedRegion) {
+          setSelectedRegion(location.state.selectedRegion);
+        }
+    },[location.state])
 
   // 선택된 지역에 따라 필터링
     const filteredList = (selectedRegion === '전체'

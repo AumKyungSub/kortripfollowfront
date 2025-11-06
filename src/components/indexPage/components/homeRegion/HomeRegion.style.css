@@ -1,0 +1,155 @@
+
+
+/* /Header.jsx */
+/* --------------------------------------------------------- */
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media only all and (min-width: 1024px) {
+    .homeRegionBackground{
+        background-color: #f2f2f7;
+    }
+
+    .homeRegionWholeCover {
+        max-width: 1440px;
+        padding: 130px 16px 30px;
+        margin-left: auto;
+        margin-right: auto;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .homeRegionWholeCover h3 {
+        width: 100%;
+        margin-bottom: 30px;
+        /* Font */
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+
+    }
+
+    .homeRegionCover {
+        /* Flex */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+    }
+
+    .homeRegionList {
+        border: solid 3px;
+        width: calc((100% - 90px) / 4);
+        aspect-ratio: 5/6;
+        border-radius: 15px;
+        overflow: hidden;
+        /* Position */
+        position: relative;
+    }
+
+    .homeRegionList::before {
+        content: " ";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), 70%, rgba(255, 255, 255, 0.2));
+        /* Position */
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .homeRegionList img {
+        width: 100%;
+    }
+
+    .homeRegionListHeader {
+        width: calc(100% - 40px);
+        /* Font */
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 400;
+        /* Flex */
+        display: flex;
+        justify-content: space-between;
+        /* Position */
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 99;
+    }
+
+    .listHeaderFstSpan {
+        width: 120px;
+        aspect-ratio: 16/7;
+        border-radius: 9999px;
+        background-color: rgba(117, 117, 117, 0.7);
+        /* Flex */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .listHeaderSndSpan {
+        width: 50px;
+        aspect-ratio: 16/7;
+        font-weight: 600;
+        /* Flex */
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .listHeaderFstSpan img {
+        width: 24px;
+        margin-right: 10px;
+    }
+
+    .regionExampleList {
+        width: 100%;
+        transform: translateY(100%);
+        opacity: 0;
+        padding: 20px;
+        transition: transform 0.4s ease, opacity 0.3s ease;
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.45);
+        /* Font */
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 400;
+        /* Position */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .homeRegionList:hover .regionExampleList {
+      transform: translateY(0); /* 위로 올라오게 */
+      opacity: 1;
+    }
+
+    .regionExampleList p {
+        margin-left: 10px;
+        margin-bottom: 15px;
+        /* Font */
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .regionExampleList li {
+        margin-bottom: 15px;
+    }
+
+}
