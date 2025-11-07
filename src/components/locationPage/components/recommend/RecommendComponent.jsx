@@ -5,13 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 ///////////////////////////////////////////////
-const RecommendComponent = ({ item }) => {
-  if (!item || !item.gallery || item.gallery.length === 0) return null;
+const RecommendComponent = ({ rankingDataGallery }) => {
+  if (!rankingDataGallery || !rankingDataGallery?.gallery || rankingDataGallery?.gallery.length === 0) return null;
   
   return (
     <>
       <Swiper
-        key={`mobile-${item.location}`} // 안정적인 key
+        key={`mobile-${rankingDataGallery?.location}`} // 안정적인 key
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -28,17 +28,17 @@ const RecommendComponent = ({ item }) => {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper recommendSwiper"
       >
-      {item?.gallery.map((imgSrc, idx) => (
+      {rankingDataGallery?.gallery.map((imgSrc, idx) => (
         <SwiperSlide key={idx} className='recoSwiper'>
-        <img src={item?.imgName+imgSrc+".jpg"} alt={item.location} />
+        <img src={rankingDataGallery?.imgName+imgSrc+".jpg"} alt={rankingDataGallery?.location} />
         </SwiperSlide>
       ))}
       </Swiper>
 
       <div className='galleryPcCover'>
-        {item?.gallery.map((imgSrc, idx) => (
+        {rankingDataGallery?.gallery.map((imgSrc, idx) => (
           <div key={idx} className={`galleryPcImgCover img-${idx}`}>
-            <img src={item?.imgName+imgSrc+".jpg"} alt={item.location} className='galleryPcImg'/>
+            <img src={rankingDataGallery?.imgName+imgSrc+".jpg"} alt={rankingDataGallery?.location} className='galleryPcImg'/>
           </div>
         ))}
       </div>

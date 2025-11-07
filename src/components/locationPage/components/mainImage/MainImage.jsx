@@ -6,7 +6,7 @@ import HomeIcon from '../../../functionComponents/HomeIcon'
 // Page css
 import './MainImage.style.css'
 
-const MainImage = ({item}) => {
+const MainImage = ({rankingData}) => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 479);
   const [isTablet, setIsTablet] = useState(window.innerWidth <= 1023);
@@ -31,18 +31,18 @@ const MainImage = ({item}) => {
       <div className='mainImageCover'>
         {isTablet && <HomeIcon />}
         <div>
-          <img src={isMobile?item.imgName+"2M.jpg"
-            :isTablet?item.imgName+"2T.jpg"
-            :item.imgName+"2.jpg"
-          } alt={item.imgName+"2.jpg"} className='mainImage' />
+          <img src={isMobile?rankingData?.imgName+"2M.jpg"
+            :isTablet?rankingData?.imgName+"2T.jpg"
+            :rankingData?.imgName+"2.jpg"
+          } alt={rankingData?.imgName+"2.jpg"} className='mainImage' />
         </div>
         <div className='mainImageTextCover'>
           <div>
-            <h2 className="locationName">{item.location}</h2>
-            <p className="locationSlogan">{item.imgText}</p>
+            <h2 className="locationName">{rankingData?.location}</h2>
+            <p className="locationSlogan">{rankingData?.imgText}</p>
           </div>
-          {item.review?
-              <a href={item.reviewAddress} target="_blank" rel="noopener noreferrer" className='reviewCover'>
+          {rankingData?.review?
+              <a href={rankingData?.reviewAddress} target="_blank" rel="noopener noreferrer" className='reviewCover'>
                 <span className='review'>찐리뷰</span>
               </a>
             : <div></div>

@@ -1,4 +1,4 @@
-import React,{useMemo} from 'react'
+import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -38,7 +38,7 @@ const TopfiveComponentCardImg = ({rankingList, onSelect, selectedAll}) => {
             {rankingList.map((menu)=>(
                 <TopfiveComponentPc 
                     key={menu.id} 
-                    item={menu} 
+                    rankingClickList={menu} 
                     onSelect={()=> onSelect(menu)}
                     isSelected={menu.top === selectedAll.top}
                 />

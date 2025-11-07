@@ -12,45 +12,33 @@ import './SeasonPage.style.css'
 
 const SeasonPage = () => {
 
-  const [seasonBanners, setSeasonBanner] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState('봄'); 
-  const [locationList, setLocationList] = useState([]);
+  const [data, setData] = useState({ dataR: [], dataS: [] });
 
-  // seasons 테이블
-  const getSeasons =async() => {
-        // let url = `http://localhost:3000/seasons`;
-        let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
-        let response = await fetch(url);
-        let data = await response.json();
-        setSeasonBanner(data);
-  };
-  
-  useEffect(()=>{
-      getSeasons();
-  },[])
-  
-  const filteredListBanner = seasonBanners
-    .filter(item => item.season === selectedSeason)
+  useEffect(() => {
+    const fetchData = async () => {
+        const urlS = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
+        const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+
+        const responseS = await fetch(urlS);
+        const responseR = await fetch(urlR);
+
+        const dataS = await responseS.json();
+        const dataR = await responseR.json();
+
+        setData({dataR, dataS});
+    };
+    fetchData();
+  }, []);
+
+  const filteredListBanner = data.dataS
+    .filter(selectSeason => selectSeason.season === selectedSeason)
     .sort(() => Math.random() - 0.5)
     .slice(0, 1);
 
-    // rankings 테이블
-    const getLocation = async () => {
-        // let url = `http://localhost:3000/rankings`;
-        let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
-        let response = await fetch(url);
-        let data = await response.json();
-        console.log(data);
-        setLocationList(data);
-    };
-
-    useEffect(()=>{
-        getLocation();
-    },[])
-
-  const filteredListList = locationList
-    .filter(item => 
-      item.season.includes(selectedSeason) || item.season.includes('사계절')
+  const filteredListList = data.dataR
+    .filter(selectSeason => 
+      selectSeason.season.includes(selectedSeason) || selectSeason.season.includes('사계절')
     )
     .sort(() => Math.random() - 0.5);    
   
@@ -59,12 +47,11 @@ const SeasonPage = () => {
       <Header/>
         <SeasonCategory selected={selectedSeason} setSelected={setSelectedSeason} />
         {filteredListBanner.map((sea)=>(
-          <SeasonBanner key={sea.id} item={sea}/>
+          <SeasonBanner key={sea.id} seasonCategory={sea}/>
         ))}
         <SeasonList
           bannerList={filteredListBanner}
           list={filteredListList}
-          location={locationList}
           />
       <Footer/>
     </div>

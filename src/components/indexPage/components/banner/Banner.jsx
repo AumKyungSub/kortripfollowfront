@@ -13,43 +13,33 @@ import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 // Page CSS
 import './Banner.style.css'
 
 
-const Banner = () => {
+const Banner = ({rankingsData = []}) => {
     
     const {isMobile} = useResponsive();
     // 슬라이드 수 설정
     const slidesView = isMobile ? 1 : 1.584;
     
     const [rankingList, setRankingList] = useState([]);
-
-    const getRanking =async()=>{
-      // let url = `http://localhost:3000/rankings`;
-      let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
-      let response = await fetch(url);
-      let data = await response.json();
-
-      // 전체 데이터 섞기 (랜덤 순서)
-      const shuffled = [...data].sort(() => Math.random() - 0.5);
-
-      // 랜덤으로 5개 추출
-      const topFive = shuffled.slice(0, 5);
-      
-      // console.log(topFive);
-      setRankingList(topFive);
-    }
-
-    useEffect(()=>{
-      getRanking()
-    },[])
-
     
-    // rankingList가 로드될 때만 Swiper 렌더링
-    if (rankingList.length === 0) return null;
+    // 데이터 섞기 (랜덤)
+    useEffect(() => {
+      // null일 경우 방어용
+      if (!Array.isArray(rankingsData) || rankingsData?.length === 0) return;
+
+      const shuffled = [...rankingsData]
+        .sort(() => Math.random() - 0.5);
+      const topFive = shuffled.slice(0, 5);
+  
+      setRankingList(topFive);
+    }, [rankingsData]);
+
+    // rankingList가 로드될 때만 Swiper 렌더링 (스와이퍼 멈춤 형상 방지)
+    if (rankingList?.length === 0) return null;
 
   return (
     <div>
@@ -70,9 +60,9 @@ const Banner = () => {
             modules={[Autoplay, Pagination]}
             className="mySwiper mainBannerSwiper"
         >            
-          {rankingList.map((menu, idx)=>(
+          {rankingList?.map((menu, idx)=>(
             <SwiperSlide className="mainBannerSlide" key={idx}>
-                <BannerComponent item={menu}/>
+                <BannerComponent rankingsDataSlide={menu}/>
             </SwiperSlide>
           ))}
           <div className="play_bar_pc_cover">

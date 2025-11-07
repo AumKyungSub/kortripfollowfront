@@ -6,21 +6,21 @@ import { Map, MapMarker,useKakaoLoader } from 'react-kakao-maps-sdk';
 // Page css
 import './Explain.style.css'
 
-const Explain = ({item}) => {
+const Explain = ({rankingData}) => {
 
     // Kakao Map Script Load
     useKakaoLoader()
     
-    // item.latLng가 "lat,lng" 문자열일 경우 숫자로 변환
-    const [lat, lng] = item.latLng.split(',').map(Number);
-    const kakaoMapLink = `https://map.kakao.com/link/to/${item.placeID}`;
+    // rankingData.latLng가 "lat,lng" 문자열일 경우 숫자로 변환
+    const [lat, lng] = rankingData?.latLng.split(',').map(Number);
+    const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.placeID}`;
   return (
     <div>
       <div className='explainCover'>
         <div className="explainTextCover">
-          <h1 className="explainTitle">{item.explainTitle}</h1>
-          <p className="explain">{item.explain}</p>
-          <p className="explainLast">{item.explainLast}</p>
+          <h1 className="explainTitle">{rankingData?.explainTitle}</h1>
+          <p className="explain">{rankingData?.explain}</p>
+          <p className="explainLast">{rankingData?.explainLast}</p>
         </div>
         <Map
             id="map"

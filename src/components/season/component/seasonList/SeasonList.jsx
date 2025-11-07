@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 // Page css
 import './SeasonList.style.css'
 
-const SeasonList = ({bannerList, list, location}) => {
+const SeasonList = ({bannerList, list}) => {
 
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 480);

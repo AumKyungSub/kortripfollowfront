@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react'
 
 import { Link } from 'react-router-dom'
 
-const BannerComponent = ({item}) => {
+const BannerComponent = ({rankingsDataSlide}) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
     const [isTablet, setIsTablet] = useState(window.innerWidth <= 1023);
 
-        // 화면 크기 변경 시 반응형 처리
+    // 화면 크기 변경 시 반응형 처리
     useEffect(() => {
       const handleResize = () => {
         setIsMobile(window.innerWidth <= 767);
@@ -15,7 +15,7 @@ const BannerComponent = ({item}) => {
       return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-        // 화면 크기 변경 시 반응형 처리
+    // 화면 크기 변경 시 반응형 처리
     useEffect(() => {
       const handleResize = () => {
         setIsTablet(window.innerWidth <= 1023);
@@ -26,11 +26,15 @@ const BannerComponent = ({item}) => {
 
   return (
     <div>
-      <Link to={`/location/${item?.id}`}>
-        <img src={isMobile?item?.imgName+"3M.jpg":isTablet?item?.imgName+"3T.jpg":item?.imgName+"3.jpg"} alt={item?.imgName+"3.jpg"} />
+      <Link to={`/location/${rankingsDataSlide?.id}`}>
+        <img src={isMobile?rankingsDataSlide?.imgName+"3M.jpg"
+          :isTablet?rankingsDataSlide?.imgName+"3T.jpg"
+          :rankingsDataSlide?.imgName+"3.jpg"} 
+          alt={rankingsDataSlide?.imgName+"3.jpg"} 
+        />
         <div className="swiper-text01">
-            <strong>{item?.location} <br/><span>{item?.locationEnglish}</span></strong>
-            <p className="swiper-p01">{item?.explainSide}</p>
+            <strong>{rankingsDataSlide?.location} <br/><span>{rankingsDataSlide?.locationEnglish}</span></strong>
+            <p className="swiper-p01">{rankingsDataSlide?.explainSide}</p>
         </div>
       </Link>
       

@@ -4,42 +4,33 @@ import { useNavigate } from 'react-router-dom';
 // Page css
 import './HomeRegion.style.css'
 
-const HomeRegion = () => {
+const HomeRegion = ({rankingData = []}) => {
   const [regionList, setRegionList] = useState([]);
   const [regionCount, setRegionCount] =useState([]);
   const navigate = useNavigate();
 
-  const getRanking = async () => {
-    try{      
-      // let url = `http://localhost:3000/rankings`;
-      let url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
-      let response = await fetch(url);
-      let data = await response.json();
-      // console.log(data);
-      setRegionList(data);
-     
-      const counts = data.reduce((acc, item)=>{
-        const region = item.region || "기타";
-        acc[region] = (acc[region] || 0) +1;
-        return acc;
-      },{});
+  useEffect(() => {
+    if (!Array.isArray(rankingData) || rankingData.length === 0) return;
 
-      setRegionCount(counts);
-    } catch (error) {
-      console.error("데이터를 불러올 수 없습니다.",error);
-    }
-  };
-  
-  useEffect(()=>{
-    getRanking()
-  },[]);
+    setRegionList(rankingData);
+
+    // 지역별 개수 계산
+    const counts = rankingData.reduce((count, regionName) => {
+      const region = regionName.region || "기타";
+      count[region] = (count[region] || 0) + 1;
+      return count;
+    }, {});
+
+    setRegionCount(counts);
+  }, [rankingData]);
 
   // 해당 지역의 랜덤 최대 3개 데이터 반환 함수
   const getRandomLocationsByRegion = (regionName) => {
-    const filtered = regionList.filter((item) => item.region === regionName);
+    const filtered = regionList.filter((regionInfo) => regionInfo.region === regionName);
     const shuffled = filtered.sort(() => Math.random() - 0.5);
     return shuffled.slice(0, 3);
   };
+
   // 전체를 위해 다시 불러옴..
   const getRandomAllLocations = () => {
     const shuffled = [...regionList].sort(() => Math.random() - 0.5);
@@ -74,8 +65,8 @@ const HomeRegion = () => {
             </div>
             <ul className="regionExampleList">
               <p>전체</p>
-                {getRandomAllLocations().map((item) => (
-                  <li key={item.id}>{item.location}</li>
+                {getRandomAllLocations().map((regionNames) => (
+                  <li key={regionNames?.id}>{regionNames?.location}</li>
                 ))}
             </ul>
           </div>
@@ -92,8 +83,8 @@ const HomeRegion = () => {
               </div>
               <ul className="regionExampleList">
                 <p>{region}</p>
-                {getRandomLocationsByRegion(region).map((item) => (
-                  <li key={item.id}>{item.location}</li>
+                {getRandomLocationsByRegion(region).map((regionNames) => (
+                  <li key={regionNames?.id}>{regionNames?.location}</li>
                 ))}
               </ul>
             </div>

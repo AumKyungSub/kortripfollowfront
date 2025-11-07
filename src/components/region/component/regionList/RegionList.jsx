@@ -3,25 +3,25 @@ import { useNavigate } from 'react-router-dom'
 // Page css
 import './RegionList.style.css'
 
-const RegionList = ({item}) => {
+const RegionList = ({regionList}) => {
 
   const navigate = useNavigate();
   const locationDetail = () => {
-    navigate(`/location/${item?.id}`)
+    navigate(`/location/${regionList?.id}`)
   }
 
   return (
     <>
       <div className='regionListCover' onClick={locationDetail}>
           <div className="regionImgCover">
-              <img src={item?.imgName+"3R.jpg"} alt={item?.imgName+"3R.jpg"} />
+              <img src={regionList?.imgName+"3R.jpg"} alt={regionList?.imgName+"3R.jpg"} />
           </div>
           <div className="regionTextCover">
               <p className="regionName">
                 <img src="/images/icon/regionIcon.png" alt="region" />
-                {item?.region}</p>
-              <h3 className="regionLocation">{item?.location}</h3>
-              <p className="regionText">{item?.explainTitle}</p>
+                {regionList?.region}</p>
+              <h3 className="regionLocation">{regionList?.location}</h3>
+              <p className="regionText">{regionList?.explainTitle}</p>
           </div>
       </div>
     </>
