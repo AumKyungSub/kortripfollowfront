@@ -1,0 +1,135 @@
+
+    .locationInfoCover {
+        padding: 16px;
+        background-color: #f2f2f7;
+        white-space: pre-wrap
+    }
+
+    .locationInfoTitle{
+        /* Font */
+        font-size: 1.563rem;
+        font-weight: 900;
+    }
+
+    .operatingHourTitle, 
+    .closeDayTitle, 
+    .entranceFeeTitle {
+        margin-top: 15px;
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 900;
+
+    }
+
+    .operatingHourTitle img, 
+    .closeDayTitle img, 
+    .entranceFeeTitle img {
+        width: 24px;
+        margin-right: 10px;
+    }
+
+    .operatingHour, 
+    .closeDay,
+    .entranceFee {
+        margin: 10px 34px 0;
+        /* Font */
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .reviewPC {
+        width: 100%;
+        display: block;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        border-radius: 15px;
+        background-color: #4285F4;
+        /* Font */
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .warningInfo {
+        margin-top: 20px;
+        /* Font */
+        font-size: 1rem;
+        font-weight: 900;
+        text-align: center;
+
+    }
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+@media only all and (min-width: 1024px) {
+    .locationInfoCover {
+        padding: 30px 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        margin-top: 60px;
+        /* Position */
+        position: fixed;
+        right: 0;
+        z-index: 100;
+    }
+
+    .locationInfoTitle{
+        /* Font */
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .operatingHourTitle, 
+    .closeDayTitle, 
+    .entranceFeeTitle {
+        margin-top: 35px;
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 900;
+
+    }
+
+    .operatingHourTitle img, 
+    .closeDayTitle img, 
+    .entranceFeeTitle img {
+        width: 26px;
+        margin-right: 10px;
+    }
+
+    .operatingHour, 
+    .closeDay,
+    .entranceFee {
+        margin: 10px 36px 0;
+        /* Font */
+        font-size: 1rem;
+        font-weight: 00;
+    }
+
+    .reviewPC {
+        width: 100%;
+        display: block;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        border-radius: 15px;
+        background-color: #4285F4;
+        /* Font */
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+}

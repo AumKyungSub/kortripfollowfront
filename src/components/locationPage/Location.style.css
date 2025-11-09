@@ -1,0 +1,17 @@
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+@media only all and (min-width: 1024px) {
+}

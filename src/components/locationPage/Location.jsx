@@ -7,6 +7,8 @@ import Footer from '../footer/Footer'
 import MainImage from './components/mainImage/MainImage'
 import Explain from './components/explain/Explain'
 import Parking from './components/parking/Parking'
+import LocInfo from './components/locationInfo/LocInfo'
+import LocInfoNotPc from './components/locationInfo/LocInfoNotPc'
 import Recommend from './components/recommend/Recommend'
 
 // Page CSS
@@ -54,6 +56,10 @@ const Location = () => {
             {data && <MainImage rankingData={data} />}
             {data && <Explain rankingData={data} />}
             {data && <Parking rankingData={data} />}
+
+            {!isMobile? data && <LocInfo rankingData={data} />
+            :  data && <LocInfoNotPc rankingData={data}/> 
+            }
             {data && <Recommend rankingData={data} />}
             <Footer/>
         </div>

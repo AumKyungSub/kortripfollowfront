@@ -25,7 +25,7 @@ const MainImage = ({rankingData}) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
+  console.log(rankingData);
   return (
     <div>
       <div className='mainImageCover'>
@@ -39,6 +39,10 @@ const MainImage = ({rankingData}) => {
         <div className='mainImageTextCover'>
           <div>
             <h2 className="locationName">{rankingData?.location}</h2>
+            <p className="locationAddress">
+              <img src="/images/icon/regionIcon.png" alt="regionIcon" />
+              {rankingData?.placeMainAddress}
+            </p>
             <p className="locationSlogan">{rankingData?.imgText}</p>
           </div>
           {rankingData?.review?
@@ -48,8 +52,8 @@ const MainImage = ({rankingData}) => {
             : <div></div>
           }
         </div>
+        <div className="emptyLine"></div>
       </div>
-      <div className="emptyLine"></div>
     </div>
   )
 }

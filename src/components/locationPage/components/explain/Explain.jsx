@@ -15,26 +15,29 @@ const Explain = ({rankingData}) => {
     const [lat, lng] = rankingData?.latLng.split(',').map(Number);
     const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.placeID}`;
   return (
-    <div>
+    <div className='explainWholeCover'>
       <div className='explainCover'>
         <div className="explainTextCover">
           <h1 className="explainTitle">{rankingData?.explainTitle}</h1>
           <p className="explain">{rankingData?.explain}</p>
           <p className="explainLast">{rankingData?.explainLast}</p>
         </div>
-        <Map
-            id="map"
-            className='topMap'
-            center={{ lat: lat, lng: lng }}
-            level={3} // 지도 확대 레벨
-        >
-            <MapMarker position={{ lat: lat, lng: lng }} />
-        <div className="topaLinkCover">
-            <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer" className='topA'>
-                <p>길찾기</p>
-            </a>
+        <div className="topMapCover">
+          <p className='topMapP'>{`${rankingData?.placeMainAddress} ${rankingData?.placeDetailAddress}`}</p>
+          <Map
+              id="map"
+              className='topMap'
+              center={{ lat: lat, lng: lng }}
+              level={3} // 지도 확대 레벨
+              >
+              <MapMarker position={{ lat: lat, lng: lng }} />
+          <div className="topaLinkCover">
+              <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer" className='topA'>
+                  <p>길찾기</p>
+              </a>
+          </div>
+          </Map>
         </div>
-        </Map>
       </div>
     </div>
   )

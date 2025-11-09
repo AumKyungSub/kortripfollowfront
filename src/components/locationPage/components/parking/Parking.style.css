@@ -36,6 +36,7 @@
 }
 
 .parkingInfoCover {
+    margin-top: 15px;
     /* Flex */
     display: flex;
 }
@@ -47,10 +48,6 @@
 }
 .parkingInfoIcon img{
     width: 100%;
-}
-
-.topParkingInfoEmpty {
-    display: none;
 }
 
 /* ---------------------------------------------------- */
@@ -73,13 +70,18 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .topParkingInfoEmpty {
-        display: block;
+    .topParkingWholeCover {
+        background-color: #f2f2f7;
     }
+
+    .parkingInfoCover{
+        margin-bottom: 20px;
+    }
+
     .topParkingInfo {
         max-width: 1480px;
         margin: 0 auto;
-        padding: 30px 20px 16px;
+        padding: 30px 20px;
         /* Flex */
         display: flex;
         justify-content: space-between;
@@ -87,8 +89,14 @@
     }
     
     .parkingAllCover {
-        
-        /* (378/1440)*100 = 26.25 */
-        width: 26.25%;
+        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
+        width: 62.43055555555556%;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 20px 20px 0;
+    }
+
+    .parkT {
+        margin-top: 5px;
     }
 }

@@ -2,7 +2,6 @@
     width: 100%;
     padding: 20px 16px 0;
     border-radius: 10px;
-    white-space: pre-wrap;
     word-break: break-all;
     /* Position */
     position: relative;
@@ -37,6 +36,7 @@
     font-weight: 700;
     letter-spacing: 0.02em;
     line-height: 20px;
+    white-space: pre-wrap;
 }
 
 .topMap {
@@ -72,6 +72,10 @@
     font-size: 0.688rem;
     font-weight: 900;
     letter-spacing: 0.01em;
+}
+
+.topMapP {
+    display: none;
 }
 
 /* ---------------------------------------------------- */
@@ -120,50 +124,108 @@
         margin: 0 auto 16px; 
         text-align: left;       
     }
+    
+    .topMapCover {
+        /* (378/983)*100 = 38.45371312309258 */
+        width: 38.45371312309258%;
+        background-color: #fff;
+        border-radius: 15px;
+        /* Position */
+        position: relative;
+    }
 
     .topMap {
         /* (378/983)*100 = 38.45371312309258 */
-        width: 38.45371312309258%;
+        width: 100%;
         aspect-ratio: 1 / 1;
     }
 
     .topaLinkCover {
         /* Position */
-        right: 20px;
+        right: 5px;
+        bottom: 5px;
     }
 }
 
 @media only all and (min-width: 1024px) {
+    .explainWholeCover{
+        background-color: #f2f2f7;
+    }
+
     .explainCover {
         max-width: 1480px;
         margin: 0 auto;
-        padding: 30px 20px 0px;
+        padding: 60px 20px 0px;
         /* Flex */
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
     }
     
     .explainTextCover {
-        /* 100-26.25 = 73.75 */
-        width: calc(73.75% - 16px);
+        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
+        width: 62.43055555555556%;
         text-align: center;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 38px 100px;
+        margin-bottom: 20px;
+    }
+
+    .explainCover .explainTitle  {
+        /* Font */
+        font-size: 2rem;
     }
 
     .explainCover .explain  {
-        max-width: 517px;
         margin: 0 auto 16px; 
-        text-align: left;       
+        text-align: left;    
+        /* Font */
+        font-size: 1.125rem; 
+        line-height: 30px;
+        letter-spacing: 0.03em;  
     }
 
+    .explainCover .explainLast {
+        /* Font */
+        font-size: 1rem;
+        line-height: 25px;
+        letter-spacing: 0.03em;  
+    }
+    
+    .topMapCover {
+        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
+        width: 62.43055555555556%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        /* Position */
+        position: relative;
+    }
+
+    .topMapP {
+        display: block;
+        margin-bottom: 10px;
+        /* Font */
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+    
     .topMap {
-        /* (378/1440)*100 = 26.25 */
-        width: 26.25%;
-        aspect-ratio: 1 / 1;
+        width: 100%;
+        aspect-ratio: 16 / 8;
     }
 
     .topaLinkCover {
+        width: 70px;
+        height: 70px;
         /* Position */
         right: 20px;
+        bottom: 20px;
+    }
+
+    .topaLinkCover p {
+        font-size: 1.25rem;
     }
 }

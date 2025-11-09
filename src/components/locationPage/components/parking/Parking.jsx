@@ -9,9 +9,8 @@ const Parking = ({rankingData}) => {
   const singleRightArrow = "/images/icon/rightSingleArrowIcon.png";
 
   return (
-    <div>
+    <div className='topParkingWholeCover'>
         <div className="topParkingInfo">
-          <div className='topParkingInfoEmpty'><span> </span></div>
           <div className='parkingAllCover'>
             <div className="parkingInfoCover">
               <div className="parkingInfoIcon">

@@ -22,11 +22,20 @@
     line-height: 1.25;
 }
 
-.locationSlogan {
-    width: 100%;
-    padding: 6px 16px 16px;
+.locationAddress {
+    padding: 12px 16px 0;
     /* Font */
     color: #757575;
+}
+.locationAddress img {
+    width: 16px;
+}
+
+.locationSlogan {
+    width: 100%;
+    padding: 12px 16px 16px;
+    /* Font */
+    color: #515151;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25;
@@ -121,6 +130,7 @@
     .mainImageCover {
         width: 100%;
         height: auto;
+        background-color: #F9FAFB;
     }
     
     .mainImageCover .mainImage {
@@ -140,13 +150,12 @@
     }
     
     .locationSlogan {
-        padding: 6px 16px 20px;
+        padding: 12px 16px 20px;
+        /* Font */
+        font-size: 20px;
     }
     
     .review {
-        width: 250px;
-        /* Font */
-        font-size: 1.2rem;
-        font-weight: 700;
+        display: none;
     }
 }
