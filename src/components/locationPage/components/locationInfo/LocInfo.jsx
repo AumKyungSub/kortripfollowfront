@@ -6,18 +6,21 @@ import './LocInfo.style.css'
 const LocInfo = ({rankingData}) => {
   const [isFixed, setIsFixed] = useState(false);
   const [initialTop, setInitialTop] = useState(0);
-  const [rightPos, setRightPos] = useState(0); // 초기값 padding
-  const [locWidth, setLocWidth] = useState(0); 
+  const [rightPos, setRightPos] = useState(0);
+  const [locWidth, setLocWidth] = useState(0);
 
-  useEffect(() => {
+useEffect(() => {
   const headerHeight = 72;
-  const footerHeight = 320;
+  const footerHeight = 103;
   const mainEl = document.querySelector('.mainImageCover');
   const explainEl = document.querySelector('.explainTextCover');
   const topRecommendEl = document.querySelector('.topRecommendCover');
+  const locInfoEl = document.querySelector('.locationInfoCover');
+
+  if (!mainEl || !explainEl || !topRecommendEl || !locInfoEl) return;
 
   const updatePosition = () => {
-    if (!mainEl || !explainEl || !topRecommendEl) return;
+    if (!mainEl || !explainEl || !topRecommendEl || !locInfoEl) return;
 
     const viewportWidth = window.innerWidth;
     const containerWidth = Math.min(1440, viewportWidth);
@@ -26,35 +29,34 @@ const LocInfo = ({rankingData}) => {
     setRightPos(right);
 
     const explainWidth = explainEl.offsetWidth;
-    let locWidth = 0;
-    if (viewportWidth >= 1440) {
-      locWidth = 1388 - explainWidth;
-    } else {
-      locWidth = viewportWidth - (explainWidth + 60);
-    }
-    setLocWidth(locWidth);
+    const width = viewportWidth >= 1440 ? 1388 - explainWidth : viewportWidth - (explainWidth + 60);
+    setLocWidth(width);
 
     const mainBottom = mainEl.getBoundingClientRect().bottom + window.scrollY;
-    setInitialTop(mainBottom);
-
-    // topRecommend 위치 계산
     const topRecommendTop = topRecommendEl.getBoundingClientRect().top + window.scrollY;
-    
-    // 스크롤 위치
+    const locInfoHeight = locInfoEl.offsetHeight;
+
     const scrollY = window.scrollY;
-    
-    // fixed 조건
-    if (scrollY + headerHeight >= mainBottom && scrollY + headerHeight + locWidth < topRecommendTop - footerHeight) {
+
+    const startFix = scrollY + headerHeight >= mainBottom;
+    const stopFix = scrollY + headerHeight + locInfoHeight >= topRecommendTop - footerHeight;
+
+    if (startFix && !stopFix) {
       setIsFixed(true);
-    } else if (scrollY + headerHeight >= mainBottom && scrollY + headerHeight + locWidth >= topRecommendTop - footerHeight) {
+    } else if (stopFix) {
       setIsFixed(false);
-      setInitialTop(topRecommendTop - footerHeight - locWidth);
+      setInitialTop(topRecommendTop - footerHeight - locInfoHeight);
     } else {
       setIsFixed(false);
+      setInitialTop(mainBottom);
     }
   };
 
+  // 최초 접근시 바로 실행
   updatePosition();
+  // 최초 접근시 한 번 실행 (렌더 완료 후 계산)
+  setTimeout(updatePosition, 50);
+
   window.addEventListener('resize', updatePosition);
   window.addEventListener('scroll', updatePosition);
 
@@ -80,7 +82,7 @@ const LocInfo = ({rankingData}) => {
                 운영시간
             </p>
             <p className="operatingHour">
-                {rankingData?.operatingHour?rankingData?.operatingHour 
+                {rankingData?.operating?.operatingHour?rankingData?.operating?.operatingHour 
                 : "24시 운영"}
             </p>
             <p className="closeDayTitle">
@@ -88,7 +90,7 @@ const LocInfo = ({rankingData}) => {
                 휴무일
             </p>
             <p className="closeDay">
-                {rankingData?.closeDay?rankingData?.closeDay 
+                {rankingData?.operating?.closeDay?rankingData?.operating?.closeDay 
                 : "연중무휴"}
             </p>
             <p className="entranceFeeTitle">
@@ -96,12 +98,12 @@ const LocInfo = ({rankingData}) => {
                 입장료
             </p>
             <p className="entranceFee">
-                {rankingData?.entranceFee?rankingData.entranceFee 
+                {rankingData?.operating?.entranceFee?rankingData?.operating?.entranceFee 
                 : "무료"}
             </p>
             <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
-            {rankingData?.review?
-                <a href={rankingData?.reviewAddress} target="_blank" rel="noopener noreferrer" className='reviewCover'>
+            {rankingData?.review?.existence?
+                <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
                   <span className='reviewPC'>찐리뷰 보러가기</span>
                 </a>
               : <div>

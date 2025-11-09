@@ -27,14 +27,14 @@ const BannerComponent = ({rankingsDataSlide}) => {
   return (
     <div>
       <Link to={`/location/${rankingsDataSlide?.id}`}>
-        <img src={isMobile?rankingsDataSlide?.imgName+"3M.jpg"
-          :isTablet?rankingsDataSlide?.imgName+"3T.jpg"
-          :rankingsDataSlide?.imgName+"3.jpg"} 
-          alt={rankingsDataSlide?.imgName+"3.jpg"} 
+        <img src={isMobile?rankingsDataSlide?.img?.link+"3M.jpg"
+          :isTablet?rankingsDataSlide?.img?.link+"3T.jpg"
+          :rankingsDataSlide?.img?.link+"3.jpg"} 
+          alt={rankingsDataSlide?.img?.link+"3.jpg"} 
         />
         <div className="swiper-text01">
-            <strong>{rankingsDataSlide?.location} <br/><span>{rankingsDataSlide?.locationEnglish}</span></strong>
-            <p className="swiper-p01">{rankingsDataSlide?.explainSide}</p>
+            <strong>{rankingsDataSlide?.location?.name} <br/><span>{rankingsDataSlide?.location?.english}</span></strong>
+            <p className="swiper-p01">{rankingsDataSlide?.description?.slide}</p>
         </div>
       </Link>
       

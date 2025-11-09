@@ -16,7 +16,7 @@ const HomeRegion = ({rankingData = []}) => {
 
     // 지역별 개수 계산
     const counts = rankingData.reduce((count, regionName) => {
-      const region = regionName.region || "기타";
+      const region = regionName.location?.region[0] || "기타";
       count[region] = (count[region] || 0) + 1;
       return count;
     }, {});
@@ -26,7 +26,7 @@ const HomeRegion = ({rankingData = []}) => {
 
   // 해당 지역의 랜덤 최대 3개 데이터 반환 함수
   const getRandomLocationsByRegion = (regionName) => {
-    const filtered = regionList.filter((regionInfo) => regionInfo.region === regionName);
+    const filtered = regionList.filter((regionInfo) => regionInfo.location?.region?.[0] === regionName);
     const shuffled = filtered.sort(() => Math.random() - 0.5);
     return shuffled.slice(0, 3);
   };
@@ -66,7 +66,7 @@ const HomeRegion = ({rankingData = []}) => {
             <ul className="regionExampleList">
               <p>전체</p>
                 {getRandomAllLocations().map((regionNames) => (
-                  <li key={regionNames?.id}>{regionNames?.location}</li>
+                  <li key={regionNames?.id}>{regionNames?.location?.name}</li>
                 ))}
             </ul>
           </div>
@@ -84,7 +84,7 @@ const HomeRegion = ({rankingData = []}) => {
               <ul className="regionExampleList">
                 <p>{region}</p>
                 {getRandomLocationsByRegion(region).map((regionNames) => (
-                  <li key={regionNames?.id}>{regionNames?.location}</li>
+                  <li key={regionNames?.id}>{regionNames?.location?.name}</li>
                 ))}
               </ul>
             </div>

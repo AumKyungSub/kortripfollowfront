@@ -31,22 +31,22 @@ const MainImage = ({rankingData}) => {
       <div className='mainImageCover'>
         {isTablet && <HomeIcon />}
         <div>
-          <img src={isMobile?rankingData?.imgName+"2M.jpg"
-            :isTablet?rankingData?.imgName+"2T.jpg"
-            :rankingData?.imgName+"2.jpg"
-          } alt={rankingData?.imgName+"2.jpg"} className='mainImage' />
+          <img src={isMobile?rankingData?.img?.link+"2M.jpg"
+            :isTablet?rankingData?.img?.link+"2T.jpg"
+            :rankingData?.img?.link+"2.jpg"
+          } alt={rankingData?.img?.link+"2.jpg"} className='mainImage' />
         </div>
         <div className='mainImageTextCover'>
           <div>
-            <h2 className="locationName">{rankingData?.location}</h2>
+            <h2 className="locationName">{rankingData?.location?.name}</h2>
             <p className="locationAddress">
               <img src="/images/icon/regionIcon.png" alt="regionIcon" />
-              {rankingData?.placeMainAddress}
+              {rankingData?.location?.region[1]}
             </p>
-            <p className="locationSlogan">{rankingData?.imgText}</p>
+            <p className="locationSlogan">{rankingData?.description?.short}</p>
           </div>
-          {rankingData?.review?
-              <a href={rankingData?.reviewAddress} target="_blank" rel="noopener noreferrer" className='reviewCover'>
+          {rankingData?.review.existence?
+              <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
                 <span className='review'>찐리뷰</span>
               </a>
             : <div></div>

@@ -5,7 +5,7 @@ import './Parking.style.css'
 
 const Parking = ({rankingData}) => {
 
-  const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.parkingAddressID}`;
+  const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.parking?.addressID}`;
   const singleRightArrow = "/images/icon/rightSingleArrowIcon.png";
 
   return (
@@ -18,7 +18,7 @@ const Parking = ({rankingData}) => {
               </div>
               <div className="parkingInfoText">
                 <p className='topParkingTableHead1'>주차 가능 여부</p>
-                <p className='parkT'>{rankingData?.parking == true?"가능":"불가"}</p>
+                <p className='parkT'>{rankingData?.parking?.existence == true?"가능":"불가"}</p>
               </div>
             </div>
             <div className="parkingInfoCover">
@@ -27,7 +27,7 @@ const Parking = ({rankingData}) => {
               </div>
               <div className="parkingInfoText">
                 <p className='topParkingTableHead2'>주차 비용 여부</p>
-                <p className='parkT'>{rankingData?.parkingFee == true?"유료":"무료"}</p>
+                <p className='parkT'>{rankingData?.parking?.fee == true?"유료":"무료"}</p>
               </div>
             </div>
             <div className="parkingInfoCover">
@@ -36,10 +36,10 @@ const Parking = ({rankingData}) => {
               </div>
               <div className="parkingInfoText">
                 <p className='parkP'><strong>추천 주차 주소</strong> <br/>
-                  <a href={rankingData?.parking == true?kakaoMapLink:"#"} target="_blank" rel="noopener noreferrer" className='parkT parkA'>
-                      {rankingData?.parking == true?(
+                  <a href={rankingData?.parking?.existence == true?kakaoMapLink:"#"} target="_blank" rel="noopener noreferrer" className='parkT parkA'>
+                      {rankingData?.parking?.existence == true?(
                         <>
-                          {rankingData?.parkingAddress}
+                          {rankingData?.parking?.address}
                           <img src={singleRightArrow} alt="singleRightArrow" />
                         </>
                       ):""}

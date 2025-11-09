@@ -13,7 +13,7 @@ const RegionBanner = ({filteredList }) => {
   return (
     <div className="regionBannerCover">
             <img
-              src={randomBanner.imgName + "2.jpg"} alt={randomBanner.imgName + "2.jpg"}
+              src={randomBanner.img?.link + "2.jpg"} alt={randomBanner.img?.link + "2.jpg"}
             />
 
     </div>

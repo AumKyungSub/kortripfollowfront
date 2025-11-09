@@ -9,7 +9,7 @@ const TopfiveComponentCardImg = ({rankingList, onSelect, selectedAll}) => {
 
     const goToLocationDetail = () => {
         onSelect(selectedAll);
-        navigate(`/location/${selectedAll.id}`);
+        navigate(`/location/${selectedAll?.id}`);
     };
 
     return (
@@ -17,7 +17,7 @@ const TopfiveComponentCardImg = ({rankingList, onSelect, selectedAll}) => {
         <div className="mainCardImg" onClick={goToLocationDetail}>
             {selectedAll && (
                 <>
-                    <img src={selectedAll.imgName+"3.jpg"} alt="선택된 여행지"/>
+                    <img src={selectedAll?.img?.link+"3.jpg"} alt="선택된 여행지"/>
                     <div className="mainCardImgTextCover">
                         {/* TOP 옆에 있는 icon은 icon이름을 12345로 정해서 해당 icon 입력 */}
                         <span className="mainCardTop">
@@ -26,10 +26,10 @@ const TopfiveComponentCardImg = ({rankingList, onSelect, selectedAll}) => {
                         </span>
                         <p className="mainCardRegion">
                             <img src="/images/icon/regionIconS.png" alt="/images/icon/regionIconS.png" />
-                            {selectedAll.region}
+                            {selectedAll?.location?.region[0]}
                         </p>
-                        <h2 className="mainCardLocation">{selectedAll.location}</h2>
-                        <p className="mainCardExplain">{selectedAll.explainSide}</p>
+                        <h2 className="mainCardLocation">{selectedAll?.location?.name}</h2>
+                        <p className="mainCardExplain">{selectedAll?.description?.slide}</p>
                     </div>
                 </>
             )}
@@ -40,7 +40,7 @@ const TopfiveComponentCardImg = ({rankingList, onSelect, selectedAll}) => {
                     key={menu.id} 
                     rankingClickList={menu} 
                     onSelect={()=> onSelect(menu)}
-                    isSelected={menu.top === selectedAll.top}
+                    isSelected={menu.top === selectedAll?.top}
                 />
             ))}
         </div>

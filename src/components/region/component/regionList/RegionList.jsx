@@ -14,14 +14,14 @@ const RegionList = ({regionList}) => {
     <>
       <div className='regionListCover' onClick={locationDetail}>
           <div className="regionImgCover">
-              <img src={regionList?.imgName+"3R.jpg"} alt={regionList?.imgName+"3R.jpg"} />
+              <img src={regionList?.img?.link+"3R.jpg"} alt={regionList?.img?.link+"3R.jpg"} />
           </div>
           <div className="regionTextCover">
               <p className="regionName">
                 <img src="/images/icon/regionIcon.png" alt="region" />
-                {regionList?.region}</p>
-              <h3 className="regionLocation">{regionList?.location}</h3>
-              <p className="regionText">{regionList?.explainTitle}</p>
+                {regionList?.location?.region?.[0]}</p>
+              <h3 className="regionLocation">{regionList?.location?.name}</h3>
+              <p className="regionText">{regionList?.description?.title}</p>
           </div>
       </div>
     </>

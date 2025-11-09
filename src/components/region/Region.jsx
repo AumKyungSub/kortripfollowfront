@@ -43,7 +43,7 @@ const Region = () => {
   // 선택된 지역에 따라 필터링
     const filteredList = (selectedRegion === '전체'
         ? data
-        : data?.filter(selectRegion => selectRegion?.region === selectedRegion)
+        : data?.filter(selectRegion => selectRegion?.location?.region?.[0] === selectedRegion)
     ).sort(() => Math.random() - 0.5);
         
     // 화면 크기 변경 시 모바일 여부 감지

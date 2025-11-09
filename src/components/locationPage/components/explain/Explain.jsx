@@ -12,18 +12,18 @@ const Explain = ({rankingData}) => {
     useKakaoLoader()
     
     // rankingData.latLng가 "lat,lng" 문자열일 경우 숫자로 변환
-    const [lat, lng] = rankingData?.latLng.split(',').map(Number);
-    const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.placeID}`;
+    const [lat, lng] = rankingData?.location?.latLng.split(',').map(Number);
+    const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.location?.placeID}`;
   return (
     <div className='explainWholeCover'>
       <div className='explainCover'>
         <div className="explainTextCover">
-          <h1 className="explainTitle">{rankingData?.explainTitle}</h1>
-          <p className="explain">{rankingData?.explain}</p>
-          <p className="explainLast">{rankingData?.explainLast}</p>
+          <h1 className="explainTitle">{rankingData?.description?.title}</h1>
+          <p className="explain">{rankingData?.description?.main}</p>
+          <p className="explainLast">{rankingData?.description?.last}</p>
         </div>
         <div className="topMapCover">
-          <p className='topMapP'>{`${rankingData?.placeMainAddress} ${rankingData?.placeDetailAddress}`}</p>
+          <p className='topMapP'>{`${rankingData?.location?.region[1]} ${rankingData?.location?.region[2]}`}</p>
           <Map
               id="map"
               className='topMap'

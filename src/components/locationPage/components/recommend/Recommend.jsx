@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 // Components
 import RecommendComponent from './RecommendComponent';
@@ -25,13 +24,13 @@ const Recommend = ({rankingData}) => {
     
     if (!rankingData) return <div>데이터가 없습니다.</div>;
 
-    const galleryData = isMobile ? rankingData?.gallery : rankingData?.galleryPc;
+    const galleryData = isMobile ? rankingData?.img?.gallery : rankingData?.img?.galleryPc;
 
   return (
     <div className='topRecommendCover'>
       <h1>갤러리</h1>
       {galleryData && galleryData.length > 0 && galleryData[0] !== "" ? (
-        <RecommendComponent rankingDataGallery={{ ...rankingData, gallery: galleryData }} />
+        <RecommendComponent rankingData={rankingData} isMobile={isMobile} />
       ) : (
       <div>갤러리가 비어있습니다..</div>
       )}

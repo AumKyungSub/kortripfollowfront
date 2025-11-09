@@ -37,15 +37,15 @@ const TopfiveComponent = ({rankingsTopFive}) => {
   return (
         <div className="card">
           <Link to={`/location/${rankingsTopFive?.id}`}>
-            <img src={isMobile?rankingsTopFive?.top === 1?rankingsTopFive?.imgName+"0M.jpg":rankingsTopFive?.imgName+"1.jpg"
-              :isZFold?rankingsTopFive?.top === 1?rankingsTopFive?.imgName+"0Z.jpg":rankingsTopFive?.imgName+"1.jpg"
-              :isTablet?rankingsTopFive?.top === 1?rankingsTopFive?.imgName+"0T.jpg":rankingsTopFive?.imgName+"1.jpg"
-              :rankingsTopFive?.top === 1?rankingsTopFive?.imgName+"0.jpg":rankingsTopFive?.imgName+"1.jpg"
-            } alt={rankingsTopFive?.imgName+"1.jpg"} />
+            <img src={isMobile?rankingsTopFive?.top === 1?rankingsTopFive?.img?.link+"0M.jpg":rankingsTopFive?.img?.link+"1.jpg"
+              :isZFold?rankingsTopFive?.top === 1?rankingsTopFive?.img?.link+"0Z.jpg":rankingsTopFive?.img?.link+"1.jpg"
+              :isTablet?rankingsTopFive?.top === 1?rankingsTopFive?.img?.link+"0T.jpg":rankingsTopFive?.img?.link+"1.jpg"
+              :rankingsTopFive?.top === 1?rankingsTopFive?.img?.link+"0.jpg":rankingsTopFive?.img?.link+"1.jpg"
+            } alt={rankingsTopFive?.img?.link+"1.jpg"} />
             <span className='topRanking'>
                 TOP {rankingsTopFive?.top}
             </span>
-            <p>{rankingsTopFive?.location}</p>
+            <p>{rankingsTopFive?.location?.name}</p>
           </Link>
         </div>
   )

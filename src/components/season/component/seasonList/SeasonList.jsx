@@ -14,6 +14,7 @@ const SeasonList = ({bannerList, list}) => {
 
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
+    console.log("dd",list)
 
     // 화면 크기 변경 감지
     useEffect(() => {
@@ -42,11 +43,11 @@ const SeasonList = ({bannerList, list}) => {
                 {list.map((item)=>(
                     <SwiperSlide key={item.id} className='seasonSwiper' onClick={()=> navigate(`/location/${item.id}`)}>
                         <div className="seasonListImg">
-                            <img src={isMobile ? item?.imgName+"4.jpg" : item?.imgName+"3.jpg"} alt={item?.imgName+"1.jpg"}/>
+                            <img src={isMobile ? item?.img?.link+"4.jpg" : item?.img?.link+"3.jpg"} alt={item?.img?.link+"1.jpg"}/>
                         </div>
                         <div className="seasonListText">
-                            <h4 className="seasonListH4">{item?.location}</h4>
-                            <p className="seasonListP">{item?.explainTitle}</p>
+                            <h4 className="seasonListH4">{item?.location?.name}</h4>
+                            <p className="seasonListP">{item?.description?.title}</p>
                         </div>
                     </SwiperSlide>
                 ))}
