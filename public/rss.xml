@@ -7,9 +7,33 @@
     <language>ko</language>
     <managingEditor>qnzldmad91@gmail.com (국트따라)</managingEditor>
     <webMaster>qnzldmad91@gmail.com (국트따라)</webMaster>
-    <lastBuildDate>Wed, 05 Nov 2025 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 10 Nov 2025 09:00:00 +0900</lastBuildDate>
     
     <!-- 최신 여행지 10개 (id 높은 순) -->
+    <item>
+      <title>오동도</title>
+      <link>https://kortripfollow.shop/location/12</link>
+      <description>전라남도 여수시 수정동에 위치한 오동도 — 전라남도 여수시 수정동에 위치한 오동도</description>
+      <guid>https://kortripfollow.shop/location/12</guid>
+      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>바람의 언덕</title>
+      <link>https://kortripfollow.shop/location/11</link>
+      <description>거제시 남부면 도장포 마을 북쪽 — 바람이 스치는 언덕 끝에 서면</description>
+      <guid>https://kortripfollow.shop/location/11</guid>
+      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>부석사</title>
+      <link>https://kortripfollow.shop/location/10</link>
+      <description>충청남도 문화재자료 제195호로 지정된 부석사 — "떠 있는 바위의 전설을 간직한 고찰</description>
+      <guid>https://kortripfollow.shop/location/10</guid>
+      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
     <item>
       <title>카페산</title>
       <link>https://kortripfollow.shop/location/9</link>
@@ -63,22 +87,6 @@
       <link>https://kortripfollow.shop/location/3</link>
       <description>동해의 시원한 바다를 향해 뻗은 감성 포토스팟</description>
       <guid>https://kortripfollow.shop/location/3</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>연미정</title>
-      <link>https://kortripfollow.shop/location/2</link>
-      <description>강화도의 역사와 물길이 만나는 고려시대 정자</description>
-      <guid>https://kortripfollow.shop/location/2</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>에델바이스 스위스 테마파크</title>
-      <link>https://kortripfollow.shop/location/1</link>
-      <description>스위스의 감성과 동화마을이 살아 숨쉬는 가평의 명소</description>
-      <guid>https://kortripfollow.shop/location/1</guid>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
