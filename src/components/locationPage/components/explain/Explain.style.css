@@ -31,7 +31,7 @@
     margin-bottom: 16px;
     text-align: center;
     /* Font */
-    color: #757575;
+    color: #525252;
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -74,7 +74,9 @@
     letter-spacing: 0.01em;
 }
 
-.topMapP {
+.topMapP,
+.explainImgCover,
+.explainName {
     display: none;
 }
 
@@ -113,7 +115,7 @@
         align-items: center;
     }
     
-    .explainTextCover {
+    .explainTextImgCover {
         /* 100-38.45371312309258 = 61.54628687690742 */
         width: calc(61.54628687690742% - 16px);
         text-align: center;
@@ -129,7 +131,7 @@
         /* (378/983)*100 = 38.45371312309258 */
         width: 38.45371312309258%;
         background-color: #fff;
-        border-radius: 15px;
+        border-radius: 10px;
         /* Position */
         position: relative;
     }
@@ -151,7 +153,7 @@
     .explainWholeCover{
         background-color: #f2f2f7;
     }
-
+    
     .explainCover {
         max-width: 1320px;
         margin: 0 auto;
@@ -162,34 +164,70 @@
         justify-content: space-between;
         align-items: start;
     }
+
+    .explainName {
+        display: block;
+        margin-left: 2px;
+        margin-bottom: 12px;
+        /* Font */
+        font-size: 24px;
+        font-weight: 700;
+    }
     
-    .explainTextCover {
+    .explainTextImgCover {
         /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
         width: 62.43055555555556%;
         text-align: center;
         background-color: #fff;
-        border-radius: 15px;
-        padding: 38px 100px;
+        border-radius: 10px;
+        padding: 20px;
+        /* padding: 30px 100px; */
         margin-bottom: 20px;
+        /* Flex */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .explainImgCover {
+        display: block;
+        width: 35%;
+        border-radius: 10px;
+        overflow: hidden;
+        /* Flex */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .explainCover .explainTitle  {
+    .explainCover img {
+        object-fit: cover;
+    }
+
+    .explainTextCover {
+        width: 65%;
+        align-self: stretch;
+    }
+
+    .explainTextCover .explainTitle  {
+        text-align: left;
         /* Font */
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
-    .explainCover .explain  {
-        margin: 0 auto 16px; 
+    .explainTextCover .explain  {
         text-align: left;    
         /* Font */
-        font-size: 1.125rem; 
+        font-size: 1rem; 
         line-height: 30px;
         letter-spacing: 0.03em;  
     }
 
-    .explainCover .explainLast {
+    .explainTextCover .explainLast {
+        text-align: left;
         /* Font */
-        font-size: 1rem;
+        font-size: 0.875rem;
         line-height: 25px;
         letter-spacing: 0.03em;  
     }
@@ -199,7 +237,7 @@
         width: 62.43055555555556%;
         background-color: #fff;
         padding: 20px;
-        border-radius: 15px;
+        border-radius: 10px;
         /* Position */
         position: relative;
     }
@@ -208,7 +246,7 @@
         display: block;
         margin-bottom: 10px;
         /* Font */
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: 600;
     }
     

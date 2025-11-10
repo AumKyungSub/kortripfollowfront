@@ -17,11 +17,18 @@ const Explain = ({rankingData}) => {
   return (
     <div className='explainWholeCover'>
       <div className='explainCover'>
-        <div className="explainTextCover">
-          <h1 className="explainTitle">{rankingData?.description?.title}</h1>
-          <p className="explain">{rankingData?.description?.main}</p>
-          <p className="explainLast">{rankingData?.description?.last}</p>
+        <h5 className='explainName'>소개</h5>
+        <div className="explainTextImgCover">
+          <div className="explainImgCover">
+            <img src={rankingData?.img?.link+"4.jpg"} alt="" />
+          </div>
+          <div className="explainTextCover">
+            <h1 className="explainTitle">{rankingData?.description?.title}</h1>
+            <p className="explain">{rankingData?.description?.main}</p>
+            <p className="explainLast">{rankingData?.description?.last}</p>
+          </div>
         </div>
+        <h5 className='explainName'>위치 정보</h5>
         <div className="topMapCover">
           <p className='topMapP'>{`${rankingData?.location?.region[1]} ${rankingData?.location?.region[2]}`}</p>
           <Map

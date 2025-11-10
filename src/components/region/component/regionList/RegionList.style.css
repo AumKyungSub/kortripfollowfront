@@ -2,7 +2,7 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     border: solid 1px #e5e7eb;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
 }

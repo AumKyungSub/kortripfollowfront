@@ -1,14 +1,13 @@
 
     .locationInfoCover {
         padding: 16px;
-        background-color: #f2f2f7;
         white-space: pre-wrap
     }
 
     .locationInfoTitle{
         /* Font */
-        font-size: 1.563rem;
-        font-weight: 900;
+        font-size: 1.25rem;
+        font-weight: 800;
     }
 
     .operatingHourTitle, 
@@ -18,7 +17,7 @@
         margin-top: 15px;
         /* Font */
         font-size: 1.25rem;
-        font-weight: 900;
+        font-weight: 600;
 
     }
 
@@ -54,18 +53,23 @@
         width: 16px;
     }
 
-    .reviewPC {
+    .reviewPC,
+    .reviewPCYet {
         width: 100%;
         display: block;
         padding: 20px;
         text-align: center;
         margin-top: 40px;
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: #4285F4;
         /* Font */
         color: #fff;
         font-size: 1.2rem;
         font-weight: 700;
+    }
+
+    .reviewPCYet {
+        background-color: #525252;
     }
 
     .warningInfo {
@@ -74,7 +78,6 @@
         font-size: 1rem;
         font-weight: 900;
         text-align: center;
-
     }
 
 /* ---------------------------------------------------- */
@@ -92,9 +95,7 @@
 
 @media only all and (min-width: 1024px) {
     .locationInfoCover {
-        padding: 30px 30px;
-        background-color: #fff;
-        border-radius: 10px;
+        padding: 0;
         margin-top: 60px;
         /* Position */
         position: fixed;
@@ -102,50 +103,40 @@
         z-index: 100;
     }
 
-    .locationInfoTitle{
+    .locationInfoTitle {
+        display: block;
+        margin-left: 2px;
+        margin-bottom: 12px;
         /* Font */
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .locationInfoTextCover {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
     }
 
     .operatingHourTitle, 
     .closeDayTitle, 
-    .entranceFeeTitle {
+    .entranceFeeTitle,
+    .entranceFeeWeb {
         margin-top: 35px;
         /* Font */
-        font-size: 1.25rem;
         font-weight: 900;
-
     }
 
-    .operatingHourTitle img, 
-    .closeDayTitle img, 
-    .entranceFeeTitle img {
-        width: 26px;
-        margin-right: 10px;
+    .operatingHourTitle {
+        margin: 0;
     }
 
-    .operatingHour, 
-    .closeDay,
-    .entranceFee {
-        margin: 10px 36px 0;
-        /* Font */
-        font-size: 1rem;
-        font-weight: 00;
+    .reviewPC,
+    .reviewPCYet {
+        margin-top: 12px;
     }
 
-    .reviewPC {
-        width: 100%;
-        display: block;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
-        border-radius: 15px;
-        background-color: #4285F4;
-        /* Font */
-        color: #fff;
-        font-size: 1.2rem;
-        font-weight: 700;
+    .warningInfo {
+        margin-top: 35px;
     }
 
 }

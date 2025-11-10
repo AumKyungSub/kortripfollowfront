@@ -25,7 +25,7 @@
   /* (237/343)*100 = 69.09620991253644 */
   width: 69.09620991253644% !important;
   height: auto;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -66,7 +66,7 @@
     /* (283/983)*100 = 28.789420142421157 */
     /* 100-28.789420142421157 = 71.21057985757884 */
     grid-template-columns: 28.789420142421157% 71.21057985757884%; /* 왼쪽 큰 이미지, 오른쪽 4장 */
-    gap: 1px;
+    gap: 3px;
     width: 100%;
     height: auto;
   }
@@ -124,7 +124,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 10px;
   }
 
   .recommendSwiper {

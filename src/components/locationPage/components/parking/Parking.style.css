@@ -78,7 +78,11 @@
     }
 
     .parkingInfoCover{
-        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .parkingInfoCover:first-of-type {
+        margin-top: 0;
     }
 
     .topParkingInfo {
@@ -94,9 +98,21 @@
     .parkingAllCover {
         /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
         width: 62.43055555555556%;
+    }
+
+    .parkingInfoAllCover{
         background-color: #fff;
-        border-radius: 15px;
-        padding: 20px 20px 0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .explainName {
+        display: block;
+        margin-left: 2px;
+        margin-bottom: 12px;
+        /* Font */
+        font-size: 24px;
+        font-weight: 700;
     }
 
     .parkT {

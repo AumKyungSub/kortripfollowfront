@@ -12,6 +12,8 @@ const Parking = ({rankingData}) => {
     <div className='topParkingWholeCover'>
         <div className="topParkingInfo">
           <div className='parkingAllCover'>
+            <h5 className='explainName'>주차 정보</h5>
+          <div className='parkingInfoAllCover'>
             <div className="parkingInfoCover">
               <div className="parkingInfoIcon">
                 <img src="/images/icon/parkingIcon.png" alt="parkingIcon" />
@@ -46,6 +48,7 @@ const Parking = ({rankingData}) => {
                   </a>
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>

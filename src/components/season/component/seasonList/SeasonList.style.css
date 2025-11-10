@@ -12,7 +12,7 @@
 
 .seasonListImg {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -21,7 +21,7 @@
     /* (240/343)*100 = 69.97084548104957 */
     width: 69.97084548104957% !important;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: transparent;
     border: none;
     text-align: left;

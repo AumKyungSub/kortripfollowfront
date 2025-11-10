@@ -7,7 +7,7 @@ const LocInfoNotPc = ({rankingData}) => {
   return (
     <>
     <div className='locationInfoCover'>
-            <h3 className="locationInfoTitle">기본 정보</h3>
+            <h3 className="locationInfoTitle">이용 정보</h3>
             <p className="operatingHourTitle">
                 <img src="/images/icon/clockIcon.png" alt="opHour" />
                 운영시간
@@ -50,10 +50,11 @@ const LocInfoNotPc = ({rankingData}) => {
                   <span className='reviewPC'>찐리뷰 보러가기</span>
                 </a>
               : <div>
-                <span className='reviewPC'>리뷰가 준비중 입니다</span>
+                <span className='reviewPCYet'>리뷰가 준비중 입니다</span>
               </div>
             }
     </div>
+    <div className="emptyLine"></div>
     </>
   )
 }
