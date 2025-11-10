@@ -13,7 +13,8 @@
 
     .operatingHourTitle, 
     .closeDayTitle, 
-    .entranceFeeTitle {
+    .entranceFeeTitle,
+    .entranceFeeWeb {
         margin-top: 15px;
         /* Font */
         font-size: 1.25rem;
@@ -23,19 +24,34 @@
 
     .operatingHourTitle img, 
     .closeDayTitle img, 
-    .entranceFeeTitle img {
+    .entranceFeeTitle img,
+    .entranceFeeWeb img {
         width: 24px;
         margin-right: 10px;
     }
 
     .operatingHour, 
     .closeDay,
-    .entranceFee {
+    .entranceFee,
+    .webLink {
         margin: 10px 34px 0;
         /* Font */
         font-size: 1rem;
         font-weight: 500;
         line-height: 24px;
+    }
+
+    .webLink{
+        /* Font */
+        color: #4285F4;
+        /* Flex */
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .webLink img {
+        width: 16px;
     }
 
     .reviewPC {

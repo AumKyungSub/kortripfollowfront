@@ -31,11 +31,11 @@ const Explain = ({rankingData}) => {
               level={3} // 지도 확대 레벨
               >
               <MapMarker position={{ lat: lat, lng: lng }} />
-          <div className="topaLinkCover">
-              <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer" className='topA'>
-                  <p>길찾기</p>
+              <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer">
+                <div className="topaLinkCover">
+                  <p className='topA'>길찾기</p>
+                </div>
               </a>
-          </div>
           </Map>
         </div>
       </div>

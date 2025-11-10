@@ -23,13 +23,13 @@ useEffect(() => {
     if (!mainEl || !explainEl || !topRecommendEl || !locInfoEl) return;
 
     const viewportWidth = window.innerWidth;
-    const containerWidth = Math.min(1440, viewportWidth);
-    const padding = viewportWidth >= 1440 ? 0 : 20;
+    const containerWidth = Math.min(1280, viewportWidth);
+    const padding = viewportWidth >= 1280 ? 0 : 20;
     const right = (viewportWidth - containerWidth) / 2 + padding;
     setRightPos(right);
 
     const explainWidth = explainEl.offsetWidth;
-    const width = viewportWidth >= 1440 ? 1388 - explainWidth : viewportWidth - (explainWidth + 60);
+    const width = viewportWidth >= 1280 ? 1250 - explainWidth : viewportWidth - (explainWidth + 60);
     setLocWidth(width);
 
     const mainBottom = mainEl.getBoundingClientRect().bottom + window.scrollY;
@@ -101,6 +101,18 @@ useEffect(() => {
                 {rankingData?.operating?.entranceFee?rankingData?.operating?.entranceFee 
                 : "무료"}
             </p>
+            {rankingData?.location?.homepage?
+            <>
+            <p className="entranceFeeWeb">
+                <img src="/images/icon/webIcon.png" alt="enFee" />
+                웹사이트
+            </p>
+            <a href={rankingData?.location?.homepage} target='_blank' className='webLink'>
+              방문하기
+              <img src="/images/icon/rightSingleArrowIcon.png" alt="/images/icon/rightSingleArrowIcon.png" />
+            </a>
+            </>
+          : <></>}
             <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
             {rankingData?.review?.existence?
                 <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>

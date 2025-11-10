@@ -32,6 +32,18 @@ const LocInfoNotPc = ({rankingData}) => {
                 {rankingData?.operating?.entranceFee?rankingData.operating?.entranceFee 
                 : "무료"}
             </p>
+            {rankingData?.location?.homepage?
+            <>
+            <p className="entranceFeeWeb">
+                <img src="/images/icon/webIcon.png" alt="enFee" />
+                웹사이트
+            </p>
+            <a href={rankingData?.location?.homepage} target='_blank' className='webLink'>
+              방문하기
+              <img src="/images/icon/rightSingleArrowIcon.png" alt="/images/icon/rightSingleArrowIcon.png" />
+            </a>
+            </>
+          : <></>}
             <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
             {rankingData?.review?.existence?
                 <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>

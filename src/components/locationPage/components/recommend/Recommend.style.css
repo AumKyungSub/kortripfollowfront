@@ -57,7 +57,7 @@
 
 @media only screen and (min-width: 768px) {
   .topRecommendCover {
-    max-width: 1480px;
+    max-width: 1020px;
     padding: 30px 20px;
     margin: 0 auto;
   }

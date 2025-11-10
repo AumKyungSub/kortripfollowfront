@@ -49,7 +49,7 @@ const Banner = ({rankingsData = []}) => {
             centeredSlides={true}
             loop={true}
             autoplay={{
-                delay: 2500,
+                delay: 4500,
                 disableOnInteraction: false,
             }}
             pagination={{
