@@ -27,12 +27,15 @@
 
 .parkA {
     color: #4285f4;
-    line-height: 16px;
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .parkA img {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 .parkingInfoCover {

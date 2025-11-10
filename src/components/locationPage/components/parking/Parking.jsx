@@ -39,7 +39,7 @@ const Parking = ({rankingData}) => {
                   <a href={rankingData?.parking?.existence == true?kakaoMapLink:"#"} target="_blank" rel="noopener noreferrer" className='parkT parkA'>
                       {rankingData?.parking?.existence == true?(
                         <>
-                          {rankingData?.parking?.address}
+                          {rankingData?.parking?.address+" "}
                           <img src={singleRightArrow} alt="singleRightArrow" />
                         </>
                       ):""}

@@ -32,7 +32,7 @@ const Footer = () => {
             이메일: qnzldmad91@gmail.com
           </p>
           <p>
-            COPYRIGHT&copy; 2025 By Aum Kyung Sub.<br/> All RIGHT's RESERVED
+            COPYRIGHT&copy; 2025 By Aum Kyung Sub.<br/><br/> All RIGHT's RESERVED
           </p>
       </footer> 
     </div>
