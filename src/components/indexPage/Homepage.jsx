@@ -1,4 +1,6 @@
 import React, {useState,useEffect} from 'react'
+// (hook) Device Size
+import { useResponsive } from '../../hooks/ResponsiveUsed'
 
 // Components
 import Header from '../Header/Header'
@@ -12,19 +14,10 @@ import Footer from '../footer/Footer'
 import './Homepage.style.css'
 
 const Homepage = () => {
-  // 1023px이하 일 경우
-  const [isNotPc, setIsNotPc] = useState(window.innerWidth <= 1023);
+  // minWidth: 1024
+  const {isDesktop} = useResponsive();
   // Data 불러오기
   const [data, setData] = useState([]);
-    
-  // 화면 크기 변경 시 반응형 처리
-  useEffect(() => {
-    const handleResize = () => {
-      setIsNotPc(window.innerWidth <= 1023);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   // Data 불러오기 처리
   useEffect(() => {
@@ -41,9 +34,9 @@ const Homepage = () => {
     <div>
       <Header />
       <Banner rankingsData={data}/>
-      {isNotPc && <Seasons/>}
+      {!isDesktop && <Seasons/>}
       <Topfive rankingsData={data}/>
-      {!isNotPc && <HomeRegion rankingData={data}/>}
+      {isDesktop && <HomeRegion rankingData={data}/>}
       <Footer/>
     </div>
   )

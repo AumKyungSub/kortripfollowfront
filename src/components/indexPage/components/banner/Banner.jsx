@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react'
+// (hook) Device Size
+import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 
 // Components
 import BannerComponent from './BannerComponent';
@@ -6,9 +8,6 @@ import BannerComponent from './BannerComponent';
 // Swiper import
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-
-// react-responsive import (hook)
-import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -19,11 +18,11 @@ import './Banner.style.css'
 
 
 const Banner = ({rankingsData = []}) => {
-    
+    // maxWidth: 479
     const {isMobile} = useResponsive();
     // 슬라이드 수 설정
     const slidesView = isMobile ? 1 : 1.584;
-    
+    // 데이터 5개 랜덤으로 부르기
     const [rankingList, setRankingList] = useState([]);
     
     // 데이터 섞기 (랜덤)
@@ -31,9 +30,9 @@ const Banner = ({rankingsData = []}) => {
       // null일 경우 방어용
       if (!Array.isArray(rankingsData) || rankingsData?.length === 0) return;
 
-      const shuffled = [...rankingsData]
-        .sort(() => Math.random() - 0.5);
-      const topFive = shuffled.slice(0, 5);
+      const topFive = [...rankingsData]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
   
       setRankingList(topFive);
     }, [rankingsData]);
@@ -53,7 +52,7 @@ const Banner = ({rankingsData = []}) => {
                 disableOnInteraction: false,
             }}
             pagination={{
-                el: ".paging2",
+                el: ".paging",
                 type: "progressbar",
             }}
             navigation={false}
@@ -65,10 +64,10 @@ const Banner = ({rankingsData = []}) => {
                 <BannerComponent rankingsDataSlide={menu}/>
             </SwiperSlide>
           ))}
-          <div className="play_bar_pc_cover">
-            <div className="play_bar_pc">
-                <div className="progress_spot_cover">
-                    <div className="paging2"></div>
+          <div className="playBarPcCover">
+            <div className="playBarPc">
+                <div className="progressSpotCover">
+                    <div className="paging"></div>
                 </div>
             </div>
           </div>

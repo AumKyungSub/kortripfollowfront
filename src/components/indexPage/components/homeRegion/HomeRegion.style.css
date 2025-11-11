@@ -1,8 +1,4 @@
 
-
-/* /Header.jsx */
-/* --------------------------------------------------------- */
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
@@ -80,7 +76,7 @@
         width: calc(100% - 40px);
         /* Font */
         color: #fff;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 400;
         /* Flex */
         display: flex;
@@ -93,19 +89,15 @@
     }
 
     .listHeaderFstSpan {
-        width: 120px;
-        aspect-ratio: 16/7;
+        padding: 10px 15px;
         border-radius: 9999px;
-        background-color: rgba(117, 117, 117, 0.7);
+        background-color: rgba(255, 255, 255, 0.2);
         /* Flex */
         display: flex;
-        justify-content: center;
         align-items: center;
     }
 
     .listHeaderSndSpan {
-        width: 50px;
-        aspect-ratio: 16/7;
         font-weight: 600;
         /* Flex */
         display: flex;
@@ -114,43 +106,70 @@
     }
 
     .listHeaderFstSpan img {
-        width: 24px;
-        margin-right: 10px;
+        width: 20px;
+        margin-right: 3px;
     }
 
     .regionExampleList {
         width: 100%;
-        transform: translateY(100%);
-        opacity: 0;
-        padding: 20px;
-        transition: transform 0.4s ease, opacity 0.3s ease;
-        backdrop-filter: blur(3px);
-        background: rgba(0, 0, 0, 0.45);
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        /* Position */
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .regionExampleList .regionArea {
+        /* Font */
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .regionExampleList .regionLooking {
+        opacity: 0.8;
         /* Font */
         color: #fff;
         font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .regionAreaListCover {
+        /* Flex */
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .regionExampleList .regionAreaList {
+        margin-bottom: 5px;
+        margin-right: 10px;
+        padding: 5px;
+        border-radius: 9999px;
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Font */
+        color: #fff;
+        font-size: 0.75rem;
         font-weight: 400;
         /* Position */
         position: absolute;
         bottom: 0;
         left: 0;
+        /* Hide */
+        opacity: 0;
+        transform: translateY(20px);
+        white-space: nowrap;    
+        transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .homeRegionList:hover .regionExampleList {
-      transform: translateY(0); /* 위로 올라오게 */
-      opacity: 1;
+    /* hover 시 li 등장 */
+    .homeRegionList:hover .regionExampleList .regionAreaList {
+        /* Position */
+        position: static;
+        /* Show */
+        opacity: 1;
+        transform: translateY(0);
     }
-
-    .regionExampleList p {
-        margin-left: 10px;
-        margin-bottom: 15px;
-        /* Font */
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
-
-    .regionExampleList li {
-        margin-bottom: 15px;
-    }
-
 }

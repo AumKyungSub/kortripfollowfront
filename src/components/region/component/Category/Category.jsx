@@ -9,7 +9,7 @@ const Category = ({selected, setSelected, isPc}) => {
 
   // 전체를 초기값으로
   // const [selected, setSelected] = useState('전체');
-  const region = ["전체", "서울", "경기도", "강원도", "충청도", "경상도", "전라도", "제주도"];
+  const region = ["전체", "서울", "경기/인천", "강원", "충청/대전", "경상/부산/대구/울산", "전라/광주", "제주"];
 
   useEffect(() => {
     if (!isPc) return;

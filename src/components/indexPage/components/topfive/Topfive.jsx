@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+// (hook) Device Size
+import { useResponsive } from '../../../../hooks/ResponsiveUsed'
 
 // Components
 import TopfiveComponent from './TopfiveComponent'
@@ -9,10 +11,10 @@ import './Topfive.style.css'
 
 
 const Topfive = ({rankingsData = []}) => {
-
   const [rankingList, setRankingList] = useState([]);
-  const [isPc, setIsPc] = useState(window.innerWidth >= 1024);
   const [selectedAll, setSelectedAll] = useState(null);
+  // maxWidth: 479,maxWidth: 767,minWidth: 1024
+  const {isMobile,isFullMobile,isDesktop} = useResponsive();
 
   // 데이터 top 1~5까지만 필터링
   useEffect(() => {
@@ -29,15 +31,6 @@ const Topfive = ({rankingsData = []}) => {
     }
   }, [rankingsData]);
 
-  // 화면 크기 변경 시 반응형 처리
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPc(window.innerWidth >= 1024);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   // 카드 클릭 시 호출되는 함수
   const handleSelect = (clickCard) => {
     setSelectedAll(clickCard);
@@ -51,16 +44,22 @@ const Topfive = ({rankingsData = []}) => {
           <div className="cardsTitle768">
             <h3>채널 추천 여행지 TOP 5</h3>
           </div>
-          {!isPc?(
+          {!isDesktop?(
             rankingList.map((menu)=>(
-              <TopfiveComponent key={menu.id} rankingsTopFive={menu} />
+              <TopfiveComponent 
+                key={menu.id} 
+                rankingsTopFive={menu} 
+                isMobile={isMobile} 
+                isFullMobile={isFullMobile} 
+                isDesktop={isDesktop}  
+              />
             ))
           ):(
-          <TopfiveComponentCardImg
-            rankingList={rankingList}
-            onSelect={handleSelect}
-            selectedAll={selectedAll}
-          />
+            <TopfiveComponentCardImg
+              rankingList={rankingList}
+              onSelect={handleSelect}
+              selectedAll={selectedAll}
+            />
           )}
         </div>
       </section>

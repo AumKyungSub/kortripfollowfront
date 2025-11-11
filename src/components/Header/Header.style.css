@@ -1,10 +1,8 @@
-/* --------------------------------------------------------- */
-/* Header.jsx */
 header {
   width: 100%;
   height: 72px;
   padding: 16px;
-  background: #fff;
+  margin: 0 auto;
   /* Flex */
   display: flex;
   justify-content: space-between;
@@ -28,18 +26,17 @@ header .logo img {
 }
 
 .search img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin-left: 5px;
 }
 
-/* GNB는 1023 이상 */
+/* ---Show and Hide--- */
+/* show in higher than 1024px */
 .gnbPc {
   display: none;
 }
 
-/* /Header.jsx */
-/* --------------------------------------------------------- */
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -48,21 +45,24 @@ header .logo img {
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
   .header {
-    /* (125/767)*100 = 16.297262059973924 */
-    padding: 16px 16.297262059973924%;
+    max-width: 550px;
   }
 }
 
 @media only all and (min-width: 768px) and (max-width: 1023px) {
   .header {
-    /* (145/1023)*100 = 14.173998044965789 */
-    padding: 16px 14.173998044965789%;
+    max-width: 765px;
   }
 }
 
 @media only all and (min-width: 1024px) {
+  .header {
+    max-width: 1440px;
+  }
+
   .gnbPc {
     height: 100%;
+    /* For Show up */
     display: inline-block;
   }
   
@@ -75,25 +75,15 @@ header .logo img {
 
   .gnbPc ul .gnbPcLi {
     cursor: pointer;
-    margin: 0 25px;
+    margin: 0 10px;
     /* Font */
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
   }
 
-  .gnbPc ul .gnbPcLi:first-of-type {
-    margin-left: 0;
-  }
-
+/* ---Show and Hide--- */
+/* show in lower than 1023px */
   .search{
     display: none;
-  }
-}
-
-@media only all and (min-width: 1024px) {
-  .header {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 16px;
   }
 }

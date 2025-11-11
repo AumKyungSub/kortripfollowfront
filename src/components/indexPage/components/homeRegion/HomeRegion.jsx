@@ -41,7 +41,7 @@ const HomeRegion = ({rankingData = []}) => {
   const totalCount = regionList.length;
 
   // 지역 목록 배열 (코드 반복 줄이기)
-  const regions = ["서울", "경기도", "강원도", "충청도", "경상도", "전라도", "제주도"];
+  const regions = ["전체", "서울", "경기/인천", "강원", "충청/대전", "경상/부산/대구/울산", "전라/광주", "제주"];
 
   const goToRegion = (regionName) => {
     navigate('/region', { state: { selectedRegion: regionName } });
@@ -51,42 +51,32 @@ const HomeRegion = ({rankingData = []}) => {
     <div className="homeRegionBackground">
       <div className='homeRegionWholeCover'>
         <h3>지역별 여행지</h3>
-        {regionList.id}
         <div className="homeRegionCover">
-
-          <div className="homeRegionList" onClick={() => goToRegion("전체")}>
-            <img src="/images/regionBackground/regionBackground1.jpg" alt="ALL" />
-            <div className="homeRegionListHeader">
-              <span className='listHeaderFstSpan'>
-                <img src="/images/icon/regionIconS.png" alt="regionIconS" />
-                전체
-              </span>
-              <span className='listHeaderSndSpan'>{totalCount}곳</span>
-            </div>
-            <ul className="regionExampleList">
-              <p>전체</p>
-                {getRandomAllLocations().map((regionNames) => (
-                  <li key={regionNames?.id}>{regionNames?.location?.name}</li>
-                ))}
-            </ul>
-          </div>
-
           {regions.map((region,index) => (
             <div key={region} className="homeRegionList" onClick={() => goToRegion(region)}>
-            <img src={`/images/regionBackground/regionBackground${index + 2}.jpg`} alt={`/images/regionBackground/regionBackground${index + 2}.jpg`} />
+            <img src={`/images/regionBackground/regionBackground${index + 1}.jpg`} alt={`/images/regionBackground/regionBackground${index + 2}.jpg`} />
               <div className="homeRegionListHeader">
                 <span className='listHeaderFstSpan'>
                   <img src="/images/icon/regionIconS.png" alt="regionIconS" />
                   {region}
                 </span>
-                <span className='listHeaderSndSpan'>{regionCount[region] || 0}곳</span>
+                <span className='listHeaderSndSpan'>{region === "전체"?regionList.length : regionCount[region] || 0}곳</span>
               </div>
-              <ul className="regionExampleList">
-                <p>{region}</p>
-                {getRandomLocationsByRegion(region).map((regionNames) => (
-                  <li key={regionNames?.id}>{regionNames?.location?.name}</li>
-                ))}
-              </ul>
+              <div className="regionExampleList">
+                <p className='regionArea'>{region}</p>
+                <div className="regionAreaListCover">
+                  {region === "전체"?
+                    getRandomAllLocations().map((regionNames) => (
+                      <span key={regionNames?.id} className='regionAreaList'>{regionNames?.location?.name}</span>
+                    ))
+                    :
+                    getRandomLocationsByRegion(region).map((regionNames) => (
+                      <span key={regionNames?.id} className='regionAreaList'>{regionNames?.location?.name}</span>
+                    ))
+                  }
+                </div>
+                <p className='regionLooking'>여행지 둘러보기</p>
+              </div>
             </div>
           ))}
         </div>

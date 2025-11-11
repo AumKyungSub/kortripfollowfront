@@ -20,12 +20,11 @@
   object-fit: cover;
 }
 
-div[class*="swiper-text0"] {
+div[class*="swiperText0"] {
   width: 100%;
-  height: 75px;
-  padding: 7px;
-  background-color: rgba(186, 186, 186, 0.6);
-  margin: auto;
+  height: 100%;
+  padding-bottom: 12px;
+  background: linear-gradient(to top, rgba(200, 200, 200, 0.7), 45%, rgba(255, 255, 255, 0.1));
   white-space: pre-wrap;
   text-align: center;
   /* Font */
@@ -33,23 +32,23 @@ div[class*="swiper-text0"] {
   /* Flex */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   /* Position */
   position: absolute;
   bottom: 0;
-  z-index: 98;
+  left: 0;
 }
 
-div[class*="swiper-text0"] strong {
+div[class*="swiperText0"] strong {
+  margin-bottom: 8px;
   /* Font */
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #2B291A;
-  line-height: 0.9;
 }
 
-div[class*="swiper-text0"] span {
+div[class*="swiperText0"] span {
   border-bottom: none !important;
   /* Font */
   font-size: 0.625rem;
@@ -57,31 +56,31 @@ div[class*="swiper-text0"] span {
 }
 
 
-div[class*="swiper-text0"] p {
+div[class*="swiperText0"] p {
   /* Font */
   font-size: 0.75rem;
-  color: #533D2E;
-  font-weight: 500;
-  line-height: 1.1;
+  color: #5b231d;
+  font-weight: 600;
+  line-height: 16px;
 }
 
-.play_bar_pc_cover {
+.playBarPcCover {
   width: 100%;
   margin-top: 1px;
 }
 
-.play_bar_pc {
+.playBarPc {
   /* Flex */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.progress_spot_cover {
+.progressSpotCover {
   width: 100%;
 }
 
-.paging2 {
+.paging {
   width: 100%;
   height: 3px !important;
   background-color: transparent;
@@ -100,13 +99,11 @@ div[class*="swiper-text0"] p {
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-/* Mobile이지만
-    해당 웹페이지는 Mobile First임 */
 @media only all and (max-width: 479px) {
 }
 
 /* Table (테블릿) */
-@media only all and (min-width: 480px) and (max-width: 1023px) {
+@media only all and (min-width: 480px) {
   .mainBannerSlide {
     width: 62vw !important;
   }
@@ -114,41 +111,27 @@ div[class*="swiper-text0"] p {
 
 /* PC */
 @media only all and (min-width: 1024px) {  
-  .mainBannerSlide {
-    width: 62vw !important;
+  .mainBannerSlide,
+  .mainBannerSlide img {
     aspect-ratio: 16/6;    
   }
-  .mainBannerSlide img {
-    aspect-ratio: 16/6;
-  }
-  
-  div[class*="swiper-text0"] {
-    height: 150px;
-    justify-content: center;
+
+  div[class*="swiperText0"] strong {
+    margin-bottom: 15px;
+    /* Font */
+    font-size: 2rem;
   }
 
-div[class*="swiper-text0"] strong {
-  margin-bottom: 15px;
-  /* Font */
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2B291A;
-  line-height: 0.9;
-}
+  div[class*="swiperText0"] span {
+    border-bottom: none !important;
+    /* Font */
+    font-size: 1.2rem;
+  }
 
-div[class*="swiper-text0"] span {
-  border-bottom: none !important;
-  /* Font */
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-
-div[class*="swiper-text0"] p {
-  /* Font */
-  font-size: 1.4rem;
-  color: #533D2E;
-  font-weight: 500;
-  line-height: 1.1;
-}
+  div[class*="swiperText0"] p {
+    /* Font */
+    font-size: 1.375rem;
+    color: #5b231d;
+    line-height: 26px;
+  }
 }
