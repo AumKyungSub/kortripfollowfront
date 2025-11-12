@@ -24,10 +24,8 @@ const SeasonPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const urlS = `http://172.30.1.1:3000/seasons`;
-        const urlR = `http://172.30.1.1:3000/rankings`;
-        // const urlS = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
-        // const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+        const urlS = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
+        const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
 
         const responseS = await fetch(urlS);
         const responseR = await fetch(urlR);

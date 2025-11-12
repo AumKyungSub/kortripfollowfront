@@ -31,8 +31,7 @@ const Location = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const url = `http://172.30.1.1:3000/rankings/${id}`;
-                // const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
+                const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
         
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("데이터를 불러오지 못했습니다.");

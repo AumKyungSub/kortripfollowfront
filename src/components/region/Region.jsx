@@ -36,8 +36,7 @@ const Region = () => {
       setLoading(true);
       setError(null);
       try {
-        const url = `http://172.30.1.1:3000/rankings`;
-        // const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+        const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
         const response = await fetch(url);
         const db = await response.json();
         setData(db);
