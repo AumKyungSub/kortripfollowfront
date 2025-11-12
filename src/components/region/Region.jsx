@@ -20,7 +20,7 @@ const Region = () => {
   // HomeRegion.jsx에서 navigate로 가져온 regionName값 담기
   const locations = useLocation(); 
   // HomeRegion.jsx에서 가져온 값 담기
-  const [selectedRegion, setSelectedRegion] = useState();
+  const [selectedRegion, setSelectedRegion] = useState('전체');
   // minWidth: 1024
   const {isDesktop} = useResponsive();
    // Data 불러오기
