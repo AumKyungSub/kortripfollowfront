@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react'
-// (hook) Device Size
-import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 
 // Components
 import BannerComponent from './BannerComponent';
@@ -17,9 +15,7 @@ import 'swiper/css/pagination';
 import './Banner.style.css'
 
 
-const Banner = ({rankingsData = []}) => {
-    // maxWidth: 479
-    const {isMobile} = useResponsive();
+const Banner = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
     // 슬라이드 수 설정
     const slidesView = isMobile ? 1 : 1.584;
     // 데이터 5개 랜덤으로 부르기
@@ -59,9 +55,13 @@ const Banner = ({rankingsData = []}) => {
             modules={[Autoplay, Pagination]}
             className="mySwiper mainBannerSwiper"
         >            
-          {rankingList?.map((menu, idx)=>(
-            <SwiperSlide className="mainBannerSlide" key={idx}>
-                <BannerComponent rankingsDataSlide={menu}/>
+          {rankingList?.map((menu)=>(
+            <SwiperSlide className="mainBannerSlide" key={menu.id}>
+                <BannerComponent 
+                  rankingsDataSlide={menu} 
+                  isFullMobile={isFullMobile} 
+                  isDesktop={isDesktop}
+                />
             </SwiperSlide>
           ))}
           <div className="playBarPcCover">

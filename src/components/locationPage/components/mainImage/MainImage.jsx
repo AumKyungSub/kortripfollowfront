@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
+// (hook) Device Size
+import { useResponsive } from '../../../../hooks/ResponsiveUsed'
 
 // Components
 import HomeIcon from '../../../functionComponents/HomeIcon'
@@ -7,32 +9,17 @@ import HomeIcon from '../../../functionComponents/HomeIcon'
 import './MainImage.style.css'
 
 const MainImage = ({rankingData}) => {
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 479);
-  const [isTablet, setIsTablet] = useState(window.innerWidth <= 1023);
-      
-  // 화면 크기 변경 시 모바일 여부 감지
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1023);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-      
-  // 화면 크기 변경 시 모바일 여부 감지
-  useEffect(() => {
-    const handleResize = () => setIsTablet(window.innerWidth <= 1023);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // maxWidth: 479, minWidth: 1024
+  const {isMobile, isDesktop} = useResponsive();
 
   console.log(rankingData);
   return (
-    <div>
+    <>
       <div className='mainImageCover'>
-        {isTablet && <HomeIcon />}
+        {!isDesktop && <HomeIcon />}
         <div>
           <img src={isMobile?rankingData?.img?.link+"2M.jpg"
-            :isTablet?rankingData?.img?.link+"2T.jpg"
+            :!isDesktop?rankingData?.img?.link+"2T.jpg"
             :rankingData?.img?.link+"2.jpg"
           } alt={rankingData?.img?.link+"2.jpg"} className='mainImage' />
         </div>
@@ -54,7 +41,7 @@ const MainImage = ({rankingData}) => {
         </div>
         <div className="emptyLine"></div>
       </div>
-    </div>
+    </>
   )
 }
 

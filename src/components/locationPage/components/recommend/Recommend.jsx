@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// (hook) Device Size
+import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 
 // Components
 import RecommendComponent from './RecommendComponent';
@@ -11,26 +13,18 @@ import 'swiper/css/pagination';
 import './Recommend.style.css';
 
 const Recommend = ({rankingData}) => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-
-    // 화면 크기 변경 시 반응형 처리
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 767);
-      };
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+  // maxWidth: 767
+    const {isFullMobile} = useResponsive();
     
     if (!rankingData) return <div>데이터가 없습니다.</div>;
 
-    const galleryData = isMobile ? rankingData?.img?.gallery : rankingData?.img?.galleryPc;
+    const galleryData = isFullMobile ? rankingData?.img?.gallery : rankingData?.img?.galleryPc;
 
   return (
     <div className='topRecommendCover'>
       <h1>갤러리</h1>
       {galleryData && galleryData.length > 0 && galleryData[0] !== "" ? (
-        <RecommendComponent rankingData={rankingData} isMobile={isMobile} />
+        <RecommendComponent rankingData={rankingData} isMobile={isFullMobile} />
       ) : (
       <div>갤러리가 비어있습니다..</div>
       )}

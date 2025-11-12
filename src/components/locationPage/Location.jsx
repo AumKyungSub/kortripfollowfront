@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
+// (hook) Device Size
+import { useResponsive } from '../../hooks/ResponsiveUsed'
 
 // Components
 import Header from '../Header/Header'
@@ -16,23 +18,30 @@ import './Location.style.css'
 
 const Location = () => {
     const { id } = useParams();
+    // minWidth: 1024
+    const {isDesktop} = useResponsive();
+    // Data 불러오기
     const [data, setData] = useState([]);
+    // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
     const [loading, setLoading] = useState(true);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1023);
+    // 에러 상테 표시 (초기값: null => 에러 없음)
+    const [error, setError] = useState(null);
     
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
+                const url = `http://172.30.1.1:3000/rankings/${id}`;
+                // const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings/${id}`;
         
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("데이터를 불러오지 못했습니다.");
 
                 const db = await response.json();
                 setData(db);
-            } catch (error) {
-                console.error("❌ Data Error:", error);
+            } catch (err) {
+                console.error("데이터 에러", err);
+                setError("데이터 불러오기 실패");
             } finally {
                 setLoading(false);
             }
@@ -40,24 +49,21 @@ const Location = () => {
         fetchData();
     }, [id]);
 
-    // 화면 크기 변경 시 모바일 여부 감지
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 1023);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    
-    if (loading) return <div>로딩중...</div>;
-    if (!data) return <div>데이터가 없습니다.</div>;
+    // 로딩 화면
+    if (loading) return <div>로딩중 ...</div>
+    // 에러 화면
+    if (error) return <div>{error}</div>
+    // 데이터 없을때 화면
+    if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
 
     return (
         <div>
-            {!isMobile && <Header/>}
+            {isDesktop && <Header/>}
             {data && <MainImage rankingData={data} />}
             {data && <Explain rankingData={data} />}
             {data && <Parking rankingData={data} />}
 
-            {!isMobile? data && <LocInfo rankingData={data} />
+            {isDesktop? data && <LocInfo rankingData={data} />
             :  data && <LocInfoNotPc rankingData={data}/> 
             }
             {data && <Recommend rankingData={data} />}

@@ -25,25 +25,22 @@ const HomeRegion = ({rankingData = []}) => {
   }, [rankingData]);
 
   // 해당 지역의 랜덤 최대 3개 데이터 반환 함수
-  const getRandomLocationsByRegion = (regionName) => {
-    const filtered = regionList.filter((regionInfo) => regionInfo.location?.region?.[0] === regionName);
-    const shuffled = filtered.sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 3);
-  };
+  const getRandomLocationsByRegion = (regionName) => 
+    regionList.filter((regionInfo) => regionInfo.location?.region?.[0] === regionName)
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 3);
+  
 
   // 전체를 위해 다시 불러옴..
-  const getRandomAllLocations = () => {
-    const shuffled = [...regionList].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 3);
-  };
-
-  // 전체 개수
-  const totalCount = regionList.length;
+  const getRandomAllLocations = () => 
+    [...regionList].sort(() => Math.random() - 0.5)
+                  .slice(0, 3);
 
   // 지역 목록 배열 (코드 반복 줄이기)
   const regions = ["전체", "서울", "경기/인천", "강원", "충청/대전", "경상/부산/대구/울산", "전라/광주", "제주"];
 
   const goToRegion = (regionName) => {
+    // regionName 값 state로 보내기 (useLocation)
     navigate('/region', { state: { selectedRegion: regionName } });
   };
 

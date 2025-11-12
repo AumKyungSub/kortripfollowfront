@@ -3,7 +3,7 @@ import React, {useState,useEffect,useRef} from 'react'
 // Page css
 import './Category.style.css'
 
-const Category = ({selected, setSelected, isPc}) => {
+const Category = ({selected, setSelected, isDesktop}) => {
   const [fixed, setFixed] = useState(false);
   const categoryRef = useRef(null);
 
@@ -12,7 +12,7 @@ const Category = ({selected, setSelected, isPc}) => {
   const region = ["전체", "서울", "경기/인천", "강원", "충청/대전", "경상/부산/대구/울산", "전라/광주", "제주"];
 
   useEffect(() => {
-    if (!isPc) return;
+    if (isDesktop) return;
 
     const handleScroll = () => {
       if (!categoryRef.current) return;
@@ -28,7 +28,7 @@ const Category = ({selected, setSelected, isPc}) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-    }, [isPc]);
+    }, [!isDesktop]);
 
   return (
     <>
