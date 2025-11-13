@@ -2,12 +2,16 @@ import React, {useState,useEffect} from 'react'
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 
+//Function Component
+import Loading from '../functionComponents/Loading'
+
 // Components
 import Header from '../Header/Header'
 import Banner from './components/banner/Banner'
 import TopPlaces from './components/topPlaces/TopPlaces'
 import Seasons from './components/seasons/Seasons'
 import HomeRegion from './components/homeRegion/HomeRegion'
+import HomeSeason from './components/homeSeason/HomeSeason'
 import Footer from '../footer/Footer'
 
 //Page Css
@@ -44,7 +48,7 @@ const Homepage = () => {
   },[]);
 
   // 로딩 화면
-  if (loading) return <div>로딩중 ...</div>
+  if (loading) return <div><Loading/></div>
   // 에러 화면
   if (error) return <div>{error}</div>
   // 데이터 없을때 화면
@@ -57,6 +61,7 @@ const Homepage = () => {
       {!isDesktop && <Seasons/>}
       <TopPlaces rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       {isDesktop && <HomeRegion rankingData={data}/>}
+      {isDesktop && <HomeSeason rankingData={data}/>}
       <Footer/>
     </div>
   )

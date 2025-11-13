@@ -5,7 +5,8 @@ import './Parking.style.css'
 
 const Parking = ({rankingData}) => {
 
-  const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.parking?.addressID}`;
+  const [lat, lng] = rankingData?.parking?.latLng.split(',').map(Number);
+  const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.location?.name} 주차장,${lat},${lng}`;
   const singleRightArrow = "/images/icon/rightSingleArrowIcon.png";
 
   return (

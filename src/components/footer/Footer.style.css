@@ -1,14 +1,13 @@
 footer {
   width: 100%;
-  background: #333;
-  color: #fff;
+  background: #e2e8f0;
+  color: #000;
   text-align: left;
   padding: 20px 16px;
   /* margin-top: 40px; */
   letter-spacing: 0.02em;
 }
 footer a {
-  color: #fff;
   margin: 0 5px;
   text-decoration: none;
 }

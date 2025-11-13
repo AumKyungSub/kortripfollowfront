@@ -1,0 +1,126 @@
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media only all and (min-width: 1024px) {
+    .homeSeasonWholeCover {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 130px 16px 130px;
+    }
+
+    .homeSeasonH2 {
+        width: 100%;
+        margin-bottom: 30px;
+        /* Font */
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .homeSeasonAllCover {
+        /* Flex */
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+    }
+
+    .homeSeasonCover {
+        width: calc((100% - 60px) / 4);
+        aspect-ratio: 1 / 1;
+        padding: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff;
+        background-size: cover;
+        background-position: center center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* Font */
+        color: #fff;
+        font-weight: 600;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        /* Position */
+        position: relative;
+    }
+
+    .homeSeasonCover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), 40%, rgba(255, 255, 255, 0.2));
+        z-index: 11;
+    }
+    
+
+    .homeSeasonCover::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-image: inherit;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.8s ease; /* ← 확대 속도 조절 (느리게) */
+        transform: scale(1);
+        /* Position */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .homeSeasonCover:hover::after {
+        transform: scale(1.1);
+    }
+
+    .homeSeasonCover:hover::before {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), 50%, rgba(255, 255, 255, 0.2));
+    }
+
+    .homeSeasonImgCover {
+        width: 20%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 16px;
+        z-index: 99;
+        /* Flex */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .homeSeasonCover img {
+        width: 50%;
+        height: 50%;
+    }
+
+    .homeSeasons {
+        margin-bottom: 16px;
+        z-index: 99;
+        /* Font */
+        font-size: 1.25rem;
+    }
+
+    .homeSeasonsP {
+        z-index: 99;
+        /* Font */
+        font-size: 1rem;
+    }
+}

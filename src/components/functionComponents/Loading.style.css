@@ -1,0 +1,15 @@
+/* LoadingSpinner.css */
+.loader {
+  border: 6px solid #f3f3f3; /* 바탕 원 */
+  border-top: 6px solid #3498db; /* 회전 부분 */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 100px auto; /* 가운데 정렬 */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom';
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed';
 
+//Function Component
+import Loading from '../functionComponents/Loading';
+
 // Components
 import Header from '../Header/Header'
 import RegionBanner from './component/regionBanner/RegionBanner'
@@ -55,7 +58,7 @@ const Region = () => {
   },[locations.state]);
 
   // 로딩 화면
-  if (loading) return <div>로딩중 ...</div>
+  if (loading) return <div><Loading/></div>
   // 에러 화면
   if (error) return <div>{error}</div>
   // 데이터 없을때 화면
