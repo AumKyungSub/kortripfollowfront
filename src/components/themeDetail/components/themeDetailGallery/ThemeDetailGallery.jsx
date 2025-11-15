@@ -10,13 +10,13 @@ import 'swiper/css';
 // Page css
 import './ThemeDetailGallery.style.css'
 
-const ThemeDetailGallery = ({data, isFullMobile, isDesktop, theme}) => {
+const ThemeDetailGallery = ({data, isFullMobile, theme}) => {
     return (
         <>
-            {!isDesktop && <div className='emptyLine'></div>}
+            {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailGalleryWholeCover">
                 <h1 className='themeDetailGalleryH1'>{theme} 사진</h1>
-                {isDesktop && <div className='emptyLine1px'></div>}
+                {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailGalleryCover">
                     {!isFullMobile ? (
                         data?.img?.gallery?.slice(0, 6).map((item, idx) => (

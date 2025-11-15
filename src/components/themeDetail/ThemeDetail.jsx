@@ -69,28 +69,28 @@ const ThemeDetail = () => {
     if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
     return (
         <>
-            {isDesktop && <Header/>}
+            {!isFullMobile && <Header/>}
             <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-            {isDesktop ? 
+            {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        <ThemeDetailCafeInfo data={data} isDesktop={isDesktop}/>
-                        <ThemeDetailGallery data={data} isDesktop={isDesktop} isFullMobile={isFullMobile} theme={theme}/>
+                        <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} />
+                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        <ThemeDetailMap data={data} isDesktop={isDesktop}/>
-                        <ThemeDetailLink data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} />
+                        <ThemeDetailLink data={data} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             : 
             <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        <ThemeDetailMap data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailMap data={data} isFullMobile={isFullMobile}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        <ThemeDetailCafeInfo data={data} isDesktop={isDesktop}/>
-                        <ThemeDetailLink data={data} isDesktop={isDesktop}/>
-                        <ThemeDetailGallery data={data} isDesktop={isDesktop} isFullMobile={isFullMobile} theme={theme}/>
+                        <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile}/>
+                        <ThemeDetailLink data={data} isFullMobile={isFullMobile}/>
+                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
                     </div>
                 </div>
             }

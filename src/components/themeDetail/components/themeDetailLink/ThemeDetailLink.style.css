@@ -24,10 +24,7 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 767px) {
     .themeDetailLinkWholeCover{
         padding: 0;
     }
@@ -39,4 +36,7 @@
         font-size: 1.25rem;
         font-weight: 600;
     }
+}
+
+@media only all and (min-width: 1024px) {
 }

@@ -3,7 +3,7 @@ import React from 'react'
 // Page css
 import './ThemeDetailCafeInfo.style.css'
 
-const ThemeDetailCafeInfo = ({data, isDesktop}) => {
+const ThemeDetailCafeInfo = ({data, isFullMobile}) => {
 
     const goToMenu = () => {
         window.open(data?.description?.menuLink, "_blank", "noopener,noreferrer");
@@ -12,9 +12,9 @@ const ThemeDetailCafeInfo = ({data, isDesktop}) => {
     return (
         <>
             <section className="themeDetailCafeInfoWholeCover">
-                {isDesktop && <h1 className='themeDetailInfoH1'>카페 정보</h1>}
-                {isDesktop && <div className='emptyLine1px'></div>}
-                {!isDesktop && <div className='emptyLine'></div>}
+                {!isFullMobile && <h1 className='themeDetailInfoH1'>카페 정보</h1>}
+                {!isFullMobile && <div className='emptyLine1px'></div>}
+                {isFullMobile && <div className='emptyLine'></div>}
                 <div className="themeDetailInfoOperatingHourCover">
                     <h3 className='themeDetailInfoH3'>영업 시간</h3>
                     <p className='themeDetailInfoP'>
@@ -25,7 +25,7 @@ const ThemeDetailCafeInfo = ({data, isDesktop}) => {
                         {data?.operating?.etc && <span className='themeDetailInfoSpanS'>{data?.operating?.etc}</span>}
                     </p>
                 </div>
-                {!isDesktop && <div className='emptyLine'></div>}
+                {isFullMobile && <div className='emptyLine'></div>}
                 <div className="themeDetailInfoMenu">
                     <h3 className='themeDetailInfoH3'>메뉴</h3>
                     <div className='themeDetailInfoP themeDetailInfoMenuCover'>
@@ -42,13 +42,13 @@ const ThemeDetailCafeInfo = ({data, isDesktop}) => {
                                     {item}원<br/>
                                 </span>
                             ))}
-                            {isDesktop && <button className='themeDetailInfoBtn' onClick={goToMenu}>전체 메뉴 보기 <img src="/images/icon/rightBlackIcon.png" alt="arrow" /></button>}
+                            {!isFullMobile && <button className='themeDetailInfoBtn' onClick={goToMenu}>전체 메뉴 보기 <img src="/images/icon/rightBlackIcon.png" alt="arrow" /></button>}
                         </div>
                     </div>
                     <br/>
-                    {!isDesktop && <button className='themeDetailInfoBtn' onClick={goToMenu}>전체 메뉴 보기</button>}
+                    {isFullMobile && <button className='themeDetailInfoBtn' onClick={goToMenu}>전체 메뉴 보기</button>}
                 </div>
-                {!isDesktop && <div className='emptyLine'></div>}
+                {isFullMobile && <div className='emptyLine'></div>}
                 <div className="themeDetailInfoOthers">
                     <h3 className='themeDetailInfoH3'>특징</h3>
                     <p className='themeDetailInfoP'>

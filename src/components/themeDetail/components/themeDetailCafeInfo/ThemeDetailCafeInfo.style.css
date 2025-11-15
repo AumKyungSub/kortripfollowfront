@@ -75,10 +75,7 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 767px) {
     .themeDetailInfoH1 {
         padding: 20px;
         padding-left: 0;
@@ -96,7 +93,7 @@
     }
     
     .themeDetailInfoH3 {
-        width: 10%;
+        width: 20%;
         /* Font */
         font-size: 1rem;
         line-height: 32px;
@@ -117,5 +114,12 @@
 
     .themeDetailInfoBtn img {
         margin-left: 7px;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    
+    .themeDetailInfoH3 {
+        width: 10%;
     }
 }

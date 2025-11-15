@@ -6,7 +6,7 @@ import { Map, MapMarker, CustomOverlayMap, useKakaoLoader } from 'react-kakao-ma
 // Page css
 import './ThemeDetailMap.style.css'
 
-const ThemeDetailMap = ({data, isDesktop}) => {
+const ThemeDetailMap = ({data, isFullMobile}) => {
     // Kakao Map Script Load
     useKakaoLoader()
     
@@ -22,7 +22,7 @@ const ThemeDetailMap = ({data, isDesktop}) => {
         <>
             <section className="themeDetailMapWholeCover">
                 <h1 className='themeDetailMapH1'>위치</h1>
-                {isDesktop && <div className='emptyLine1px'></div>}
+                {!isFullMobile && <div className='emptyLine1px'></div>}
                 <Map
                     id="map"
                     className='topMapTheme'

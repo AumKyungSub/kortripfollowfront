@@ -3,7 +3,7 @@ import React from 'react'
 // Page css
 import './ThemeDetailLink.style.css'
 
-const ThemeDetailLink = ({data, isDesktop}) => {
+const ThemeDetailLink = ({data, isFullMobile}) => {
 
     const goToHomepage = () => {
         window.open(data?.location?.homepage, "_blank", "noopener,noreferrer");
@@ -15,10 +15,10 @@ const ThemeDetailLink = ({data, isDesktop}) => {
 
     return (
         <>
-            {!isDesktop && <div className='emptyLine'></div>}
+            {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailLinkWholeCover">
                 <h1 className='themeDetailLinkH1'>SNS/웹사이트 </h1>
-                {isDesktop && <div className='emptyLine1px'></div>}
+                {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailLinkCover">
                     {data?.location?.homepage &&
                         <span className='themeDetailLinkSpan' onClick={goToHomepage}>

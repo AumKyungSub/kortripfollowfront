@@ -18,7 +18,7 @@ const ThemeDetailBanner = ({data, isMobile, isFullMobile, isDesktop}) => {
                 {backgroundImage: `url(${bgi})`}
             }
         >
-            {!isDesktop && <HomeIcon/>}
+            {isFullMobile && <HomeIcon/>}
             <div className="themeDetailBannerTextCover">
                 <h2 className='themeDetailBannerH2'>
                     {data.location?.name}           

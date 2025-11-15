@@ -51,10 +51,7 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 767px) {
     .themeDetailMapWholeCover {
         padding: 0;
     }
@@ -68,4 +65,7 @@
         margin-top: 16px;
         aspect-ratio: 1/1;
     }
+}
+
+@media only all and (min-width: 1024px) {
 }
