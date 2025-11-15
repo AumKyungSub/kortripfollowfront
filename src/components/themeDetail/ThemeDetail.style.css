@@ -1,0 +1,30 @@
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 768px) {
+    .themeDetailWholeCover {
+        width: 100%;
+        padding: 20px;
+        max-width: 1480px;
+        margin: 0 auto;
+        /* Flex */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .themeDetailLeftWholeCover {
+        width: 60%;
+    }
+
+    .themeDetailRightWholeCover {
+        width: 29%;
+    }
+
+}
+
+@media only all and (min-width: 1024px) {
+}

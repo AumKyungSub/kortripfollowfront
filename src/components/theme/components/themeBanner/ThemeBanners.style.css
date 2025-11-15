@@ -1,0 +1,25 @@
+.themeBannerCover {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+.themeBannerCover img  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 1024px) {
+    .themeBannerCover {
+        aspect-ratio: 16/5;
+    }
+    
+}

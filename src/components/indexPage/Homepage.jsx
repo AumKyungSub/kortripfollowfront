@@ -12,6 +12,7 @@ import TopPlaces from './components/topPlaces/TopPlaces'
 import Seasons from './components/seasons/Seasons'
 import HomeRegion from './components/homeRegion/HomeRegion'
 import HomeSeason from './components/homeSeason/HomeSeason'
+import HomeTheme from './components/homeTheme/HomeTheme'
 import Footer from '../footer/Footer'
 
 //Page Css
@@ -62,6 +63,7 @@ const Homepage = () => {
       <TopPlaces rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       {isDesktop && <HomeRegion rankingData={data}/>}
       {isDesktop && <HomeSeason rankingData={data}/>}
+      {isDesktop && <HomeTheme />}
       <Footer/>
     </div>
   )

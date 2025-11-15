@@ -13,7 +13,7 @@ import RegionBanner from './component/regionBanner/RegionBanner'
 import Category from './component/Category/Category'
 import RegionList from './component/regionList/RegionList'
 import RegionCount from './component/regionCount/RegionCount'
-import RegionBottom from './component/regionBottom/RegionBottom'
+import Bottom from '../commonComponents/bottom/Bottom';
 import Footer from '../footer/Footer'
 
 // Page css
@@ -82,7 +82,13 @@ const Region = () => {
             <RegionList key={reg.id} regionList={reg}/>
           ))}
         </div>
-        <RegionBottom/>
+        <Bottom 
+            title={"대한민국의 매력"}
+            text={"대한민국은 사계절의 뚜렷한 변화와 함께 각 지역마다 독특한 문화와 자연경관을 자랑합니다. 북쪽의 산악지대부터 남쪽의 아름다운 해안선까지, 다양한 매력을 가진 여행지들이 여러분을 기다립니다."}
+            leftText={"부석사"}
+            rightTitle={"추천 계절"}
+            rightText={"사계절"}
+        />
         <Footer/>
     </div>
   )

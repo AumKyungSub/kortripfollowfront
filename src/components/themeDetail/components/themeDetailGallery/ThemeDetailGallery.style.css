@@ -1,0 +1,45 @@
+.themeDetailGalleryWholeCover {
+    padding: 16px;
+}
+
+.themeDetailGalleryH1 {
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 1024px) {
+    .themeDetailGalleryWholeCover {
+        padding: 0;
+    }
+
+    .themeDetailGalleryCover {
+        margin-top: 16px;
+        /* Flex */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .themeDetailGalleryCover img {
+        width: calc((100% - 20px) / 3);
+        aspect-ratio: 1/1;
+        border-radius: 10px;
+    }
+
+    .themeDetailGalleryH1 {
+        padding: 20px;
+        padding-left: 0;
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+}

@@ -22,6 +22,10 @@ const Header = () => {
   const goToSeason=()=>{
     navigate('/season');
   }
+
+  const goToTheme=()=>{
+    navigate('/theme');
+  }
   
   return (
   <div>
@@ -34,6 +38,7 @@ const Header = () => {
         <ul>
           <li className="gnbPcLi" onClick={goToRegion}>지역별</li>
           <li className="gnbPcLi" onClick={goToSeason}>계절별</li>
+          <li className="gnbPcLi" onClick={goToTheme}>테마별</li>
           <li className="gnbPcLi" onClick={goToAbout}>사이트 소개</li>
         </ul>
       </div>

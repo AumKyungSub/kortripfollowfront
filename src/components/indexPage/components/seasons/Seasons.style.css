@@ -14,13 +14,13 @@
 .seasons .cards {
     /* Flex */
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .seasons .card {
-    /* (162/343)*100 = 47.23032069970846 */
-    width: 47.23032069970846%;
-    height: 100px;
+    width: calc((100% - 10px) / 2);
+    aspect-ratio: 16/10;
     background: rgb(242 242 247);
     padding: 18px 16px 8px;
     border: 1px solid #ddd;
@@ -71,8 +71,11 @@
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
     .seasons {
-        padding: 20px;
+        max-width: 550px;
+        margin: 0 auto;
+        padding: 10px 16px 30px;
     }
+
 
     .seasons .cards {
         /* Flex */
@@ -80,14 +83,16 @@
     }
 
     .seasons .card {
-        /* (249/767)*100 = 32.46414602346806 */
-        /* (249/727)*100 = 34.25034387895461 */
-        width: 34.25034387895461%;
-        margin: 0 10px;
+        aspect-ratio: 16/7;
     }
 }
 
 @media only all and (min-width: 768px) and (max-width: 1023px) {
+    .seasons {
+        max-width: 765px;
+        margin: 0 auto;
+        padding: 10px 16px 30px;
+    }
 
     .seasons .cards {
         /* Flex */
@@ -95,10 +100,7 @@
     }
 
     .seasons .card {
-        /* (357/991)*100 = 36.02421796165489 */
-        width: 36.02421796165489%;
-        /* width: 357px; */
-        margin: 0 10px;
+        aspect-ratio: 16/5;
     }
 }
 
@@ -106,17 +108,4 @@
 }
 
 @media only all and (min-width: 1024px) {
-	/*Max Width: 1440px*/
-
-    .seasons .cards {
-        /* Flex */
-        justify-content: center;
-    }
-
-    .seasons .card {
-        /* (323/1408)*100 = 22.94034090909091 */
-        width: 22.94034090909091%;
-        /* width: 357px; */
-        margin: 0 10px;
-    }
 }

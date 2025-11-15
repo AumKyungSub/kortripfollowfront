@@ -14,6 +14,8 @@ const Seasons = () => {
         <div className="cards">
           <SeasonsComponent imgName="mapIcon.png" name="지역별" function="/region"/>
           <SeasonsComponent imgName="seasonsIcon.png" name="계절별" function="/season"/>
+          <SeasonsComponent imgName="cafeIcon.png" name="카페" function="/theme"/>
+          <SeasonsComponent imgName="foodIcon.png" name="맛집" function="/theme"/>
         </div>
       </section>      
     </div>

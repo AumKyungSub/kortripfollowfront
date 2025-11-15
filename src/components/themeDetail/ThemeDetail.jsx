@@ -1,0 +1,102 @@
+import React, {useState, useEffect} from 'react'
+// (hook) Device Size
+import { useResponsive } from '../../hooks/ResponsiveUsed'
+import { useLocation, useParams } from 'react-router-dom'
+
+// Function Component
+import Loading from '../functionComponents/Loading'
+
+// Components
+import Header from '../Header/Header'
+import ThemeDetailBanner from './components/themeDetailBanner/ThemeDetailBanner'
+import ThemeDetailCafeInfo from './components/themeDetailCafeInfo/ThemeDetailCafeInfo'
+import ThemeDetailMap from './components/themeDetailMap/ThemeDetailMap'
+import ThemeDetailLink from './components/themeDetailLink/ThemeDetailLink'
+import ThemeDetailGallery from './components/themeDetailGallery/ThemeDetailGallery'
+import Footer from '../footer/Footer'
+
+// Page css
+import './ThemeDetail.style.css'
+
+const ThemeDetail = () => {
+    // maxWidth: 479, maxWidth: 767, minWidth: 1024
+    const {isMobile, isFullMobile, isDesktop} = useResponsive();
+    const { id } = useParams();
+    const location = useLocation();
+    const { type } = location.state || {};
+
+    // Component에 카페, 식당 넘기기
+    const theme = type === "cafes" ? "카페" : "식당";
+
+    // Data 불러오기
+    const [data, setData] = useState(null);
+    // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
+    const [loading, setLoading] = useState(true);
+    // 에러 상테 표시 (초기값: null => 에러 없음)
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!type) return;
+
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const url = type === "cafes"
+                    ? `http://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/cafes/${id}`
+                    : `http://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/restaurants/${id}`;
+
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP 에러! 상태: ${res.status}`);
+                
+                const json = await res.json();
+                setData(json);
+            } catch (err) {
+                setError(err.message || "데이터를 불러오는 중 오류가 발생했습니다.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [id, type]);
+
+    // 로딩 화면
+    if (loading) return <div><Loading/></div>
+    // 에러 화면
+    if (error) return <div>{error}</div>
+    // 데이터 없을때 화면
+    if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+    return (
+        <>
+            {isDesktop && <Header/>}
+            <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+            {isDesktop ? 
+                <div className='themeDetailWholeCover'>
+                    <div className="themeDetailLeftWholeCover">
+                        <ThemeDetailCafeInfo data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailGallery data={data} isDesktop={isDesktop} isFullMobile={isFullMobile} theme={theme}/>
+                    </div>
+                    <div className="themeDetailRightWholeCover">
+                        <ThemeDetailMap data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailLink data={data} isDesktop={isDesktop}/>
+                    </div>
+                </div>
+            : 
+            <div className='themeDetailWholeCover'>
+                    <div className="themeDetailLeftWholeCover">
+                        <ThemeDetailMap data={data} isDesktop={isDesktop}/>
+                    </div>
+                    <div className="themeDetailRightWholeCover">
+                        <ThemeDetailCafeInfo data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailLink data={data} isDesktop={isDesktop}/>
+                        <ThemeDetailGallery data={data} isDesktop={isDesktop} isFullMobile={isFullMobile} theme={theme}/>
+                    </div>
+                </div>
+            }
+            <Footer/>
+        </>
+    )
+}
+
+export default ThemeDetail

@@ -1,0 +1,176 @@
+.themeListWholeCover {
+    padding: 20px 16px;
+}
+
+.themeListTextCover {
+    padding: 20px 0;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+}
+
+.themeListTextCover .themeListH3 {
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.themeListTextCover .themeListP {
+    /* Font */
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.themeListAllCover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: solid 1px #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.themeListCover{
+    aspect-ratio: 1 / 1;
+}
+
+.themeListAllCover:last-of-type {
+    margin: 0;
+}
+
+.themeListCover img {
+    width: 100%;
+}
+
+.themeTextCover {
+    width: 100%;
+    /* (131/343)*100 = 38.19241982507289 */
+    height: 38.19241982507289%;
+    padding: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.themeName, .themeText {
+    /* Font */
+    font-size: 1rem;
+    color: #757575;
+}
+
+.themeName img {
+    width: 16px;
+    aspect-ratio: 1/1;
+}
+
+.themeLocation {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Font */
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 669px) {
+    .themeListAllCover {
+        width: calc((100% - 20px) / 2); 
+        margin: 0;
+    }
+
+    .themeTextCover {
+        padding: 10px 16px;
+    }
+
+    .themeName, .themeText {
+        /* Font */
+        font-size: 0.75rem;
+    }
+
+    .themeLocation {
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+}
+
+@media only all and (min-width: 670px) and (max-width: 925px) {
+    .themeListAllCover {
+        width: calc((100% - 40px) / 3); 
+        margin: 0;
+    }
+
+    .themeTextCover {
+        padding: 10px;
+    }
+
+    .themeName, .themeText {
+        /* Font */
+        font-size: 0.75rem;
+    }
+
+    .themeLocation {
+        /* Font */
+        font-size: 1rem;
+        font-weight: 700;
+    }
+}
+
+@media only all and (min-width: 926px) and (max-width: 1023px) {
+    .themeListAllCover {
+        width: calc((100% - 60px) / 4); 
+        margin: 0;
+    }
+
+    .themeTextCover {
+        padding: 10px;
+    }
+
+    .themeName, .themeText {
+        /* Font */
+        font-size: 0.75rem;
+    }
+
+    .themeLocation {
+        /* Font */
+        font-size: 1rem;
+        font-weight: 700;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .themeListWholeCover {
+        max-width: 1480px;
+        margin: 0 auto;
+    }
+    .themeListAllCover {
+        width: calc((100% - 60px) / 4); 
+        margin: 0;
+    }
+
+    .themeTextCover {
+        padding: 10px;
+    }
+
+    .themeName, .themeText {
+        /* Font */
+        font-size: 1rem;
+    }
+
+    .themeLocation {
+        /* Font */
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+}
