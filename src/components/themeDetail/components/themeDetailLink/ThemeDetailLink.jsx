@@ -31,6 +31,14 @@ const ThemeDetailLink = ({data, isFullMobile}) => {
                         </span>
                     }
                 </div>
+                {data?.review?.existence?
+                    <a href={data?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
+                      <span className='reviewPC'>찐리뷰 보러가기</span>
+                    </a>
+                  : <div>
+                    <span className='reviewPCYet'>리뷰가 준비중 입니다</span>
+                  </div>
+                }
             </section>
         </>
     )

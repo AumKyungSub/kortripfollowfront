@@ -9,7 +9,7 @@ const ThemeList = ({data, selectedTheme}) => {
     const navigate = useNavigate();
     // 데이터 수 확인
     const themeCount = selectedTheme === "카페" ? dataC.length : dataR.length;
-
+console.log("dataC:", dataC);
     const handleClick = (item) => {
         navigate(`/themeDetail/${item.id}`, {
             state: { 
