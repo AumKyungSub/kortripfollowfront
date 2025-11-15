@@ -55,7 +55,7 @@ const Theme = () => {
         setLoading(true);
         setError(null);
         try {
-            const urlS = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/cafes`;
+            const urlC = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/cafes`;
             const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/restaurants`;
 
             const responseC = await fetch(urlC);
