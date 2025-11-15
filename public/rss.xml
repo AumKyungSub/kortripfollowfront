@@ -7,12 +7,12 @@
     <language>ko</language>
     <managingEditor>qnzldmad91@gmail.com (국트따라)</managingEditor>
     <webMaster>qnzldmad91@gmail.com (국트따라)</webMaster>
-    <lastBuildDate>Mon, 10 Nov 2025 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 15 Nov 2025 09:00:00 +0900</lastBuildDate>
     
     <!-- 최신 여행지 10개 (id 높은 순) -->
     <item>
       <title>오동도</title>
-      <link>https://kortripfollow.shop/location/12</link>
+      <link>https://kortripfollow.shop/location/11</link>
       <description>전라남도 여수시 수정동에 위치한 오동도 — 전라남도 여수시 수정동에 위치한 오동도</description>
       <guid>https://kortripfollow.shop/location/12</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
@@ -20,7 +20,7 @@
 
     <item>
       <title>바람의 언덕</title>
-      <link>https://kortripfollow.shop/location/11</link>
+      <link>https://kortripfollow.shop/location/10</link>
       <description>거제시 남부면 도장포 마을 북쪽 — 바람이 스치는 언덕 끝에 서면</description>
       <guid>https://kortripfollow.shop/location/11</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
@@ -28,18 +28,10 @@
 
     <item>
       <title>부석사</title>
-      <link>https://kortripfollow.shop/location/10</link>
+      <link>https://kortripfollow.shop/location/9</link>
       <description>충청남도 문화재자료 제195호로 지정된 부석사 — "떠 있는 바위의 전설을 간직한 고찰</description>
       <guid>https://kortripfollow.shop/location/10</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>카페산</title>
-      <link>https://kortripfollow.shop/location/9</link>
-      <description>충북 단양의 하늘 위 카페 — 패러글라이딩 활공장 옆 특별한 휴식 공간</description>
-      <guid>https://kortripfollow.shop/location/9</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
     <item>
@@ -88,6 +80,24 @@
       <description>동해의 시원한 바다를 향해 뻗은 감성 포토스팟</description>
       <guid>https://kortripfollow.shop/location/3</guid>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <!-- 최신 카페 10개 (id 높은 순) -->
+    <item>
+      <title>카페산</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>푸른 산과 강이 어우러진 단양의 절경과 이곳만의 색다른 또 하나의 매력 멋진 비행과 함께하는 풍경</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
+    </item>
+    
+    <!-- 최신 식당 10개 (id 높은 순) -->
+    <item>
+      <title>연사랑</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>철원 오대쌀과 신선한 제철 채소 그리고 파프리카로 만든 고추장으로 방문객들의 만족도를 높이는 건강한 식당</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
   </channel>
