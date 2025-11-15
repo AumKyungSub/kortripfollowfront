@@ -1,6 +1,4 @@
 import React from 'react'
-// (hook) Device Size
-import { useResponsive } from '../../../../hooks/ResponsiveUsed'
 
 // Components
 import HomeIcon from '../../../functionComponents/HomeIcon'
@@ -8,18 +6,16 @@ import HomeIcon from '../../../functionComponents/HomeIcon'
 // Page css
 import './MainImage.style.css'
 
-const MainImage = ({rankingData}) => {
-  // maxWidth: 479, minWidth: 1024
-  const {isMobile, isDesktop} = useResponsive();
+const MainImage = ({rankingData, isMobile, isFullMobile}) => {
 
   console.log(rankingData);
   return (
     <>
       <div className='mainImageCover'>
-        {!isDesktop && <HomeIcon />}
+        {isFullMobile && <HomeIcon />}
         <div>
           <img src={isMobile?rankingData?.img?.link+"2M.jpg"
-            :!isDesktop?rankingData?.img?.link+"2T.jpg"
+            :isFullMobile?rankingData?.img?.link+"2T.jpg"
             :rankingData?.img?.link+"2.jpg"
           } alt={rankingData?.img?.link+"2.jpg"} className='mainImage' />
         </div>

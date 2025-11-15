@@ -7,17 +7,13 @@
 @media only all and (min-width: 480px) and (max-width: 767px) {
 }
 
-@media only all and (min-width: 768px) and (max-width: 1023px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .homeTheme{
         background-color: #f2f2f7;
     }
 
     .homeThemeWholeCover {
-        max-width: 1440px;
-        padding: 130px 16px 130px;
+        padding: 80px 16px 80px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -64,7 +60,7 @@
     .homeThemeP {
         /* Font */
         color: #fff;
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         font-weight: 600;
         /* Position */
         position: relative;
@@ -76,5 +72,17 @@
         display: flex;
         align-items: center;
         gap: 10px;    
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .homeThemeWholeCover {
+        max-width: 1440px;
+        padding: 130px 16px 130px;
+    }
+
+    .homeThemeP {
+        /* Font */
+        font-size: 1.75rem;
     }
 }

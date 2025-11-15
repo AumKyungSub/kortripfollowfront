@@ -64,15 +64,7 @@
     }
 }
 
-@media only all and (min-width: 768px) and (max-width: 1023px) {
-    .topParkingInfo {
-        /* 100-38.45371312309258 = 61.54628687690742 */
-        padding:6px 20px 16px;
-        padding-left: calc(61.54628687690742% - 6px);
-    }
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .topParkingWholeCover {
         background-color: #f2f2f7;
     }
@@ -86,9 +78,7 @@
     }
 
     .topParkingInfo {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 30px 20px;
+        padding: 15px 20px;
         /* Flex */
         display: flex;
         justify-content: space-between;
@@ -117,5 +107,26 @@
 
     .parkT {
         margin-top: 5px;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+
+    .parkingInfoCover{
+        margin-top: 20px;
+    }
+
+    .parkingInfoCover:first-of-type {
+        margin-top: 0;
+    }
+
+    .topParkingInfo {
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+    
+    .parkingAllCover {
+        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
+        width: 62.43055555555556%;
     }
 }

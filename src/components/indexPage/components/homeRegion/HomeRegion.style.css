@@ -4,20 +4,13 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) and (max-width: 767px) {
-}
-
-@media only all and (min-width: 768px) and (max-width: 1023px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .homeRegionBackground{
         background-color: #f2f2f7;
     }
 
     .homeRegionWholeCover {
-        max-width: 1440px;
-        padding: 130px 16px 130px;
+        padding: 80px 16px 80px;
         margin-left: auto;
         margin-right: auto;
         /* Flex */
@@ -41,13 +34,13 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        gap: 30px;
+        gap: 16px;
 
     }
 
     .homeRegionList {
-        border: solid 3px;
-        width: calc((100% - 90px) / 4);
+        border: solid 1px;
+        width: calc((100% - 48px) / 4);
         aspect-ratio: 5/6;
         border-radius: 10px;
         overflow: hidden;
@@ -80,18 +73,18 @@
     }
 
     .homeRegionListHeader {
-        width: calc(100% - 40px);
+        width: calc(100% - 30px);
         /* Font */
         color: #fff;
-        font-size: 1rem;
+        font-size: 0.75rem;
         font-weight: 400;
         /* Flex */
         display: flex;
         justify-content: space-between;
         /* Position */
         position: absolute;
-        top: 20px;
-        left: 20px;
+        top: 15px;
+        left: 15px;
         z-index: 99;
     }
 
@@ -113,8 +106,8 @@
     }
 
     .listHeaderFstSpan img {
-        width: 20px;
-        margin-right: 3px;
+        width: 14px;
+        margin-right: 2px;
     }
 
     .regionExampleList {
@@ -122,18 +115,18 @@
         /* Flex */
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
         /* Position */
         position: absolute;
-        bottom: 20px;
-        left: 20px;
+        bottom: 15px;
+        left: 15px;
         z-index: 99;
     }
 
     .regionExampleList .regionArea {
         /* Font */
         color: #fff;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 500;
     }
 
@@ -141,7 +134,7 @@
         opacity: 0.8;
         /* Font */
         color: #fff;
-        font-size: 1rem;
+        font-size: 0.75rem;
         font-weight: 500;
     }
 
@@ -153,13 +146,13 @@
 
     .regionExampleList .regionAreaList {
         margin-bottom: 5px;
-        margin-right: 10px;
+        margin-right: 5px;
         padding: 5px;
         border-radius: 9999px;
         background-color: rgba(255, 255, 255, 0.2);
         /* Font */
         color: #fff;
-        font-size: 0.75rem;
+        font-size: 0.625rem;
         font-weight: 400;
         /* Position */
         position: absolute;
@@ -187,5 +180,69 @@
         /* Show */
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media only all and (min-width: 768px) and (max-width: 889px) {
+
+    .homeRegionListHeader {
+        width: calc(100% - 5px);
+        /* Position */
+        left: 2px;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .homeRegionWholeCover {
+        max-width: 1440px;
+        padding: 130px 16px 130px;
+    }
+    
+    .homeRegionCover {
+        /* Flex */
+        gap: 30px;
+
+    }
+
+    .homeRegionList {
+        width: calc((100% - 90px) / 4);
+    }
+
+    .homeRegionListHeader {
+        /* Font */
+        font-size: 1rem;
+        /* Position */
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    .listHeaderFstSpan img {
+        width: 20px;
+        margin-right: 3px;
+    }
+
+    .regionExampleList {
+        gap: 10px;
+        /* Position */
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .regionExampleList .regionArea {
+        /* Font */
+        font-size: 1.25rem;
+    }
+
+    .regionExampleList .regionLooking {
+        /* Font */
+        font-size: 1rem;
+    }
+
+    .regionExampleList .regionAreaList {
+        margin-right: 10px;
+        /* Font */
+        font-size: 0.75rem;
     }
 }

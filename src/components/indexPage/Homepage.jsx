@@ -59,11 +59,11 @@ const Homepage = () => {
     <div>
       <Header />
       <Banner rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-      {!isDesktop && <Seasons/>}
+      {isFullMobile && <Seasons/>}
       <TopPlaces rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-      {isDesktop && <HomeRegion rankingData={data}/>}
-      {isDesktop && <HomeSeason rankingData={data}/>}
-      {isDesktop && <HomeTheme />}
+      {!isFullMobile && <HomeRegion rankingData={data}/>}
+      {!isFullMobile && <HomeSeason rankingData={data}/>}
+      {!isFullMobile && <HomeTheme />}
       <Footer/>
     </div>
   )

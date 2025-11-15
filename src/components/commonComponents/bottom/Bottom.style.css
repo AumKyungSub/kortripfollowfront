@@ -74,11 +74,7 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .bottomCover {
         width: 100%;
         max-width: 1440px;
@@ -122,4 +118,8 @@
         /* Font */
         font-size: 1.25rem;
     }
+
+}
+
+@media only all and (min-width: 1024px) {
 }

@@ -6,7 +6,7 @@ import { Map, MapMarker, CustomOverlayMap, useKakaoLoader } from 'react-kakao-ma
 // Page css
 import './Explain.style.css'
 
-const Explain = ({rankingData}) => {
+const Explain = ({rankingData, isDesktop, isFullMobile}) => {
 
     // Kakao Map Script Load
     useKakaoLoader()
@@ -36,7 +36,11 @@ const Explain = ({rankingData}) => {
         <h5 className='explainName'>소개</h5>
         <div className="explainTextImgCover">
           <div className="explainImgCover">
-            <img src={rankingData?.img?.link+"4.jpg"} alt="" />
+            {isDesktop ? 
+              <img src={rankingData?.img?.link+"4.jpg"} alt="explainImg" />
+              :
+              <img src={rankingData?.img?.link+"3.jpg"} alt="explainImg" />
+            }
           </div>
           <div className="explainTextCover">
             <h1 className="explainTitle">{rankingData?.description?.title}</h1>

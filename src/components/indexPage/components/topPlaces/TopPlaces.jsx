@@ -31,12 +31,12 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
     return (
     <>
         <section className="topPlaces">
-            <h3 className='topPlaceH3'>채널 추천 여행지 TOP 5</h3>
+            {isFullMobile && <h3 className='topPlaceH3'>채널 추천 여행지 TOP 5</h3>}
             <div className="cards">
                 <div className="cardsTitle768">
-                    <h3>채널 추천 여행지 TOP 5</h3>
+                    {!isFullMobile && <h3>채널 추천 여행지 TOP 5</h3>}
                 </div>
-                {!isDesktop?(
+                {isFullMobile?(
                     rankingList.map((menu)=>(
                     <TopPlacesComponent 
                         key={menu.id} 

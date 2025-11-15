@@ -26,13 +26,8 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .regionListTitleCover {
-        max-width: 1480px;
-        margin: 0 auto;
         padding: 20px 20px 0;
         display: block;
     }
@@ -51,5 +46,11 @@
         font-weight: 500;
         letter-spacing: 0.02em;
     }
+}
 
+@media only all and (min-width: 1024px) {
+    .regionListTitleCover {
+        max-width: 1480px;
+        margin: 0 auto;
+    }
 }

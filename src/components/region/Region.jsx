@@ -25,7 +25,7 @@ const Region = () => {
   // HomeRegion.jsx에서 가져온 값 담기
   const [selectedRegion, setSelectedRegion] = useState('전체');
   // minWidth: 1024
-  const {isDesktop} = useResponsive();
+  const {isFullMobile, isDesktop} = useResponsive();
    // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -74,9 +74,9 @@ const Region = () => {
     <div>
         <Header/>
         <div className="emptyLine1px"></div>
-        {isDesktop && <RegionBanner filteredList={filteredList} />}
-        <Category selected={selectedRegion} setSelected={setSelectedRegion} isDesktop={isDesktop} />
-        <RegionCount selectedRegion={selectedRegion} filteredList={filteredList} isDesktop={isDesktop} />
+        {!isFullMobile && <RegionBanner filteredList={filteredList} />}
+        <Category selected={selectedRegion} setSelected={setSelectedRegion} isFullMobile={isFullMobile} />
+        <RegionCount selectedRegion={selectedRegion} filteredList={filteredList} isFullMobile={isFullMobile} />
         <div className="regionListWholeCover">
           {filteredList.map((reg)=>(
             <RegionList key={reg.id} regionList={reg}/>

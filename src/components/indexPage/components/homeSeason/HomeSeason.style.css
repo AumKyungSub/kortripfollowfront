@@ -7,15 +7,11 @@
 @media only all and (min-width: 480px) and (max-width: 767px) {
 }
 
-@media only all and (min-width: 768px) and (max-width: 1023px) {
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .homeSeasonWholeCover {
         width: 100%;
-        max-width: 1440px;
         margin: 0 auto;
-        padding: 130px 16px 130px;
+        padding: 80px 16px 80px;
     }
 
     .homeSeasonH2 {
@@ -122,5 +118,12 @@
         z-index: 99;
         /* Font */
         font-size: 1rem;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .homeSeasonWholeCover {
+        max-width: 1440px;
+        padding: 130px 16px 130px;
     }
 }

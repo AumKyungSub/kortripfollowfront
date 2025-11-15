@@ -31,12 +31,6 @@ header .logo img {
   margin-left: 5px;
 }
 
-/* ---Show and Hide--- */
-/* show in higher than 1024px */
-.gnbPc {
-  display: none;
-}
-
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -44,26 +38,11 @@ header .logo img {
 }
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
-  .header {
-    max-width: 550px;
-  }
 }
 
-@media only all and (min-width: 768px) and (max-width: 1023px) {
+@media only all and (min-width: 768px) {
   .header {
-    max-width: 765px;
-  }
-}
-
-@media only all and (min-width: 1024px) {
-  .header {
-    max-width: 1440px;
-  }
-
-  .gnbPc {
-    height: 100%;
-    /* For Show up */
-    display: inline-block;
+    max-width: 1023px;
   }
   
   .gnbPc ul {
@@ -80,10 +59,10 @@ header .logo img {
     font-size: 1rem;
     font-weight: 500;
   }
+}
 
-/* ---Show and Hide--- */
-/* show in lower than 1023px */
-  .search{
-    display: none;
+@media only all and (min-width: 1024px) {
+  .header {
+    max-width: 1440px;
   }
 }

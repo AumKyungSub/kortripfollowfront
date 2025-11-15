@@ -106,58 +106,13 @@
     }
 }
 
-@media only all and (min-width: 768px) and (max-width: 1023px) {
-    .explainCover {
-        padding: 30px 20px 0px;
-        /* Flex */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .explainTextImgCover {
-        /* 100-38.45371312309258 = 61.54628687690742 */
-        width: calc(61.54628687690742% - 16px);
-        text-align: center;
-    }
-
-    .explainCover .explain  {
-        max-width: 517px;
-        margin: 0 auto 16px; 
-        text-align: left;       
-    }
-    
-    .topMapCover {
-        /* (378/983)*100 = 38.45371312309258 */
-        width: 38.45371312309258%;
-        background-color: #fff;
-        border-radius: 10px;
-        /* Position */
-        position: relative;
-    }
-
-    .topMap {
-        /* (378/983)*100 = 38.45371312309258 */
-        width: 100%;
-        aspect-ratio: 1 / 1;
-    }
-
-    .topaLinkCover {
-        /* Position */
-        right: 5px;
-        bottom: 5px;
-    }
-}
-
-@media only all and (min-width: 1024px) {
+@media only all and (min-width: 768px) {
     .explainWholeCover{
         background-color: #f2f2f7;
     }
     
     .explainCover {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 60px 20px 0px;
+        padding: 30px 20px 0px;
         /* Flex */
         display: flex;
         flex-direction: column;
@@ -170,7 +125,7 @@
         margin-left: 2px;
         margin-bottom: 12px;
         /* Font */
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 700;
     }
     
@@ -180,19 +135,20 @@
         text-align: center;
         background-color: #fff;
         border-radius: 10px;
-        padding: 20px;
+        padding: 16px;
         /* padding: 30px 100px; */
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         /* Flex */
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         gap: 10px;
     }
     
     .explainImgCover {
         display: block;
-        width: 35%;
+        width: 100%;
+        aspect-ratio: 16/9;
         border-radius: 10px;
         overflow: hidden;
         /* Flex */
@@ -206,7 +162,7 @@
     }
 
     .explainTextCover {
-        width: 65%;
+        width: 100%;
         align-self: stretch;
     }
 
@@ -221,7 +177,7 @@
         /* Font */
         font-size: 1rem; 
         line-height: 30px;
-        letter-spacing: 0.03em;  
+        letter-spacing: 0.02em;  
     }
 
     .explainTextCover .explainLast {
@@ -252,15 +208,54 @@
     
     .topMap {
         width: 100%;
+        aspect-ratio: 16 / 12;
+    }
+
+    .topaLinkCover {
+        width: 45px;
+        height: 45px;
+        /* Position */
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .topaLinkCover p {
+        font-size: 0.75rem;
+    }
+}
+
+@media only all and (min-width: 1024px) {    
+    .explainCover {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 60px 20px 0px;
+    }
+    
+    .explainTextImgCover {
+        padding: 20px;
+        /* padding: 30px 100px; */
+        margin-bottom: 20px;
+        /* Flex */
+        flex-direction: row;
+    }
+    
+    .explainImgCover {
+        display: block;
+        width: 35%;
+        aspect-ratio: 11/16;
+    }
+
+    .explainTextCover {
+        width: 65%;
+    }
+    
+    .topMap {
         aspect-ratio: 16 / 8;
     }
 
     .topaLinkCover {
         width: 55px;
         height: 55px;
-        /* Position */
-        right: 20px;
-        bottom: 20px;
     }
 
     .topaLinkCover p {

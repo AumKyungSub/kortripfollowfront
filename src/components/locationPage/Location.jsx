@@ -22,7 +22,7 @@ import './Location.style.css'
 const Location = () => {
     const { id } = useParams();
     // minWidth: 1024
-    const {isDesktop} = useResponsive();
+    const {isMobile, isFullMobile, isDesktop} = useResponsive();
     // Data 불러오기
     const [data, setData] = useState([]);
     // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -60,12 +60,12 @@ const Location = () => {
 
     return (
         <div>
-            {isDesktop && <Header/>}
-            {data && <MainImage rankingData={data} />}
-            {data && <Explain rankingData={data} />}
+            {!isFullMobile && <Header/>}
+            {data && <MainImage rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>}
+            {data && <Explain rankingData={data} isDesktop={isDesktop} isFullMobile={isFullMobile}/>}
             {data && <Parking rankingData={data} />}
 
-            {isDesktop? data && <LocInfo rankingData={data} />
+            {!isFullMobile? data && <LocInfo rankingData={data} />
             :  data && <LocInfoNotPc rankingData={data}/> 
             }
             {data && <Recommend rankingData={data} />}

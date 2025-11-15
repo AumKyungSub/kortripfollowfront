@@ -14,7 +14,7 @@ const TopPlacesComponent = ({selectedAll, isMobile, isFullMobile, isDesktop, ran
     };
     return (
     <>
-        {!isDesktop ? (
+        {isFullMobile ? (
             <div className='card' onClick={goToLocationDetail}>
                     <img src={isMobile?selectedAll?.top === 1?selectedAll?.img?.link+"0M.jpg":selectedAll?.img?.link+"1.jpg"
                         :isFullMobile?selectedAll?.top === 1?selectedAll?.img?.link+"0Z.jpg":selectedAll?.img?.link+"1.jpg"
