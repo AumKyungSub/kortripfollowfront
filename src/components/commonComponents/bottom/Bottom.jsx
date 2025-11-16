@@ -4,6 +4,11 @@ import React from 'react'
 import './Bottom.style.css'
 
 const Bottom = ({title, text, leftText, rightTitle, rightText}) => {
+  const bottomImg = (title === "여행중 잠깐의 휴식") ? "cafes" 
+                    : (title === "대한민국의 매력") ? "taegeukgi"
+                    : (title === "여행의 또 다른 재미") ? "restaurants"
+                    : "";
+                    
   return (
     <div className='bottomWholeCover'>
         <div className="bottomCover">
@@ -22,7 +27,7 @@ const Bottom = ({title, text, leftText, rightTitle, rightText}) => {
               </div>
             </div>
             <div className="bottomImgCover">
-              <img src="/images/flag/taegeukgi.jpg" alt="Korean flag" />
+              <img src={`/images/flag/${bottomImg}.jpg`} alt={`/images/flag/${bottomImg}.jpg`} />
             </div>
         </div>
     </div>

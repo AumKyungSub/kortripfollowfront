@@ -1,35 +1,10 @@
-.aboutHeader {
-  width: 100vw;
-  background-color: #fff;
-  /* Position */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-
-.aboutFooter {
-  width: 100vw;
-  background-color: #fff;
-  /* Position */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 99;
-}
-
 .aboutCover {
-  width: 100vw;
-  height: 100vh;
-  padding-bottom: 50px;
+  width: 100%;
+  height: calc(100vh - 72px);
+  overflow: hidden;
   /* Font */
   color: #fff;
-  text-align: left;
-    text-shadow: 
-      -1px -1px 0 #000, 
-       1px -1px 0 #000, 
-      -1px 1px 0 #000, 
-       1px 1px 0 #000; 
+  text-align: center;
   /* Background */
   background-image: url('/images/about/aboutBannersM.jpg');
   background-repeat : no-repeat;
@@ -43,33 +18,55 @@
   position: relative;
 }
 
-.aboutTextCover {
-  /* Position */
-  position: absolute;
-  bottom: 175px;
-  left: 0;
-  z-index: 99;
+.aboutCover::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), 60%, rgba(255,255,255,0.3));
 }
 
-.about-title {
+.aboutTextCover {
+  width: 100%;
+  /* Position */
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  z-index: 99;
+  transform: translate(-50%, -15%);
+}
+
+.aboutTitle {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
 }
 
-.about-slogan {
+.aboutSlogan {
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
-.about-description {
+.aboutDescription {
   font-size: 0.625rem;
   font-weight: 400;
   line-height: 1.8;
   color: #f2f2f7;
+}
+
+.aboutLinkImgCover {
+  margin-top: 15px;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.aboutLinkImgCover img {
+  width: 36px;
 }
 
 
@@ -80,21 +77,53 @@
 }
 
 @media only all and (min-width: 768px) {
-    .aboutCover {
-        background-image: url('/images/about/aboutBannersP.jpg');
-    }
-    .about-title {
-        font-size: 2.5rem;
-    }
+  .aboutCover {
+    text-align: left;
+    background-image: url('/images/about/aboutBannersP.jpg');
+  }
 
-    .about-slogan {
-        font-size: 1.25rem;
-    }
+  .aboutCover::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.6), 60%, rgba(255,255,255,0.3));
+  }
 
-    .about-description {
-        font-size: 1rem;
-    }
+  .aboutTitle {
+    font-size: 2.5rem;
+  }
+
+  .aboutSlogan {
+      font-size: 1.25rem;
+  }
+
+  .aboutDescription {
+      font-size: 1rem;
+  }
+
+  .aboutTextCover {
+    /* Position */
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    z-index: 99;
+    transform: translate(0,0);
+  }
+
+  .aboutLinkImgCover {
+    /* Flex */
+    justify-content: start;
+  }
+
+  .aboutLinkImgCover img {
+    width: 48px;
+    cursor: pointer;
+  }
 }
 
 @media only all and (min-width: 1024px) {
+  .aboutTextCover {
+    /* Position */
+    left: 175px;
+  }
 }
