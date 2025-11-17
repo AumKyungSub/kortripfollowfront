@@ -21,7 +21,8 @@ const ThemeDetailBanner = ({data, isMobile, isFullMobile, isDesktop}) => {
             {isFullMobile && <HomeIcon/>}
             <div className="themeDetailBannerTextCover">
                 <h2 className='themeDetailBannerH2'>
-                    {data.location?.name}           
+                    {data.location?.name}
+                    {data?.location?.chain && " ("+data?.location?.chain+")"}
                 </h2>
                 <p className='themeDetailBannerPr'>
                     <img src="/images/icon/regionIconS.png" alt="region" />
