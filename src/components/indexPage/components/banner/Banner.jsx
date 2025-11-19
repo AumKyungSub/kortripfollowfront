@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import { useNavigate } from 'react-router-dom';
+
 // Page css
 import "./Banner.style.css";
 
@@ -11,6 +13,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
   // items: 길이 5, 항상 [메인, 썸네일1, 썸네일2, 썸네일3, 썸네일4]
   const [items, setItems] = useState([]);
   const [transitioning, setTransitioning] = useState(false);
+  const navigate = useNavigate();
 
   // ---------- 초기 세팅 ----------
   useEffect(() => {
@@ -117,10 +120,16 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
     }, 900);
   };
 
+  const goToLocationDetail = () => {
+    if (!mainItem?.id) return;
+    navigate(`/location/${mainItem.id}`);
+  };
+
+
   return (
     <div className="bannerWrapper">
       {/* 메인 배너 */}
-      <div ref={bannerRef} className="mainBannerArea">
+      <div ref={bannerRef} className="mainBannerArea" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
         {mainItem && (
           <>
           <img
@@ -138,7 +147,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
         )}
       </div>
 
-      <div className="bannerTextWrapper">
+      <div className="bannerTextWrapper" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
           <h2 className='bannerTextH2'>{mainItem?.location?.name}</h2>
           <h3 className='bannerTextH3'>{mainItem?.location?.english}</h3>
           <p className="bannerTextP1">{mainItem?.description?.slide}</p>
