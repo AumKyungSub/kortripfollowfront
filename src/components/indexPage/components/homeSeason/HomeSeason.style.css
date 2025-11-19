@@ -16,9 +16,9 @@
 
     .homeSeasonH2 {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 46px;
         /* Font */
-        text-align: center;
+        text-align: left;
         font-size: 1.5rem;
         font-weight: 700;
     }
@@ -27,28 +27,27 @@
         /* Flex */
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 24px;
 
     }
 
     .homeSeasonCover {
-        width: calc((100% - 60px) / 4);
-        aspect-ratio: 1 / 1;
+        width: calc((100% - 72px) / 4);
+        aspect-ratio: 19 / 16;
         padding: 20px;
         border-radius: 10px;
         overflow: hidden;
         background-color: #fff;
-        background-size: cover;
-        background-position: center center;
+        background-position: center bottom;
         cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         /* Font */
         color: #fff;
         font-weight: 600;
         /* Flex */
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
+        align-items: center;
         /* Position */
         position: relative;
     }
@@ -89,7 +88,8 @@
     }
 
     .homeSeasonImgCover {
-        width: 20%;
+        /* (52/294)*100 = 17.687074829931973 = 19.047619047619047 = 16.766467065868262 */
+        width: 17.687074829931973%;
         aspect-ratio: 1/1;
         border-radius: 50%;
         background-color: rgba(255, 255, 255, 0.5);
@@ -117,13 +117,13 @@
     .homeSeasonsP {
         z-index: 99;
         /* Font */
-        font-size: 1rem;
+        font-size: 0.875rem;
     }
 }
 
 @media only all and (min-width: 1024px) {
     .homeSeasonWholeCover {
         max-width: 1440px;
-        padding: 130px 16px 130px;
+        padding: 40px 16px 40px;
     }
 }

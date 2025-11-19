@@ -21,7 +21,7 @@
     .homeThemeH2 {
         width: 100%;
         margin-bottom: 10px;
-        text-align: center;
+        text-align: left;
         font-size: 1.5rem;
         font-weight: 700;
     }
@@ -78,7 +78,7 @@
 @media only all and (min-width: 1024px) {
     .homeThemeWholeCover {
         max-width: 1440px;
-        padding: 130px 16px 130px;
+        padding: 40px 16px 80px;
     }
 
     .homeThemeP {

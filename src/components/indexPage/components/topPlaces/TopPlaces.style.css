@@ -132,6 +132,10 @@
     margin-right: auto;
   }
 
+  .topPlaces h3 {
+    text-align: left;
+  }
+
   .cardsTitle768 {
     width: 100%;
     margin-bottom: 30px;
@@ -230,7 +234,6 @@
   }
 
   .card.selected {
-    border: 3px solid #4185F4;
     border-radius: 10px;
     transform: scale(1.1);
     opacity: 1;
@@ -302,7 +305,7 @@
 @media only all and (min-width: 1024px) {
   .topPlaces {
     max-width: 1440px;
-    padding: 130px 16px 130px;
+    padding: 80px 16px 40px;
   }
 
   .mainCardCover {
@@ -327,7 +330,6 @@
   }
 
   .card.selected {
-    border: 5px solid #4185F4;
     /* Font */
     font-size: 1.5rem;
   }

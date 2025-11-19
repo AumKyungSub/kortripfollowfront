@@ -1,7 +1,7 @@
 .seasons {
     width: 100%;
     height: auto;
-    padding: 20px 16px;
+    padding: 50px 16px 20px;
 }
 .seasons h3 {
     width: 100%;
@@ -73,7 +73,7 @@
     .seasons {
         max-width: 550px;
         margin: 0 auto;
-        padding: 10px 16px 30px;
+        padding: 60px 16px 30px;
     }
 
 
@@ -88,20 +88,6 @@
 }
 
 @media only all and (min-width: 768px) and (max-width: 1023px) {
-    .seasons {
-        max-width: 765px;
-        margin: 0 auto;
-        padding: 10px 16px 30px;
-    }
-
-    .seasons .cards {
-        /* Flex */
-        justify-content: center;
-    }
-
-    .seasons .card {
-        aspect-ratio: 16/5;
-    }
 }
 
 @media only all and (min-width: 1024px) and (max-width: 1439px) {
