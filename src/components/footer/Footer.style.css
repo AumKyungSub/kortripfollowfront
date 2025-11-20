@@ -2,20 +2,85 @@ footer {
   width: 100%;
   background: #e2e8f0;
   color: #000;
-  text-align: left;
-  padding: 20px 16px;
+  text-align: center;
   /* margin-top: 40px; */
   letter-spacing: 0.02em;
 }
-footer a {
-  margin: 0 5px;
-  text-decoration: none;
+
+.footerCover {
+  width: 100%;
+  padding: 30px 16px;
+  background-color: transparent;
 }
-footer p {
-  margin: 15px 5px 0px;
+
+.footerLinkCover {
+  width: 100%;
+  margin-bottom: 15px;
+  /* Font */
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.footerEmail {
+  width: 100%;
+  margin-bottom: 5spx;
+  /* Font */
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+}
+
+.footerCopyRight {
+  width: 100%;
+  /* Font */
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.02em;
 }
 
 footer .warnings {
+  width: 100%;
+  margin-bottom: 10px;
   /* Font */
-  font-size: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #525252;
+}
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 768px) {
+  footer {
+    text-align: left;
+  }
+
+  .footerCover {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .footerLinkCover {
+    /* Flex */
+    justify-content: start;
+  }
+}
+
+@media only all and (min-width: 1024px) {
 }

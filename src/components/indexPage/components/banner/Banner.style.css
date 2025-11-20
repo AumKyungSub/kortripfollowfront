@@ -117,11 +117,11 @@
     border-radius: 0;
     transition:
     transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.5s ease,
-    width 0.9s ease,
+    opacity 0.3s ease,
+    width 0.1s ease,
     height 0.9s ease,
     top 0.9s ease,
-    left 0.9s ease;
+    left 0.1s ease;
     /* Position */
     z-index: 100;
   }
@@ -141,6 +141,7 @@
     /* Position */
     left: 20px;
   }
+  
   .bannerTextP2 {
     /* Font */
     color: #F5F5F5;

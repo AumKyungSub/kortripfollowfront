@@ -35,7 +35,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
         // 썸네일 0번(B)을 메인으로 보내기 → 한 칸 회전
         handleThumbSelect(0, true);
       }
-    }, 6000);
+    }, 4500);
 
     return () => clearInterval(autoplayRef.current);
   }, [items, transitioning]);
@@ -110,7 +110,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
           .concat(current.slice(0, selectedIndex));
         return rotated;
       });
-    }, 350);
+    }, 250);
 
     // 애니 끝난 후 정리
     setTimeout(() => {
@@ -146,7 +146,8 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
           </>
         )}
       </div>
-
+      
+      {/* 메인 베너 텍스트 */}
       <div className="bannerTextWrapper" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
           <h2 className='bannerTextH2'>{mainItem?.location?.name}</h2>
           <h3 className='bannerTextH3'>{mainItem?.location?.english}</h3>
