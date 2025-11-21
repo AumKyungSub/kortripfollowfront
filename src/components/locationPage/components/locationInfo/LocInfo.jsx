@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 // Page css
 import './LocInfo.style.css'
 
-const LocInfo = ({rankingData}) => {
+const LocInfo = ({rankingData, isFullMobile}) => {
   const [isFixed, setIsFixed] = useState(false);
   const [initialTop, setInitialTop] = useState(0);
   const [rightPos, setRightPos] = useState(0);
@@ -11,50 +11,61 @@ const LocInfo = ({rankingData}) => {
 
 useEffect(() => {
   const headerHeight = 10;
-  const footerHeight = 103;
   const mainEl = document.querySelector('.mainImageCover');
   const explainEl = document.querySelector('.explainTextImgCover');
   const topRecommendEl = document.querySelector('.topRecommendCover');
+  const topParkingEl = document.querySelector('.topParkingWholeCover');
   const locInfoEl = document.querySelector('.locationInfoCover');
 
-  if (!mainEl || !explainEl || !topRecommendEl || !locInfoEl) return;
+  if (!mainEl || !explainEl || !topRecommendEl || !topParkingEl || !locInfoEl) return;
 
   const updatePosition = () => {
-    if (!mainEl || !explainEl || !topRecommendEl || !locInfoEl) return;
+    if (!mainEl || !explainEl || !topRecommendEl || !topParkingEl || !locInfoEl) return;
+
+    const rightWholeEl = document.querySelector('.locationDetailRightWholeCover');
 
     const viewportWidth = window.innerWidth;
-    const containerWidth = Math.min(1280, viewportWidth);
-    const padding = viewportWidth >= 1280 ? 0 : 20;
-    const right = (viewportWidth - containerWidth) / 2 + padding;
+    const containerWidth = Math.min(1440, viewportWidth);
+    const right = (viewportWidth - containerWidth) / 2;
     setRightPos(right);
 
-    const explainWidth = explainEl.offsetWidth;
-    const width = viewportWidth >= 1280 ? 1250 - explainWidth : viewportWidth - (explainWidth + 60);
-    setLocWidth(width);
-
-    const mainBottom = mainEl.getBoundingClientRect().bottom + window.scrollY;
-    const topRecommendTop = topRecommendEl.getBoundingClientRect().top + window.scrollY;
-    const locInfoHeight = locInfoEl.offsetHeight;
+    // 오른쪽 박스 width 고정
+    if (rightWholeEl) {
+      setLocWidth(rightWholeEl.offsetWidth);
+    }
 
     const scrollY = window.scrollY;
 
+    // locationInfo 시작점(고정 시작점)
+    const mainBottom = mainEl.getBoundingClientRect().bottom + scrollY;
+
+    // 멈추는 기준이 되는 왼쪽 "위치 정보" 박스 top
+    const parkingTop = topParkingEl.getBoundingClientRect().top + scrollY;
+
+    // locationInfoCover의 실제 높이
+    const locInfoHeight = locInfoEl.offsetHeight;
+
+    // 🟦 1. fixed 시작 조건
     const startFix = scrollY + headerHeight >= mainBottom;
-    const stopFix = scrollY + headerHeight + locInfoHeight >= topRecommendTop - footerHeight;
+
+    // 🟥 2. fixed 종료 조건 (TOP == TOP)
+    const stopFix = scrollY + headerHeight >= parkingTop;
 
     if (startFix && !stopFix) {
+      // fixed 상태
       setIsFixed(true);
     } else if (stopFix) {
+      // TOP 위치 딱 맞춰서 absolute 정지
       setIsFixed(false);
-      setInitialTop(topRecommendTop - footerHeight - locInfoHeight);
+      setInitialTop(parkingTop);
     } else {
+      // 초기 absolute 위치
       setIsFixed(false);
       setInitialTop(mainBottom);
     }
   };
 
-  // 최초 접근시 바로 실행
-  updatePosition();
-  // 최초 접근시 한 번 실행 (렌더 완료 후 계산)
+  updatePosition(); // 초기 실행
   setTimeout(updatePosition, 50);
 
   window.addEventListener('resize', updatePosition);
@@ -66,6 +77,14 @@ useEffect(() => {
   };
 }, []);
 
+    const goToHomepage = () => {
+        window.open(rankingData?.location?.homepage, "_blank", "noopener,noreferrer");
+    }
+
+    const goToInstagram = () => {
+        window.open(rankingData?.location?.instagram, "_blank", "noopener,noreferrer");
+    }
+
   return (
     <>
     <div 
@@ -76,46 +95,57 @@ useEffect(() => {
             right: `${rightPos}px`,
             width: `${locWidth}px`,
         }}>
-          <h3 className="locationInfoTitle">이용 정보</h3>
+          <h3 className="explainNameF">이용 정보</h3>
+          {!isFullMobile && <div className='emptyLine1px'></div>}
           <div className="locationInfoTextCover">
-              <p className="operatingHourTitle">
+              <div className="operatingHourTitle">
                   <img src="/images/icon/clockIcon.png" alt="opHour" />
-                  운영시간
-              </p>
-              <p className="operatingHour">
+                  <p className='locInfoTitle'>운영시간</p>
+              </div>
+              <p className="locInfoText">
                   {rankingData?.operating?.operatingHour?rankingData?.operating?.operatingHour 
                   : "24시 운영"}
               </p>
-              <p className="closeDayTitle">
-                  <img src="/images/icon/calendarIcon.png" alt="clDay" />
-                  휴무일
-              </p>
-              <p className="closeDay">
+              <div className="closeDayTitle">
+                  <img src="/images/icon/bookingIcon.png" alt="clDay" />
+                  <p className='locInfoTitle'>휴무일</p>
+              </div>
+              <p className="locInfoText">
                   {rankingData?.operating?.closeDay?rankingData?.operating?.closeDay 
                   : "연중무휴"}
               </p>
-              <p className="entranceFeeTitle">
+              <div className="entranceFeeTitle">
                   <img src="/images/icon/feesIcon.png" alt="enFee" />
-                  입장료
-              </p>
-              <p className="entranceFee">
+                  <p className='locInfoTitle'>입장료</p>
+              </div>
+              <p className="locInfoText">
                   {rankingData?.operating?.entranceFee?rankingData?.operating?.entranceFee 
                   : "무료"}
               </p>
-              {rankingData?.location?.homepage?
-              <>
-              <p className="entranceFeeWeb">
-                  <img src="/images/icon/webIcon.png" alt="enFee" />
-                  웹사이트
-              </p>
-              <a href={rankingData?.location?.homepage} target='_blank' className='webLink'>
-                방문하기
-                <img src="/images/icon/rightSingleArrowIcon.png" alt="/images/icon/rightSingleArrowIcon.png" />
-              </a>
-              </>
-            : <></>}
               <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
           </div>
+
+          {rankingData?.location?.homepage?
+          <>
+        <p className="explainName"> SNS/웹사이트 </p>
+        {!isFullMobile && <div className='emptyLine1px'></div>}
+        <div className="locationInfoLinkCover">
+          {rankingData?.location?.homepage &&
+              <span className='locationInfoSpan' onClick={goToHomepage}>
+                  <img src="/images/icon/homepageIcon.png" alt="homepage" />
+              </span> 
+          }
+          {rankingData?.location?.instagram &&
+              <span className='locationInfoSpan' onClick={goToInstagram}>
+                  <img src="/images/icon/instaIcon.png" alt="instagram" />
+              </span>
+          }
+        </div>
+          </>
+          : <></>}
+          
+        <p className="explainName"> 찐리뷰 </p>
+        {!isFullMobile && <div className='emptyLine1px'></div>}
           {rankingData?.review?.existence?
               <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
                 <span className='reviewPC'>찐리뷰 보러가기</span>

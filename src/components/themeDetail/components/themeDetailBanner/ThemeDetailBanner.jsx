@@ -6,10 +6,10 @@ import HomeIcon from '../../../functionComponents/HomeIcon'
 // Page css
 import './ThemeDetailBanner.style.css'
 
-const ThemeDetailBanner = ({data, isMobile, isFullMobile, isDesktop}) => {
+const ThemeDetailBanner = ({data, isFullMobile, isDesktop}) => {
     const bgi = isDesktop ? `${data.img?.link}2.jpg`
-                : isFullMobile ? `${data.img?.link}2T.jpg`
-                : `${data.img?.link}2M.jpg`
+                : isFullMobile ? `${data.img?.link}2M.jpg`
+                : `${data.img?.link}2T.jpg`
 
     return (
         <div

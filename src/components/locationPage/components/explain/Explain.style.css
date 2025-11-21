@@ -1,6 +1,6 @@
 .explainCover {
     width: 100%;
-    padding: 20px 16px 0;
+    padding: 16px 16px 0;
     border-radius: 10px;
     word-break: break-all;
     /* Position */
@@ -39,80 +39,21 @@
     white-space: pre-wrap;
 }
 
-.topMap {
-    width: 100%;
-    aspect-ratio: 1/1;
-}
-
-.topaLinkCover {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #FEE500;
-    text-align: center;
-    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
-    /* 배경 이미지 */
-    background: center no-repeat url("/images/kakaomap.png");
-    background-size: cover;
-    /* Flex */
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    /* Position */
-    position: absolute;
-    right: 16px;
-    bottom: 0;
-    z-index: 99;
-}
-
-.topA {
-    margin-bottom: 4px;
-    /* Font */
-    color: #fff;
-    font-size: 0.688rem;
-    font-weight: 900;
-    letter-spacing: 0.01em;
-}
-
-.topMapP,
-.explainImgCover,
-.explainName {
-    display: none;
-}
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
-    .explainCover {
-        padding: 20px 20px 0;
-    }
-
     .explainCover .explain  {
         max-width: 517px;
         margin: 0 auto 16px;        
     }
-    
-    .topMap {
-        width: 100%;
-        aspect-ratio: 2.423/1;
-    }
-
-    .topaLinkCover {
-        /* Position */
-        right: 20px;
-    }
 }
 
-@media only all and (min-width: 768px) {
-    .explainWholeCover{
-        background-color: #f2f2f7;
-    }
-    
+@media only all and (min-width: 768px) {    
     .explainCover {
-        padding: 30px 20px 0px;
+        padding: 0;
         /* Flex */
         display: flex;
         flex-direction: column;
@@ -120,24 +61,25 @@
         align-items: start;
     }
 
+    .explainNameF {
+        display: block;
+        padding: 20px 20px 20px 0;
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
     .explainName {
         display: block;
-        margin-left: 2px;
-        margin-bottom: 12px;
+        padding: 60px 20px 20px 0;
         /* Font */
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: 1.25rem;
+        font-weight: 600;
     }
     
     .explainTextImgCover {
-        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
-        width: 62.43055555555556%;
-        text-align: center;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 16px;
-        /* padding: 30px 100px; */
-        margin-bottom: 15px;
+        width: 100%;
+        padding: 16px 0;
         /* Flex */
         display: flex;
         flex-direction: column;
@@ -146,19 +88,17 @@
     }
     
     .explainImgCover {
-        display: block;
         width: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: 16/5;
         border-radius: 10px;
         overflow: hidden;
-        /* Flex */
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
-    .explainCover img {
+    .explainImgCover img {
+        width: 100%;
+        aspect-ratio: 16/5;
         object-fit: cover;
+        object-position: center bottom;
     }
 
     .explainTextCover {
@@ -181,84 +121,42 @@
     }
 
     .explainTextCover .explainLast {
+        margin-bottom: 0;
+        /* Font */
         text-align: left;
         /* Font */
         font-size: 0.875rem;
         line-height: 25px;
         letter-spacing: 0.03em;  
     }
-    
-    .topMapCover {
-        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
-        width: 62.43055555555556%;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        /* Position */
-        position: relative;
-    }
-
-    .topMapP {
-        display: block;
-        margin-bottom: 10px;
-        /* Font */
-        font-size: 1rem;
-        font-weight: 600;
-    }
-    
-    .topMap {
-        width: 100%;
-        aspect-ratio: 16 / 12;
-    }
-
-    .topaLinkCover {
-        width: 45px;
-        height: 45px;
-        /* Position */
-        right: 20px;
-        bottom: 20px;
-    }
-
-    .topaLinkCover p {
-        font-size: 0.75rem;
-    }
 }
 
 @media only all and (min-width: 1024px) {    
-    .explainCover {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 60px 20px 0px;
-    }
-    
     .explainTextImgCover {
-        padding: 20px;
-        /* padding: 30px 100px; */
-        margin-bottom: 20px;
+        padding: 16px;
+        padding-left: 0;
         /* Flex */
         flex-direction: row;
+        align-items: stretch;
+        gap: 10px;
     }
     
     .explainImgCover {
-        display: block;
-        width: 35%;
-        aspect-ratio: 11/16;
+        width: calc((100% - 10px) * 0.3);
+        aspect-ratio: auto;
+        /* Flex */
+        display: flex;
+    }
+
+    .explainImgCover img{
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        object-fit: cover; 
+        object-position: center bottom;
     }
 
     .explainTextCover {
-        width: 65%;
-    }
-    
-    .topMap {
-        aspect-ratio: 16 / 8;
-    }
-
-    .topaLinkCover {
-        width: 55px;
-        height: 55px;
-    }
-
-    .topaLinkCover p {
-        font-size: 1rem;
+        width: calc((100% - 10px) * 0.7);
     }
 }

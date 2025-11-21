@@ -6,6 +6,10 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    padding: 16px;
+    /* Flex */
+    display: flex;
+    align-items: end;
     /* Position */
     position: relative;
 }
@@ -23,11 +27,9 @@
 }
 
 .themeDetailBannerTextCover {
+    /* Font */
     color: #fff;
     /* Position */
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
     z-index: 99;
 }
 
@@ -62,12 +64,7 @@
 @media only all and (min-width: 480px) {
     .themeDetailBannerCover {
         aspect-ratio: 16/9;
-    }
-
-    .themeDetailBannerTextCover {
-        /* Position */
-        bottom: 20px;
-        left: 20px;
+        padding: 20px;
     }
 
     .themeDetailBannerH2 {
@@ -87,15 +84,19 @@
     }
 
     .themeDetailBannerTextCover {
-        /* Position */
-        bottom: 20px;
-        left: 20px;
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
     }
 
     .themeDetailBannerH2 {
         margin-bottom: 20px;
         /* Font */
         font-size: 2rem;
+    }
+
+    .themeDetailBannerPr {
+        margin-bottom: 20px;
     }
 
     .themeDetailBannerP {

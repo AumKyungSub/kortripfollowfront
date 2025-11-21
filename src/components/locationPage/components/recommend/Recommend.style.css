@@ -53,78 +53,19 @@
     width: 31.290743155149936% !important;
     aspect-ratio: 1 / 1;
   }
+
+  .recoSwiper img {
+    width: 100%;
+  }
+
 }
 
 @media only screen and (min-width: 768px) {
   .topRecommendCover {
     max-width: 1020px;
-    padding: 30px 20px;
+    padding: 16px;
+    padding-left: 0;
     margin: 0 auto;
-  }
-  .galleryPcCover {
-    display: grid;
-    /* (283/983)*100 = 28.789420142421157 */
-    /* 100-28.789420142421157 = 71.21057985757884 */
-    grid-template-columns: 28.789420142421157% 71.21057985757884%; /* 왼쪽 큰 이미지, 오른쪽 4장 */
-    gap: 3px;
-    width: 100%;
-    height: auto;
-  }
-
-  /* 왼쪽 큰 이미지 */
-  .galleryPcImgCover.img-0 {
-    grid-row: 1 / span 2; /* 세로로 2칸 차지 */
-    grid-column: 1;
-  }
-
-  /* 오른쪽 상단 왼쪽 (정사각형) */
-  .galleryPcImgCover.img-1 {
-    /* 983-283 = 700 */
-    /* (251/700)*100 = 35.85714285714286 */
-    width: 35.85714285714286%;
-    grid-column: 2;
-    grid-row: 1;
-    aspect-ratio: 1 / 1;
-  }
-
-  /* 오른쪽 상단 오른쪽 (16:9) */
-  .galleryPcImgCover.img-2 {
-    /* 983-283 = 700 */
-    /* (446/700)*100 = 63.714285714285715 */
-    width: 63.714285714285715%;
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-    aspect-ratio: 16 / 9;
-  }
-
-  /* 오른쪽 하단 왼쪽 (16:9) */
-  .galleryPcImgCover.img-3 {
-    /* 983-283 = 700 */
-    /* (446/700)*100 = 63.714285714285715 */
-    width: 63.714285714285715%;
-    grid-column: 2;
-    grid-row: 2;
-    aspect-ratio: 16 / 9;
-  }
-
-  /* 오른쪽 하단 오른쪽 (정사각형) */
-  .galleryPcImgCover.img-4 {
-    /* 983-283 = 700 */
-    /* (251/700)*100 = 35.85714285714286 */
-    width: 35.85714285714286%;
-    grid-column: 2;
-    grid-row: 2;
-    justify-self: end;
-    aspect-ratio: 1 / 1;
-  }
-
-  /* 공통 이미지 스타일 */
-  .galleryPcImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
   }
 
   .recommendSwiper {

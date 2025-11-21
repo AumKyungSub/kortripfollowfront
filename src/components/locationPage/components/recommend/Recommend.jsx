@@ -1,6 +1,4 @@
 import React from 'react';
-// (hook) Device Size
-import { useResponsive } from '../../../../hooks/ResponsiveUsed';
 
 // Components
 import RecommendComponent from './RecommendComponent';
@@ -12,9 +10,7 @@ import 'swiper/css/pagination';
 // Page css
 import './Recommend.style.css';
 
-const Recommend = ({rankingData}) => {
-  // maxWidth: 767
-    const {isFullMobile} = useResponsive();
+const Recommend = ({rankingData, isFullMobile}) => {
     
     if (!rankingData) return <div>데이터가 없습니다.</div>;
 
@@ -22,9 +18,10 @@ const Recommend = ({rankingData}) => {
 
   return (
     <div className='topRecommendCover'>
-      <h1>갤러리</h1>
+      {!isFullMobile && <h5 className='explainName'>갤러리</h5>}
+      {!isFullMobile && <div className='emptyLine1px'></div>}
       {galleryData && galleryData.length > 0 && galleryData[0] !== "" ? (
-        <RecommendComponent rankingData={rankingData} isMobile={isFullMobile} />
+        <RecommendComponent rankingData={rankingData} isFullMobile={isFullMobile} />
       ) : (
       <div>갤러리가 비어있습니다..</div>
       )}

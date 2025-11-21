@@ -22,7 +22,7 @@ import './Location.style.css'
 const Location = () => {
     const { id } = useParams();
     // minWidth: 1024
-    const {isMobile, isFullMobile, isDesktop} = useResponsive();
+    const {isMobile, isTablet, isFullMobile, isDesktop} = useResponsive();
     // Data 불러오기
     const [data, setData] = useState([]);
     // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -62,13 +62,26 @@ const Location = () => {
         <div>
             {!isFullMobile && <Header/>}
             {data && <MainImage rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>}
-            {data && <Explain rankingData={data} isDesktop={isDesktop} isFullMobile={isFullMobile}/>}
-            {data && <Parking rankingData={data} />}
-
-            {!isFullMobile? data && <LocInfo rankingData={data} />
-            :  data && <LocInfoNotPc rankingData={data}/> 
+            {!isFullMobile ?
+                <div className='locationDetailWholeCover'>
+                    <div className="locationDetailLeftWholeCover">
+                        <Explain rankingData={data} isFullMobile={isFullMobile} isDesktop={isDesktop} isTablet={isTablet}/>
+                        <Parking rankingData={data}  isFullMobile={isFullMobile}/>
+                        <Recommend rankingData={data} isFullMobile={isFullMobile}/>
+                    </div>
+                    <div className="locationDetailRightWholeCover">
+                        <LocInfo rankingData={data} isFullMobile={isFullMobile}/>
+                    </div>
+                </div>
+            :
+                <div>
+                    <Explain rankingData={data} isFullMobile={isFullMobile} />
+                    <LocInfoNotPc rankingData={data} />
+                    <Parking rankingData={data} isFullMobile={isFullMobile}/>
+                    <Recommend rankingData={data} isFullMobile={isFullMobile}/>
+                </div>
+            
             }
-            {data && <Recommend rankingData={data} />}
             <Footer/>
         </div>
     )

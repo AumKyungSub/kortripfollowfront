@@ -1,57 +1,83 @@
-.topParkingInfo {
-    width: 100%;
-    padding:6px 16px 16px;
-    white-space: pre-wrap;
-    word-break: break-all;
-    /* Position */
-    position: relative;
+.topParkingWholeCover{
+    padding: 16px;
 }
 
-.topParkingTitle {
-    /* Font */
-    font-size: 1.6rem;
-    font-weight: 900;
+.topMap {
+    width: 100%;
+    aspect-ratio: 16/11;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
 }
-.topParkingTableHead1, .topParkingTableHead2, .parkP strong {
+
+.topMapP {
+    margin: 12px 0;
     /* Font */
-    font-size: 1.25rem;
-    font-weight: 900;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.topMapP img {
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
+}
+
+.topParkingInfo {
+    width: 100%;
+    margin-bottom: 12px;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
 }
 
 .parkT {
     /* Font */
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+    font-weight: 600;
 }
 
-.parkA {
-    color: #4285f4;
-    /* Flex */
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-.parkA img {
-    width: 14px;
-    height: 14px;
-}
-
-.parkingInfoCover {
-    margin-top: 15px;
-    /* Flex */
-    display: flex;
-}
-
-.parkingInfoIcon {
-    width: 24px;
-    text-align: left;
+.topParkingInfo img {
+    width: 16px;
+    height: 16px;
     margin-right: 12px;
 }
-.parkingInfoIcon img{
+
+.navigationCover {
     width: 100%;
+    margin-bottom: 15px;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
+
+.navigationBtnCover {
+    width: calc((100% - 10px) / 2);
+}
+
+.navigationBtn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.navigationP {
+    /* Font */
+    font-size: 1rem;
+}
+
+.navigationBtn img {
+    width: 16px;
+}
+
+
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -59,74 +85,69 @@
 }
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
-    .topParkingInfo {
-        padding:6px 20px 16px;
-    }
 }
 
 @media only all and (min-width: 768px) {
     .topParkingWholeCover {
-        background-color: #f2f2f7;
+        padding-left: 0;
     }
 
-    .parkingInfoCover{
-        margin-top: 20px;
+    .topMapCover {
+        width: 100%;
+        padding-top: 16px;
     }
 
-    .parkingInfoCover:first-of-type {
-        margin-top: 0;
+    .topMap {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    .topMapP {
+        margin: 20px 0;
     }
 
     .topParkingInfo {
-        padding: 15px 20px;
+        width: 100%;
+        margin-bottom: 20px;
         /* Flex */
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .parkingAllCover {
-        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
-        width: 62.43055555555556%;
+        flex-direction: row;
     }
 
-    .parkingInfoAllCover{
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px;
-    }
-
-    .explainName {
-        display: block;
-        margin-left: 2px;
-        margin-bottom: 12px;
-        /* Font */
-        font-size: 24px;
-        font-weight: 700;
+    .navigationCover {
+        margin-bottom: 0;
     }
 
     .parkT {
-        margin-top: 5px;
+        /* Font */
+        font-weight: 700;
     }
 }
 
 @media only all and (min-width: 1024px) {
 
-    .parkingInfoCover{
-        margin-top: 20px;
+    .topMap {
+        width: 100%;
+        height: 400px;
     }
 
-    .parkingInfoCover:first-of-type {
-        margin-top: 0;
+    .topMapP {
+        /* Font */
+        font-size: 1.25rem;
     }
 
-    .topParkingInfo {
-        max-width: 1320px;
-        margin: 0 auto;
+    .topMapP img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .parkT {
+        /* Font */
+        font-size: 1.25rem;
     }
     
-    .parkingAllCover {
-        /* (899/1440)*100 = 62.43055555555556 = 46.822916666666664 */
-        width: 62.43055555555556%;
+    .topParkingInfo img {
+        width: 20px;
+        height: 20px;
     }
 }

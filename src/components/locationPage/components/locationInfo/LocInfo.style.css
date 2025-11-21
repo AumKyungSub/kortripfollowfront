@@ -1,86 +1,74 @@
+.locationInfoWholeCover {
+    white-space: pre-wrap
+}
 
-    .locationInfoCover {
-        padding: 16px;
-        white-space: pre-wrap
-    }
+.locationInfoCover {
+    padding: 16px;
+}
 
-    .locationInfoTitle{
-        /* Font */
-        font-size: 1.25rem;
-        font-weight: 800;
-    }
+.locationInfoTitle{
+    margin-bottom: 20px;
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
 
-    .operatingHourTitle, 
-    .closeDayTitle, 
-    .entranceFeeTitle,
-    .entranceFeeWeb {
-        margin-top: 15px;
-        /* Font */
-        font-size: 1.25rem;
-        font-weight: 600;
+.operatingHour, 
+.closeDay,
+.entranceFee,
+.webLink {
+    /* Font */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 32px;
+}
 
-    }
+.locationInfoLinkCover {
+    /* Flex */
+    display: flex;
+    gap: 20px;
+}
 
-    .operatingHourTitle img, 
-    .closeDayTitle img, 
-    .entranceFeeTitle img,
-    .entranceFeeWeb img {
-        width: 24px;
-        margin-right: 10px;
-    }
+.locationInfoSpan {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
 
-    .operatingHour, 
-    .closeDay,
-    .entranceFee,
-    .webLink {
-        margin: 10px 34px 0;
-        /* Font */
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 24px;
-    }
+.locationInfoSpan img {
+    width: 100%;
+}
 
-    .webLink{
-        /* Font */
-        color: #4285F4;
-        /* Flex */
-        display: flex;
-        justify-content: start;
-        align-items: center;
-    }
+.reviewCover {
+    padding: 16px;
+}
 
-    .webLink img {
-        width: 16px;
-    }
+.reviewPC,
+.reviewPCYet {
+    width: 100%;
+    display: block;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #4285F4;
+    /* Font */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
 
-    .reviewPC,
-    .reviewPCYet {
-        width: 100%;
-        display: block;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
-        border-radius: 10px;
-        background-color: #4285F4;
-        /* Font */
-        color: #fff;
-        font-size: 1.2rem;
-        font-weight: 700;
-    }
+.reviewPCYet {
+    background-color: #525252;
+}
 
-    .reviewPCYet {
-        background-color: #525252;
-    }
+.warningInfo {
+    margin-top: 16px;
+    /* Font */
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+}
 
-    .warningInfo {
-        margin-top: 20px;
-        /* Font */
-        font-size: 1rem;
-        font-weight: 900;
-        text-align: center;
-    }
-
-/* ---------------------------------------------------- */
+/*---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
@@ -92,7 +80,8 @@
 @media only all and (min-width: 768px) {
     .locationInfoCover {
         padding: 0;
-        margin-top: 30px;
+        margin-top: 16px;
+        white-space: pre-wrap;
         /* Position */
         position: fixed;
         right: 0;
@@ -108,7 +97,8 @@
     }
 
     .locationInfoTextCover {
-        padding: 20px;
+        padding: 16px;
+        padding-left: 0;
         background-color: #fff;
         border-radius: 10px;
     }
@@ -117,18 +107,43 @@
     .closeDayTitle, 
     .entranceFeeTitle,
     .entranceFeeWeb {
-        margin-top: 35px;
-        /* Font */
-        font-weight: 900;
+        /* Flex */
+        display: flex;
+        align-items: center;
     }
 
-    .operatingHourTitle {
-        margin: 0;
+    .locInfoTitle {
+        /* Font */
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .operatingHourTitle img, 
+    .closeDayTitle img, 
+    .entranceFeeTitle img,
+    .entranceFeeWeb img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;  
+    }
+
+    .locInfoText {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        margin-left: 30px;
+        /* Font */
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    .locationInfoLinkCover {
+        margin-top: 20px;
     }
 
     .reviewPC,
     .reviewPCYet {
-        margin-top: 12px;
+        margin-top: 20px;
     }
 
     .warningInfo {
@@ -138,16 +153,5 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .locationInfoCover {
-        margin-top: 60px;
-    }
-
-    .locationInfoTitle {
-        display: block;
-        margin-left: 2px;
-        margin-bottom: 12px;
-        /* Font */
-        font-size: 1.5rem;
-    }
 
 }
