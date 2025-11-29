@@ -7,23 +7,17 @@
 @media only all and (min-width: 768px) {
     .regionBannerCover {
         width: 100%;
-        max-width: 1440px;
         margin: 0 auto;
     }
     
     .regionBannerCover img {
-        width: 100%;
+        width: 100% !important;
+        display: block;
     }
 }
 
 @media only all and (min-width: 1024px) {
     .regionBannerCover {
-        width: 100%;
         max-width: 1440px;
-        margin: 0 auto;
-    }
-    
-    .regionBannerCover img {
-        width: 100%;
     }
 }
