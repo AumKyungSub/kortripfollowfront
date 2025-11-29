@@ -10,7 +10,8 @@ import Loading from '../functionComponents/Loading'
 import Header from '../Header/Header'
 import ThemeBanners from './components/themeBanner/ThemeBanners'
 import ThemeCategory from './components/themeCategory/ThemeCategory'
-import ThemeList from './components/themeList/ThemeList'
+import ListCount from '../commonComponents/listCount/ListCount'
+import List from '../commonComponents/list/List'
 import Bottom from '../commonComponents/bottom/Bottom'
 import Footer from '../footer/Footer'
 
@@ -81,13 +82,20 @@ const Theme = () => {
     if (error) return <div>{error}</div>
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
-    
+
+    const filteredList = selectedTheme === "카페" ? data.dataC : data.dataR;
+    // 이/가 구분을 위한 변수
+    const themePost = selectedTheme === "카페" 
+    ? "카페가" 
+    : "맛집이";
+
     return (
         <>
             <Header/>
             {isDesktop && <ThemeBanners/>}
             <ThemeCategory selectedTheme={selectedTheme} setSelectedTheme={handleThemeChange}/>
-            <ThemeList data={data} selectedTheme={selectedTheme}/>
+            <ListCount title={`추천 ${selectedTheme} 리스트`} count={`등록된 ${themePost} 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>
+            <List filteredList={filteredList} link="themeDetail" selectedTheme={selectedTheme}/>
             <Bottom 
                 title={selectedTheme === "카페" ? "여행중 잠깐의 휴식" : "여행의 또 다른 재미"}
                 text={selectedTheme === "카페" ? "따뜻한 향이 퍼지는 공간에서 잠시 숨을 고르면, 발걸음은 다시 가볍고 여행은 한층 더 깊어집니다. 어느 도시를 방문하든 감성과 분위기가 다른 카페들이 자리해 있어, 그곳에서의 휴식은 여행의 또 다른 즐거움이 되어줍니다." : "지역마다 고유의 식재료와 조리법이 녹아 있는 음식들은 그곳만의 이야기를 담고 있어, 한 입마다 새로운 경험을 선사합니다. 맛을 따라 걷는 순간들은 여행을 더욱 풍성하고 특별하게 만들어줍니다."}

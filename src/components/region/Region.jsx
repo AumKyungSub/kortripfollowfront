@@ -11,8 +11,8 @@ import Loading from '../functionComponents/Loading';
 import Header from '../Header/Header'
 import RegionBanner from './component/regionBanner/RegionBanner'
 import Category from './component/Category/Category'
-import RegionList from './component/regionList/RegionList'
-import RegionCount from './component/regionCount/RegionCount'
+import ListCount from '../commonComponents/listCount/ListCount';
+import List from '../commonComponents/list/List';
 import Bottom from '../commonComponents/bottom/Bottom';
 import Footer from '../footer/Footer'
 
@@ -76,12 +76,8 @@ const Region = () => {
         <div className="emptyLine1px"></div>
         {!isFullMobile && <RegionBanner filteredList={filteredList} />}
         <Category selected={selectedRegion} setSelected={setSelectedRegion} isFullMobile={isFullMobile} />
-        <RegionCount selectedRegion={selectedRegion} filteredList={filteredList} isFullMobile={isFullMobile} />
-        <div className="regionListWholeCover">
-          {filteredList.map((reg)=>(
-            <RegionList key={reg.id} regionList={reg}/>
-          ))}
-        </div>
+        <ListCount title={`${selectedRegion} 여행지`} count={`등록된 여행지가 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>
+        <List filteredList={filteredList} link="location"/>
         <Bottom 
             title={"대한민국의 매력"}
             text={"대한민국은 사계절의 뚜렷한 변화와 함께 각 지역마다 독특한 문화와 자연경관을 자랑합니다. 북쪽의 산악지대부터 남쪽의 아름다운 해안선까지, 다양한 매력을 가진 여행지들이 여러분을 기다립니다."}

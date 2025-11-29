@@ -1,55 +1,29 @@
-.themeListWholeCover {
+.listWholeCover {
     padding: 20px 16px;
 }
 
-.themeListTextCover {
-    padding: 20px 0;
-    /* Flex */
-    display: flex;
-    justify-content: space-between;
-}
-
-.themeListTextCover .themeListH3 {
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-}
-
-.themeListTextCover .themeListP {
-    /* Font */
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-.themeListCover {
+.listCover {
     width: 100%;
     aspect-ratio: 1 / 1;
     border: solid 1px #e5e7eb;
     border-radius: 10px;
-    margin-bottom: 20px;
     overflow: hidden;
     cursor: pointer;
 }
 
-.themeListCover:last-of-type {
-    margin-bottom: 0;
+.listCover {
+    margin-bottom: 20px;
 }
 
-.themeListCover{
-    aspect-ratio: 1 / 1;
-}
-
-.themeListAllCover:last-of-type {
+.listCover:last-of-type {
     margin: 0;
 }
 
-.themeListCover img {
+.listCover img {
     width: 100%;
 }
 
-.themeTextCover {
+.listTextCover {
     width: 100%;
     /* (131/343)*100 = 38.19241982507289 */
     height: 38.19241982507289%;
@@ -60,18 +34,18 @@
     justify-content: space-between;
 }
 
-.themeName, .themeText {
+.listName, .listText {
     /* Font */
     font-size: 1rem;
     color: #757575;
 }
 
-.themeName img {
+.listName img {
     width: 16px;
     aspect-ratio: 1/1;
 }
 
-.themeLocation {
+.listLocation {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -81,63 +55,63 @@
     color: #000000;
 }
 
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) and (max-width: 669px) {
-    .themeListAllCover {
-        /* Flex */
-        display: flex;
-        gap: 20px;
+@media only all and (min-width: 480px) {
+    .listWholeCover {
+        padding: 20px 20px;
     }
 
-    .themeListCover {
+    .listWholeCover {
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 20px;
+    }
+}
+
+@media only all and (min-width: 480px) and (max-width: 669px) {
+    .listCover {
         width: calc((100% - 20px) / 2); 
         margin: 0;
     }
 
-    .themeTextCover {
+    .listTextCover {
         padding: 10px 16px;
     }
 
-    .themeName, .themeText {
+    .listName, .listText {
         /* Font */
         font-size: 0.75rem;
     }
 
-    .themeLocation {
+    .listLocation {
         /* Font */
         font-size: 1.25rem;
         font-weight: 700;
     }
-
 }
 
 @media only all and (min-width: 670px) and (max-width: 925px) {
-    .themeListAllCover {
-        /* Flex */
-        display: flex;
-        gap: 20px;
-    }
-
-    .themeListCover {
+    .listCover {
         width: calc((100% - 40px) / 3); 
         margin: 0;
     }
 
-    .themeTextCover {
-        padding: 10px;
+    .listTextCover {
+        padding: 10px 10px;
     }
 
-    .themeName, .themeText {
+    .listName, .listText {
         /* Font */
         font-size: 0.75rem;
     }
 
-    .themeLocation {
+    .listLocation {
         /* Font */
         font-size: 1rem;
         font-weight: 700;
@@ -145,27 +119,21 @@
 }
 
 @media only all and (min-width: 926px) and (max-width: 1023px) {
-    .themeListAllCover {
-        /* Flex */
-        display: flex;
-        gap: 20px;
-    }
-
-    .themeListCover {
+    .listCover {
         width: calc((100% - 60px) / 4); 
         margin: 0;
     }
 
-    .themeTextCover {
-        padding: 10px;
+    .listTextCover {
+        padding: 10px 10px;
     }
 
-    .themeName, .themeText {
+    .listName, .listText {
         /* Font */
         font-size: 0.75rem;
     }
 
-    .themeLocation {
+    .listLocation {
         /* Font */
         font-size: 1rem;
         font-weight: 700;
@@ -173,33 +141,26 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .themeListWholeCover {
+    .listWholeCover {
         max-width: 1480px;
         margin: 0 auto;
     }
 
-    .themeListAllCover {
-        /* Flex */
-        display: flex;
-        gap: 20px;
-    }
-    
-    .themeListCover {
+    .listCover {
         width: calc((100% - 60px) / 4); 
         margin: 0;
-
     }
 
-    .themeTextCover {
-        padding: 10px;
+    .listTextCover {
+        padding: 10px 10px;
     }
 
-    .themeName, .themeText {
+    .listName, .listText {
         /* Font */
         font-size: 1rem;
     }
 
-    .themeLocation {
+    .listLocation {
         /* Font */
         font-size: 1.5rem;
         font-weight: 700;
