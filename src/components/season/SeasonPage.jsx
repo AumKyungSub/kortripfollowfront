@@ -30,8 +30,8 @@ const SeasonPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const urlS = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/seasons`;
-        const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+        const urlS = `${import.meta.env.VITE_API_URL}/seasons`;
+        const urlR = `${import.meta.env.VITE_API_URL}/rankings`;
 
         const responseS = await fetch(urlS);
         const responseR = await fetch(urlR);

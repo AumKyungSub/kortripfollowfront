@@ -56,8 +56,8 @@ const Theme = () => {
         setLoading(true);
         setError(null);
         try {
-            const urlC = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/cafes`;
-            const urlR = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/restaurants`;
+            const urlC = `${import.meta.env.VITE_API_URL}/cafes`;
+            const urlR = `${import.meta.env.VITE_API_URL}/restaurants`;
 
             const responseC = await fetch(urlC);
             const responseR = await fetch(urlR);

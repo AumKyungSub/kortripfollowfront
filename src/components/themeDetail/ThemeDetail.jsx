@@ -43,8 +43,8 @@ const ThemeDetail = () => {
             setError(null);
             try {
                 const url = type === "cafes"
-                    ? `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/cafes/${id}`
-                    : `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/restaurants/${id}`;
+                    ? `${import.meta.env.VITE_API_URL}/cafes/${id}`
+                    : `${import.meta.env.VITE_API_URL}/restaurants/${id}`;
 
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP 에러! 상태: ${res.status}`);

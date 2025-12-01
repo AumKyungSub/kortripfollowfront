@@ -34,7 +34,7 @@ const Homepage = () => {
       setLoading(true);
       setError(null);
       try {
-        const url = `https://port-0-kortripfollow-mhg6zzrn5356f2c9.sel3.cloudtype.app/rankings`;
+        const url = `${import.meta.env.VITE_API_URL}/rankings`;
         const response = await fetch(url);
         const db = await response.json();
         setData(db);
