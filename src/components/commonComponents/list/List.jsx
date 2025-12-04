@@ -12,7 +12,11 @@ const List = ({filteredList, link, selectedTheme}) => {
             state: { 
                 type: selectedTheme === "카페" 
                 ? "cafes" 
-                : "restaurants"
+                : selectedTheme === "맛집"
+                ? "restaurants"
+                : selectedTheme === "숙소"
+                ?"lodgings"
+                :"foods"
             }
         });
     }
@@ -30,7 +34,10 @@ const List = ({filteredList, link, selectedTheme}) => {
                             <img src="/images/icon/regionIcon.png" alt="region" />
                             {data?.location?.region?.[0]}
                         </p>
-                        <h3 className="listLocation">{data?.location?.name}</h3>
+                        <h3 className="listLocation">
+                            {data?.location?.name}
+                            {data?.description?.star && " "+data?.description?.star+"성"}
+                        </h3>
                         <p className="listText">{data?.description?.title}</p>
                     </div>
                 </div>

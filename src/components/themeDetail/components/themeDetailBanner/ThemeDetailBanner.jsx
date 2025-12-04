@@ -22,6 +22,7 @@ const ThemeDetailBanner = ({data, isFullMobile, isDesktop}) => {
             <div className="themeDetailBannerTextCover">
                 <h2 className='themeDetailBannerH2'>
                     {data.location?.name}
+                    {data?.description?.star && " "+data?.description?.star+"성"}
                     {data?.location?.chain && " ("+data?.location?.chain+")"}
                 </h2>
                 <p className='themeDetailBannerPr'>

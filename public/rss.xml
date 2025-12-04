@@ -11,10 +11,34 @@
     
     <!-- 최신 여행지 10개 (id 높은 순) -->
     <item>
+      <title>오목대</title>
+      <link>https://kortripfollow.shop/location/14</link>
+      <description>전주 한옥마을 바로옆에 위치한 오목대</description>
+      <guid>https://kortripfollow.shop/location/14</guid>
+      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>한탕강 은하수교 횃불전망대</title>
+      <link>https://kortripfollow.shop/location/13</link>
+      <description>대자연과 인공미가 조화된, 철원의 새로운 상징</description>
+      <guid>https://kortripfollow.shop/location/13</guid>
+      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>영녕릉</title>
+      <link>https://kortripfollow.shop/location/12</link>
+      <description>역사와 품격이 살아 있는 왕릉의 조화</description>
+      <guid>https://kortripfollow.shop/location/12</guid>
+      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>오동도</title>
       <link>https://kortripfollow.shop/location/11</link>
       <description>전라남도 여수시 수정동에 위치한 오동도 — 전라남도 여수시 수정동에 위치한 오동도</description>
-      <guid>https://kortripfollow.shop/location/12</guid>
+      <guid>https://kortripfollow.shop/location/11</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
@@ -22,7 +46,7 @@
       <title>바람의 언덕</title>
       <link>https://kortripfollow.shop/location/10</link>
       <description>거제시 남부면 도장포 마을 북쪽 — 바람이 스치는 언덕 끝에 서면</description>
-      <guid>https://kortripfollow.shop/location/11</guid>
+      <guid>https://kortripfollow.shop/location/10</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
@@ -30,7 +54,7 @@
       <title>부석사</title>
       <link>https://kortripfollow.shop/location/9</link>
       <description>충청남도 문화재자료 제195호로 지정된 부석사 — "떠 있는 바위의 전설을 간직한 고찰</description>
-      <guid>https://kortripfollow.shop/location/10</guid>
+      <guid>https://kortripfollow.shop/location/9</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
@@ -66,21 +90,6 @@
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
-    <item>
-      <title>남이섬</title>
-      <link>https://kortripfollow.shop/location/4</link>
-      <description>사계절 내내 낭만이 흐르는 강원도 춘천의 대표 여행지</description>
-      <guid>https://kortripfollow.shop/location/4</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>어달삼거리</title>
-      <link>https://kortripfollow.shop/location/3</link>
-      <description>동해의 시원한 바다를 향해 뻗은 감성 포토스팟</description>
-      <guid>https://kortripfollow.shop/location/3</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
 
     <!-- 최신 카페 10개 (id 높은 순) -->
     <item>
@@ -119,6 +128,24 @@
       <description>정갈한 코다리와 푸짐한 밑반찬의 조화</description>
       <guid>https://kortripfollow.shop/themeDetail/2</guid>
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
+    </item>
+    
+    <!-- 최신 숙소 10개 (id 높은 순) -->
+    <item>
+      <title>라한호텔 전주 4성</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>전통 문화의 도시 전주의 한옥마을이 한눈에 내려다보이는 호텔</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
+    </item>
+    
+    <!-- 최신 먹거리 10개 (id 높은 순) -->
+    <item>
+      <title>천안옛날호두과자</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>천안의 명물과 60년 전통의 앙금기술로 만들어진 호두과자</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
     </item>
 
   </channel>

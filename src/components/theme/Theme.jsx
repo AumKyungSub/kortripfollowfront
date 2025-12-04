@@ -58,14 +58,20 @@ const Theme = () => {
         try {
             const urlC = `${import.meta.env.VITE_API_URL}/cafes`;
             const urlR = `${import.meta.env.VITE_API_URL}/restaurants`;
+            const urlL = `${import.meta.env.VITE_API_URL}/lodgings`;
+            const urlF = `${import.meta.env.VITE_API_URL}/foods`;
 
             const responseC = await fetch(urlC);
             const responseR = await fetch(urlR);
+            const responseL = await fetch(urlL);
+            const responseF = await fetch(urlF);
 
             const dataC = await responseC.json();
             const dataR = await responseR.json();
+            const dataL = await responseL.json();
+            const dataF = await responseF.json();
 
-            setData({dataC, dataR});
+            setData({dataC, dataR, dataL, dataF});
         } catch (err) {
             console.error("데이터 에러", err);
             setError("데이터 불러오기 실패");
@@ -83,11 +89,21 @@ const Theme = () => {
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
 
-    const filteredList = selectedTheme === "카페" ? data.dataC : data.dataR;
+    const filteredList = selectedTheme === "카페" 
+                        ? data.dataC 
+                        : selectedTheme === "맛집" 
+                        ? data.dataR
+                        : selectedTheme === "숙소"
+                        ? data.dataL
+                        : data.dataF;
     // 이/가 구분을 위한 변수
     const themePost = selectedTheme === "카페" 
     ? "카페가" 
-    : "맛집이";
+    : selectedTheme === "맛집"
+    ? "맛집이"
+    : selectedTheme === "숙소"
+    ? "숙소가"
+    : "먹거리가";
 
     return (
         <>
@@ -97,8 +113,22 @@ const Theme = () => {
             <ListCount title={`추천 ${selectedTheme} 리스트`} count={`등록된 ${themePost} 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>
             <List filteredList={filteredList} link="themeDetail" selectedTheme={selectedTheme}/>
             <Bottom 
-                title={selectedTheme === "카페" ? "여행중 잠깐의 휴식" : "여행의 또 다른 재미"}
-                text={selectedTheme === "카페" ? "따뜻한 향이 퍼지는 공간에서 잠시 숨을 고르면, 발걸음은 다시 가볍고 여행은 한층 더 깊어집니다. 어느 도시를 방문하든 감성과 분위기가 다른 카페들이 자리해 있어, 그곳에서의 휴식은 여행의 또 다른 즐거움이 되어줍니다." : "지역마다 고유의 식재료와 조리법이 녹아 있는 음식들은 그곳만의 이야기를 담고 있어, 한 입마다 새로운 경험을 선사합니다. 맛을 따라 걷는 순간들은 여행을 더욱 풍성하고 특별하게 만들어줍니다."}
+                title={selectedTheme === "카페" 
+                        ? "여행 중 잠깐의 휴식"
+                        :selectedTheme === "맛집" 
+                        ? "여행의 또 다른 재미"
+                        :selectedTheme === "숙소"
+                        ? "여행의 연장을 위한 충전"
+                        :"여행 중 에너지 충전"
+                    }
+                text={selectedTheme === "카페" 
+                        ? "따뜻한 향이 퍼지는 공간에서 잠시 숨을 고르면, 발걸음은 다시 가볍고 여행은 한층 더 깊어집니다. 어느 도시를 방문하든 감성과 분위기가 다른 카페들이 자리해 있어, 그곳에서의 휴식은 여행의 또 다른 즐거움이 되어줍니다."
+                        : selectedTheme === "맛집" 
+                        ? "지역마다 고유의 식재료와 조리법이 녹아 있는 음식들은 그곳만의 이야기를 담고 있어, 한 입마다 새로운 경험을 선사합니다. 맛을 따라 걷는 순간들은 여행을 더욱 풍성하고 특별하게 만들어줍니다."
+                        : selectedTheme === "숙소"
+                        ? "여행의 끝에서 맞이하는 조용한 휴식의 순간, 편안한 숙소는 몸과 마음을 천천히 내려놓게 합니다. 낯선 도시의 밤공기와 어우러진 아늑한 공간에서 머무는 시간은 다시 여행을 시작할 힘을 채워줍니다."
+                        : "여행길에서 만나는 작은 간식 하나가 뜻밖의 추억이 됩니다. 가볍게 즐기는 간식이지만, 지역의 온기를 담아 정성껏 만든 한 입의 맛은, 길 위에서 잠시 쉬어가는 시간을 더욱 달콤하게 채워줍니다. 그 속엔 오래도록 기억될 정겨운 이야기들이 숨어 있습니다."
+                    }
                 leftText={selectedTheme === "카페" ? "카페산" : "연사랑"}
                 rightTitle={selectedTheme === "카페" ? "추천 음료" : "요리"}
                 rightText={selectedTheme === "카페" ? "필터커피" : "한식"}

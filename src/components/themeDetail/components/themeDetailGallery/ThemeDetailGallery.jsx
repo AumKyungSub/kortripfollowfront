@@ -15,7 +15,7 @@ const ThemeDetailGallery = ({data, isFullMobile, theme}) => {
         <>
             {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailGalleryWholeCover">
-                <h1 className='themeDetailGalleryH1'>{theme} 사진</h1>
+                <h1 className='themeDetailGalleryH1'>갤러리</h1>
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailGalleryCover">
                     {!isFullMobile ? (

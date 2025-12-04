@@ -5,7 +5,7 @@ import './ThemeCategory.style.css'
 
 const ThemeCategory = ({selectedTheme, setSelectedTheme}) => {
     const [fixed, setFixed] = useState(false);
-    const theme = ["카페", "맛집"];
+    const theme = ["카페", "맛집", "숙소", "먹거리"];
     
       useEffect(() => {    
         const handleScroll = () => {    

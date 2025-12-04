@@ -3,6 +3,7 @@
 }
 
 .themeDetailGalleryH1 {
+    margin-bottom: 15px;
     /* Font */
     font-size: 1.25rem;
     font-weight: 600;
@@ -35,6 +36,7 @@
     .themeDetailGalleryH1 {
         padding: 60px 20px 20px;
         padding-left: 0;
+        margin-bottom: 0;
         /* Font */
         font-size: 1.25rem;
         font-weight: 600;

@@ -10,6 +10,7 @@ import Loading from '../functionComponents/Loading'
 import Header from '../Header/Header'
 import ThemeDetailBanner from './components/themeDetailBanner/ThemeDetailBanner'
 import ThemeDetailCafeInfo from './components/themeDetailCafeInfo/ThemeDetailCafeInfo'
+import ThemeDetailLodging from './components/themeDetailLodging/ThemeDetailLodging'
 import ThemeDetailMap from './components/themeDetailMap/ThemeDetailMap'
 import ThemeDetailLink from './components/themeDetailLink/ThemeDetailLink'
 import ThemeDetailGallery from './components/themeDetailGallery/ThemeDetailGallery'
@@ -26,7 +27,13 @@ const ThemeDetail = () => {
     const { type } = location.state || {};
 
     // Component에 카페, 식당 넘기기
-    const theme = type === "cafes" ? "카페" : "식당";
+    const theme = type === "cafes" 
+    ? "카페" 
+    : type === "restaurants"
+    ?"식당"
+    : type === "lodgings"
+    ?"숙소"
+    :"먹거리";
 
     // Data 불러오기
     const [data, setData] = useState(null);
@@ -44,7 +51,11 @@ const ThemeDetail = () => {
             try {
                 const url = type === "cafes"
                     ? `${import.meta.env.VITE_API_URL}/cafes/${id}`
-                    : `${import.meta.env.VITE_API_URL}/restaurants/${id}`;
+                    : type === "restaurants"
+                    ? `${import.meta.env.VITE_API_URL}/restaurants/${id}`
+                    : type === "lodgings"
+                    ?`${import.meta.env.VITE_API_URL}/lodgings/${id}`
+                    :`${import.meta.env.VITE_API_URL}/foods/${id}`;
 
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP 에러! 상태: ${res.status}`);
@@ -67,6 +78,9 @@ const ThemeDetail = () => {
     if (error) return <div>{error}</div>
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+
+    const lodgings = type === "lodgings";
+
     return (
         <>
             {!isFullMobile && <Header/>}
@@ -74,7 +88,11 @@ const ThemeDetail = () => {
             {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} />
+                        {lodgings?
+                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile}/>
+                        :
+                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} />
+                        }
                         <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
@@ -88,7 +106,11 @@ const ThemeDetail = () => {
                         <ThemeDetailMap data={data} isFullMobile={isFullMobile}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile}/>
+                        {lodgings?
+                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile}/>
+                        :
+                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile}/>
+                        }
                         <ThemeDetailLink data={data} isFullMobile={isFullMobile}/>
                         <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
                     </div>
