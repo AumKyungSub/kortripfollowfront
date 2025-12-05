@@ -129,9 +129,30 @@ const Theme = () => {
                         ? "여행의 끝에서 맞이하는 조용한 휴식의 순간, 편안한 숙소는 몸과 마음을 천천히 내려놓게 합니다. 낯선 도시의 밤공기와 어우러진 아늑한 공간에서 머무는 시간은 다시 여행을 시작할 힘을 채워줍니다."
                         : "여행길에서 만나는 작은 간식 하나가 뜻밖의 추억이 됩니다. 가볍게 즐기는 간식이지만, 지역의 온기를 담아 정성껏 만든 한 입의 맛은, 길 위에서 잠시 쉬어가는 시간을 더욱 달콤하게 채워줍니다. 그 속엔 오래도록 기억될 정겨운 이야기들이 숨어 있습니다."
                     }
-                leftText={selectedTheme === "카페" ? "카페산" : "연사랑"}
-                rightTitle={selectedTheme === "카페" ? "추천 음료" : "요리"}
-                rightText={selectedTheme === "카페" ? "필터커피" : "한식"}
+                leftText={selectedTheme === "카페" 
+                        ? "카페산" 
+                        : selectedTheme === "맛집"
+                        ? "연사랑"
+                        : selectedTheme === "숙소"
+                        ? "라한호텔"
+                        : "천안옛날호두과자"
+                    }
+                rightTitle={selectedTheme === "카페" 
+                        ? "추천 음료" 
+                        : selectedTheme === "맛집"
+                        ? "요리"
+                        : selectedTheme === "숙소"
+                        ? "등급"
+                        : "대표 메뉴"
+                    }
+                rightText={selectedTheme === "카페" 
+                        ? "필터커피" 
+                        : selectedTheme === "맛집"
+                        ? "한식"
+                        : selectedTheme === "숙소"
+                        ? "4성"
+                        : "앙버터"
+                    }
             />
             <Footer/>
         </>

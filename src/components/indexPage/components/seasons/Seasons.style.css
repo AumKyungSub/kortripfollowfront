@@ -14,13 +14,12 @@
 .seasons .cards {
     /* Flex */
     display: flex;
-    flex-wrap: wrap;
     gap: 15px;
 }
 
 .seasons .card {
-    width: calc((100% - 15px) / 2);
-    aspect-ratio: 16/9;
+    width: calc((100% - 15px) / 3);
+    aspect-ratio: 1/1;
     border: 1px solid #ccc;
     border-radius: 10px;
     overflow: hidden;
