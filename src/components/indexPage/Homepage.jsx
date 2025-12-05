@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react'
+
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 
@@ -7,6 +8,7 @@ import Loading from '../functionComponents/Loading'
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
 import Banner from './components/banner/Banner'
 import TopPlaces from './components/topPlaces/TopPlaces'
 import Seasons from './components/seasons/Seasons'
@@ -19,8 +21,12 @@ import Footer from '../footer/Footer'
 import './Homepage.style.css'
 
 const Homepage = () => {
-  // maxWidth: 479, maxWidth: 767, minWidth: 1024
-  const {isMobile, isFullMobile, isDesktop} = useResponsive();
+  const {
+          isMobile, /*maxWidth: 479*/
+          isFullMobile, /*maxWidth: 767*/ 
+          isDesktop /*minWidth: 1024*/
+        } = useResponsive();
+        
   // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -58,6 +64,7 @@ const Homepage = () => {
   return (
     <div>
       <Header />
+      {!isFullMobile && <EmptyHeader/>}
       <Banner rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       {isFullMobile && <Seasons/>}
       <TopPlaces rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>

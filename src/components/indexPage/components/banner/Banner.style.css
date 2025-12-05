@@ -94,7 +94,7 @@
     /* Position */
     position: absolute;
     bottom: -10%;
-    z-index: 9999;
+    z-index: 97;
   }
 
   .thumbItem {
@@ -197,6 +197,7 @@
   .bannerWrapper {
     height: 450px;
     max-width: 1440px;
+    margin: 0 auto;
   }
 
   /* 메인 배너 */

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+// (hook) Device Size
+import { useResponsive } from '../../hooks/ResponsiveUsed'
 
 //Function Component
 import Loading from '../functionComponents/Loading'
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
 import SeasonCategory from './component/seasonCategory/SeasonCategory'
 import SeasonBanner from './component/seasonBanner/SeasonBanner'
 import SeasonList from './component/seasonList/SeasonList'
@@ -15,6 +18,7 @@ import Footer from '../footer/Footer'
 import './SeasonPage.style.css'
 
 const SeasonPage = () => {
+    const {isFullMobile} = useResponsive();
   const location = useLocation();
   const initialSeason = location.state?.selectedSeason || '봄'
   const [selectedSeason, setSelectedSeason] = useState(initialSeason); 
@@ -71,6 +75,7 @@ const SeasonPage = () => {
   return (
     <div>
       <Header/>
+      {!isFullMobile && <EmptyHeader/>}
         <SeasonCategory selected={selectedSeason} setSelected={setSelectedSeason} />
         {filteredListBanner.map((sea)=>(
           <SeasonBanner key={sea.id} seasonCategory={sea}/>

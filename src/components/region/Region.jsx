@@ -9,6 +9,7 @@ import Loading from '../functionComponents/Loading';
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader';
 import RegionBanner from './component/regionBanner/RegionBanner'
 import Category from './component/Category/Category'
 import ListCount from '../commonComponents/listCount/ListCount';
@@ -20,12 +21,13 @@ import Footer from '../footer/Footer'
 import './Region.style.css'
 
 const Region = () => {
+    const {
+          isFullMobile /* minWidth: 1024 */
+        } = useResponsive();
   // HomeRegion.jsx에서 navigate로 가져온 regionName값 담기
   const locations = useLocation(); 
   // HomeRegion.jsx에서 가져온 값 담기
   const [selectedRegion, setSelectedRegion] = useState('전체');
-  // minWidth: 1024
-  const {isFullMobile, isDesktop} = useResponsive();
    // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -73,7 +75,7 @@ const Region = () => {
   return (
     <div>
         <Header/>
-        <div className="emptyLine1px"></div>
+        {!isFullMobile && <EmptyHeader/>}
         {!isFullMobile && <RegionBanner filteredList={filteredList} />}
         <Category selected={selectedRegion} setSelected={setSelectedRegion} isFullMobile={isFullMobile} />
         <ListCount title={`${selectedRegion} 여행지`} count={`등록된 여행지가 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>

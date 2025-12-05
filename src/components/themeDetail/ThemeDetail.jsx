@@ -8,6 +8,7 @@ import Loading from '../functionComponents/Loading'
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
 import ThemeDetailBanner from './components/themeDetailBanner/ThemeDetailBanner'
 import ThemeDetailCafeInfo from './components/themeDetailCafeInfo/ThemeDetailCafeInfo'
 import ThemeDetailLodging from './components/themeDetailLodging/ThemeDetailLodging'
@@ -84,6 +85,7 @@ const ThemeDetail = () => {
     return (
         <>
             {!isFullMobile && <Header/>}
+            {!isFullMobile && <EmptyHeader/>}
             <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
             {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>

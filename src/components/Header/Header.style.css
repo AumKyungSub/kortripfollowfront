@@ -1,5 +1,9 @@
 header {
   width: 100%;
+}
+
+.headerCover {
+  width: 100%;
   height: 72px;
   padding: 16px;
   margin: 0 auto;
@@ -41,7 +45,16 @@ header .logo img {
 }
 
 @media only all and (min-width: 768px) {
-  .header {
+  header {
+    background-color: #fff;
+    /* Position */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+  
+  .headerCover {
     max-width: 1023px;
   }
   
@@ -58,11 +71,18 @@ header .logo img {
     /* Font */
     font-size: 1rem;
     font-weight: 500;
+    color: #555;
+  }
+
+  .gnbPc ul .gnbPcLi.active {
+    /* Font */
+    color: #000;
+    font-weight: 700;
   }
 }
 
 @media only all and (min-width: 1024px) {
-  .header {
+  .headerCover {
     max-width: 1440px;
   }
 }

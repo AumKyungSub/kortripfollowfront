@@ -8,6 +8,7 @@ import Loading from '../functionComponents/Loading'
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
 import ThemeBanners from './components/themeBanner/ThemeBanners'
 import ThemeCategory from './components/themeCategory/ThemeCategory'
 import ListCount from '../commonComponents/listCount/ListCount'
@@ -20,7 +21,7 @@ import './Theme.style.css'
 
 const Theme = () => {
     // maxWidth: 479, maxWidth: 767, minWidth: 1024
-    const {isMobile, isFullMobile, isDesktop} = useResponsive();
+    const {isFullMobile, isDesktop} = useResponsive();
     // Location으로 불러오기
     const location = useLocation();
     const savedTheme = localStorage.getItem("selectedTheme");
@@ -45,7 +46,7 @@ const Theme = () => {
     };
 
     // Data 불러오기
-    const [data, setData] = useState({ dataC: [], dataR: [] });
+    const [data, setData] = useState({ dataC: [], dataR: [], dataL: [], dataF: [] });
     // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
     const [loading, setLoading] = useState(true);
     // 에러 상테 표시 (초기값: null => 에러 없음)
@@ -108,6 +109,7 @@ const Theme = () => {
     return (
         <>
             <Header/>
+            {!isFullMobile && <EmptyHeader/>}
             {isDesktop && <ThemeBanners/>}
             <ThemeCategory selectedTheme={selectedTheme} setSelectedTheme={handleThemeChange}/>
             <ListCount title={`추천 ${selectedTheme} 리스트`} count={`등록된 ${themePost} 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>

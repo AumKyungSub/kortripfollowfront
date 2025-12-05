@@ -14,7 +14,7 @@ const SeasonList = ({bannerList, list}) => {
 
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
-    console.log("dd",list)
+    // console.log("dd",list)
 
     // 화면 크기 변경 감지
     useEffect(() => {

@@ -8,6 +8,7 @@ import Loading from '../functionComponents/Loading'
 
 // Components
 import Header from '../Header/Header'
+import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
 import Footer from '../footer/Footer'
 import MainImage from './components/mainImage/MainImage'
 import Explain from './components/explain/Explain'
@@ -61,6 +62,7 @@ const Location = () => {
     return (
         <div>
             {!isFullMobile && <Header/>}
+            {!isFullMobile && <EmptyHeader/>}
             {data && <MainImage rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>}
             {!isFullMobile ?
                 <div className='locationDetailWholeCover'>
