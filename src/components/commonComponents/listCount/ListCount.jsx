@@ -1,16 +1,19 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 //Page Css
 import './ListCount.style.css'
 
 const ListCount = ({title, count,countM, isFullMobile}) => {
+  const {t} = useTranslation();
   return (
     <div className="listTitleCover">
       <h3>{title}</h3>
       {!isFullMobile ? (
-        <p>{count}곳 입니다.</p>
+        <p>{count}{t("listCount.listCountPc")}</p>
       ) : (
-        <p>총 {countM}곳</p>
+        <p>{t("listCount.listContTotal")} {countM}{t("listCount.listCountMobile")}</p>
       )}
     </div>
   )

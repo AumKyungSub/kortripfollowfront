@@ -1,12 +1,15 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next';
+
 // Kakao Map API Import
 import { Map, MapMarker, CustomOverlayMap, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 // Page css
 import './Parking.style.css'
 
-const Parking = ({rankingData, isFullMobile}) => {
+const Parking = ({rankingData, isFullMobile, lang}) => {
+    const { t } = useTranslation();
 
     // Kakao Map Script Load
     useKakaoLoader()
@@ -14,27 +17,29 @@ const Parking = ({rankingData, isFullMobile}) => {
     // rankingData.latLng가 "lat,lng" 문자열일 경우 숫자로 변환
     const [lat, lng] = rankingData?.location?.latLng.split(',').map(Number); // 메인 장소
     const [latP, lngP] = rankingData?.parking?.latLng.split(',').map(Number); // 주차장
-    const kakaoMapLinks = `https://map.kakao.com/link/to/${rankingData?.location?.name},${lat},${lng}`;
-    const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.location?.name} 주차장,${latP},${lngP}`;
+    const kakaoMapLinks = `https://map.kakao.com/link/to/${rankingData?.location?.name?.[lang]},${lat},${lng}`;
+    const kakaoMapLink = `https://map.kakao.com/link/to/${rankingData?.location?.name?.[lang]} ${t("locationPage.parking.parkingArea")},${latP},${lngP}`;
 
     // 여러마크 표시
     const markerPositions = [
       {
-        title: rankingData?.location?.name,
+        title: rankingData?.location?.name?.[lang],
         lat: lat,
         lng: lng
       },
       {
-        title: "추천 주차장",
+        title: t("locationPage.parking.markerRecommend"),
         lat: latP,
         lng: lngP
       }
     ]
+    
+  const fullAddress = `${rankingData?.location?.address?.[lang]?.[0]}, ${rankingData?.location?.address?.[lang]?.[1]}`;
 
   return (
     <>
     <div className='topParkingWholeCover'>
-      {!isFullMobile && <h5 className='explainName'>위치 정보</h5>}
+      {!isFullMobile && <h5 className='explainName'>{t("locationPage.parking.title")}</h5>}
       {!isFullMobile && <div className="emptyLine1px"></div>}
       <div className="topMapCover">
         <Map
@@ -68,30 +73,30 @@ const Parking = ({rankingData, isFullMobile}) => {
           ))}
             <p className='topMapP'>
               <img src="/images/icon/regionIcon.png" alt="regionIcon" />
-              {`${rankingData?.location?.region[1]} ${rankingData?.location?.region[2]}`}
+              {fullAddress}
             </p>
         </Map>
       </div>
       <div className="topParkingInfo">
           <img src="/images/icon/parkingsIcon.png" alt="parkingsIcon" />
           <p className='parkT'>
-            {rankingData?.parking?.existence 
-            ?
-            `${rankingData?.parking?.fee ? "유료":"무료"} 주차 가능`
-            :
-            "주차 불가능"}</p>
+            {rankingData?.parking?.existence
+              ? `${rankingData?.parking?.fee ? t("locationPage.parking.paid") 
+              : t("locationPage.parking.free")} ${t("locationPage.parking.parkingAvailable")}`
+              : t("locationPage.parking.parkingNotAvailable")}
+          </p>
       </div>
       <div className="navigationCover">
         <a href={kakaoMapLinks} target="_blank" rel="noopener noreferrer" className='navigationBtnCover'>
           <button className="navigationBtn">
             <img src="/images/icon/mapIcon.png" alt="mapIcon" />
-            <p className='navigationP'>길찾기</p>
+            <p className='navigationP'>{t("locationPage.parking.navigation")}</p>
           </button>
         </a>
         <a href={kakaoMapLink} target="_blank" rel="noopener noreferrer" className='navigationBtnCover'>
           <button className="navigationBtn">
             <img src="/images/icon/mapIcon.png" alt="mapIcon" />
-            <p className='navigationP'>추천 주차장 안내</p>
+            <p className='navigationP'>{t("locationPage.parking.recommendParking")}</p>
           </button>
         </a>
       </div>

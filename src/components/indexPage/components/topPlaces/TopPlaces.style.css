@@ -9,6 +9,10 @@
   font-weight: bold;
 }
 
+.topPlaceH3 {
+  white-space: pre-wrap;
+}
+
 .topPlaces .cards {
   /* Flex */
   display: flex;

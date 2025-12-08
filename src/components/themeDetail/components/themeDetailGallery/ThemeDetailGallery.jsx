@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next';
+
 // Swiper API
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
@@ -11,11 +13,12 @@ import 'swiper/css';
 import './ThemeDetailGallery.style.css'
 
 const ThemeDetailGallery = ({data, isFullMobile, theme}) => {
+    const {t} = useTranslation();
     return (
         <>
             {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailGalleryWholeCover">
-                <h1 className='themeDetailGalleryH1'>갤러리</h1>
+                <h1 className='themeDetailGalleryH1'>{t("locationPage.recommend.title")}</h1>
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailGalleryCover">
                     {!isFullMobile ? (

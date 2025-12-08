@@ -1,10 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
+
 // Page css
 import './Footer.style.css'
 
 const Footer = () => {
+  const {t} = useTranslation();
 
   const navigate = useNavigate();
 
@@ -17,7 +20,7 @@ const Footer = () => {
       <footer>
         <div className='footerCover'>
           <div className='footerLinkCover'>
-            <a onClick={goToAbout}>사이트 소개</a> | 
+            <a onClick={goToAbout}>{t("menu.about")}</a> | 
             <a href='https://blog.naver.com/tripinsouthkorea' target="_blank" rel="noopener noreferrer">
               Blog
             </a> | 
@@ -26,7 +29,7 @@ const Footer = () => {
             </a>
           </div>
           <p className='warnings'>
-            모든 사진은 직접 찍은 사진으로 저작권을 가지고 있습니다.
+            {t("footer.warning")}
           </p>
           <p className='footerEmail'>
             이메일: qnzldmad91@gmail.com

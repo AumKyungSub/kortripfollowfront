@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react'
 
+import { useTranslation } from 'react-i18next';
+
 // Page css
 import './LocInfo.style.css'
 
-const LocInfo = ({rankingData, isFullMobile}) => {
+const LocInfo = ({rankingData, isFullMobile, lang}) => {
+  const { t } = useTranslation();
   const [isFixed, setIsFixed] = useState(false);
   const [initialTop, setInitialTop] = useState(0);
   const [rightPos, setRightPos] = useState(0);
@@ -95,63 +98,60 @@ useEffect(() => {
             right: `${rightPos}px`,
             width: `${locWidth}px`,
         }}>
-          <h3 className="explainNameF">이용 정보</h3>
+          <h3 className="explainNameF">{t("locationPage.info.title")}</h3>
           {!isFullMobile && <div className='emptyLine1px'></div>}
           <div className="locationInfoTextCover">
               <div className="operatingHourTitle">
                   <img src="/images/icon/clockIcon.png" alt="opHour" />
-                  <p className='locInfoTitle'>운영시간</p>
+                  <p className='locInfoTitle'>{t("locationPage.info.operating")}</p>
               </div>
               <p className="locInfoText">
-                  {rankingData?.operating?.operatingHour?rankingData?.operating?.operatingHour 
-                  : "24시 운영"}
+                {rankingData?.operating?.operatingHour?.[lang] || t("locationPage.info.allday")}
               </p>
               <div className="closeDayTitle">
-                  <img src="/images/icon/bookingIcon.png" alt="clDay" />
-                  <p className='locInfoTitle'>휴무일</p>
+                <img src="/images/icon/bookingIcon.png" alt="clDay" />
+                <p className='locInfoTitle'>{t("locationPage.info.closedDay")}</p>
               </div>
               <p className="locInfoText">
-                  {rankingData?.operating?.closeDay?rankingData?.operating?.closeDay 
-                  : "연중무휴"}
+                {rankingData?.operating?.closeDay?.[lang] || t("locationPage.info.openAll")}
               </p>
               <div className="entranceFeeTitle">
                   <img src="/images/icon/feesIcon.png" alt="enFee" />
-                  <p className='locInfoTitle'>입장료</p>
+                  <p className='locInfoTitle'>{t("locationPage.info.entrance")}</p>
               </div>
               <p className="locInfoText">
-                  {rankingData?.operating?.entranceFee?rankingData?.operating?.entranceFee 
-                  : "무료"}
+                {rankingData?.operating?.entranceFee?.[lang] || t("locationPage.info.free")}
               </p>
-              <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
+              <p className="warningInfo">{t("locationPage.info.warning")}</p>
           </div>
 
-          {rankingData?.location?.homepage?
-          <>
-        <p className="explainName"> SNS/웹사이트 </p>
-        {!isFullMobile && <div className='emptyLine1px'></div>}
-        <div className="locationInfoLinkCover">
           {rankingData?.location?.homepage &&
-              <span className='locationInfoSpan' onClick={goToHomepage}>
-                  <img src="/images/icon/homepageIcon.png" alt="homepage" />
-              </span> 
+            <>
+              <p className="explainName">{t("locationPage.info.sns")}</p>
+              {!isFullMobile && <div className='emptyLine1px'></div>}
+              <div className="locationInfoLinkCover">
+                {rankingData?.location?.homepage &&
+                  <span className='locationInfoSpan' onClick={goToHomepage}>
+                    <img src="/images/icon/homepageIcon.png" alt="homepage" />
+                  </span> 
+                }
+                {rankingData?.location?.instagram &&
+                  <span className='locationInfoSpan' onClick={goToInstagram}>
+                    <img src="/images/icon/instaIcon.png" alt="instagram" />
+                  </span>
+                }
+              </div>
+            </>
           }
-          {rankingData?.location?.instagram &&
-              <span className='locationInfoSpan' onClick={goToInstagram}>
-                  <img src="/images/icon/instaIcon.png" alt="instagram" />
-              </span>
-          }
-        </div>
-          </>
-          : <></>}
           
-        <p className="explainName"> 찐리뷰 </p>
+        <p className="explainName">{t("locationPage.info.review")}</p>
         {!isFullMobile && <div className='emptyLine1px'></div>}
           {rankingData?.review?.existence?
               <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
-                <span className='reviewPC'>찐리뷰 보러가기</span>
+                <span className='reviewPC'>{t("locationPage.info.reviewGo")}</span>
               </a>
             : <div>
-              <span className='reviewPCYet'>리뷰가 준비중 입니다</span>
+              <span className='reviewPCYet'>{t("locationPage.info.reviewNone")}</span>
             </div>
           }
     </div>

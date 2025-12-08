@@ -1,15 +1,27 @@
 import React, {useState,useEffect,useRef} from 'react'
 
+import { useTranslation } from 'react-i18next';
+
 // Page css
 import './Category.style.css'
 
 const Category = ({selected, setSelected, isFullMobile}) => {
+  const { t } = useTranslation();
   const [fixed, setFixed] = useState(false);
   const categoryRef = useRef(null);
 
   // 전체를 초기값으로
   // const [selected, setSelected] = useState('전체');
-  const region = ["전체", "서울", "경기/인천", "강원", "충청/대전", "경상/부산/대구/울산", "전라/광주", "제주"];
+  const regionOptions = [
+    { code: "ALL", key: "homepage.homeRegion.regions.all" },
+    { code: "SEOUL", key: "homepage.homeRegion.regions.seoul" },
+    { code: "GGICN", key: "homepage.homeRegion.regions.ggIncheon" },
+    { code: "GANGWON", key: "homepage.homeRegion.regions.gangwon" },
+    { code: "CCDAEJEON", key: "homepage.homeRegion.regions.ccDaejeon" },
+    { code: "GSBUSANDAEGUULSAN", key: "homepage.homeRegion.regions.gsBusanDaeguUlsan" },
+    { code: "JRGWANGJU", key: "homepage.homeRegion.regions.jrGwangju" },
+    { code: "JEJU", key: "homepage.homeRegion.regions.jeju" },
+  ];
 
   useEffect(() => {
     if (!isFullMobile) return;
@@ -34,13 +46,13 @@ const Category = ({selected, setSelected, isFullMobile}) => {
     <>
         <div ref={categoryRef} className={`categoryCover ${fixed ? 'fixed' : ''}`}>
             <ul className="categoryUl">
-              {region.map((reg)=>(
+              {regionOptions.map((reg)=>(
                 <li
-                  key={reg}
-                  className={`categoryLi ${selected === reg ? 'active':''}`}
-                  onClick={()=>setSelected(reg)}
+                  key={reg.code}
+                  className={`categoryLi ${selected === reg.code ? 'active':''}`}
+                  onClick={()=>setSelected(reg.code)}
                 >
-                  {reg}
+                  {t(reg.key)}
                 </li>
               ))}
             </ul>

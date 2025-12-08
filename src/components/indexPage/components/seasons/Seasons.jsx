@@ -1,5 +1,8 @@
 import React from 'react'
 
+// i18n -> Transition Language
+import { useTranslation } from 'react-i18next'
+
 // Components
 import SeasonsComponent from './SeasonsComponent'
 
@@ -7,14 +10,15 @@ import SeasonsComponent from './SeasonsComponent'
 import './Seasons.style.css'
 
 const Seasons = () => {
+  const {t} = useTranslation();
 
   return (
     <div>
       <section className="seasons">
         <div className="cards">
-          <SeasonsComponent imgName="mapIcon.png" name="지역별" function="/region"/>
-          <SeasonsComponent imgName="seasonsIcon.png" name="계절별" function="/season"/>
-          <SeasonsComponent imgName="etcIcon.png" name="테마" link="카페" function="/theme"/>
+          <SeasonsComponent imgName="mapIcon.png" name={t("homepage.seasons.region")} path="/region"/>
+          <SeasonsComponent imgName="seasonsIcon.png" name={t("homepage.seasons.season")} path="/season"/>
+          <SeasonsComponent imgName="etcIcon.png" name={t("homepage.seasons.theme")} link="CAFE" path="/theme"/>
         </div>
       </section>      
     </div>

@@ -3,22 +3,26 @@ import React from 'react'
 // Page css
 import './SeasonCategory.style.css'
 
-const SeasonCategory = ({selected, setSelected}) => {
+const SeasonCategory = ({selected, setSelected, lang}) => {
 
-  // const [selected, setSelected] = useState('봄');
-  const season = ["봄", "여름", "가을", "겨울"];
+  const seasonMap = {
+    SPRING: { ko: "봄", en: "Spring" },
+    SUMMER: { ko: "여름", en: "Summer" },
+    FALL: { ko: "가을", en: "Fall" },
+    WINTER: { ko: "겨울", en: "Winter" }
+  };
 
   return (
     <div className='seasonCateWholeCover'>
       <div className='seasonCategoryCover'>
         <ul className="seasonCategoryUI">
-          {season.map((sea)=>(
+          {Object.entries(seasonMap).map(([code, name]) => (
             <li
-              key={sea}
-              className={`seasonCategoryLi ${selected === sea ? 'active':''}`}
-              onClick={()=>setSelected(sea)}
+              key={code}
+              className={`seasonCategoryLi ${selected === code ? 'active' : ''}`}
+              onClick={() => setSelected(code)}
             >
-              {sea}
+              {name[lang]}
             </li>
           ))}
         </ul>

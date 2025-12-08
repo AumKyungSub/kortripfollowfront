@@ -1,22 +1,27 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
+
 // Page CSS
 import './List.style.css'
 
 const List = ({filteredList, link, selectedTheme}) => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+
     const navigate = useNavigate();
 
     const handleClick = (data) => {
         navigate(`/${link}/${data?.id}`, {
             state: { 
-                type: selectedTheme === "카페" 
-                ? "cafes" 
-                : selectedTheme === "맛집"
-                ? "restaurants"
-                : selectedTheme === "숙소"
-                ?"lodgings"
-                :"foods"
+            type: selectedTheme === "CAFE" 
+            ? "cafes" 
+            : selectedTheme === "RESTAURANT"
+            ? "restaurants"
+            : selectedTheme === "LODGING"
+            ? "lodgings"
+            : "foods"
             }
         });
     }
@@ -32,13 +37,13 @@ const List = ({filteredList, link, selectedTheme}) => {
                     <div className="listTextCover">
                         <p className="listName">
                             <img src="/images/icon/regionIcon.png" alt="region" />
-                            {data?.location?.region?.[0]}
+                            {data?.location?.region?.[lang]}
                         </p>
                         <h3 className="listLocation">
-                            {data?.location?.name}
-                            {data?.description?.star && " "+data?.description?.star+"성"}
+                            {data?.location?.name?.[lang]}
+                            {data?.description?.star && `" "${data?.description?.star}${t("common.starUnit")}`}
                         </h3>
-                        <p className="listText">{data?.description?.title}</p>
+                        <p className="listText">{data?.description?.title?.[lang]}</p>
                     </div>
                 </div>
             ))}

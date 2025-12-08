@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react'
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 import { useLocation, useParams } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
+
 // Function Component
 import Loading from '../functionComponents/Loading'
 
@@ -20,7 +22,16 @@ import Footer from '../footer/Footer'
 // Page css
 import './ThemeDetail.style.css'
 
+const themeMap = {
+    CAFE: { ko: "카페", en: "Cafe" },
+    RESTAURANT: { ko: "맛집", en: "Restaurant" },
+    LODGING: { ko: "숙소", en: "Lodging" },
+    FOOD: { ko: "먹거리", en: "Food" }
+};
+
 const ThemeDetail = () => {
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
     // maxWidth: 479, maxWidth: 767, minWidth: 1024
     const {isMobile, isFullMobile, isDesktop} = useResponsive();
     const { id } = useParams();
@@ -28,13 +39,14 @@ const ThemeDetail = () => {
     const { type } = location.state || {};
 
     // Component에 카페, 식당 넘기기
-    const theme = type === "cafes" 
-    ? "카페" 
-    : type === "restaurants"
-    ?"식당"
-    : type === "lodgings"
-    ?"숙소"
-    :"먹거리";
+    const themeCode =
+        type === "cafes"
+            ? "CAFE"
+            : type === "restaurants"
+            ? "RESTAURANT"
+            : type === "lodgings"
+            ? "LODGING"
+            : "FOOD";
 
     // Data 불러오기
     const [data, setData] = useState(null);
@@ -82,39 +94,41 @@ const ThemeDetail = () => {
 
     const lodgings = type === "lodgings";
 
+    const themeName = themeMap[themeCode][lang];
+
     return (
         <>
             {!isFullMobile && <Header/>}
             {!isFullMobile && <EmptyHeader/>}
-            <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+            <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
             {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
                         {lodgings?
-                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile}/>
+                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
-                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} />
+                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
-                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
+                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} />
+                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang} />
                         <ThemeDetailLink data={data} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             : 
             <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        <ThemeDetailMap data={data} isFullMobile={isFullMobile}/>
+                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
                         {lodgings?
-                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile}/>
+                            <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
-                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile}/>
+                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
                         <ThemeDetailLink data={data} isFullMobile={isFullMobile}/>
-                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={theme}/>
+                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                 </div>
             }

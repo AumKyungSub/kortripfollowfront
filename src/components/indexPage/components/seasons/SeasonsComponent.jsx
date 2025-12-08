@@ -5,7 +5,7 @@ const SeasonsComponent = (props) => {
   const navigate = useNavigate();
 
   const goToNext = () => {
-    navigate(props.function, { state: { selectedTheme: props.link } });
+    navigate(props.path, { state: { selectedTheme: props.link } });
   };
 
   return (

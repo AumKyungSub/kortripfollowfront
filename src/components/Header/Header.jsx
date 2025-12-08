@@ -5,6 +5,9 @@ import { useResponsive } from '../../hooks/ResponsiveUsed'
 // (hook) Get Navigate State
 import { useNavigate, useLocation } from 'react-router-dom'
 
+// i18n -> Transition Language
+import { useTranslation } from 'react-i18next'
+
 // Page css
 import './Header.style.css'
 
@@ -15,6 +18,14 @@ const Header = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { t, i18n } = useTranslation();
+
+  // 언어 변경 함수
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
+  };
   
   const backToMain=()=>{
     navigate('/');
@@ -48,17 +59,45 @@ const Header = () => {
         ? 
           <div className="gnbPc">
             <ul>
-              <li className={`gnbPcLi ${location.pathname === '/' ? 'active' : ''}`} onClick={backToMain}>홈</li>
-              <li className={`gnbPcLi ${location.pathname === '/region' ? 'active' : ''}`} onClick={goToRegion}>지역별</li>
-              <li className={`gnbPcLi ${location.pathname === '/season' ? 'active' : ''}`} onClick={goToSeason}>계절별</li>
-              <li className={`gnbPcLi ${location.pathname === '/theme' ? 'active' : ''}`} onClick={goToTheme}>테마별</li>
-              <li className={`gnbPcLi ${location.pathname === '/about' ? 'active' : ''}`} onClick={goToAbout}>사이트 소개</li>
+              <li className={`gnbPcLi ${location.pathname === '/' ? 'active' : ''}`} onClick={backToMain}>{t("menu.home")}</li>
+              <li className={`gnbPcLi ${location.pathname === '/region' ? 'active' : ''}`} onClick={goToRegion}>{t("menu.region")}</li>
+              <li className={`gnbPcLi ${location.pathname === '/season' ? 'active' : ''}`} onClick={goToSeason}>{t("menu.season")}</li>
+              <li className={`gnbPcLi ${location.pathname === '/theme' ? 'active' : ''}`} onClick={goToTheme}>{t("menu.theme")}</li>
+              <li className={`gnbPcLi ${location.pathname === '/about' ? 'active' : ''}`} onClick={goToAbout}>{t("menu.about")}</li>
             </ul>
+            <p>|</p>
+            {/* 언어 버튼 (PC) */}
+            <div className="langButtons">
+              <button
+                className={i18n.language === "ko" ? "active" : ""} 
+                onClick={() => changeLanguage("ko")}>
+                한국어
+              </button>
+              <button
+                className={i18n.language === "en" ? "active" : ""} 
+                onClick={() => changeLanguage("en")}>
+                ENGLISH
+              </button>
+            </div>
           </div>
         :
           <div className='search'>
             {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
-            <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/>
+            {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
+            
+            {/* 모바일: 토글 방식 */}
+            <div className="langButtons">
+              <button
+                className={i18n.language === "ko" ? "active" : ""} 
+                onClick={() => changeLanguage("ko")}>
+                한국어
+              </button>
+              <button
+                className={i18n.language === "en" ? "active" : ""} 
+                onClick={() => changeLanguage("en")}>
+                ENGLISH
+              </button>
+            </div>
           </div>
         }
       </div>

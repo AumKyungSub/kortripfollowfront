@@ -1,14 +1,17 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next';
+
 // Page css
 import './Bottom.style.css'
 
-const Bottom = ({title, text, leftText, rightTitle, rightText}) => {
-  const bottomImg = (title === "여행 중 잠깐의 휴식") ? "cafes" 
-                    : (title === "대한민국의 매력") ? "taegeukgi"
-                    : (title === "여행의 또 다른 재미") ? "restaurants"
-                    : (title === "여행의 연장을 위한 충전") ? "lodgings"
-                    : (title === "여행 중 에너지 충전") ? "foods"
+const Bottom = ({title, text, leftText, rightTitle, rightText, leftTitle}) => {
+  const {t} = useTranslation();
+  const bottomImg = (title === t("theme.bottomTitle.cafe")) ? "cafes" 
+                    : (title === t("regionPage.bottomTitle")) ? "taegeukgi"
+                    : (title === t("theme.bottomTitle.restaurant")) ? "restaurants"
+                    : (title === t("theme.bottomTitle.lodging")) ? "lodgings"
+                    : (title === t("theme.bottomTitle.food")) ? "foods"
                     : "";
                     
   return (
@@ -21,7 +24,7 @@ const Bottom = ({title, text, leftText, rightTitle, rightText}) => {
               </div>
               <div className="bottomBox">
                   <span className="bottomLeftBox">
-                      이달의 추천 <br /><br /> <a>{leftText}</a>
+                      {leftTitle} <br /><br /> <a>{leftText}</a>
                   </span>
                   <span className="bottomRightBox">
                       {rightTitle} <br /><br /> <a>{rightText}</a>

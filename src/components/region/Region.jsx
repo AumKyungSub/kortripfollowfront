@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed';
 
+import { useTranslation } from 'react-i18next';
+
 //Function Component
 import Loading from '../functionComponents/Loading';
 
@@ -24,10 +26,22 @@ const Region = () => {
     const {
           isFullMobile /* minWidth: 1024 */
         } = useResponsive();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const regionNameMap = {
+    ALL: { ko: "전체", en: "All" },
+    SEOUL: { ko: "서울", en: "Seoul" },
+    GGICN: { ko: "경기/인천", en: "Gyeonggi/Incheon" },
+    GANGWON: { ko: "강원", en: "Gangwon" },
+    CCDAEJEON: { ko: "충청/대전", en: "Chungcheong" },
+    GSBUSANDAEGUULSAN: { ko: "경상/부산/대구/울산", en: "Gyeongsang/Busan" },
+    JRGWANGJU: { ko: "전라/광주", en: "Jeolla/Gwangju" },
+    JEJU: { ko: "제주", en: "Jeju" }
+  };
   // HomeRegion.jsx에서 navigate로 가져온 regionName값 담기
   const locations = useLocation(); 
   // HomeRegion.jsx에서 가져온 값 담기
-  const [selectedRegion, setSelectedRegion] = useState('전체');
+  const [selectedRegion, setSelectedRegion] = useState('ALL');
    // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -46,12 +60,12 @@ const Region = () => {
         const db = await response.json();
         setData(db);
         //HomeRegion.jsx 에서 넘어온 state
-        if (locations.state?.selectedRegion) {
-          setSelectedRegion(locations.state.selectedRegion);
-        }
+      if (locations.state?.selectedRegionCode) {
+        setSelectedRegion(locations.state.selectedRegionCode);
+      }
       } catch (err) {
         console.error("데이터 에러", err);
-        setError("데이터 불러오기 실패");
+        setError(t("common.error"));
       } finally {
         setLoading(false);
       }
@@ -64,13 +78,17 @@ const Region = () => {
   // 에러 화면
   if (error) return <div>{error}</div>
   // 데이터 없을때 화면
-  if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+  if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
 
   // 선택된 지역에 따라 필터링
-  const filteredList = (selectedRegion === '전체'
-      ? data
-      : data?.filter(selectRegion => selectRegion?.location?.region?.[0] === selectedRegion)
-      ).sort(() => Math.random() - 0.5);
+  const filteredList =
+  selectedRegion === 'ALL'
+    ? [...data].sort(() => Math.random() - 0.5)
+    : [...data]
+        .filter(item => item?.location?.region?.code === selectedRegion)
+        .sort(() => Math.random() - 0.5);
+
+  const regionNameText = regionNameMap[selectedRegion]?.[lang] || "";
 
   return (
     <div>
@@ -78,14 +96,20 @@ const Region = () => {
         {!isFullMobile && <EmptyHeader/>}
         {!isFullMobile && <RegionBanner filteredList={filteredList} />}
         <Category selected={selectedRegion} setSelected={setSelectedRegion} isFullMobile={isFullMobile} />
-        <ListCount title={`${selectedRegion} 여행지`} count={`등록된 여행지가 총 ${filteredList.length}`} countM={filteredList.length} isFullMobile={isFullMobile}/>
+        <ListCount 
+          title={`${regionNameText} ${t("regionPage.titleSuffix")}`} 
+          count={t("regionPage.totalCount", { count: filteredList.length })} 
+          countM={filteredList.length} 
+          isFullMobile={isFullMobile}
+        />
         <List filteredList={filteredList} link="location"/>
         <Bottom 
-            title={"대한민국의 매력"}
-            text={"대한민국은 사계절의 뚜렷한 변화와 함께 각 지역마다 독특한 문화와 자연경관을 자랑합니다. 북쪽의 산악지대부터 남쪽의 아름다운 해안선까지, 다양한 매력을 가진 여행지들이 여러분을 기다립니다."}
-            leftText={"부석사"}
-            rightTitle={"추천 계절"}
-            rightText={"사계절"}
+            title={t("regionPage.bottomTitle")}
+            text={t("regionPage.bottomText")}
+            leftTitle={t("regionPage.bottomLeftTitle")}
+            leftText={t("regionPage.bottomLeftPlace")}
+            rightTitle={t("regionPage.bottomRightTitle")}
+            rightText={t("regionPage.bottomRightText")}
         />
         <Footer/>
     </div>

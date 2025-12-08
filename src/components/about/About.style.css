@@ -1,4 +1,5 @@
 .aboutCover {
+  white-space: pre-wrap;
   width: 100%;
   height: calc(100vh - 72px);
   overflow: hidden;

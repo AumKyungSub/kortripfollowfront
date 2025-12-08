@@ -1,9 +1,12 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 // Page css
 import './LocInfo.style.css'
 
-const LocInfoNotPc = ({rankingData}) => {
+const LocInfoNotPc = ({rankingData, lang}) => {
+    const {t} = useTranslation();
 
     const goToHomepage = () => {
         window.open(rankingData?.location?.homepage, "_blank", "noopener,noreferrer");
@@ -18,36 +21,30 @@ const LocInfoNotPc = ({rankingData}) => {
     <div className='locationInfoWholeCover'>
       <div className="locationInfoCover">
         <p className="locationInfoTitle">
-            운영 시간
+            {t("locationPage.info.operating")}
         </p>
         <p className="operatingHour">
-            {rankingData?.operating?.operatingHour
-            ? rankingData?.operating?.operatingHour 
-            : "24시 운영"}
+            {rankingData?.operating?.operatingHour?.[lang] || t("locationPage.info.allday")}
         </p>
       </div>
       <div className="emptyLine"></div>
       <div className="locationInfoCover">
         <p className="locationInfoTitle">
-            휴무일
+            {t("locationPage.info.closedDay")}
         </p>
         <p className="closeDay">
-            {rankingData?.operating?.closeDay
-            ? rankingData?.operating?.closeDay 
-            : "연중무휴"}
+            {rankingData?.operating?.closeDay?.[lang] || t("locationPage.info.openAll")}
         </p>
       </div>
       <div className="emptyLine"></div>
       <div className="locationInfoCover">
         <p className="locationInfoTitle">
-            입장료 및 기타
+            {t("locationPage.info.entrance")}
         </p>
         <p className="entranceFee">
-            {rankingData?.operating?.entranceFee
-            ? rankingData.operating?.entranceFee 
-            : "무료"}
+            {rankingData?.operating?.entranceFee?.[lang] || t("locationPage.info.free")}
         </p>
-        <p className="warningInfo">모든 정보는 변경될 수 있습니다.</p>
+        <p className="warningInfo">{t("locationPage.info.warning")}</p>
       </div>
       <div className="emptyLine"></div>
       <div className="locationInfoCover">
@@ -55,7 +52,7 @@ const LocInfoNotPc = ({rankingData}) => {
         ?
         <>
         <p className="locationInfoTitle">
-            SNS/웹사이트
+            {t("locationPage.info.sns")}
         </p>
         <div className="locationInfoLinkCover">
           {rankingData?.location?.homepage &&
@@ -70,19 +67,19 @@ const LocInfoNotPc = ({rankingData}) => {
           }
         </div>
         </>
-        : <><p>홈페이지가 없습니다.</p></>}
+        : <><p>{t("locationPage.info.noLink")}</p></>}
       </div>
     <div className="emptyLine"></div>
       <div className="reviewCover">
         <p className="locationInfoTitle">
-            찐리뷰
+            {t("locationPage.info.review")}
         </p>
         {rankingData?.review?.existence?
             <a href={rankingData?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
-              <span className='reviewPC'>찐리뷰 보러가기</span>
+              <span className='reviewPC'>{t("locationPage.info.reviewGo")}</span>
             </a>
           : <div>
-            <span className='reviewPCYet'>리뷰가 준비중 입니다</span>
+            <span className='reviewPCYet'>{t("locationPage.info.reviewNone")}</span>
           </div>
         }
       </div>

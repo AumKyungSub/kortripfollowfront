@@ -3,6 +3,9 @@ import React, {useState,useEffect} from 'react'
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 
+// i18n -> Transition Language
+import { useTranslation } from 'react-i18next'
+
 //Function Component
 import Loading from '../functionComponents/Loading'
 
@@ -27,6 +30,8 @@ const Homepage = () => {
           isDesktop /*minWidth: 1024*/
         } = useResponsive();
         
+  const { t } = useTranslation();
+  
   // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -46,7 +51,7 @@ const Homepage = () => {
         setData(db);
       } catch (err) {
         console.error("데이터 에러", err);
-        setError("데이터 불러오기 실패");
+        setError(t("common.error"));
       } finally {
         setLoading(false);
       }
@@ -59,7 +64,7 @@ const Homepage = () => {
   // 에러 화면
   if (error) return <div>{error}</div>
   // 데이터 없을때 화면
-  if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+  if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
 
   return (
     <div>

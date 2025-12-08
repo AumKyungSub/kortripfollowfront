@@ -3,9 +3,17 @@ import React, { useState, useEffect } from 'react'
 // Page css
 import './ThemeCategory.style.css'
 
-const ThemeCategory = ({selectedTheme, setSelectedTheme}) => {
+const themeMap = {
+  CAFE: { ko: "카페", en: "Cafe" },
+  RESTAURANT: { ko: "맛집", en: "Restaurant" },
+  LODGING: { ko: "숙소", en: "Lodging" },
+  FOOD: { ko: "먹거리", en: "Food" }
+};
+
+
+const ThemeCategory = ({selectedTheme, setSelectedTheme, lang}) => {
+
     const [fixed, setFixed] = useState(false);
-    const theme = ["카페", "맛집", "숙소", "먹거리"];
     
       useEffect(() => {    
         const handleScroll = () => {    
@@ -26,13 +34,13 @@ const ThemeCategory = ({selectedTheme, setSelectedTheme}) => {
     <>
         <div className={`themeCategoryCover ${fixed ? 'fixed' : ''}`}>
             <ul className="themeCategoryUl">
-              {theme.map((reg)=>(
+              {Object.entries(themeMap).map(([code, label]) => (
                 <li
-                  className={`themeCategoryLi ${selectedTheme === reg ? "active" : ""}`}
-                  key={reg}
-                  onClick={()=>setSelectedTheme(reg)}
+                  key={code}
+                  className={`themeCategoryLi ${selectedTheme === code ? "active" : ""}`}
+                  onClick={() => setSelectedTheme(code)}
                 >
-                  {reg}
+                  {label[lang]}
                 </li>
               ))}
             </ul>

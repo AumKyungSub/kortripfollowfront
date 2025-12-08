@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 // Components
 import RecommendComponent from './RecommendComponent';
 
@@ -11,6 +13,8 @@ import 'swiper/css/pagination';
 import './Recommend.style.css';
 
 const Recommend = ({rankingData, isFullMobile}) => {
+
+    const {t} = useTranslation();
     
     if (!rankingData) return <div>데이터가 없습니다.</div>;
 
@@ -18,12 +22,12 @@ const Recommend = ({rankingData, isFullMobile}) => {
 
   return (
     <div className='topRecommendCover'>
-      {!isFullMobile && <h5 className='explainName'>갤러리</h5>}
+      {!isFullMobile && <h5 className='explainName'>{t("locationPage.recommend.title")}</h5>}
       {!isFullMobile && <div className='emptyLine1px'></div>}
       {galleryData && galleryData.length > 0 && galleryData[0] !== "" ? (
         <RecommendComponent rankingData={rankingData} isFullMobile={isFullMobile} />
       ) : (
-      <div>갤러리가 비어있습니다..</div>
+      <div>{t("locationPage.recommend.empty")}</div>
       )}
     </div>
   );

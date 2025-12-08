@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom'
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 
+import { useTranslation } from 'react-i18next'
+
 //Function Component
 import Loading from '../functionComponents/Loading'
 
@@ -18,10 +20,13 @@ import Footer from '../footer/Footer'
 import './SeasonPage.style.css'
 
 const SeasonPage = () => {
-    const {isFullMobile} = useResponsive();
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  const {isFullMobile} = useResponsive();
   const location = useLocation();
-  const initialSeason = location.state?.selectedSeason || '봄'
+  const initialSeason = location.state?.selectedSeason || 'SPRING'
   const [selectedSeason, setSelectedSeason] = useState(initialSeason); 
+
   // Data 불러오기
   const [data, setData] = useState({ dataR: [], dataS: [] });
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -62,27 +67,28 @@ const SeasonPage = () => {
   if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
 
   const filteredListBanner = data.dataS
-    .filter(selectSeason => selectSeason.season === selectedSeason)
+    .filter(item => item.season === selectedSeason)
     .sort(() => Math.random() - 0.5)
     .slice(0, 1);
 
   const filteredListList = data.dataR
-    .filter(selectSeason => 
-      selectSeason.season.includes(selectedSeason) || selectSeason.season.includes('사계절')
+    .filter(item =>
+      item.season.includes(selectedSeason) || item.season.includes("ALL")
     )
-    .sort(() => Math.random() - 0.5);    
+    .sort(() => Math.random() - 0.5);
   
   return (
     <div>
       <Header/>
       {!isFullMobile && <EmptyHeader/>}
-        <SeasonCategory selected={selectedSeason} setSelected={setSelectedSeason} />
+        <SeasonCategory selected={selectedSeason} setSelected={setSelectedSeason} lang={lang} />
         {filteredListBanner.map((sea)=>(
-          <SeasonBanner key={sea.id} seasonCategory={sea}/>
+          <SeasonBanner key={sea.id} seasonCategory={sea} lang={lang}/>
         ))}
         <SeasonList
           bannerList={filteredListBanner}
           list={filteredListList}
+          lang={lang}
           />
       <Footer/>
     </div>

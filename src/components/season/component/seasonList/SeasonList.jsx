@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,7 +11,7 @@ import 'swiper/css/pagination';
 // Page css
 import './SeasonList.style.css'
 
-const SeasonList = ({bannerList, list}) => {
+const SeasonList = ({bannerList, list, lang}) => {
 
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
@@ -31,7 +32,7 @@ const SeasonList = ({bannerList, list}) => {
             <div className="seasonListText">
                 {bannerList.map((item) => (
                     <h3 key={item.id} className="seasonListH3">
-                        {item?.textTitleSecond} 이런곳 어때요?
+                        {item?.textTitleSecond?.[lang]}
                     </h3>
                 ))}
             </div>
@@ -46,8 +47,8 @@ const SeasonList = ({bannerList, list}) => {
                             <img src={isMobile ? item?.img?.link+"4.jpg" : item?.img?.link+"3.jpg"} alt={item?.img?.link+"1.jpg"}/>
                         </div>
                         <div className="seasonListText">
-                            <h4 className="seasonListH4">{item?.location?.name}</h4>
-                            <p className="seasonListP">{item?.description?.title}</p>
+                            <h4 className="seasonListH4">{item?.location?.name?.[lang]}</h4>
+                            <p className="seasonListP">{item?.description?.title?.[lang]}</p>
                         </div>
                     </SwiperSlide>
                 ))}

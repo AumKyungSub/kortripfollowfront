@@ -1,20 +1,26 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 // Component
 import HomeThemeComponent from './HomeThemeComponent'
 
 // Page css
 import './HomeTheme.style.css'
 
+
 const HomeTheme = () => {
+
+  const {t} = useTranslation();
+
   return (
     <div className='homeTheme'>
         <section className="homeThemeWholeCover">
-            <h2 className='homeThemeH2'>테마별</h2>
-            <HomeThemeComponent img={"cafe"} homeThemeP={"여행 중 쉬어가는 시간"} homeThemePSnd={"카페"}/>
-            <HomeThemeComponent img={"restaurant"} homeThemeP={"여행의 또 다른 묘미"} homeThemePSnd={"맛집"}/>
-            <HomeThemeComponent img={"lodging"} homeThemeP={"즐거운 여행을 위한 충전"} homeThemePSnd={"숙소"}/>
-            <HomeThemeComponent img={"food"} homeThemeP={"때로는 식사보다 더 중요한"} homeThemePSnd={"먹거리"}/>
+            <h2 className='homeThemeH2'>{t("homepage.homeTheme.title")}</h2>
+            <HomeThemeComponent img={"cafe"} homeThemeP={t("homepage.homeTheme.cafeP")} homeThemePSnd={t("homepage.homeTheme.cafeName")} themeCode={"CAFE"} />
+            <HomeThemeComponent img={"restaurant"} homeThemeP={t("homepage.homeTheme.restP")} homeThemePSnd={t("homepage.homeTheme.restName")} themeCode={"RESTAURANT"} />
+            <HomeThemeComponent img={"lodging"} homeThemeP={t("homepage.homeTheme.lodgingP")} homeThemePSnd={t("homepage.homeTheme.lodgingName")} themeCode={"LODGING"} />
+            <HomeThemeComponent img={"food"} homeThemeP={t("homepage.homeTheme.foodP")} homeThemePSnd={t("homepage.homeTheme.foodName")} themeCode={"FOOD"} />
         </section>
     </div>
   )

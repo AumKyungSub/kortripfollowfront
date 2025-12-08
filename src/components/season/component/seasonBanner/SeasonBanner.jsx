@@ -3,7 +3,7 @@ import React, {useState,useEffect} from 'react'
 // Page css
 import './SeasonBanner.style.css'
 
-const SeasonBanner = ({seasonCategory}) => {
+const SeasonBanner = ({seasonCategory, lang}) => {
   const [isMobil, setIsMobil] = useState(window.innerWidth <= 479);
           
   // 화면 크기 변경 시 모바일 여부 감지
@@ -23,8 +23,8 @@ const SeasonBanner = ({seasonCategory}) => {
               }
             </div>
             <div className="seasonBannerText">
-                <h3 className="seasonBannerH3">{seasonCategory?.textTitle}</h3>
-                <p className="seasonBannerP">{seasonCategory?.text}</p>
+                <h3 className="seasonBannerH3">{seasonCategory?.textTitle?.[lang]}</h3>
+                <p className="seasonBannerP">{seasonCategory?.text?.[lang]}</p>
             </div>
         </div>
     </div>

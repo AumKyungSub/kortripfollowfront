@@ -1,54 +1,49 @@
 import React, { useEffect, useRef, useState } from "react";
-
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // Page css
 import "./Banner.style.css";
 
 const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
+  const { i18n } = useTranslation(); // 🌍 현재 언어 가져오기
+
   const bannerRef = useRef(null);
   const thumbRefs = useRef([]);
   const autoplayRef = useRef(null);
 
-  // items: 길이 5, 항상 [메인, 썸네일1, 썸네일2, 썸네일3, 썸네일4]
   const [items, setItems] = useState([]);
   const [transitioning, setTransitioning] = useState(false);
   const navigate = useNavigate();
 
-  // ---------- 초기 세팅 ----------
+  // ---------- 초기 데이터 세팅 ----------
   useEffect(() => {
     if (!Array.isArray(rankingsData) || rankingsData.length === 0) return;
 
     const data = [...rankingsData]
       .sort(() => Math.random() - 0.5)
-      .slice(0, 5); // A,B,C,D,E
+      .slice(0, 5); 
 
     setItems(data);
   }, [rankingsData]);
 
-  // ---------- 자동 재생 (6초마다 한 칸 회전) ----------
+  // ---------- 자동 재생 ----------
   useEffect(() => {
     if (items.length < 2) return;
 
     autoplayRef.current = setInterval(() => {
-      if (!transitioning) {
-        // 썸네일 0번(B)을 메인으로 보내기 → 한 칸 회전
-        handleThumbSelect(0, true);
-      }
+      if (!transitioning) handleThumbSelect(0, true);
     }, 4500);
 
     return () => clearInterval(autoplayRef.current);
   }, [items, transitioning]);
 
-  // 메인 / 썸네일 파생값
   const mainItem = items[0];
-  const thumbs = items.slice(1, 5); // 항상 4개
+  const thumbs = items.slice(1, 5);
 
-  // ---------- 썸네일 선택(클릭 & 자동 공용) ----------
-  // thumbIdx: 0~3 (thumbs 기준 index), isAuto: 자동 여부(애니는 똑같이)
-  const handleThumbSelect = async (thumbIdx, isAuto = false) => {
-    if (transitioning) return;
-    if (!thumbs[thumbIdx]) return;
+  // ---------- 썸네일 클릭 처리 ----------
+  const handleThumbSelect = async (thumbIdx) => {
+    if (transitioning || !thumbs[thumbIdx]) return;
 
     setTransitioning(true);
 
@@ -59,60 +54,40 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
       return;
     }
 
-    // 실제 items 배열에서 선택되는 인덱스 = thumbIdx + 1
-    const selectedIndex = thumbIdx + 1; // B,C,D,E 중 하나
+    const selectedIndex = thumbIdx + 1;
 
     const thumbRect = thumbEl.getBoundingClientRect();
     const bannerRect = bannerEl.getBoundingClientRect();
 
-    const finalW = bannerRect.width;
-    const finalH = bannerRect.height;
+    const scaleX = bannerRect.width / thumbRect.width;
+    const scaleY = bannerRect.height / thumbRect.height;
 
-    const scaleX = finalW / thumbRect.width;
-    const scaleY = finalH / thumbRect.height;
-
-    const targetX = bannerRect.left;
-    const targetY = bannerRect.top;
-
-    // 고정 위치로 변환
     thumbEl.style.position = "fixed";
     thumbEl.style.left = thumbRect.left + "px";
     thumbEl.style.top = thumbRect.top + "px";
     thumbEl.style.width = thumbRect.width + "px";
     thumbEl.style.height = thumbRect.height + "px";
     thumbEl.style.zIndex = 100;
-
     thumbEl.classList.add("thumbFly");
 
-    // 살짝 딜레이 후 애니 시작
     await new Promise((res) => setTimeout(res, 80));
 
     thumbEl.style.transform = `
-      translate(${targetX - thumbRect.left}px, ${targetY - thumbRect.top}px)
+      translate(${bannerRect.left - thumbRect.left}px, ${bannerRect.top - thumbRect.top}px)
       scale(${scaleX * 1.03}, ${scaleY * 1.03})
     `;
-    thumbEl.style.opacity = "0"; // A 방식: 시작하자마자 사라짐
+    thumbEl.style.opacity = "0";
 
-    // 메인 이미지 교체 (조금 후)
     setTimeout(() => {
       const selectedItem = items[selectedIndex];
-      if (!selectedItem) return;
-
-      // 메인을 선택된 아이템으로 바꾸고,
-      // 순서를 "선택된 아이템부터 시작"으로 회전
-      // 예: [A,B,C,D,E], selectedIndex=1(B)
-      //  → [B,C,D,E,A]
-      setItems((prev) => {
-        const current = [...prev];
-        if (!current[selectedIndex]) return current;
-        const rotated = current
-          .slice(selectedIndex)
-          .concat(current.slice(0, selectedIndex));
-        return rotated;
-      });
+      if (selectedItem) {
+        setItems((prev) => {
+          const rotated = prev.slice(selectedIndex).concat(prev.slice(0, selectedIndex));
+          return rotated;
+        });
+      }
     }, 250);
 
-    // 애니 끝난 후 정리
     setTimeout(() => {
       thumbEl.classList.remove("thumbFly");
       thumbEl.style = "";
@@ -121,49 +96,53 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
   };
 
   const goToLocationDetail = () => {
-    if (!mainItem?.id) return;
-    navigate(`/location/${mainItem.id}`);
+    if (mainItem?.id) navigate(`/location/${mainItem.id}`);
   };
-
 
   return (
     <div className="bannerWrapper">
-      {/* 메인 배너 */}
+      {/* 메인 배너 이미지 */}
       <div ref={bannerRef} className="mainBannerArea" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
         {mainItem && (
-          <>
           <img
             className="mainBannerImg fadeInMain"
             src={
               isFullMobile
-              ? mainItem.img.link + "3M.jpg"
-              : isDesktop
-              ? mainItem.img.link + "3.jpg"
-              : mainItem.img.link + "3T.jpg"
+                ? mainItem.img.link + "3M.jpg"
+                : isDesktop
+                ? mainItem.img.link + "3.jpg"
+                : mainItem.img.link + "3T.jpg"
             }
-            alt={mainItem.location?.name || "main"}
-            />
-          </>
+            alt={mainItem.location?.name?.[i18n.language]}
+          />
         )}
       </div>
-      
-      {/* 메인 베너 텍스트 */}
+
+      {/* 텍스트 영역 */}
       <div className="bannerTextWrapper" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
-          <h2 className='bannerTextH2'>{mainItem?.location?.name}</h2>
-          <h3 className='bannerTextH3'>{mainItem?.location?.english}</h3>
-          <p className="bannerTextP1">{mainItem?.description?.slide}</p>
-          {!isMobile && <p className="bannerTextP2">{mainItem?.description?.last}</p>
-          }
+        <h2 className="bannerTextH2">
+          {mainItem?.location?.name?.[i18n.language] || mainItem?.location?.name?.ko}
+        </h2>
+
+        <p className="bannerTextP1">
+          {mainItem?.description?.slide?.[i18n.language] || mainItem?.description?.slide?.ko}
+        </p>
+
+        {!isMobile && (
+          <p className="bannerTextP2">
+            {mainItem?.description?.last?.[i18n.language] || mainItem?.description?.last?.ko}
+          </p>
+        )}
       </div>
 
-      {/* 썸네일 4개 */}
+      {/* 썸네일 그룹 */}
       <div className="thumbContainer">
         {thumbs.map((item, idx) => (
           <div
             key={item.id}
             className="thumbItem"
             ref={(el) => (thumbRefs.current[idx] = el)}
-            onClick={() => handleThumbSelect(idx, false)}
+            onClick={() => handleThumbSelect(idx)}
           >
             <img
               src={
@@ -173,7 +152,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
                   ? item.img.link + "3.jpg"
                   : item.img.link + "3T.jpg"
               }
-              alt={item.location?.name || ""}
+              alt={item.location?.name?.[i18n.language]}
             />
           </div>
         ))}

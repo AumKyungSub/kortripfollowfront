@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 // Page css
 import './ThemeDetailLink.style.css'
 
 const ThemeDetailLink = ({data, isFullMobile}) => {
-
+    const {t} = useTranslation();
     const goToHomepage = () => {
         window.open(data?.location?.homepage, "_blank", "noopener,noreferrer");
     }
@@ -17,7 +19,7 @@ const ThemeDetailLink = ({data, isFullMobile}) => {
         <>
             {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailLinkWholeCover">
-                <h1 className='themeDetailLinkH1'>SNS/웹사이트</h1>
+                <h1 className='themeDetailLinkH1'>{t("locationPage.info.sns")}</h1>
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailLinkCover">
                     {data?.location?.homepage &&
@@ -35,15 +37,15 @@ const ThemeDetailLink = ({data, isFullMobile}) => {
             
             {isFullMobile && <div className='emptyLine'></div>}
             <section className="themeDetailLinkWholeCover">
-                <h1 className='themeDetailLinkH1'>찐리뷰</h1>
+                <h1 className='themeDetailLinkH1'>{t("locationPage.info.review")}</h1>
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 {data?.review?.existence?
                     <a href={data?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
-                        <span className='reviewPC'>찐리뷰 보러가기</span>
+                        <span className='reviewPC'>{t("locationPage.info.reviewGo")}</span>
                     </a>
                     :
                     <div>
-                        <span className='reviewPCYet'>리뷰가 준비중 입니다</span>
+                        <span className='reviewPCYet'>{t("locationPage.info.reviewNone")}</span>
                     </div>
                 }
             </section>

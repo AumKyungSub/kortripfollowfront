@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 // Components
 import Header from '../Header/Header'
 
@@ -7,6 +9,7 @@ import Header from '../Header/Header'
 import './About.style.css'
 
 const About = () => {
+  const {t} = useTranslation();
 
   const goToInstagram = () => {
         window.open("https://www.instagram.com/kayaum_photo/", "_blank", "noopener,noreferrer");
@@ -21,17 +24,12 @@ const About = () => {
       <Header/>
       <div className='aboutCover'>
         <div className="aboutTextCover">
-          <h1 className="aboutTitle">일상의 발걸음, 국내의 숨겨진 이야기</h1>
+          <h1 className="aboutTitle">{t("about.title")}</h1>
           <p className="aboutSlogan">
-            멀리 떠나지 않아도, 가까운 곳에서 새로운 풍경을 만날 수 있습니다.<br/>
-            작은 여행 속 큰 설렘을, 함께 발견해보세요.
+            {t("about.slogan")}
           </p>
           <p className="aboutDescription">
-            여행을 좋아하고 국내 곳곳의 숨은 명소를 소개하는 개인 개발자입니다.<br/>
-            직접 다녀온 곳은 실사를 남기며 가능하면 리뷰도 남겨 더욱 자세한 정보를 공유하려합니다.<br/>
-            다녀오지 못한 곳들은 그림으로 남기고 훗날 다녀오면 실사진으로 변경할 예정입니다.<br/>
-            느리지만 꾸준히 업데이트하며, <br/>
-            앞으로는 맛집과 카페 정보도 더해 풍성한 여행 가이드가 될 예정입니다.
+            {t("about.des")}
           </p>
           <div className="aboutLinkImgCover">
             <img src="/images/icon/instaIcon.png" alt="instagram" onClick={goToInstagram} />

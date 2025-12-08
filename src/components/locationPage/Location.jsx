@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 // (hook) Device Size
 import { useResponsive } from '../../hooks/ResponsiveUsed'
 
+import { useTranslation } from 'react-i18next'
+
 //Function Component
 import Loading from '../functionComponents/Loading'
 
@@ -22,6 +24,8 @@ import './Location.style.css'
 
 const Location = () => {
     const { id } = useParams();
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
     // minWidth: 1024
     const {isMobile, isTablet, isFullMobile, isDesktop} = useResponsive();
     // Data 불러오기
@@ -44,7 +48,7 @@ const Location = () => {
                 setData(db);
             } catch (err) {
                 console.error("데이터 에러", err);
-                setError("데이터 불러오기 실패");
+                setError(t("common.error"));
             } finally {
                 setLoading(false);
             }
@@ -57,32 +61,31 @@ const Location = () => {
     // 에러 화면
     if (error) return <div>{error}</div>
     // 데이터 없을때 화면
-    if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+    if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
 
     return (
         <div>
             {!isFullMobile && <Header/>}
             {!isFullMobile && <EmptyHeader/>}
-            {data && <MainImage rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>}
+            {data && <MainImage rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>}
             {!isFullMobile ?
                 <div className='locationDetailWholeCover'>
                     <div className="locationDetailLeftWholeCover">
-                        <Explain rankingData={data} isFullMobile={isFullMobile} isDesktop={isDesktop} isTablet={isTablet}/>
-                        <Parking rankingData={data}  isFullMobile={isFullMobile}/>
-                        <Recommend rankingData={data} isFullMobile={isFullMobile}/>
+                        <Explain rankingData={data} isFullMobile={isFullMobile} isDesktop={isDesktop} isTablet={isTablet} lang={lang}/>
+                        <Parking rankingData={data}  isFullMobile={isFullMobile} lang={lang}/>
+                        <Recommend rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                     </div>
                     <div className="locationDetailRightWholeCover">
-                        <LocInfo rankingData={data} isFullMobile={isFullMobile}/>
+                        <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                     </div>
                 </div>
             :
                 <div>
-                    <Explain rankingData={data} isFullMobile={isFullMobile} />
-                    <LocInfoNotPc rankingData={data} />
-                    <Parking rankingData={data} isFullMobile={isFullMobile}/>
-                    <Recommend rankingData={data} isFullMobile={isFullMobile}/>
+                    <Explain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <LocInfoNotPc rankingData={data} lang={lang}/>
+                    <Parking rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <Recommend rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
-            
             }
             <Footer/>
         </div>

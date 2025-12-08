@@ -6,7 +6,10 @@ import HomeIcon from '../../../functionComponents/HomeIcon'
 // Page css
 import './MainImage.style.css'
 
-const MainImage = ({rankingData, isMobile, isFullMobile, isDesktop}) => {
+const MainImage = ({rankingData, isFullMobile, isDesktop, lang}) => {
+  const addressText = lang === "ko"
+    ? rankingData?.location?.address?.ko?.[0]
+    : rankingData?.location?.address?.en?.[1];
 
   const bgi = isDesktop ? `${rankingData?.img?.link}2.jpg`
               : isFullMobile ? `${rankingData?.img?.link}2M.jpg`
@@ -24,14 +27,14 @@ const MainImage = ({rankingData, isMobile, isFullMobile, isDesktop}) => {
         <div className='mainImageTextCover'>
           <div>
             <h2 className="locationName">
-              {rankingData?.location?.name}
+              {rankingData?.location?.name?.[lang]}
             </h2>
             <p className="locationAddress">
               <img src="/images/icon/regionIconS.png" alt="regionIcon" />
-              {rankingData?.location?.region[1]}
+              {addressText || ""}
             </p>
             <p className="locationSlogan">
-              {rankingData?.description?.short}
+              {rankingData?.description?.short?.[lang]}
             </p>
           </div>
         </div>

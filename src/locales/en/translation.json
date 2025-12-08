@@ -1,0 +1,197 @@
+{
+    "homepage": {
+        "topPlaces": {
+            "title": "Top 5 \n Travel Destinations"
+        },
+        "seasons": {
+            "region": "By Region",
+            "season": "By Season",
+            "theme": "By Theme"
+        },
+        "homeRegion": {
+            "title": "Travel destinations by region",
+            "viewSpots": "Explore the destinations",
+            "placesSuffix": " places",
+            "regions": {
+                "all": "All",
+                "seoul": "Seoul",
+                "ggIncheon": "Gyeonggi/Incheon",
+                "gangwon": "Gangwon",
+                "ccDaejeon": "Chungcheong",
+                "gsBusanDaeguUlsan": "Gyeongsang/Busan",
+                "jrGwangju": "Jeolla/Gwangju",
+                "jeju": "Jeju"
+            }
+        },
+        "homeTheme": {
+            "title": "By Theme",
+            "cafeP": "A peaceful break during trip",
+            "cafeName": "Cafe",
+            "restP": "Another charm of traveling",
+            "restName": "Restaurant",
+            "lodgingP": "Recharge for an enjoyable journey",
+            "lodgingName": "Lodging",
+            "foodP": "Sometimes more important than a meal",
+            "foodName": "Food"
+        }
+    },
+    "common": {
+        "noData": "No data available.",
+        "error": "Failed to load data.",
+        "starUnit": "stars"
+    },
+    "menu": {
+        "home": "Home",
+        "region": "By Region",
+        "season": "By Season",
+        "theme": "By Theme",
+        "about": "About Site"
+    },
+    "regionPage": {
+        "titleSuffix":"Travel Destinations",
+        "totalCount": "There are {{count}} destinations",
+        "noData": "No data available.",
+        "bottomTitle": "The Charm of Korea",
+        "bottomText": "South Korea offers unique culture and beautiful scenery in every region, changing with each of the four distinct seasons. From the northern mountains to the southern coastlines, countless destinations are waiting for you.",
+        "bottomLeftTitle": "Month's Recommended",
+        "bottomLeftPlace": "Buseoksa Temple",
+        "bottomRightTitle": "Recommended Season",
+        "bottomRightText": "All seasons"
+    },
+    "locationPage": {
+        "explain": {
+            "title":"Introduction"
+        },
+        "info": {
+            "title": "Information",
+            "operating": "Operating hours",
+            "closedDay": "Closed day",
+            "entrance": "Entrance Fee",
+            "free": "Free",
+            "allday": "24 hours a day",
+            "openAll": "24/7",
+            "warning": "All information is subject to change.",
+            "sns": "Social Media / Website",
+            "noLink": "No Website",
+            "review": "Real Review",
+            "reviewGo": "View Real Review",
+            "reviewNone": "Review coming soon."
+        },
+        "parking": {
+            "title": "Address Info",
+            "parkingArea": "Parking lot",
+            "parkingAvailable": "Parking Available",
+            "parkingNotAvailable": "No Parking Area",
+            "free": "Free",
+            "paid": "Paid",
+            "navigation": "Directions",
+            "recommendParking": "Recommended Parking Directions",
+            "markerRecommend": "Recommended Parking Area"
+        },
+        "recommend": {
+            "title": "Gallery",
+            "empty": "The gallery is empty."
+        }
+    },
+    "listCount":{
+        "listContTotal":"Total",
+        "listCountPc":" ",
+        "listCountMobile":" "
+    },
+    "homeSeason":{
+        "homeSeasonTravel":" ",
+        "homeSeasonCount":"Destinations"
+    },
+    "theme":{
+        "titleSuffix":"Recommended",
+        "list":"List",
+        "totalCount": "Total {{count}} {{themeName}}",
+        "noData": "No data available.",
+        "bottomTitle":{
+            "cafe":"A quiet break along the travel",
+            "restaurant":"The joy of discovering new flavors",
+            "lodging":"Rest and recharge to keep traveling",
+            "food":"A boost of energy for your travel"
+        },
+        "bottomText":{
+            "cafe":"In a space filled with warm aromas, a short pause lightens your steps and deepens your journey. Wherever you travel, each café offers its own mood and character, and the time spent there becomes another joy of the trip.",
+            "restaurant":"Foods infused with local ingredients and traditional cooking methods carry the story of each region, offering a new experience with every moment. Following the path of flavor makes your journey richer and even more memorable.",
+            "lodging":"At the end of a long day of travel, a quiet moment of rest in a comfortable place allows both body and mind to unwind. Time spent in a cozy space embraced by the night air of an unfamiliar city fills you with the strength to begin your journey again.",
+            "food":"A small snack found along the road can become an unexpected memory. Though light and simple, each bite is crafted with sincerity and warmth, making a short break along the way feel sweeter. Within it are stories that will stay with you for a long time."
+        },
+        "bottomLeftTitle":"Month's Recommended",
+        "bottomLeftText":{
+            "cafe":"Cafe San",
+            "restaurant":"Yeonsalang",
+            "lodging":"Lahan Hotel",
+            "food":"CheonanWalnutCakes"
+        },
+        "bottomRightTitle":{
+            "cafe":"Recommended Drinks",
+            "restaurant":"Dishes",
+            "lodging":"Rating ",
+            "food":"Signature Menu"
+        },
+        "bottomRightText":{
+            "cafe":"Drip Coffee",
+            "restaurant":"Korean Table",
+            "lodging":"4 Stars",
+            "food":"Amber butter"
+        }
+    },
+    "themeDetail":{
+        "tDCI":{
+            "tDCIHInfo":"Info",
+            "tDCIHOperating":"Ops Hrs",
+            "tDCIHMenu":"Menu",
+            "tDCIHWON":"KRW",
+            "tDCIHAllMenu":"Browse Full Menu",
+            "tDCIHAmenities":"Amenities",
+            "tDCIParking":"Parking Available",
+            "tDCITake":"Takeout Available",
+            "tDCIPet":"Pet Available",
+            "tDCIReserve":"Reservations Available"
+        },
+        "tDL":{
+            "tDLCeckIn":"Check In",
+            "tDLCeckOut":"Check Out",
+            "tDLNP":"N/P",
+            "tDLParking":"Parking",
+            "tDLSights":"Sights",
+            "tDLFree":"Free parking for guests",
+            "tDLNoParking":"Parking unavailable. Please contact the property for details",
+            "tDLCheckPrice":"(Price On Website)",
+            "tDLRooms":{
+                "tDLRoomsRoom":"Rooms",
+                "tDLRoomsBed":"Bed",
+                "tDLRoomsMax":"Max",
+                "tDLRoomsPerson":"persons",
+                "tDLRoomsViewTitle":"View",
+                "tDLRoomsView":"",
+                "tDLRoomsCountTitle":"Room Count",
+                "tDLRoomsCount":"",
+                "tDLRoomsSize":"Size"
+            },
+            "tDLRestaurant":{
+                "tDLRestaurantRes":"Restaurant",
+                "tDLRestaurantSeats":"seats"
+            },
+            "tDLFacility":{
+                "tDLFacilityFac":"Facilities",
+                "tDLFacilityBT":"Break Time"
+            }
+        },
+        "tDM":{
+            "tDMLocation":"Location",
+            "tDMDirections":"Directions"
+        }
+    },
+    "footer":{
+        "warning":"All photos are my own, and I hold the copyright."
+    },
+    "about":{
+        "title":"Steps from everyday life, hidden stories across South Korea",
+        "slogan":"Even in the small nation of South Korea, endless new scenery awaits.\nJoin us in discovering the thrill of travel across Korea.",
+        "des":"I am a travel enthusiast and a one developer who introduces hidden places across Korea. \nI personally visit destinations, capturing real photographs and sharing detailed information through reviews whenever possible. \nPlaces I have yet to visit are illustrated for now, and will be replaced with real photos once I experience them myself. \nAlthough the updates may be slow, it will continue steadily.\nSoon, I also plan to creating a richer and more complete travel guide."
+    }
+}
