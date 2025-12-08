@@ -37,8 +37,11 @@ const Theme = () => {
     const location = useLocation();
     const savedTheme = localStorage.getItem("selectedTheme");
     const navigationTheme = location.state?.selectedTheme;
-    const initialTheme = navigationTheme || savedTheme || "CAFE";
-    const [selectedTheme, setSelectedTheme] = useState(initialTheme);
+
+    
+  const rawTheme = navigationTheme || savedTheme || "CAFE";
+  const initialTheme = themeMap[rawTheme] ? rawTheme : "CAFE";
+  const [selectedTheme, setSelectedTheme] = useState(initialTheme);
     
     useEffect(() => {
         localStorage.setItem("selectedTheme", selectedTheme);
