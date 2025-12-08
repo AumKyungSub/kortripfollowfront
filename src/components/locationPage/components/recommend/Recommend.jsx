@@ -18,7 +18,7 @@ const Recommend = ({rankingData, isFullMobile}) => {
     
     if (!rankingData) return <div>데이터가 없습니다.</div>;
 
-    const galleryData = isFullMobile ? rankingData?.img?.gallery : rankingData?.img?.galleryPc;
+    const galleryData = isFullMobile ? rankingData?.img?.gallery : rankingData?.img?.gallery;
 
   return (
     <div className='topRecommendCover'>
