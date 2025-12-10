@@ -22,7 +22,7 @@ const ThemeDetailCafeInfo = ({data, isFullMobile, themeName, lang}) => {
                 <div className="themeDetailInfoOperatingHourCover">
                     <h3 className='themeDetailInfoH3'>{t("themeDetail.tDCI.tDCIHOperating")}</h3>
                     <p className='themeDetailInfoP'>
-                        {data?.operating?.operatingHour?.[lang]}{" "}
+                        {data?.operating?.operatingHour?.[lang]}{" "}<br/>
                         {data?.operating?.closeDay?.[lang] && <span className='themeDetailInfoSpan'>{data?.operating?.closeDay?.[lang]}<br/></span>}
                         {data?.operating?.breakTime?.[lang] && <>{data?.operating?.breakTime?.[lang]}<br/></>}
                         {data?.operating?.lastOrder?.[lang] && <>{data?.operating?.lastOrder?.[lang]}<br/></>}
