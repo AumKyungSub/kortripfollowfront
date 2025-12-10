@@ -5,19 +5,19 @@
 }
 
 @media only all and (min-width: 768px) {
-    .regionBannerCover {
+    .listBannerCover {
         width: 100%;
         margin: 0 auto;
     }
     
-    .regionBannerCover img {
+    .listBannerCover img {
         width: 100% !important;
         display: block;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .regionBannerCover {
+    .listBannerCover {
         max-width: 1440px;
     }
 }

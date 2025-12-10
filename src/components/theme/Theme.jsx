@@ -11,8 +11,8 @@ import Loading from '../functionComponents/Loading'
 // Components
 import Header from '../Header/Header'
 import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader'
-import ThemeBanners from './components/themeBanner/ThemeBanners'
-import ThemeCategory from './components/themeCategory/ThemeCategory'
+import ListBanner from '../commonComponents/listBanner/ListBanner'
+import ListCategory from '../commonComponents/listCategory/ListCategory'
 import ListCount from '../commonComponents/listCount/ListCount'
 import List from '../commonComponents/list/List'
 import Bottom from '../commonComponents/bottom/Bottom'
@@ -22,26 +22,30 @@ import Footer from '../footer/Footer'
 import './Theme.style.css'
 
 const themeMap = {
-  CAFE: { ko: "카페", en: "Cafe" },
-  RESTAURANT: { ko: "맛집", en: "Restaurant" },
-  LODGING: { ko: "숙소", en: "Lodging" },
-  FOOD: { ko: "먹거리", en: "Food" }
+    CAFE: { ko: "카페", en: "Cafe" },
+    RESTAURANT: { ko: "맛집", en: "Restaurant" },
+    LODGING: { ko: "숙소", en: "Lodging" },
+    FOOD: { ko: "먹거리", en: "Food" }
 };
 
 const Theme = () => {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
-    // maxWidth: 479, maxWidth: 767, minWidth: 1024
-    const {isFullMobile, isDesktop} = useResponsive();
+    // 언어
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
+
+    const {
+        isFullMobile, /*maxWidth: 767*/
+        isDesktop /*minWidth: 1024*/
+    } = useResponsive();
+    
     // Location으로 불러오기
     const location = useLocation();
     const savedTheme = localStorage.getItem("selectedTheme");
     const navigationTheme = location.state?.selectedTheme;
 
-    
-  const rawTheme = navigationTheme || savedTheme || "CAFE";
-  const initialTheme = themeMap[rawTheme] ? rawTheme : "CAFE";
-  const [selectedTheme, setSelectedTheme] = useState(initialTheme);
+    const rawTheme = navigationTheme || savedTheme || "CAFE";
+    const initialTheme = themeMap[rawTheme] ? rawTheme : "CAFE";
+    const [selectedTheme, setSelectedTheme] = useState(initialTheme);
     
     useEffect(() => {
         localStorage.setItem("selectedTheme", selectedTheme);
@@ -104,35 +108,51 @@ const Theme = () => {
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
 
-  // ---------- 필터링 ----------
-  const filteredList =
-    selectedTheme === "CAFE"
-      ? data.dataC
-      : selectedTheme === "RESTAURANT"
-      ? data.dataR
-      : selectedTheme === "LODGING"
-      ? data.dataL
-      : data.dataF;
+    // ---------- 필터링 ----------
+    const filteredList =
+        selectedTheme === "CAFE"
+            ? data.dataC
+            : selectedTheme === "RESTAURANT"
+            ? data.dataR
+            : selectedTheme === "LODGING"
+            ? data.dataL
+            : data.dataF;
 
-  // UI 표현용
-  const themeName = themeMap[selectedTheme][lang];
+    // UI 표현용
+    const themeName = themeMap[selectedTheme][lang];
 
-  // 이/가 구분
- const themePost =
-    selectedTheme === "CAFE"
-      ? (lang === "ko" ? "카페가" : "Cafe")
-      : selectedTheme === "RESTAURANT"
-      ? (lang === "ko" ? "맛집이" : "Restaurant")
-      : selectedTheme === "LODGING"
-      ? (lang === "ko" ? "숙소가" : "Lodging")
-      : (lang === "ko" ? "먹거리가" : "Food");
+    // 이/가 구분
+    const themePost =
+        selectedTheme === "CAFE"
+            ? (lang === "ko" ? "카페가" : "Cafe")
+            : selectedTheme === "RESTAURANT"
+            ? (lang === "ko" ? "맛집이" : "Restaurant")
+            : selectedTheme === "LODGING"
+            ? (lang === "ko" ? "숙소가" : "Lodging")
+            : (lang === "ko" ? "먹거리가" : "Food");
 
+    const themeOptions = Object.entries(themeMap).map(([code, label]) => ({
+        code,
+        label,
+    }));
     return (
         <>
             <Header/>
             {!isFullMobile && <EmptyHeader/>}
-            {isDesktop && <ThemeBanners/>}
-            <ThemeCategory selectedTheme={selectedTheme} setSelectedTheme={handleThemeChange} lang={lang}/>
+            {isDesktop && 
+                <ListBanner
+                    type="theme"
+                    themeRange={{ min: 1, max: 2 }} 
+                />
+            }
+            <ListCategory
+                options={themeOptions}
+                selected={selectedTheme}
+                setSelected={handleThemeChange}
+                lang={lang}
+                useI18n={false}    // theme는 label.en/label.ko 사용
+                isFullMobile={isFullMobile}
+            />
             <ListCount 
                 title={`${t("theme.titleSuffix")} ${themeName} ${t("theme.list")}`} 
                 count={t("theme.totalCount", { count: filteredList.length, themeName: themeName+"s", themePost: themePost })} 
@@ -190,7 +210,7 @@ const Theme = () => {
                         : t("theme.bottomRightText.food")
                 }
                     />
-                    <Footer/>
+            <Footer/>
         </>
     )
 }

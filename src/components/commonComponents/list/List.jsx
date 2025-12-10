@@ -41,7 +41,7 @@ const List = ({filteredList, link, selectedTheme}) => {
                         </p>
                         <h3 className="listLocation">
                             {data?.location?.name?.[lang]}
-                            {data?.description?.star && `" "${data?.description?.star}${t("common.starUnit")}`}
+                            {data?.description?.star && ` ${data?.description?.star}${t("common.starUnit")}`}
                         </h3>
                         <p className="listText">{data?.description?.title?.[lang]}</p>
                     </div>

@@ -1,4 +1,4 @@
-.themeCategoryCover {
+.categoryCover {
     width: 100%;
     height: 51px;
     white-space: nowrap;
@@ -8,20 +8,20 @@
     transition: top 0.3s;
 }
 
-.themeCategoryCover.fixed {
+.categoryCover.fixed {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 1000;
 }
 
-.themeCategoryUl {
+.categoryUl {
     height: inherit;
     padding: 0;
     margin: 0;
 }
 
-.themeCategoryLi {
+.categoryLi {
     height: inherit;
     display: inline-block;
     background: #fff;
@@ -35,8 +35,7 @@
     line-height: 45px;
 }
 
-
-.themeCategoryLi.active::after {
+.categoryLi.active::after {
   content: '';
   display: block;
   height: 3px; /* 밑줄 두께 */
@@ -47,28 +46,22 @@
 @media only all and (max-width: 479px) {
 }
 
-@media only all and (min-width: 480px) {
-
-}
-
-@media only all and (min-width: 1024px) {
-
-    .themeCategoryCover.fixed {
-        position: static;
-    }
-
-    .themeCategoryCover {
+@media only all and (min-width: 768px) {
+    .categoryCover {
         overflow-x: visible;
     }
 
-    .themeCategoryUl {
+    .categoryUl {
         width: 100%;
         /* Flex */
         display: flex;
-        gap: 20px;
+        justify-content: center;
     }
 
-    .themeCategoryLi {
+    .categoryLi {
+        margin-right: 5px;
+        padding: 0;
+        overflow: hidden;
         /* Flex */
         display: flex;
         flex-direction: column;
@@ -76,15 +69,34 @@
         align-items: center;
     }
 
-    .themeCategoryLi:last-of-type {
+    .categoryLi:nth-last-of-type(3) {
+        align-items: start;
+    }
+
+    .categoryLi:last-of-type {
         margin-right: 0;
     }
 
-    .themeCategoryLi.active::after {
+    .categoryLi.active::after {
       content: '';
       display: block;
       width: 100%;
       height: 3px; /* 밑줄 두께 */
       background-color: #4285f4;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .categoryCover {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .categoryLi:nth-last-of-type(3) {
+        align-items: center;
+    }
+
+    .categoryLi.active::after {
+      width: 25%;
     }
 }

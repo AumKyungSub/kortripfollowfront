@@ -12,8 +12,8 @@ import Loading from '../functionComponents/Loading';
 // Components
 import Header from '../Header/Header'
 import EmptyHeader from '../commonComponents/emptyHeader/EmptyHeader';
-import RegionBanner from './component/regionBanner/RegionBanner'
-import Category from './component/Category/Category'
+import ListBanner from '../commonComponents/listBanner/ListBanner';
+import ListCategory from '../commonComponents/listCategory/ListCategory';
 import ListCount from '../commonComponents/listCount/ListCount';
 import List from '../commonComponents/list/List';
 import Bottom from '../commonComponents/bottom/Bottom';
@@ -22,26 +22,31 @@ import Footer from '../footer/Footer'
 // Page css
 import './Region.style.css'
 
+const regionNameMap = {
+  ALL: { ko: "전체", en: "All" },
+  SEOUL: { ko: "서울", en: "Seoul" },
+  GGICN: { ko: "경기/인천", en: "Gyeonggi/Incheon" },
+  GANGWON: { ko: "강원", en: "Gangwon" },
+  CCDAEJEON: { ko: "충청/대전", en: "Chungcheong" },
+  GSBUSANDAEGUULSAN: { ko: "경상/부산/대구/울산", en: "Gyeongsang/Busan" },
+  JRGWANGJU: { ko: "전라/광주", en: "Jeolla/Gwangju" },
+  JEJU: { ko: "제주", en: "Jeju" }
+};
+
 const Region = () => {
-    const {
-          isFullMobile /* minWidth: 1024 */
-        } = useResponsive();
+  // 언어
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
-  const regionNameMap = {
-    ALL: { ko: "전체", en: "All" },
-    SEOUL: { ko: "서울", en: "Seoul" },
-    GGICN: { ko: "경기/인천", en: "Gyeonggi/Incheon" },
-    GANGWON: { ko: "강원", en: "Gangwon" },
-    CCDAEJEON: { ko: "충청/대전", en: "Chungcheong" },
-    GSBUSANDAEGUULSAN: { ko: "경상/부산/대구/울산", en: "Gyeongsang/Busan" },
-    JRGWANGJU: { ko: "전라/광주", en: "Jeolla/Gwangju" },
-    JEJU: { ko: "제주", en: "Jeju" }
-  };
+
+  const { 
+    isFullMobile /* minWidth: 1024 */
+  } = useResponsive();
+
   // HomeRegion.jsx에서 navigate로 가져온 regionName값 담기
   const locations = useLocation(); 
   // HomeRegion.jsx에서 가져온 값 담기
   const [selectedRegion, setSelectedRegion] = useState('ALL');
+
    // Data 불러오기
   const [data, setData] = useState([]);
   // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
@@ -90,12 +95,29 @@ const Region = () => {
 
   const regionNameText = regionNameMap[selectedRegion]?.[lang] || "";
 
+  const regionOptions = Object.entries(regionNameMap).map(([code, label]) => ({
+  code,
+  label,
+}));
+
   return (
     <div>
         <Header/>
         {!isFullMobile && <EmptyHeader/>}
-        {!isFullMobile && <RegionBanner filteredList={filteredList} />}
-        <Category selected={selectedRegion} setSelected={setSelectedRegion} isFullMobile={isFullMobile} />
+        {!isFullMobile && 
+          <ListBanner 
+            type="region" 
+            images ={filteredList} 
+          />
+        }
+        <ListCategory
+          options={regionOptions}
+          selected={selectedRegion}
+          setSelected={setSelectedRegion}
+          lang={lang}
+          isFullMobile={isFullMobile}
+          useI18n={false}
+        />
         <ListCount 
           title={`${regionNameText} ${t("regionPage.titleSuffix")}`} 
           count={t("regionPage.totalCount", { count: filteredList.length })} 
@@ -104,12 +126,12 @@ const Region = () => {
         />
         <List filteredList={filteredList} link="location"/>
         <Bottom 
-            title={t("regionPage.bottomTitle")}
-            text={t("regionPage.bottomText")}
-            leftTitle={t("regionPage.bottomLeftTitle")}
-            leftText={t("regionPage.bottomLeftPlace")}
-            rightTitle={t("regionPage.bottomRightTitle")}
-            rightText={t("regionPage.bottomRightText")}
+          title={t("regionPage.bottomTitle")}
+          text={t("regionPage.bottomText")}
+          leftTitle={t("regionPage.bottomLeftTitle")}
+          leftText={t("regionPage.bottomLeftPlace")}
+          rightTitle={t("regionPage.bottomRightTitle")}
+          rightText={t("regionPage.bottomRightText")}
         />
         <Footer/>
     </div>

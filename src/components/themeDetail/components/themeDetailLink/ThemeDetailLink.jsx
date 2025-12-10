@@ -22,16 +22,23 @@ const ThemeDetailLink = ({data, isFullMobile}) => {
                 <h1 className='themeDetailLinkH1'>{t("locationPage.info.sns")}</h1>
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 <div className="themeDetailLinkCover">
-                    {data?.location?.homepage &&
-                        <span className='themeDetailLinkSpan' onClick={goToHomepage}>
-                            <img src="/images/icon/homepageIcon.png" alt="homepage" />
-                        </span> 
-                    }
-                    {data?.location?.instagram &&
-                        <span className='themeDetailLinkSpan' onClick={goToInstagram}>
-                            <img src="/images/icon/instaIcon.png" alt="instagram" />
-                        </span>
-                    }
+                    {(data?.location?.homepage || data?.location?.instagram) ? (
+                        <>
+                            {data?.location?.homepage && (
+                                <span className='themeDetailLinkSpan' onClick={goToHomepage}>
+                                    <img src="/images/icon/homepageIcon.png" alt="homepage" />
+                                </span>
+                            )}
+
+                            {data?.location?.instagram && (
+                                <span className='themeDetailLinkSpan' onClick={goToInstagram}>
+                                    <img src="/images/icon/instaIcon.png" alt="instagram" />
+                                </span>
+                            )}
+                        </>
+                    ) : (
+                        <p>{t("locationPage.info.noLink")}</p>
+                    )}
                 </div>
             </section>
             

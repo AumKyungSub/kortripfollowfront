@@ -11,6 +11,14 @@
     
     <!-- 최신 여행지 10개 (id 높은 순) -->
     <item>
+      <title>경기전</title>
+      <link>https://kortripfollow.shop/location/15</link>
+      <description>조선 역사의 숨결이 살아 있는 공간 경기전</description>
+      <guid>https://kortripfollow.shop/location/15</guid>
+      <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>오목대</title>
       <link>https://kortripfollow.shop/location/14</link>
       <description>전주 한옥마을 바로옆에 위치한 오목대</description>
@@ -82,22 +90,21 @@
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
-    <item>
-      <title>고석정</title>
-      <link>https://kortripfollow.shop/location/5</link>
-      <description>철원 9경 중 하나, 한탄강의 절경이 담긴 고석정</description>
-      <guid>https://kortripfollow.shop/location/5</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
 
     <!-- 최신 카페 10개 (id 높은 순) -->
     <item>
-      <title>카페산</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
-      <description>푸른 산과 강이 어우러진 단양의 절경과 이곳만의 색다른 또 하나의 매력 멋진 비행과 함께하는 풍경</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
-      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
+      <title>카페무르</title>
+      <link>https://kortripfollow.shop/themeDetail/4</link>
+      <description>한국에서 느끼는 독일 감성 프레첼과 커피</description>
+      <guid>https://kortripfollow.shop/themeDetail/4</guid>
+      <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>카페무르</title>
+      <link>https://kortripfollow.shop/themeDetail/3</link>
+      <description>남한강 바로 앞 넓은 공간에서 즐기는 커피 한잔</description>
+      <guid>https://kortripfollow.shop/themeDetail/3</guid>
+      <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
     </item>
     <item>
       <title>고모리 691</title>
@@ -107,20 +114,20 @@
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>카페무르</title>
-      <link>https://kortripfollow.shop/themeDetail/3</link>
-      <description>남한강 바로 앞 넓은 공간에서 즐기는 커피 한잔</description>
-      <guid>https://kortripfollow.shop/themeDetail/3</guid>
-      <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
+      <title>카페산</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>푸른 산과 강이 어우러진 단양의 절경과 이곳만의 색다른 또 하나의 매력 멋진 비행과 함께하는 풍경</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
     </item>
     
     <!-- 최신 식당 10개 (id 높은 순) -->
     <item>
-      <title>연사랑</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
-      <description>철원 오대쌀과 신선한 제철 채소 그리고 파프리카로 만든 고추장으로 방문객들의 만족도를 높이는 건강한 식당</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
-      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
+      <title>중암리 손두부집</title>
+      <link>https://kortripfollow.shop/themeDetail/3</link>
+      <description>옛 손두부의 담백한 맛과 정겨운 시골집 분위기가 편안한 쉼을 선사하는 작은 식당</description>
+      <guid>https://kortripfollow.shop/themeDetail/3</guid>
+      <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
     </item>
     <item>
       <title>어부네코다리조림</title>
@@ -128,6 +135,13 @@
       <description>정갈한 코다리와 푸짐한 밑반찬의 조화</description>
       <guid>https://kortripfollow.shop/themeDetail/2</guid>
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>연사랑</title>
+      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <description>철원 오대쌀과 신선한 제철 채소 그리고 파프리카로 만든 고추장으로 방문객들의 만족도를 높이는 건강한 식당</description>
+      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
     </item>
     
     <!-- 최신 숙소 10개 (id 높은 순) -->
