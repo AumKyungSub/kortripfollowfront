@@ -5,6 +5,8 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 
 import { useTranslation } from 'react-i18next'
 
+import { useReadOneDB } from '../../shared/api/useReadOneDB'
+
 //Function Component
 import Loading from '@/features/loading/Loading'
 
@@ -28,33 +30,8 @@ const Location = () => {
     const lang = i18n.language;
     // minWidth: 1024
     const {isMobile, isTablet, isFullMobile, isDesktop} = useResponsive();
-    // Data 불러오기
-    const [data, setData] = useState([]);
-    // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
-    const [loading, setLoading] = useState(true);
-    // 에러 상테 표시 (초기값: null => 에러 없음)
-    const [error, setError] = useState(null);
     
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const url = `${import.meta.env.VITE_API_URL}/rankings/${id}`;
-        
-                const response = await fetch(url);
-                if (!response.ok) throw new Error("데이터를 불러오지 못했습니다.");
-
-                const db = await response.json();
-                setData(db);
-            } catch (err) {
-                console.error("데이터 에러", err);
-                setError(t("common.error"));
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, [id]);
+    const { data, loading, error } = useReadOneDB("rankings", id);
 
     // 로딩 화면
     if (loading) return <div><Loading/></div>

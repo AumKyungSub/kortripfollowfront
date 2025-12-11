@@ -5,6 +5,8 @@ import { useLocation, useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
+import { useReadOneDB } from '../../shared/api/useReadOneDB'
+
 // Function Component
 import Loading from '@/features/loading/Loading'
 
@@ -30,7 +32,7 @@ const themeMap = {
 };
 
 const ThemeDetail = () => {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const lang = i18n.language;
     // maxWidth: 479, maxWidth: 767, minWidth: 1024
     const {isMobile, isFullMobile, isDesktop} = useResponsive();
@@ -39,58 +41,21 @@ const ThemeDetail = () => {
     const { type } = location.state || {};
 
     // Component에 카페, 식당 넘기기
-    const themeCode =
-        type === "cafes"
-            ? "CAFE"
-            : type === "restaurants"
-            ? "RESTAURANT"
-            : type === "lodgings"
-            ? "LODGING"
-            : "FOOD";
+    const themeCode = {
+        cafes: "CAFE",
+        restaurants: "RESTAURANT",
+        lodgings: "LODGING",
+        foods: "FOOD"
+    }[type];
 
-    // Data 불러오기
-    const [data, setData] = useState(null);
-    // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
-    const [loading, setLoading] = useState(true);
-    // 에러 상테 표시 (초기값: null => 에러 없음)
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        if (!type) return;
-
-        const fetchData = async () => {
-            setLoading(true);
-            setError(null);
-            try {
-                const url = type === "cafes"
-                    ? `${import.meta.env.VITE_API_URL}/cafes/${id}`
-                    : type === "restaurants"
-                    ? `${import.meta.env.VITE_API_URL}/restaurants/${id}`
-                    : type === "lodgings"
-                    ?`${import.meta.env.VITE_API_URL}/lodgings/${id}`
-                    :`${import.meta.env.VITE_API_URL}/foods/${id}`;
-
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`HTTP 에러! 상태: ${res.status}`);
-                
-                const json = await res.json();
-                setData(json);
-            } catch (err) {
-                setError(err.message || "데이터를 불러오는 중 오류가 발생했습니다.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [id, type]);
+    const { data, loading, error } = useReadOneDB(type, id);
 
     // 로딩 화면
     if (loading) return <div><Loading/></div>
     // 에러 화면
     if (error) return <div>{error}</div>
     // 데이터 없을때 화면
-    if (!data || data.length === 0) return <div>데이터가 없습니다.</div>;
+    if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
 
     const lodgings = type === "lodgings";
 

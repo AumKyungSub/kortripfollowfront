@@ -6,6 +6,9 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 // i18n -> Transition Language
 import { useTranslation } from 'react-i18next'
 
+// (custom hook) Read DB
+import { useReadDB } from '@/shared/api/useReadDB';
+
 //Function Component
 import Loading from '@/features/loading/Loading'
 
@@ -29,52 +32,21 @@ const Homepage = () => {
           isFullMobile, /*maxWidth: 767*/ 
           isDesktop /*minWidth: 1024*/
         } = useResponsive();
-        
-  const { t } = useTranslation();
-  
-  // Data 불러오기
-  const [data, setData] = useState([]);
-  // 로딩 상태 추가 (초기값: true => 데이터 요청 중)
-  const [loading, setLoading] = useState(true);
-  // 에러 상테 표시 (초기값: null => 에러 없음)
-  const [error, setError] = useState(null);
-
-  // Data 불러오기 처리
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const url = `${import.meta.env.VITE_API_URL}/rankings`;
-        const response = await fetch(url);
-        const db = await response.json();
-        setData(db);
-      } catch (err) {
-        console.error("데이터 에러", err);
-        setError(t("common.error"));
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  },[]);
-
-  // 로딩 화면
-  if (loading) return <div><Loading/></div>
-  // 에러 화면
-  if (error) return <div>{error}</div>
-  // 데이터 없을때 화면
-  if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
+          
+  const { data, loading, error } = useReadDB();
+  const { rankings } = data;
+  if (loading) return <Loading />;
+  if (error) return <div>{error}</div>;
 
   return (
     <div>
       <Header />
       {!isFullMobile && <EmptyHeader/>}
-      <Banner rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+      <Banner rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       {isFullMobile && <Seasons/>}
-      <TopPlaces rankingsData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-      {!isFullMobile && <HomeRegion rankingData={data}/>}
-      {!isFullMobile && <HomeSeason rankingData={data}/>}
+      <TopPlaces rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+      {!isFullMobile && <HomeRegion rankingData={rankings}/>}
+      {!isFullMobile && <HomeSeason rankingData={rankings}/>}
       {!isFullMobile && <HomeTheme />}
       <Footer/>
     </div>
