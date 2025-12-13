@@ -1,5 +1,5 @@
 //Components
-import Router from './providers/Router';
+import Router from '@/app/providers/Router';
 
 // Page css
 import './styles/App.css'

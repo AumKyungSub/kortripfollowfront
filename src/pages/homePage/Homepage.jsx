@@ -1,9 +1,9 @@
-import React, {useState,useEffect} from 'react'
+import React from 'react'
 
 // (hook) Device Size
 import { useResponsive } from '@/shared/hooks/useResponsive'
 
-// i18n -> Transition Language
+// (hook) Transition Language
 import { useTranslation } from 'react-i18next'
 
 // (custom hook) Read DB
@@ -27,12 +27,18 @@ import Footer from '@/widgets/footer/Footer'
 import './Homepage.style.css'
 
 const Homepage = () => {
+  // Device Size
   const {
           isMobile, /*maxWidth: 479*/
           isFullMobile, /*maxWidth: 767*/ 
           isDesktop /*minWidth: 1024*/
-        } = useResponsive();
-          
+  } = useResponsive();
+
+  // Transition Language
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  
+  // Read DB
   const { data, loading, error } = useReadDB();
   const { rankings } = data;
   if (loading) return <Loading />;
@@ -42,10 +48,10 @@ const Homepage = () => {
     <div>
       <Header />
       {!isFullMobile && <EmptyHeader/>}
-      <Banner rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+      <Banner rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
       {isFullMobile && <Seasons/>}
       <TopPlaces rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-      {!isFullMobile && <HomeRegion rankingData={rankings}/>}
+      {!isFullMobile && <HomeRegion rankingData={rankings} lang={lang}/>}
       {!isFullMobile && <HomeSeason rankingData={rankings}/>}
       {!isFullMobile && <HomeTheme />}
       <Footer/>

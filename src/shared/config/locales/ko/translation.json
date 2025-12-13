@@ -105,7 +105,7 @@
     "theme":{
         "titleSuffix":"추천",
         "list":"리스트",
-        "totalCount": "등록된 {{themePost}} 총 {{count}}",
+        "totalCount": "등록된 {{themeName}} 총 {{count}}",
         "noData": "데이터가 없습니다.",
         "bottomTitle":{
             "cafe":"여행 중 잠깐의 휴식",

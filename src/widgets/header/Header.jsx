@@ -1,6 +1,6 @@
 import React from 'react'
 // (hook) Device Size
-import { useResponsive } from '../../shared/hooks/useResponsive'
+import { useResponsive } from '@/shared/hooks/useResponsive'
 
 // (hook) Get Navigate State
 import { useNavigate, useLocation } from 'react-router-dom'

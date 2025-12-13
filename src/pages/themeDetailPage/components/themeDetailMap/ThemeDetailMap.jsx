@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Kakao Map API Import
-import { Map, MapMarker, CustomOverlayMap, useKakaoLoader } from 'react-kakao-maps-sdk'
+import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk'
 
 import { useTranslation } from 'react-i18next'
 

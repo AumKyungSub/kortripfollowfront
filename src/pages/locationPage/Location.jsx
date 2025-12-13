@@ -5,7 +5,7 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 
 import { useTranslation } from 'react-i18next'
 
-import { useReadOneDB } from '../../shared/api/useReadOneDB'
+import { useReadOneDB } from '@/shared/api/useReadOneDB'
 
 //Function Component
 import Loading from '@/features/loading/Loading'

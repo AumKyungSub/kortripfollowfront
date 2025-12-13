@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import HomeIcon from '../../../../features/homeIcon/HomeIcon'
+import HomeIcon from '@/features/homeIcon/HomeIcon'
 
 // Page css
 import './MainImage.style.css'

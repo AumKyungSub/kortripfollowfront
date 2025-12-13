@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
+
+// (hook) Navigate
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 // Page css
 import "./Banner.style.css";
 
-const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
-  const { i18n } = useTranslation(); // 🌍 현재 언어 가져오기
+const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
+  
+  const getImageSrc = (link) =>
+  isFullMobile
+    ? link + "3M.jpg"
+    : isDesktop
+    ? link + "3.jpg"
+    : link + "3T.jpg";
 
   const bannerRef = useRef(null);
   const thumbRefs = useRef([]);
@@ -32,7 +39,7 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
     if (items.length < 2) return;
 
     autoplayRef.current = setInterval(() => {
-      if (!transitioning) handleThumbSelect(0, true);
+      if (!transitioning) handleThumbSelect(0);
     }, 4500);
 
     return () => clearInterval(autoplayRef.current);
@@ -42,58 +49,63 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
   const thumbs = items.slice(1, 5);
 
   // ---------- 썸네일 클릭 처리 ----------
-  const handleThumbSelect = async (thumbIdx) => {
-    if (transitioning || !thumbs[thumbIdx]) return;
+const animateThumbToBanner = async (thumbEl, bannerEl) => {
+  const thumbRect = thumbEl.getBoundingClientRect();
+  const bannerRect = bannerEl.getBoundingClientRect();
 
-    setTransitioning(true);
+  const scaleX = bannerRect.width / thumbRect.width;
+  const scaleY = bannerRect.height / thumbRect.height;
 
-    const thumbEl = thumbRefs.current[thumbIdx];
-    const bannerEl = bannerRef.current;
-    if (!thumbEl || !bannerEl) {
-      setTransitioning(false);
-      return;
-    }
+  thumbEl.style.position = "fixed";
+  thumbEl.style.left = `${thumbRect.left}px`;
+  thumbEl.style.top = `${thumbRect.top}px`;
+  thumbEl.style.width = `${thumbRect.width}px`;
+  thumbEl.style.height = `${thumbRect.height}px`;
+  thumbEl.style.zIndex = 100;
+  thumbEl.classList.add("thumbFly");
 
-    const selectedIndex = thumbIdx + 1;
+  await delay(80);
 
-    const thumbRect = thumbEl.getBoundingClientRect();
-    const bannerRect = bannerEl.getBoundingClientRect();
+  thumbEl.style.transform = `
+    translate(${bannerRect.left - thumbRect.left}px, ${bannerRect.top - thumbRect.top}px)
+    scale(${scaleX * 1.03}, ${scaleY * 1.03})
+  `;
+  thumbEl.style.opacity = "0";
+};
 
-    const scaleX = bannerRect.width / thumbRect.width;
-    const scaleY = bannerRect.height / thumbRect.height;
+const rotateItems = (selectedIndex) => {
+  setItems((prev) =>
+    prev.slice(selectedIndex).concat(prev.slice(0, selectedIndex))
+  );
+};
 
-    thumbEl.style.position = "fixed";
-    thumbEl.style.left = thumbRect.left + "px";
-    thumbEl.style.top = thumbRect.top + "px";
-    thumbEl.style.width = thumbRect.width + "px";
-    thumbEl.style.height = thumbRect.height + "px";
-    thumbEl.style.zIndex = 100;
-    thumbEl.classList.add("thumbFly");
+const cleanupThumb = (thumbEl) => {
+  thumbEl.classList.remove("thumbFly");
+  thumbEl.style = "";
+};
 
-    await new Promise((res) => setTimeout(res, 80));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    thumbEl.style.transform = `
-      translate(${bannerRect.left - thumbRect.left}px, ${bannerRect.top - thumbRect.top}px)
-      scale(${scaleX * 1.03}, ${scaleY * 1.03})
-    `;
-    thumbEl.style.opacity = "0";
+const handleThumbSelect = async (idx) => {
+  if (transitioning || !thumbs[idx]) return;
 
-    setTimeout(() => {
-      const selectedItem = items[selectedIndex];
-      if (selectedItem) {
-        setItems((prev) => {
-          const rotated = prev.slice(selectedIndex).concat(prev.slice(0, selectedIndex));
-          return rotated;
-        });
-      }
-    }, 250);
+  const thumbEl = thumbRefs.current[idx];
+  const bannerEl = bannerRef.current;
+  if (!thumbEl || !bannerEl) return;
 
-    setTimeout(() => {
-      thumbEl.classList.remove("thumbFly");
-      thumbEl.style = "";
-      setTransitioning(false);
-    }, 900);
-  };
+  setTransitioning(true);
+
+  const selectedIndex = idx + 1;
+
+  await animateThumbToBanner(thumbEl, bannerEl);
+
+  setTimeout(() => rotateItems(selectedIndex), 450);
+
+  setTimeout(() => {
+    cleanupThumb(thumbEl);
+    setTransitioning(false);
+  }, 900);
+};
 
   const goToLocationDetail = () => {
     if (mainItem?.id) navigate(`/location/${mainItem.id}`);
@@ -106,14 +118,8 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
         {mainItem && (
           <img
             className="mainBannerImg fadeInMain"
-            src={
-              isFullMobile
-                ? mainItem.img.link + "3M.jpg"
-                : isDesktop
-                ? mainItem.img.link + "3.jpg"
-                : mainItem.img.link + "3T.jpg"
-            }
-            alt={mainItem.location?.name?.[i18n.language]}
+            src={getImageSrc(mainItem.img.link)}
+            alt={mainItem.location?.name?.[lang]}
           />
         )}
       </div>
@@ -121,16 +127,16 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
       {/* 텍스트 영역 */}
       <div className="bannerTextWrapper" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
         <h2 className="bannerTextH2">
-          {mainItem?.location?.name?.[i18n.language] || mainItem?.location?.name?.ko}
+          {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
         </h2>
 
         <p className="bannerTextP1">
-          {mainItem?.description?.slide?.[i18n.language] || mainItem?.description?.slide?.ko}
+          {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
         </p>
 
         {!isMobile && (
           <p className="bannerTextP2">
-            {mainItem?.description?.last?.[i18n.language] || mainItem?.description?.last?.ko}
+            {mainItem?.description?.last?.[lang] || mainItem?.description?.last?.ko}
           </p>
         )}
       </div>
@@ -145,14 +151,8 @@ const Banner = ({ rankingsData = [], isMobile, isFullMobile, isDesktop }) => {
             onClick={() => handleThumbSelect(idx)}
           >
             <img
-              src={
-                isFullMobile
-                  ? item.img.link + "3M.jpg"
-                  : isDesktop
-                  ? item.img.link + "3.jpg"
-                  : item.img.link + "3T.jpg"
-              }
-              alt={item.location?.name?.[i18n.language]}
+              src={getImageSrc(item.img.link)}
+              alt={item.location?.name?.[lang]}
             />
           </div>
         ))}

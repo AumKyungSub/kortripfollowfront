@@ -5,7 +5,9 @@ import { useLocation, useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-import { useReadOneDB } from '../../shared/api/useReadOneDB'
+import { useReadOneDB } from '@/shared/api/useReadOneDB'
+
+import { useThemeList } from '@/shared/hooks/useThemeList'
 
 // Function Component
 import Loading from '@/features/loading/Loading'
@@ -24,13 +26,6 @@ import Footer from '@/widgets/footer/Footer'
 // Page css
 import './ThemeDetail.style.css'
 
-const themeMap = {
-    CAFE: { ko: "카페", en: "Cafe" },
-    RESTAURANT: { ko: "맛집", en: "Restaurant" },
-    LODGING: { ko: "숙소", en: "Lodging" },
-    FOOD: { ko: "먹거리", en: "Food" }
-};
-
 const ThemeDetail = () => {
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
@@ -40,15 +35,14 @@ const ThemeDetail = () => {
     const location = useLocation();
     const { type } = location.state || {};
 
-    // Component에 카페, 식당 넘기기
-    const themeCode = {
-        cafes: "CAFE",
-        restaurants: "RESTAURANT",
-        lodgings: "LODGING",
-        foods: "FOOD"
-    }[type];
+    
+  const { getThemeCode, getThemeName } = useThemeList();
+  const themeCode = getThemeCode(type);
+  const themeName = getThemeName(themeCode, lang);
 
     const { data, loading, error } = useReadOneDB(type, id);
+
+  const isLodging = themeCode === 'LODGING';
 
     // 로딩 화면
     if (loading) return <div><Loading/></div>
@@ -57,9 +51,7 @@ const ThemeDetail = () => {
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
 
-    const lodgings = type === "lodgings";
 
-    const themeName = themeMap[themeCode][lang];
 
     return (
         <>
@@ -69,7 +61,7 @@ const ThemeDetail = () => {
             {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        {lodgings?
+                        {isLodging?
                             <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
                             <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
@@ -87,7 +79,7 @@ const ThemeDetail = () => {
                         <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        {lodgings?
+                        {isLodging?
                             <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
                             <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>

@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import App from '@/app/App.jsx'
 
 import './styles/index.css'
 import './styles/App.css'
-import '../shared/config/118n.js';
+import '@/shared/config/118n.js';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

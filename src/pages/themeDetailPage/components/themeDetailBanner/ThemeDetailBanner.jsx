@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Function Component
-import HomeIcon from '../../../../features/homeIcon/HomeIcon'
+import HomeIcon from '@/features/homeIcon/HomeIcon'
 
 // Page css
 import './ThemeDetailBanner.style.css'

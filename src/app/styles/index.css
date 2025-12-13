@@ -6,63 +6,63 @@
 /* 페이퍼로지 폰트 (완전무료) */
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-1Thin.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-1Thin.woff2') format('woff2');
     font-weight: 100;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-2ExtraLight.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-2ExtraLight.woff2') format('woff2');
     font-weight: 200;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-3Light.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-3Light.woff2') format('woff2');
     font-weight: 300;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-4Regular.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-4Regular.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-5Medium.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-5Medium.woff2') format('woff2');
     font-weight: 500;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-6SemiBold.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-6SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-7Bold.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-7Bold.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-8ExtraBold.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-8ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Paperozi';
-    src: url('./font/Paperlogy-9Black.ttf') format('woff2');
+    src: url('@/assets/font/Paperlogy-9Black.woff2') format('woff2');
     font-weight: 900;
     font-display: swap;
 }
