@@ -1,38 +1,42 @@
 import React from 'react'
+/*------------------------hooks-----------------------------------*/
+// Navigate
 import { useNavigate } from 'react-router-dom'
-
+// Transition Language
 import { useTranslation } from 'react-i18next'
+/*------------------------/hooks-----------------------------------*/
 
 // Page CSS
 import './List.style.css'
 
+const themeType = {
+    CAFE: 'cafes',
+    RESTAURANT: 'restaurants',
+    LODGING: 'lodgings',
+    FOOD: 'foods',
+};
+
 const List = ({filteredList, link, selectedTheme}) => {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
+    // Transition Language
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
 
+    // Navigate
     const navigate = useNavigate();
-
     const handleClick = (data) => {
         navigate(`/${link}/${data?.id}`, {
-            state: { 
-            type: selectedTheme === "CAFE" 
-            ? "cafes" 
-            : selectedTheme === "RESTAURANT"
-            ? "restaurants"
-            : selectedTheme === "LODGING"
-            ? "lodgings"
-            : "foods"
-            }
+            state: {
+                type: themeType[selectedTheme],
+            },
         });
-    }
+    };
 
-  return (
-    <>
-        <div className='listWholeCover'>
+    return (
+        <section className='listWholeCover'>
             {filteredList.map((data)=>(
                 <div key={data.id} className='listCover' onClick={() => handleClick(data)}>
                     <div className="listImgCover">
-                        <img src={data?.img?.link+"3R.jpg"} alt={data?.img?.link+"3R.jpg"} />
+                        <img src={`${data?.img?.link}3R.jpg`} alt={`${data?.img?.link}3R.jpg`} />
                     </div>
                     <div className="listTextCover">
                         <p className="listName">
@@ -47,9 +51,8 @@ const List = ({filteredList, link, selectedTheme}) => {
                     </div>
                 </div>
             ))}
-        </div>
-    </>
-  )
+        </section>
+    ) 
 }
 
 export default List

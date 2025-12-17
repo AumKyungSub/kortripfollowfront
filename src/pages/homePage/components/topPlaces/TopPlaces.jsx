@@ -5,7 +5,8 @@ import TopPlacesComponent from './TopPlacesComponent';
 import './TopPlaces.style.css'
 
 const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
 
     const [rankingList, setRankingList] = useState([]);
     const [selectedAll, setSelectedAll] = useState(null);
@@ -44,6 +45,7 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
                             isMobile={isMobile}
                             isFullMobile={isFullMobile}
                             isDesktop={isDesktop}
+                            lang={lang}
                         />
                     ))
                 ) : (
@@ -53,6 +55,7 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
                         onSelect={handleSelect}
                         selectedAll={selectedAll}
                         isDesktop={isDesktop}
+                        lang={lang}
                     />
                 )}
             </div>

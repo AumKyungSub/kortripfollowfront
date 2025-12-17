@@ -25,6 +25,11 @@ header .logo img {
   margin-right: 5px;
 }
 
+.headerList {
+  /* Flex */
+  display: flex;
+}
+
 .search {
   cursor: pointer;
   /* Flex */

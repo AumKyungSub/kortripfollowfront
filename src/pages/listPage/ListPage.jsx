@@ -89,6 +89,9 @@ const ListPage = ({mode}) => {
 
     const [selected, setSelected] = useState(initialSelected);
 
+    // Bottom Type 결정 
+    const bottomType = isThemeMode ? selected : "ALL";
+
     // selected 값 검증 (존재하지 않으면 기본값으로 리셋)
     useEffect(() => {
       if (!Object.keys(map).includes(selected)) {
@@ -193,36 +196,7 @@ const ListPage = ({mode}) => {
       />
 
       <Bottom
-  title={
-    isThemeMode
-      ? t(`theme.bottomTitle.${selected.toLowerCase()}`)
-      : t("regionPage.bottomTitle")
-  }
-  text={
-    isThemeMode
-      ? t(`theme.bottomText.${selected.toLowerCase()}`)
-      : t("regionPage.bottomText")
-  }
-  leftTitle={
-    isThemeMode
-      ? t("theme.bottomLeftTitle")
-      : t("regionPage.bottomLeftTitle")
-  }
-  leftText={
-    mode === "theme"
-      ? t(`theme.bottomLeftText.${selected.toLowerCase()}`)
-      : t("regionPage.bottomLeftPlace")
-  }
-  rightTitle={
-    isThemeMode
-      ? t(`theme.bottomRightTitle.${selected.toLowerCase()}`)
-      : t("regionPage.bottomRightTitle")
-  }
-  rightText={
-    isThemeMode
-      ? t(`theme.bottomRightText.${selected.toLowerCase()}`)
-      : t("regionPage.bottomRightText")
-  }
+        type = {bottomType}
       />
 
       <Footer />

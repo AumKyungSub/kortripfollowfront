@@ -20,10 +20,10 @@ const ListBanner = ({type = "theme", images = [], themeRange = { min: 1, max: 2 
   const imgSrc = type === "region" ? getRandomRegionImage() : getRandomThemeImage();
 
   if (!imgSrc) return null;
+
   return (
     <div className="listBannerCover">
       <img src={imgSrc} alt="Banner Img" />
-
     </div>
   )
 }

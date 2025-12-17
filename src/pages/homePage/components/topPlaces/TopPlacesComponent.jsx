@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const TopPlacesComponent = ({
   selectedAll,
@@ -9,9 +8,9 @@ const TopPlacesComponent = ({
   isDesktop,
   rankingList = [],
   onSelect,
+  lang
 }) => {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
 
   const goToLocationDetail = () => {
     if (typeof onSelect === "function") {
@@ -38,10 +37,10 @@ const TopPlacesComponent = ({
                 ? selectedAll?.img?.link + "0T.jpg"
                 : selectedAll?.img?.link + "1.jpg"
             }
-            alt={selectedAll?.location?.name?.[i18n.language]}
+            alt={selectedAll?.location?.name?.[lang]}
           />
           <span className="topRanking">TOP {selectedAll?.top}</span>
-          <p>{selectedAll?.location?.name?.[i18n.language] || selectedAll?.location?.name?.ko}</p>
+          <p>{selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}</p>
         </div>
       ) : (
         <div className="mainCard">
@@ -50,34 +49,31 @@ const TopPlacesComponent = ({
               <>
                 <img
                   src={selectedAll?.img?.link + "3.jpg"}
-                  alt={selectedAll?.location?.name?.[i18n.language]}
+                  alt={selectedAll?.location?.name?.[lang]}
                 />
 
-                <div className="mainCardImgTextCover">
-                  <span className="mainCardTop">
-                    <img
-                      src={`/images/icon/rank${selectedAll.top}.png`}
-                      alt={"TOP " + selectedAll.top}
-                    />
+                <article className="mainCardImgTextCover">
+                  <p className="mainCardTop">
                     Top {selectedAll.top}
-                  </span>
-
-                  <p className="mainCardRegion">
-                    <img src="/images/icon/regionIconS.png" alt="region icon" />
-                    {selectedAll?.location?.region?.[i18n.language] ||
-                      selectedAll?.location?.region?.ko}
                   </p>
 
                   <h2 className="mainCardLocation">
-                    {selectedAll?.location?.name?.[i18n.language] ||
-                      selectedAll?.location?.name?.ko}
+                    {selectedAll?.location?.name?.[lang]}
                   </h2>
 
-                  <p className="mainCardExplain">
-                    {selectedAll?.description?.slide?.[i18n.language] ||
-                      selectedAll?.description?.slide?.ko}
+                  <p className="mainCardRegion">
+                    <img src="/images/icon/regionIconS.png" alt="region icon" />
+                    {selectedAll?.location?.region?.[lang]}
                   </p>
-                </div>
+
+                  <p className="mainCardExplain">
+                    {selectedAll?.description?.slide?.[lang]}
+                  </p>
+
+                  {isDesktop && <p className="mainCardLast">
+                    {selectedAll?.description?.last?.[lang]}
+                  </p>}
+                </article>
               </>
             )}
           </div>
@@ -91,7 +87,7 @@ const TopPlacesComponent = ({
               >
                 <img
                   src={menu?.img?.link + "2.jpg"}
-                  alt={menu?.location?.name?.[i18n.language]}
+                  alt={menu?.location?.name?.[lang]}
                 />
                 <p>{menu?.top}</p>
               </div>

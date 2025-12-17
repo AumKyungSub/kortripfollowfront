@@ -50,13 +50,7 @@
     "regionPage": {
         "titleSuffix":"Travel Destinations",
         "totalCount": "There are {{count}} destinations",
-        "noData": "No data available.",
-        "bottomTitle": "The Charm of Korea",
-        "bottomText": "South Korea offers unique culture and beautiful scenery in every region, changing with each of the four distinct seasons. From the northern mountains to the southern coastlines, countless destinations are waiting for you.",
-        "bottomLeftTitle": "Month's Recommended",
-        "bottomLeftPlace": "Buseoksa Temple",
-        "bottomRightTitle": "Recommended Season",
-        "bottomRightText": "All seasons"
+        "noData": "No data available."
     },
     "locationPage": {
         "explain": {
@@ -106,38 +100,7 @@
         "titleSuffix":"Recommended",
         "list":"List",
         "totalCount": "Total {{count}} {{themeName}}",
-        "noData": "No data available.",
-        "bottomTitle":{
-            "cafe":"A quiet break along the travel",
-            "restaurant":"The joy of discovering new flavors",
-            "lodging":"Rest and recharge to keep traveling",
-            "food":"A boost of energy for your travel"
-        },
-        "bottomText":{
-            "cafe":"In a space filled with warm aromas, a short pause lightens your steps and deepens your journey. Wherever you travel, each café offers its own mood and character, and the time spent there becomes another joy of the trip.",
-            "restaurant":"Foods infused with local ingredients and traditional cooking methods carry the story of each region, offering a new experience with every moment. Following the path of flavor makes your journey richer and even more memorable.",
-            "lodging":"At the end of a long day of travel, a quiet moment of rest in a comfortable place allows both body and mind to unwind. Time spent in a cozy space embraced by the night air of an unfamiliar city fills you with the strength to begin your journey again.",
-            "food":"A small snack found along the road can become an unexpected memory. Though light and simple, each bite is crafted with sincerity and warmth, making a short break along the way feel sweeter. Within it are stories that will stay with you for a long time."
-        },
-        "bottomLeftTitle":"Month's Recommended",
-        "bottomLeftText":{
-            "cafe":"Cafe San",
-            "restaurant":"Yeonsalang",
-            "lodging":"Lahan Hotel",
-            "food":"CheonanWalnutCakes"
-        },
-        "bottomRightTitle":{
-            "cafe":"Recommended Drinks",
-            "restaurant":"Dishes",
-            "lodging":"Rating ",
-            "food":"Signature Menu"
-        },
-        "bottomRightText":{
-            "cafe":"Drip Coffee",
-            "restaurant":"Korean Table",
-            "lodging":"4 Stars",
-            "food":"Amber butter"
-        }
+        "noData": "No data available."
     },
     "themeDetail":{
         "tDCI":{
@@ -187,11 +150,54 @@
         }
     },
     "footer":{
-        "warning":"All photos are my own, and I hold the copyright."
+        "warning":"All photos are my own, and I hold the copyright.",
+        "email":"E-Mail"
     },
     "about":{
         "title":"Steps from everyday life, hidden stories across South Korea",
         "slogan":"Even in the small nation of South Korea, endless new scenery awaits.\nJoin us in discovering the thrill of travel across Korea.",
         "des":"I am a travel enthusiast and a one developer who introduces hidden places across Korea. \nI personally visit destinations, capturing real photographs and sharing detailed information through reviews whenever possible. \nPlaces I have yet to visit are illustrated for now, and will be replaced with real photos once I experience them myself. \nAlthough the updates may be slow, it will continue steadily.\nSoon, I also plan to creating a richer and more complete travel guide."
+    },
+    "bottom":{
+        "all":{
+            "title":"The Charm of Korea",
+            "text":"South Korea offers unique culture and beautiful scenery in every region, changing with each of the four distinct seasons. From the northern mountains to the southern coastlines, countless destinations are waiting for you.",
+            "leftTitle":"Month's Recommended",
+            "leftText":"Buseoksa Temple",
+            "rightTitle":"Recommended Season",
+            "rightText":"All seasons"
+        },
+        "cafe":{
+            "title":"A quiet break along the travel",
+            "text":"In a space filled with warm aromas, a short pause lightens your steps and deepens your journey. Wherever you travel, each café offers its own mood and character, and the time spent there becomes another joy of the trip.",
+            "leftTitle":"Month's Recommended",
+            "leftText":"Cafe San",
+            "rightTitle":"Recommended Drinks",
+            "rightText":"Drip Coffee"
+        },
+        "restaurant":{
+            "title":"The joy of discovering new flavors",
+            "text":"Foods infused with local ingredients and traditional cooking methods carry the story of each region, offering a new experience with every moment. Following the path of flavor makes your journey richer and even more memorable.",
+            "leftTitle":"Month's Recommended",
+            "leftText":"Yeonsalang",
+            "rightTitle":"Dishes",
+            "rightText":"Korean Table"
+        },
+        "lodging":{
+            "title":"Rest and recharge to keep traveling",
+            "text":"At the end of a long day of travel, a quiet moment of rest in a comfortable place allows both body and mind to unwind. Time spent in a cozy space embraced by the night air of an unfamiliar city fills you with the strength to begin your journey again.",
+            "leftTitle":"Month's Recommended",
+            "leftText":"Lahan Hotel",
+            "rightTitle":"Rating",
+            "rightText":"4 Stars"
+        },
+        "food":{
+            "title":"A boost of energy for your travel",
+            "text":"A small snack found along the road can become an unexpected memory. Though light and simple, each bite is crafted with sincerity and warmth, making a short break along the way feel sweeter. Within it are stories that will stay with you for a long time.",
+            "leftTitle":"Month's Recommended",
+            "leftText":"CheonanWalnutCakes",
+            "rightTitle":"Signature Menu",
+            "rightText":"Amber butter"
+        }
     }
 }

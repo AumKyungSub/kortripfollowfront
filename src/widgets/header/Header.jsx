@@ -1,12 +1,15 @@
 import React from 'react'
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
-
-// (hook) Get Navigate State
+/*------------------------hooks-----------------------------------*/
+// Navigate, Location
 import { useNavigate, useLocation } from 'react-router-dom'
-
-// i18n -> Transition Language
+// Transition Language
 import { useTranslation } from 'react-i18next'
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './Header.style.css'
@@ -14,73 +17,60 @@ import './Header.style.css'
 const Header = () => {
   const {
           isFullMobile /* maxWidth: 767 */
-        } = useResponsive();
+  } = useResponsive();
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   // 언어 변경 함수
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
-  
-  const backToMain=()=>{
-    navigate('/');
-  }
 
-  const goToAbout=()=>{
-    navigate('/about');
-  }
+  // path로 경로 설정
+  const goTo = (path) => () => navigate(path)
 
-  const goToRegion=()=>{
-    navigate('/region');
-  }
+  // 각페이지와 디테일 페이지 연결
+  const isActive = (path, startsWith) =>
+    location.pathname === path ||
+    (startsWith && location.pathname.startsWith(startsWith))
 
-  const goToSeason=()=>{
-    navigate('/season');
-  }
-
-  const goToTheme=()=>{
-    navigate('/theme');
-  }
+  // li 설정
+  const gnbList = [
+    { key: 'home', path: '/', label: t('menu.home') },
+    { key: 'region', path: '/region', startsWith: '/location', label: t('menu.region') },
+    { key: 'season', path: '/season', label: t('menu.season') },
+    { key: 'theme', path: '/theme', startsWith: '/themeDetail', label: t('menu.theme') },
+    { key: 'about', path: '/about', label: t('menu.about') },
+  ]
   
   return (
-  <div>
-    <header className='header'>
+    <header>
       <div className="headerCover">
-        <div className="logo" onClick={backToMain}>
+        <div className="logo" onClick={goTo("/")}>
           <img src="/images/logo/logoIcon.png" alt="logoIcon" />
           <img src="/images/logo/logoText.png" alt="logoText" />
         </div>
         {!isFullMobile 
-        ? 
-          <div className="gnbPc">
+        &&
+          <nav className="gnbPc">
             <ul>
-              <li className={`gnbPcLi ${location.pathname === '/' ? 'active' : ''}`} onClick={backToMain}>{t("menu.home")}</li>
-              <li className={`gnbPcLi ${location.pathname === '/region' ? 'active' : ''}`} onClick={goToRegion}>{t("menu.region")}</li>
-              <li className={`gnbPcLi ${location.pathname === '/season' ? 'active' : ''}`} onClick={goToSeason}>{t("menu.season")}</li>
-              <li className={`gnbPcLi ${location.pathname === '/theme' ? 'active' : ''}`} onClick={goToTheme}>{t("menu.theme")}</li>
-              <li className={`gnbPcLi ${location.pathname === '/about' ? 'active' : ''}`} onClick={goToAbout}>{t("menu.about")}</li>
+              {gnbList.map(({ key, path, startsWith, label }) => (
+                <li
+                  key={key}
+                  className={`gnbPcLi ${isActive(path, startsWith) ? 'active' : ''}`}
+                  onClick={goTo(path)}
+                >
+                  {label}
+                </li>
+              ))}
             </ul>
-            <p>|</p>
-            {/* 언어 버튼 (PC) */}
-            <div className="langButtons">
-              <button
-                className={i18n.language === "ko" ? "active" : ""} 
-                onClick={() => changeLanguage("ko")}>
-                한국어
-              </button>
-              <button
-                className={i18n.language === "en" ? "active" : ""} 
-                onClick={() => changeLanguage("en")}>
-                ENGLISH
-              </button>
-            </div>
-          </div>
-        :
+          </nav>
+        }
           <div className='search'>
             {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
             {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
@@ -88,21 +78,19 @@ const Header = () => {
             {/* 모바일: 토글 방식 */}
             <div className="langButtons">
               <button
-                className={i18n.language === "ko" ? "active" : ""} 
+                className={lang === "ko" ? "active" : ""} 
                 onClick={() => changeLanguage("ko")}>
                 한국어
               </button>
               <button
-                className={i18n.language === "en" ? "active" : ""} 
+                className={lang === "en" ? "active" : ""} 
                 onClick={() => changeLanguage("en")}>
                 ENGLISH
               </button>
             </div>
           </div>
-        }
       </div>
     </header>
-  </div>
   )
 }
 

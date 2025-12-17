@@ -1,41 +1,42 @@
 import React from 'react'
-
+/*------------------------hooks-----------------------------------*/
+// Transition Language
 import { useTranslation } from 'react-i18next';
+/*------------------------/hooks-----------------------------------*/
 
 // Page css
 import './Bottom.style.css'
 
-const Bottom = ({title, text, leftText, rightTitle, rightText, leftTitle}) => {
+const Bottom = ({type}) => {
+  // Transition Language
   const {t} = useTranslation();
-  const bottomImg = (title === t("theme.bottomTitle.cafe")) ? "cafes" 
-                    : (title === t("regionPage.bottomTitle")) ? "taegeukgi"
-                    : (title === t("theme.bottomTitle.restaurant")) ? "restaurants"
-                    : (title === t("theme.bottomTitle.lodging")) ? "lodgings"
-                    : (title === t("theme.bottomTitle.food")) ? "foods"
-                    : "";
+  // type 값 소문자 변환
+  const typeName = type.toLowerCase();
+  // translation json에서 값 가져오기
+  const keyValue = `bottom.${typeName}`;
                     
   return (
-    <div className='bottomWholeCover'>
+    <article className='bottomWholeCover'>
         <div className="bottomCover">
             <div className="bottomTextCover">
               <div className="bottomText">
-                  <h3>{title}</h3>
-                  <p>{text}</p>
+                  <h3>{t(`${keyValue}.title`)}</h3>
+                  <p>{t(`${keyValue}.text`)}</p>
               </div>
               <div className="bottomBox">
                   <span className="bottomLeftBox">
-                      {leftTitle} <br /><br /> <a>{leftText}</a>
+                      {t(`${keyValue}.leftTitle`)} <br /><br /> <a>{t(`${keyValue}.leftText`)}</a>
                   </span>
                   <span className="bottomRightBox">
-                      {rightTitle} <br /><br /> <a>{rightText}</a>
+                      {t(`${keyValue}.rightTitle`)} <br /><br /> <a>{t(`${keyValue}.rightText`)}</a>
                   </span>
               </div>
             </div>
             <div className="bottomImgCover">
-              <img src={`/images/flag/${bottomImg}.jpg`} alt={`/images/flag/${bottomImg}.jpg`} />
+              <img src={`/images/flag/${typeName}.jpg`} alt={`/images/flag/${typeName}.jpg`} />
             </div>
         </div>
-    </div>
+    </article>
   )
 }
 
