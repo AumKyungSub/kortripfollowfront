@@ -10,6 +10,15 @@
     <lastBuildDate>Sat, 15 Nov 2025 09:00:00 +0900</lastBuildDate>
     
     <!-- 최신 여행지 10개 (id 높은 순) -->
+
+    <item>
+      <title>강릉</title>
+      <link>https://kortripfollow.shop/location/16</link>
+      <description>어린 나이에 왕위에 오른 비운의 군주가 잠든 왕릉, 강릉</description>
+      <guid>https://kortripfollow.shop/location/16</guid>
+      <pubDate>Fri, 12 Dec 2025 00:40:00 +0900</pubDate>
+    </item>
+
     <item>
       <title>경기전</title>
       <link>https://kortripfollow.shop/location/15</link>
@@ -79,14 +88,6 @@
       <link>https://kortripfollow.shop/location/7</link>
       <description>경기도 가평의 대표 정원 — 자연의 고요함이 머무는 곳</description>
       <guid>https://kortripfollow.shop/location/7</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>서오릉</title>
-      <link>https://kortripfollow.shop/location/6</link>
-      <description>조선 왕들이 잠든 고양의 세계문화유산, 서오릉</description>
-      <guid>https://kortripfollow.shop/location/6</guid>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 

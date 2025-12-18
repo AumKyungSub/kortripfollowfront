@@ -155,7 +155,7 @@ const ListPage = ({mode}) => {
 
   const categoryOptions = Object.entries(map).map(([code, label]) => ({
     code,
-    label
+    label: label?.[lang] ?? ""
   }));
   
     if (loading) return <Loading />;
@@ -177,8 +177,6 @@ const ListPage = ({mode}) => {
         options={categoryOptions}
         selected={selected}
         setSelected={setSelected}
-        lang={lang}
-        useI18n={false}
         isFullMobile={isFullMobile}
       />
 
