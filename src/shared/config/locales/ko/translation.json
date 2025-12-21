@@ -149,6 +149,9 @@
             "tDMDirections":"길찾기"
         }
     },
+    "detailVideo":{
+        "title":"영상"
+    },
     "footer":{
         "warning":"모든 사진은 직접 찍은 사진으로 저작권을 가지고 있습니다.",
         "email":"이메일"

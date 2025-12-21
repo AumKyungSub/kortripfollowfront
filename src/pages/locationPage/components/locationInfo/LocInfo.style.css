@@ -82,12 +82,7 @@
 @media only all and (min-width: 768px) {
     .locationInfoCover {
         padding: 0;
-        margin-top: 16px;
         white-space: pre-wrap;
-        /* Position */
-        position: fixed;
-        right: 0;
-        z-index: 100;
     }
 
     .locationInfoTitle {

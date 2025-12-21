@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 import { useTranslation } from 'react-i18next';
+import DetailVideo from '../../../../widgets/detailVideo/DetailVideo';
 
 // Page css
 import './LocInfo.style.css'
@@ -93,10 +94,6 @@ useEffect(() => {
     <div 
         className='locationInfoCover'
         style={{
-            position: isFixed ? 'fixed' : 'absolute',
-            top: isFixed ? '0px' : `${initialTop}px`,
-            right: `${rightPos}px`,
-            width: `${locWidth}px`,
         }}>
           <h3 className="explainNameF">{t("locationPage.info.title")}</h3>
           {!isFullMobile && <div className='emptyLine1px'></div>}

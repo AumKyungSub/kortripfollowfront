@@ -20,6 +20,7 @@ import Parking from '@/pages/locationPage/components/parking/Parking'
 import LocInfo from '@/pages/locationPage/components/locationInfo/LocInfo'
 import LocInfoNotPc from '@/pages/locationPage/components/locationInfo/LocInfoNotPc'
 import Recommend from '@/pages/locationPage/components/recommend/Recommend'
+import DetailVideo from '../../widgets/detailVideo/DetailVideo'
 
 // Page CSS
 import './Location.style.css'
@@ -54,6 +55,7 @@ const Location = () => {
                     </div>
                     <div className="locationDetailRightWholeCover">
                         <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             :
@@ -61,6 +63,7 @@ const Location = () => {
                     <Explain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                     <LocInfoNotPc rankingData={data} lang={lang}/>
                     <Parking rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <DetailVideo video={data.video} isFullMobile={isFullMobile} />
                     <Recommend rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
             }

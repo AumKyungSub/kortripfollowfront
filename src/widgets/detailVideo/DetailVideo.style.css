@@ -1,0 +1,59 @@
+.detailVideo {
+  width: 100%;
+    padding: 16px;
+}
+
+.detailVideoTitle {
+    margin-bottom: 20px;
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.detailVideoFrame {
+  position: relative;
+  width: 100%;
+  padding-top: 177.77%; /* 9:16 쇼츠 비율 */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.detailVideoFrame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) {
+    .detailVideo {
+        padding: 0;
+        white-space: pre-wrap;
+    }
+
+    .locationInfoTextCover {
+        padding: 16px;
+        padding-left: 0;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .detailVideoFrameWrap {
+      padding-top: 16px;
+    }
+
+}
+
+@media only all and (min-width: 1024px) {
+
+}

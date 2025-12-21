@@ -149,6 +149,9 @@
             "tDMDirections":"Directions"
         }
     },
+    "detailVideo":{
+        "title":"Video"
+    },
     "footer":{
         "warning":"All photos are my own, and I hold the copyright.",
         "email":"E-Mail"
