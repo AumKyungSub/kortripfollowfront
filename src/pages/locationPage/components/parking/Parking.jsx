@@ -39,8 +39,12 @@ const Parking = ({rankingData, isFullMobile, lang}) => {
   return (
     <>
     <div className='topParkingWholeCover'>
-      {!isFullMobile && <h5 className='explainName'>{t("locationPage.parking.title")}</h5>}
-      {!isFullMobile && <div className="emptyLine1px"></div>}
+      {!isFullMobile && 
+        <>
+          <h6 className='detailTitleMin768'>{t("locationPage.parking.title")}</h6>
+          <div className="emptyLine1px"></div>
+        </>
+      }
       <div className="topMapCover">
         <Map
             id="map"

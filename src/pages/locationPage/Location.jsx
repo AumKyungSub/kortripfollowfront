@@ -18,9 +18,11 @@ import MainImage from '@/pages/locationPage/components/mainImage/MainImage'
 import Explain from '@/pages/locationPage/components/explain/Explain'
 import Parking from '@/pages/locationPage/components/parking/Parking'
 import LocInfo from '@/pages/locationPage/components/locationInfo/LocInfo'
-import LocInfoNotPc from '@/pages/locationPage/components/locationInfo/LocInfoNotPc'
+import DetailLink from '@/widgets/detailLink/DetailLink'
+import DetailReview from '@/widgets/detailReview/DetailReview'
 import Recommend from '@/pages/locationPage/components/recommend/Recommend'
-import DetailVideo from '../../widgets/detailVideo/DetailVideo'
+import DetailGallery from '@/widgets/detailGallery/DetailGallery'
+import DetailVideo from '@/widgets/detailVideo/DetailVideo'
 
 // Page CSS
 import './Location.style.css'
@@ -51,20 +53,24 @@ const Location = () => {
                     <div className="locationDetailLeftWholeCover">
                         <Explain rankingData={data} isFullMobile={isFullMobile} isDesktop={isDesktop} isTablet={isTablet} lang={lang}/>
                         <Parking rankingData={data}  isFullMobile={isFullMobile} lang={lang}/>
-                        <Recommend rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
                     </div>
                     <div className="locationDetailRightWholeCover">
                         <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                        <DetailLink data={data} isFullMobile={isFullMobile} />
+                        <DetailReview data={data} isFullMobile={isFullMobile} />
                         <DetailVideo video={data.video} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             :
                 <div>
                     <Explain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                    <LocInfoNotPc rankingData={data} lang={lang}/>
+                    <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <DetailLink data={data} isFullMobile={isFullMobile} />
+                    <DetailReview data={data} isFullMobile={isFullMobile} />
                     <Parking rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
                     <DetailVideo video={data.video} isFullMobile={isFullMobile} />
-                    <Recommend rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
             }
             <Footer/>

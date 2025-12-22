@@ -1,0 +1,44 @@
+.linkWrap {
+    padding: 16px;
+}
+
+.linkCover {
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    gap: 20px;
+}
+
+.linkInfoSpan {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.linkInfoSpan img {
+    width: 100%;
+}
+
+/*---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) {
+    .linkWrap {
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .linkCover {
+        padding: 16px;
+        padding-left: 0;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+
+}

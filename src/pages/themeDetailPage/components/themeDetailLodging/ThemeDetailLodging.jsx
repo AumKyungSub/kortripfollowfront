@@ -144,6 +144,7 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
                 </div>
             </div>
         </section>
+      {isFullMobile && <div className='emptyLine'></div>}
     </>
   )
 }

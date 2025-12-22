@@ -134,6 +134,8 @@ button {
 /* 문서 전체 CSS 적용 */
 body {
     line-height: 1;
+    background: #fff;
+    color: #333;
 }
 /* HTML5 시멘틱 태그들 IE 구버전 인식 설정 */
 article,
@@ -223,16 +225,4 @@ button {
     line-height: 0;
     text-indent: -99999px;
     overflow: hidden;
-}
-
-.emptyLine {
-    width: 100%;
-    height: 0.5rem;
-    background-color: rgba(230, 231, 232, 0.647);
-}
-
-.emptyLine1px {
-    width: 100%;
-    height: 1px;
-    background-color: rgba(230, 231, 232, 0.647);
 }

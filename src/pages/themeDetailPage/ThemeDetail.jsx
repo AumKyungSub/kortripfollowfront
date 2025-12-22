@@ -19,8 +19,9 @@ import ThemeDetailBanner from '@/pages/themeDetailPage/components/themeDetailBan
 import ThemeDetailCafeInfo from '@/pages/themeDetailPage/components/themeDetailCafeInfo/ThemeDetailCafeInfo'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'
 import ThemeDetailMap from '@/pages/themeDetailPage/components/themeDetailMap/ThemeDetailMap'
-import ThemeDetailLink from '@/pages/themeDetailPage/components/themeDetailLink/ThemeDetailLink'
-import ThemeDetailGallery from '@/pages/themeDetailPage/components/themeDetailGallery/ThemeDetailGallery'
+import DetailLink from '@/widgets/detailLink/DetailLink'
+import DetailReview from '@/widgets/detailReview/DetailReview'
+import DetailGallery from '@/widgets/detailGallery/DetailGallery'
 import Footer from '@/widgets/footer/Footer'
 
 // Page css
@@ -66,11 +67,12 @@ const ThemeDetail = () => {
                         :
                             <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
-                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
+                        <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
                         <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang} />
-                        <ThemeDetailLink data={data} isFullMobile={isFullMobile} />
+                        <DetailLink data={data} isFullMobile={isFullMobile} />
+                        <DetailReview data={data} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             : 
@@ -84,8 +86,9 @@ const ThemeDetail = () => {
                         :
                             <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
-                        <ThemeDetailLink data={data} isFullMobile={isFullMobile}/>
-                        <ThemeDetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
+                        <DetailLink data={data} isFullMobile={isFullMobile}/>
+                        <DetailReview data={data} isFullMobile={isFullMobile}/>
+                        <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                 </div>
             }

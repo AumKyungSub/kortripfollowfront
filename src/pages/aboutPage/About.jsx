@@ -27,6 +27,10 @@ const About = () => {
         window.open("https://blog.naver.com/tripinsouthkorea", "_blank", "noopener,noreferrer");
   }
 
+  const goToYoutube = () => {
+        window.open("https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BC", "_blank", "noopener,noreferrer");
+  }
+
   return (
     <>
       <Header/>
@@ -43,6 +47,7 @@ const About = () => {
           <div className="aboutLinkImgCover">
             <img src="/images/icon/instaIcon.png" alt="instagram" onClick={goToInstagram} />
             <img src="/images/icon/blogIcon.png" alt="instagram" onClick={goToBlog} />
+            <img src="/images/icon/youtube.jpg" alt="instagram" onClick={goToYoutube} />
           </div>
         </div>
       </div>

@@ -63,6 +63,7 @@ const ThemeDetailCafeInfo = ({data, isFullMobile, themeName, lang}) => {
                     </p>
                 </div>
             </section>
+      {isFullMobile && <div className='emptyLine'></div>}
         </>
     )
 }

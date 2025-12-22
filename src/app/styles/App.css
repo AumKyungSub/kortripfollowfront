@@ -5,10 +5,38 @@
   font-family: 'Paperozi';
 }
 
-body {
-  background: #fff;
-  color: #333;
+/* 구분선 8px */
+.emptyLine {
+  width: 100%;
+  height: 0.5rem;
+  background-color: rgba(230, 231, 232, 0.647);
 }
+
+/* 구분선 1px */
+.emptyLine1px {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(230, 231, 232, 0.647);
+}
+
+/* Detail Page Min 768px Title */
+.detailTitleMin768 {
+  display: block;
+  width: 100%;
+  padding: 20px 20px 20px 0;
+  /* Font */
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Detail Page Max 767px Title */
+.detailTitleMax768 {
+    margin-bottom: 20px;
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */

@@ -1,12 +1,5 @@
-.themeDetailGalleryWholeCover {
+.detailGalleryWrap {
     padding: 16px;
-}
-
-.themeDetailGalleryH1 {
-    margin-bottom: 15px;
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 600;
 }
 
 /* ---------------------------------------------------- */
@@ -15,11 +8,11 @@
 }
 
 @media only all and (min-width: 768px) {
-    .themeDetailGalleryWholeCover {
+    .detailGalleryWrap {
         padding: 0;
     }
 
-    .themeDetailGalleryCover {
+    .detailGalleryCover {
         margin-top: 16px;
         /* Flex */
         display: flex;
@@ -27,19 +20,10 @@
         gap: 10px;
     }
 
-    .themeDetailGalleryCover img {
+    .detailGalleryCover img {
         width: calc((100% - 20px) / 3);
         aspect-ratio: 1/1;
         border-radius: 10px;
-    }
-
-    .themeDetailGalleryH1 {
-        padding: 60px 20px 20px;
-        padding-left: 0;
-        margin-bottom: 0;
-        /* Font */
-        font-size: 1.25rem;
-        font-weight: 600;
     }
 }
 

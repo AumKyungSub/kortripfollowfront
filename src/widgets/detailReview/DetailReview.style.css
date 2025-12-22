@@ -1,0 +1,49 @@
+.reviewCover {
+    padding: 16px;
+}
+
+.reviewPC,
+.reviewPCYet {
+    width: 100%;
+    display: block;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #4285F4;
+    cursor: pointer;
+    /* Font */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.reviewPCYet {
+    background-color: #525252;
+}
+
+
+/*---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) {
+    .reviewCover {
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .reviewPC,
+    .reviewPCYet {
+        margin-top: 16px;
+    }
+
+}
+
+@media only all and (min-width: 1024px) {
+
+}

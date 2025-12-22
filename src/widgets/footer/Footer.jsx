@@ -34,6 +34,11 @@ const Footer = () => {
       label: 'Insta',
       href: 'https://www.instagram.com/kayaum_photo/',
     },
+    {
+      key: 'youtube',
+      label: 'Youtube',
+      href: 'https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BC',
+    }
   ]
 
   return (

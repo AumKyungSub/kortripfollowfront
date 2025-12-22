@@ -10,21 +10,32 @@ const DetailVideo = ({video, isFullMobile}) => {
   const {t} = useTranslation();
 
   return (
-    <section className="detailVideo">
-      <h2 className={`${isFullMobile ? "detailVideoTitle":"explainNameF"}`}>{t("detailVideo.title")}</h2>
-      {!isFullMobile && <div className='emptyLine1px'></div>}
-      <div className="detailVideoFrameWrap">
-        <div className="detailVideoFrame">
-          <iframe
-            src={video.link}
-            title="YouTube video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            />
+    <>
+      <section className="detailVideo">
+        {!isFullMobile ?
+          <>
+            <h6 className='detailTitleMin768'>{t("detailVideo.title")}</h6>
+            <div className='emptyLine1px'></div>
+          </>
+        :
+          <>
+            <h6 className='detailTitleMax768'>{t("detailVideo.title")}</h6>
+          </>
+        }
+        <div className="detailVideoFrameWrap">
+          <div className="detailVideoFrame">
+            <iframe
+              src={video.link}
+              title="YouTube video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {isFullMobile && <div className='emptyLine'></div>}
+    </>
   )
 }
 

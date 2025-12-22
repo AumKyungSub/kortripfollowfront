@@ -1,17 +1,27 @@
-.locationInfoWholeCover {
+.locationInfoCover {
+    padding: 16px;
     white-space: pre-wrap
 }
 
-.locationInfoCover {
-    padding: 16px;
-}
-
-.locationInfoTitle{
+.locInfoTitle{
     margin-bottom: 20px;
     /* Font */
     font-size: 1.25rem;
     font-weight: 600;
 }
+
+    .infoTitle {
+        /* Flex */
+        display: flex;
+        align-items: center;
+    }
+
+    .infoTitle img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;  
+        margin-bottom: 20px;
+    }
 
 .operatingHour, 
 .closeDay,
@@ -23,47 +33,17 @@
     line-height: 32px;
 }
 
-.locationInfoLinkCover {
-    cursor: pointer;
-    /* Flex */
-    display: flex;
-    gap: 20px;
-}
-
-.locationInfoSpan {
-    width: 40px;
-    aspect-ratio: 1/1;
-}
-
-.locationInfoSpan img {
-    width: 100%;
-}
-
-.reviewCover {
-    padding: 16px;
-}
-
-.reviewPC,
-.reviewPCYet {
-    width: 100%;
-    display: block;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    background-color: #4285F4;
-    cursor: pointer;
+    .locInfoText {
+        margin-left: 25px;
     /* Font */
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 32px;
 
-.reviewPCYet {
-    background-color: #525252;
-}
+    }
 
 .warningInfo {
-    margin-top: 16px;
+    margin: 16px auto;
     /* Font */
     font-size: 1rem;
     font-weight: 900;
@@ -81,8 +61,7 @@
 
 @media only all and (min-width: 768px) {
     .locationInfoCover {
-        padding: 0;
-        white-space: pre-wrap;
+        padding: 16px 0 0 0;
     }
 
     .locationInfoTitle {
@@ -100,28 +79,25 @@
         border-radius: 10px;
     }
 
-    .operatingHourTitle, 
-    .closeDayTitle, 
-    .entranceFeeTitle,
-    .entranceFeeWeb {
+    .infoTitle {
         /* Flex */
         display: flex;
         align-items: center;
     }
 
     .locInfoTitle {
+        margin-bottom: 0;
         /* Font */
         font-size: 1.25rem;
         font-weight: 600;
     }
 
-    .operatingHourTitle img, 
-    .closeDayTitle img, 
-    .entranceFeeTitle img,
-    .entranceFeeWeb img {
+
+    .infoTitle img  {
         width: 20px;
         height: 20px;
         margin-right: 10px;  
+        margin-bottom: 0;
     }
 
     .locInfoText {
@@ -132,15 +108,6 @@
         font-size: 1rem;
         font-weight: 500;
         line-height: 30px;
-    }
-
-    .locationInfoLinkCover {
-        margin-top: 20px;
-    }
-
-    .reviewPC,
-    .reviewPCYet {
-        margin-top: 20px;
     }
 
     .warningInfo {
