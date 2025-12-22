@@ -20,7 +20,6 @@ import Parking from '@/pages/locationPage/components/parking/Parking'
 import LocInfo from '@/pages/locationPage/components/locationInfo/LocInfo'
 import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
-import Recommend from '@/pages/locationPage/components/recommend/Recommend'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
 import DetailVideo from '@/widgets/detailVideo/DetailVideo'
 
