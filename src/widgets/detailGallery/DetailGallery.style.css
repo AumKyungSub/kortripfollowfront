@@ -2,9 +2,41 @@
     padding: 16px;
 }
 
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.recoSwiper {
+  /* (237/343)*100 = 69.09620991253644 */
+  width: 69.09620991253644% !important;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+  .recoSwiper {
+    /* (240/767)*100 = 31.290743155149936 */
+    width: 31.290743155149936% !important;
+    aspect-ratio: 1 / 1;
+  }
+
+  .recoSwiper img {
+    width: 100%;
+  }
+
 }
 
 @media only all and (min-width: 768px) {
