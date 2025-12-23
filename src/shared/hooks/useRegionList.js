@@ -23,7 +23,7 @@ export const useRegionList = ({ data = [], lang = "ko" }) => {
             en: "Chungcheong" 
         },
         GSBUSANDAEGUULSAN: {
-            ko: "경상/부산/대구/울산",
+            ko: "경상/부산",
             en: "Gyeongsang/Busan",
         },
         JRGWANGJU: { 

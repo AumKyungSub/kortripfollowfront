@@ -69,10 +69,6 @@
         align-items: center;
     }
 
-    .categoryLi:nth-last-of-type(3) {
-        align-items: start;
-    }
-
     .categoryLi:last-of-type {
         margin-right: 0;
     }
@@ -90,10 +86,6 @@
     .categoryCover {
         max-width: 1440px;
         margin: 0 auto;
-    }
-
-    .categoryLi:nth-last-of-type(3) {
-        align-items: center;
     }
 
     .categoryLi.active::after {
