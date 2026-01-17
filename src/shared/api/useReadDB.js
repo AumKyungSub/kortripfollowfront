@@ -41,6 +41,11 @@ export const useReadDB = () => {
                 fetch(urls.foods),
             ]);
 
+      // 하나라도 실패하면 throw
+      responses.forEach((res) => {
+        if (!res.ok) throw new Error("API Error");
+      });
+
             const [
                 rankings,
                 seasons,

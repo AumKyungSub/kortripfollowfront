@@ -5,7 +5,9 @@ import './Loading.style.css'
 
 const Loading = () => {
   return (
-    <div className="loader"></div>
+    <div className="loaderWrap">
+      <div className="loader"></div>
+    </div>
   )
 }
 

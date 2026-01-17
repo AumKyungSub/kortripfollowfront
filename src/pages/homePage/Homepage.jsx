@@ -11,6 +11,7 @@ import { useReadDB } from '@/shared/api/useReadDB';
 
 //Function Component
 import Loading from '@/features/loading/Loading'
+import FailedData from '@/features/failedData/FailedData';
 
 // Components
 import Header from '@/widgets/header/Header'
@@ -39,10 +40,10 @@ const Homepage = () => {
   const lang = i18n.language;
   
   // Read DB
-  const { data, loading, error } = useReadDB();
+  const { data, loading, error, refetch } = useReadDB();
   const { rankings } = data;
   if (loading) return <Loading />;
-  if (error) return <div>{error}</div>;
+  if (error) return <FailedData onRetry={refetch} />;
 
   return (
     <div>
