@@ -11,6 +11,7 @@ import { useThemeList } from '@/shared/hooks/useThemeList'
 
 // Function Component
 import Loading from '@/features/loading/Loading'
+import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
@@ -51,6 +52,11 @@ const ThemeDetail = () => {
     if (error) return <div>{error}</div>
     // 데이터 없을때 화면
     if (!data || data.length === 0) return <div>{t("common.noData")}</div>;
+    
+    // 4. Draft / 비공개 데이터 차단
+    if (data.visibility === false) {
+      return <FailedData />;
+    }
 
 
 

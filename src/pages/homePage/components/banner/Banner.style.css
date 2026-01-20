@@ -216,7 +216,8 @@
     /* Positiong */
     position: absolute;
     left: 30px;
-    top: 50px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
   }
 
@@ -265,5 +266,18 @@
   .thumbItem {
     width: 100px;
     aspect-ratio: 16/10;
+  }
+}
+
+@media only all and (min-width: 1440px) {
+  .bannerWrapper {
+    aspect-ratio: 16/6;
+    height: auto;
+  }
+  
+  /* 메인 배너 */
+  .mainBannerArea {
+    aspect-ratio: 16/6;
+    height: auto;
   }
 }

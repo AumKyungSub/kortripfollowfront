@@ -120,12 +120,19 @@ const ListPage = ({mode}) => {
         LODGING: lodgings,
         FOOD: foods,
       };
-      return themeDataMap[selected] || [];
+      return (themeDataMap[selected] || [])
+        .filter(item => item.visibility === true);
     }
 
-    return selected === "ALL"
-      ? [...rankings].sort(() => Math.random() - 0.5)
-      : filterByRegion(selected).sort(() => Math.random() - 0.5);
+    const regionFiltered =
+      selected === "ALL"
+        ? rankings
+        : filterByRegion(selected);
+
+    return regionFiltered
+      .filter(item => item.visibility === true)
+      .sort(() => Math.random() - 0.5);
+
   }, [
     isThemeMode,
     selected,
