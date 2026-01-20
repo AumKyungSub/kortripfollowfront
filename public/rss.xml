@@ -12,6 +12,15 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>호미곶 해맞이광장</title>
+      <link>https://kortripfollow.shop/location/17</link>
+      <description>한반도에서 태양이 가장 먼저 떠오르는 곳, 호미곶 해맞이광장</description>
+      <guid>https://kortripfollow.shop/location/17</guid>
+      <pubDate>Tues, 20 Jan 2026 18:10:00 +0900</pubDate>
+    </item>
+
+
+    <item>
       <title>강릉</title>
       <link>https://kortripfollow.shop/location/16</link>
       <description>어린 나이에 왕위에 오른 비운의 군주가 잠든 왕릉, 강릉</description>
@@ -80,14 +89,6 @@
       <link>https://kortripfollow.shop/location/8</link>
       <description>천연기념물 제537호로 지정된 한탄강 협곡 속의 신비한 폭포</description>
       <guid>https://kortripfollow.shop/location/8</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>아침고요수목원</title>
-      <link>https://kortripfollow.shop/location/7</link>
-      <description>경기도 가평의 대표 정원 — 자연의 고요함이 머무는 곳</description>
-      <guid>https://kortripfollow.shop/location/7</guid>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
