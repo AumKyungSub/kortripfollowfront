@@ -54,7 +54,7 @@ const Homepage = () => {
       <TopPlaces rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       {!isFullMobile && <HomeRegion rankingData={rankings} lang={lang}/>}
       {!isFullMobile && <HomeSeason rankingData={rankings}/>}
-      {!isFullMobile && <HomeTheme />}
+      <HomeTheme isFullMobile={isFullMobile}/>
       <Footer/>
     </div>
   )

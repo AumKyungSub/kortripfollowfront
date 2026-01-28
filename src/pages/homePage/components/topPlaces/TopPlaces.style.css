@@ -1,17 +1,6 @@
 .topPlaces {
   padding: 20px 16px 10px;
 }
-.topPlaces h3 {
-  width: 100%;
-  text-align: center;
-  /* Font */
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.topPlaceH3 {
-  white-space: pre-wrap;
-}
 
 .topPlaces .cards {
   /* Flex */
@@ -134,10 +123,6 @@
     padding: 80px 16px 80px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .topPlaces h3 {
-    text-align: left;
   }
 
   .cardsTitle768 {
