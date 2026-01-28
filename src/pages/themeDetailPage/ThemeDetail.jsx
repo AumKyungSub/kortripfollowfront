@@ -23,6 +23,7 @@ import ThemeDetailMap from '@/pages/themeDetailPage/components/themeDetailMap/Th
 import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
+import DetailVideo from '@/widgets/detailVideo/DetailVideo'
 import Footer from '@/widgets/footer/Footer'
 
 // Page css
@@ -79,6 +80,7 @@ const ThemeDetail = () => {
                         <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang} />
                         <DetailLink data={data} isFullMobile={isFullMobile} />
                         <DetailReview data={data} isFullMobile={isFullMobile} />
+                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
                     </div>
                 </div>
             : 
@@ -94,6 +96,7 @@ const ThemeDetail = () => {
                         }
                         <DetailLink data={data} isFullMobile={isFullMobile}/>
                         <DetailReview data={data} isFullMobile={isFullMobile}/>
+                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
                         <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                 </div>
