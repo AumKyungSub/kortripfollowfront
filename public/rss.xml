@@ -12,6 +12,23 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>대릉원</title>
+      <link>https://kortripfollow.shop/location/19</link>
+      <description>고분 사이, 그림 같은 풍경, 대릉원</description>
+      <guid>https://kortripfollow.shop/location/19</guid>
+      <pubDate>Sun, 1 Feb 2026 22:00:00 +0900</pubDate>
+    </item>
+
+
+    <item>
+      <title>월정교</title>
+      <link>https://kortripfollow.shop/location/18</link>
+      <description>문천 위에 놓인 통일신라의 품격, 월정교</description>
+      <guid>https://kortripfollow.shop/location/18</guid>
+      <pubDate>Sun, 1 Feb 2026 22:00:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>호미곶 해맞이광장</title>
       <link>https://kortripfollow.shop/location/17</link>
       <description>한반도에서 태양이 가장 먼저 떠오르는 곳, 호미곶 해맞이광장</description>
@@ -74,22 +91,6 @@
       <description>거제시 남부면 도장포 마을 북쪽 — 바람이 스치는 언덕 끝에 서면</description>
       <guid>https://kortripfollow.shop/location/10</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>부석사</title>
-      <link>https://kortripfollow.shop/location/9</link>
-      <description>충청남도 문화재자료 제195호로 지정된 부석사 — "떠 있는 바위의 전설을 간직한 고찰</description>
-      <guid>https://kortripfollow.shop/location/9</guid>
-      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>비둘기낭폭포</title>
-      <link>https://kortripfollow.shop/location/8</link>
-      <description>천연기념물 제537호로 지정된 한탄강 협곡 속의 신비한 폭포</description>
-      <guid>https://kortripfollow.shop/location/8</guid>
-      <pubDate>Wed, 05 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
 
