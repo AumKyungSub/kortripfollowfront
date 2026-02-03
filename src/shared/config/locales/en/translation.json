@@ -1,7 +1,13 @@
 {
+    "language":{
+        "shortWord": "Eng"
+    },
     "homepage": {
+        "button":{
+            "learnMore":"Learn More"
+        },
         "topPlaces": {
-            "title": "Top 5 \n Travel Destinations"
+            "title": "Top 5"
         },
         "seasons": {
             "region": "By Region",

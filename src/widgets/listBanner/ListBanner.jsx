@@ -1,13 +1,18 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next';
+
+//Page Css
 import './ListBanner.style.css'
 
-const ListBanner = ({type = "theme", images = [], themeRange = { min: 1, max: 2 }}) => {
+const ListBanner = ({type = "theme", images = []}) => {
+
+  const {t} = useTranslation();
 
   // theme 배너 랜덤 이미지 선택
   const getRandomThemeImage = () => {
-    const rand = Math.floor(Math.random() * (themeRange.max - themeRange.min + 1)) + themeRange.min;
-    return `/images/theme/themeBanner${rand}.jpg`;
+
+    return `/images/theme/themeBanner1${t("language.shortWord")}.jpg`;
   };
 
   // region 배너 랜덤 이미지 선택

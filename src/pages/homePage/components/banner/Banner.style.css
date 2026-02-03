@@ -1,3 +1,4 @@
+  /* Mobile First 모바일 퍼스트 */
   .bannerWrapper {
     white-space: pre-wrap;
     width: 100%;
@@ -21,27 +22,41 @@
     content: "";
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.6), 50%, rgba(255, 255, 255, 0.1));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), 25%, rgba(255, 255, 255, 0.1));
     /* Position */
     position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
   }
+
   .bannerTextWrapper {
     width: calc(100% - 32px);
+    height: calc(100% - 30px);
     margin: 0 auto;
     /* Font */
     color: #fff;
+    text-align: center;
     /* Position */
     position: absolute;
-    left: 16px;
-    top: 25%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
     z-index: 10;
+  }
+  
+  .bannerLocation {
+    padding: 15px 0;
+    /* Font */
+    font-weight: 600;
+  }
+  .bannerTextLine {
+    border: 1px solid #fff;
+    margin: 0 0 20px 0;
   }
 
   .bannerTextH2 {
-    margin-bottom: 12px;
+    margin-bottom: 28px;
     /* Font */
     font-size: 28px;
     font-weight: 700;
@@ -50,23 +65,27 @@
     letter-spacing: 0.02em;
   }
 
-  .bannerTextH3 {
-    margin-bottom: 28px;
-    /* Font */
-    font-size: 20px;
-    font-weight: 400;
-    color: #fff;
-    line-height: 22px;
-    letter-spacing: 0.02em;
-  } 
-
   .bannerTextP1 {
-    margin-bottom: 10px;
     /* Font */
-    font-size: 16px;
+    font-size: 0.875rem;
     font-weight: 600;
     line-height: 20px;
     letter-spacing: 0.02em;
+  }
+
+  .learnMore {
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid #fafaf8;
+    background: rgba(255,255,255,0.3);
+    /* Font */
+    text-shadow: 2px 0 #1a1a1a;
+    /* Position */
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    transform: translateX(-50%);
+    z-index: 999;
   }
 
   .mainBannerImg {
@@ -128,27 +147,16 @@
 
 @media only all and (min-width: 480px) {
   .bannerWrapper {
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/11;
   }
 
     /* 메인 배너 */
   .mainBannerArea {
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/11;
   }
 
   .bannerTextWrapper {
     width: calc(100% - 40px);
-    /* Position */
-    left: 20px;
-  }
-  
-  .bannerTextP2 {
-    /* Font */
-    color: #F5F5F5;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 18px;
-    letter-spacing: 0.02em;
   }
 
   /* 썸네일 – 항상 최상단 */
@@ -163,6 +171,31 @@
 }
 
 @media only all and (min-width: 550px) and (max-width: 767px) {
+  .bannerWrapper {
+    aspect-ratio: 16/10;
+  }
+
+  .bannerTextH2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* Font */
+    font-size: 1.875rem;
+  }
+
+  .bannerTextP1 {
+    /* Font */
+    font-size: 1rem;
+  }
+
+  .learnMore {
+    /* Position */
+    bottom: 13%;
+  }
+
+    /* 메인 배너 */
+  .mainBannerArea {
+    aspect-ratio: 16/10;
+  }
   /* 썸네일 – 항상 최상단 */
   .thumbContainer {
     width: 100%;
@@ -181,22 +214,15 @@
   }
 }
 
-@media only all and (max-width: 579px) {
-  .bannerTextP2 {
-    display: none;
-  }
-}
-
-@media only all and (min-width: 580px) {
-  .bannerTextP2 {
-    display: inline-block;
-  }
-}
-
 @media only all and (min-width: 768px) {
   .bannerWrapper {
     height: 450px;
     max-width: 1440px;
+  }
+
+  .learnMore {
+    /* Position */
+    bottom: 28%;
   }
 
   /* 메인 배너 */
@@ -226,14 +252,6 @@
     font-size: 48px;
     line-height: 50px;
   }
-
-  .bannerTextH3 {
-    margin-bottom: 30px;
-    /* Font */
-    font-size: 40px;
-    font-weight: 400;
-    line-height: 42px;
-  } 
 
   .bannerTextP1 {
     margin-bottom: 10px;
@@ -268,7 +286,7 @@
   }
 }
 
-@media only all and (min-width: 1440px) {
+@media only all and (min-width: 1280px) {
   .bannerWrapper {
     aspect-ratio: 16/6;
     height: auto;
@@ -279,4 +297,21 @@
     aspect-ratio: 16/6;
     height: auto;
   }
+
+  .bannerTextH2 {
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+
+  .bannerTextP1 {
+    /* Font */
+    font-size: 1.25rem;
+    line-height: 30px;
+  }
+
+  .learnMore {
+    /* Position */
+    bottom: 30%;
+  }
+  
 }

@@ -33,8 +33,12 @@ const Parking = ({rankingData, isFullMobile, lang}) => {
         lng: lngP
       }
     ]
+
+const addressArr = rankingData?.location?.address?.[lang] || [];
+
+const separator = lang.startsWith('ko') ? ' ' : ', ';
     
-  const fullAddress = `${rankingData?.location?.address?.[lang]?.[0]}, ${rankingData?.location?.address?.[lang]?.[1]}`;
+  const fullAddress = addressArr.filter(Boolean).join(separator);
 
   return (
     <>

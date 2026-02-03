@@ -3,10 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 // (hook) Navigate
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 // Page css
 import "./Banner.style.css";
 
 const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
+
+  const {t} = useTranslation();
   
   const getImageSrc = (link) =>
   isFullMobile
@@ -22,6 +26,8 @@ const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
   const [items, setItems] = useState([]);
   const [transitioning, setTransitioning] = useState(false);
   const navigate = useNavigate();
+
+  const isKorean = lang.startsWith('ko');
 
   // ---------- 초기 데이터 세팅 ----------
   useEffect(() => {
@@ -114,7 +120,7 @@ const handleThumbSelect = async (idx) => {
   return (
     <div className="bannerWrapper">
       {/* 메인 배너 이미지 */}
-      <div ref={bannerRef} className="mainBannerArea" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
+      <div ref={bannerRef} className="mainBannerArea">
         {mainItem && (
           <img
             className="mainBannerImg fadeInMain"
@@ -125,7 +131,16 @@ const handleThumbSelect = async (idx) => {
       </div>
 
       {/* 텍스트 영역 */}
-      <div className="bannerTextWrapper" onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
+      <div className="bannerTextWrapper">
+        <h1 className='bannerLocation'>
+          {isKorean
+          ?
+            `${mainItem?.location?.address?.ko?.[0]} 명소`
+          :
+            `Attractions in ${mainItem?.location?.address?.en?.[1]}`
+          }
+        </h1>
+        <hr className='bannerTextLine' />
         <h2 className="bannerTextH2">
           {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
         </h2>
@@ -134,11 +149,9 @@ const handleThumbSelect = async (idx) => {
           {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
         </p>
 
-        {!isMobile && (
-          <p className="bannerTextP2">
-            {mainItem?.description?.last?.[lang] || mainItem?.description?.last?.ko}
-          </p>
-        )}
+        <span className='learnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
+          {t("homepage.button.learnMore")}
+        </span>
       </div>
 
       {/* 썸네일 그룹 */}

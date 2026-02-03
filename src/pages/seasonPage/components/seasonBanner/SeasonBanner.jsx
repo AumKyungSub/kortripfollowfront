@@ -17,10 +17,7 @@ const SeasonBanner = ({seasonCategory, lang}) => {
     <div className='seasonBannerWholeCover'>
         <div className='seasonBannerCover'>
             <div className="seasonBannerImg">
-              {isMobil?
-                <img src={seasonCategory?.img+"1.jpg"} alt={seasonCategory?.img+"1.jpg"} />
-                : <img src={seasonCategory?.img+"2.jpg"} alt={seasonCategory?.img+"2.jpg"} />
-              }
+                <img src={seasonCategory?.img+"2.jpg"} alt={seasonCategory?.img+"2.jpg"} />
             </div>
             <div className="seasonBannerText">
                 <h3 className="seasonBannerH3">{seasonCategory?.textTitle?.[lang]}</h3>
