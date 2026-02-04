@@ -12,6 +12,14 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>독수리바위</title>
+      <link>https://kortripfollow.shop/location/20</link>
+      <description>석양이 물드는 호미곶의 절경, 독수리바위</description>
+      <guid>https://kortripfollow.shop/location/20</guid>
+      <pubDate>Thur, 5 Feb 2026 22:00:47 +0900</pubDate>
+    </item>
+
+    <item>
       <title>대릉원</title>
       <link>https://kortripfollow.shop/location/19</link>
       <description>고분 사이, 그림 같은 풍경, 대릉원</description>
@@ -35,7 +43,6 @@
       <guid>https://kortripfollow.shop/location/17</guid>
       <pubDate>Tues, 20 Jan 2026 18:10:00 +0900</pubDate>
     </item>
-
 
     <item>
       <title>강릉</title>
@@ -84,15 +91,6 @@
       <guid>https://kortripfollow.shop/location/11</guid>
       <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
     </item>
-
-    <item>
-      <title>바람의 언덕</title>
-      <link>https://kortripfollow.shop/location/10</link>
-      <description>거제시 남부면 도장포 마을 북쪽 — 바람이 스치는 언덕 끝에 서면</description>
-      <guid>https://kortripfollow.shop/location/10</guid>
-      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
-    </item>
-
 
     <!-- 최신 카페 10개 (id 높은 순) -->
     <item>
