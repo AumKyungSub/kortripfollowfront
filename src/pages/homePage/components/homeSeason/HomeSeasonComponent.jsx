@@ -18,7 +18,7 @@ const HomeSeasonComponent = ({ img, seasons, seasonCode, rankingData = []}) => {
 
     return (
         <>
-            <div className="homeSeasonCover" onClick={goToSeason} style={{backgroundImage: `url(images/seasons/${img}1.jpg)`}}>
+            <div className="homeSeasonCover" onClick={goToSeason} style={{backgroundImage: `url(images/seasons/${img}2.jpg)`}}>
                 <div className="homeSeasonImgCover">
                 <img src={`/images/icon/${img}Icon.png`} alt={seasons} />
                 </div>
