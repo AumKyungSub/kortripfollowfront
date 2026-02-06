@@ -35,22 +35,26 @@ const About = () => {
     <>
       <Header/>
       {!isFullMobile && <EmptyHeader/>}
-      <div className='aboutCover'>
-        <div className="aboutTextCover">
-          <h1 className="aboutTitle">{t("about.title")}</h1>
-          <p className="aboutSlogan">
-            {t("about.slogan")}
-          </p>
+      <article className='aboutWrapper'>
+        <section className='aboutTopCover'>
           <p className="aboutDescription">
             {t("about.des")}
           </p>
-          <div className="aboutLinkImgCover">
-            <img src="/images/icon/instaIcon.png" alt="instagram" onClick={goToInstagram} />
-            <img src="/images/icon/blogIcon.png" alt="instagram" onClick={goToBlog} />
-            <img src="/images/icon/youtube.jpg" alt="instagram" onClick={goToYoutube} />
-          </div>
-        </div>
-      </div>
+        </section>
+        <section className='aboutFstMiddleCover'>
+            <img src="/images/logo/instaIcon.png" alt="Instagram" onClick={goToInstagram} />
+            <img src="/images/logo/naverBlogIcon.png" alt="Naver Blog" onClick={goToBlog} />
+            <img src="/images/logo/youtubeIcon.png" alt="Youtube" onClick={goToYoutube} />
+        </section>
+        <section className='aboutMiddleCover'>
+          <p>{t("common.logoName")}</p>
+          <h1 className="aboutMiddleTitle">{t("about.title")}</h1>
+          <p>{t("common.myName")}</p>
+        </section>
+        <section className='aboutBottomCover'>
+
+        </section>
+      </article>
     </>
   )
 }

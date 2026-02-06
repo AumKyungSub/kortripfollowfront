@@ -44,7 +44,9 @@
     "common": {
         "noData": "No data available.",
         "error": "Failed to load data.",
-        "starUnit": "stars"
+        "starUnit": "stars",
+        "logoName":"KORTRIP",
+        "myName":"@KAYAUM"
     },
     "menu": {
         "home": "Home",
@@ -163,9 +165,9 @@
         "email":"E-Mail"
     },
     "about":{
-        "title":"Steps from everyday life, hidden stories across South Korea",
+        "title":"Steps away,\nhidden stories of Korea",
         "slogan":"Even in the small nation of South Korea, endless new scenery awaits.\nJoin us in discovering the thrill of travel across Korea.",
-        "des":"I am a travel enthusiast and a one developer who introduces hidden places across Korea. \nI personally visit destinations, capturing real photographs and sharing detailed information through reviews whenever possible. \nPlaces I have yet to visit are illustrated for now, and will be replaced with real photos once I experience them myself. \nAlthough the updates may be slow, it will continue steadily.\nSoon, I also plan to creating a richer and more complete travel guide."
+        "des":"I am an independent developer who loves traveling and documenting hidden destinations across S. Korea.\nFor places I have personally visited, I share real photographs along with experience-based reviews, aiming to provide practical and trustworthy travel information rather than surface-level tips.\nUpdates may be slow, but it will made with care and consistency.\nWith each journey, this project continues to grow into a richer and more meaningful travel guide to S. Korea."
     },
     "bottom":{
         "all":{

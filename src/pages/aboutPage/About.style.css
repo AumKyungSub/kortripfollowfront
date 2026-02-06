@@ -1,78 +1,130 @@
-.aboutCover {
+.aboutWrapper {
   width: 100%;
   height: calc(100vh - 80px);
+  padding: 20px;
   overflow: hidden;
   /* Font */
   white-space: pre-wrap;
   color: #fff;
-  text-align: center;
+  /* flex */
+  display: flex;
+  flex-direction: column;
   /* Background */
   background-image: url('/images/about/aboutBannersM.jpg');
   background-repeat : no-repeat;
   background-size : cover;
-  /* Flex */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  /* Position R */
+  /* Position */
   position: relative;
 }
 
-.aboutCover::after {
+.aboutWrapper::after {
   content: "";
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.6), 60%, rgba(255,255,255,0.3));
-}
-
-.aboutTextCover {
-  width: 100%;
+  background-color: rgba(113, 113, 113, 0.5);
   /* Position */
   position: absolute;
-  top: 15%;
-  left: 50%;
-  z-index: 99;
-  transform: translate(-50%, -15%);
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 
-.aboutTitle {
-  margin-bottom: 20px;
+.aboutTopCover {
+  width: 90%;
+  height: 60%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
   /* Font */
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.aboutSlogan {
-  margin-bottom: 30px;
-  /* Font */
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.6;
+  text-align: center;
+  /* Position R */
+  position: relative;
+  z-index: 2;
 }
 
 .aboutDescription {
   /* Font */
-  font-size: 0.625rem;
-  font-weight: 400;
-  line-height: 1.8;
-  color: #f2f2f7;
+  font-size: 1rem;
+  line-height: 25px;
+  letter-spacing: 0.02em;
 }
 
-.aboutLinkImgCover {
-  margin-top: 15px;
+.aboutFstMiddleCover {
+  width: 90%;
+  height: 8%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: transparent;
+  overflow: hidden;
   /* Flex */
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 5px;
+  /* Position R */
+  position: relative;
+  z-index: 2;
+
+  
+}
+
+.aboutMiddleCover {
+  width: 90%;
+  height: 25%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 15px;
+  /* Position R */
+  position: relative;
+  z-index: 2;
 }
 
-.aboutLinkImgCover img {
-  width: 36px;
+.aboutMiddleTitle {
+  /* Font */
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
+.aboutMiddleCover p {
+  /* Font */
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.aboutBottomCover {
+  width: 130px;
+  height: 130px;
+  background-color: transparent;
+  border: 3px solid #fff;
+  border-radius: 999px;
+  overflow: hidden;
+  /* Background */
+  background-image: url('/images/about/aboutBannersMP.jpg');
+  background-repeat : no-repeat;
+  background-size : cover;
+  background-position: center center;
+  /* Position */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 3;
+
+}
 
 
 /* ---------------------------------------------------- */
@@ -81,52 +133,7 @@
 }
 
 @media only all and (min-width: 768px) {
-  .aboutCover {
-    text-align: left;
-    background-image: url('/images/about/aboutBannersP.jpg');
-  }
-
-  .aboutCover::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.6), 60%, rgba(255,255,255,0.3));
-  }
-
-  .aboutTitle {
-    font-size: 2.5rem;
-  }
-
-  .aboutSlogan {
-      font-size: 1.25rem;
-  }
-
-  .aboutDescription {
-      font-size: 1rem;
-  }
-
-  .aboutTextCover {
-    /* Position */
-    position: absolute;
-    top: 200px;
-    left: 50px;
-    z-index: 99;
-    transform: translate(0,0);
-  }
-
-  .aboutLinkImgCover {
-    /* Flex */
-    justify-content: start;
-  }
-
-  .aboutLinkImgCover img {
-    cursor: pointer;
-  }
 }
 
 @media only all and (min-width: 1024px) {
-  .aboutTextCover {
-    /* Position */
-    left: 175px;
-  }
 }
