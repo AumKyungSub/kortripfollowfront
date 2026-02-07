@@ -35,7 +35,7 @@ const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
 
     const data = [...rankingsData]
       .sort(() => Math.random() - 0.5)
-      .slice(0, 5); 
+      .slice(0, 6); 
 
     setItems(data);
   }, [rankingsData]);
@@ -46,7 +46,7 @@ const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
 
     autoplayRef.current = setInterval(() => {
       if (!transitioning) handleThumbSelect(0);
-    }, 4500);
+    }, 6000);
 
     return () => clearInterval(autoplayRef.current);
   }, [items, transitioning]);
@@ -54,30 +54,7 @@ const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
   const mainItem = items[0];
   const thumbs = items.slice(1, 5);
 
-  // ---------- 썸네일 클릭 처리 ----------
-const animateThumbToBanner = async (thumbEl, bannerEl) => {
-  const thumbRect = thumbEl.getBoundingClientRect();
-  const bannerRect = bannerEl.getBoundingClientRect();
-
-  const scaleX = bannerRect.width / thumbRect.width;
-  const scaleY = bannerRect.height / thumbRect.height;
-
-  thumbEl.style.position = "fixed";
-  thumbEl.style.left = `${thumbRect.left}px`;
-  thumbEl.style.top = `${thumbRect.top}px`;
-  thumbEl.style.width = `${thumbRect.width}px`;
-  thumbEl.style.height = `${thumbRect.height}px`;
-  thumbEl.style.zIndex = 100;
-  thumbEl.classList.add("thumbFly");
-
-  await delay(80);
-
-  thumbEl.style.transform = `
-    translate(${bannerRect.left - thumbRect.left}px, ${bannerRect.top - thumbRect.top}px)
-    scale(${scaleX * 1.03}, ${scaleY * 1.03})
-  `;
-  thumbEl.style.opacity = "0";
-};
+  // ------------유틸---------------
 
 const rotateItems = (selectedIndex) => {
   setItems((prev) =>
@@ -85,32 +62,18 @@ const rotateItems = (selectedIndex) => {
   );
 };
 
-const cleanupThumb = (thumbEl) => {
-  thumbEl.classList.remove("thumbFly");
-  thumbEl.style = "";
-};
-
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
+// ---------- 썸네일 클릭 ---------- 
 const handleThumbSelect = async (idx) => {
   if (transitioning || !thumbs[idx]) return;
-
-  const thumbEl = thumbRefs.current[idx];
-  const bannerEl = bannerRef.current;
-  if (!thumbEl || !bannerEl) return;
 
   setTransitioning(true);
 
   const selectedIndex = idx + 1;
-
-  await animateThumbToBanner(thumbEl, bannerEl);
-
-  setTimeout(() => rotateItems(selectedIndex), 450);
+  rotateItems(selectedIndex);
 
   setTimeout(() => {
-    cleanupThumb(thumbEl);
     setTransitioning(false);
-  }, 900);
+  }, 100);
 };
 
   const goToLocationDetail = () => {

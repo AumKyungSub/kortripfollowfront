@@ -72,8 +72,13 @@
         padding: 60px 16px 30px;
     }
 
+    .seasons .cards {
+        /* Flex */
+        gap: 50px;
+    }
+
     .seasons .card {
-        aspect-ratio: 16/7;
+    width: calc((100% - 50px) / 3);
     }
 }
 

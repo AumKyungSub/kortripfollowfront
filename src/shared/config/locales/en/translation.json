@@ -10,9 +10,9 @@
             "title": "Top 5"
         },
         "seasons": {
-            "region": "By Region",
-            "season": "By Season",
-            "theme": "By Theme"
+            "region": "Region",
+            "season": "Season",
+            "theme": "Theme"
         },
         "homeRegion": {
             "title": "Travel destinations by region",
