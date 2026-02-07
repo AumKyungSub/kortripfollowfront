@@ -53,7 +53,10 @@
         "region": "지역별",
         "season": "계절별",
         "theme": "테마별",
-        "about": "사이트 소개"
+        "about": "소개",
+        "blog": "블로그",
+        "insta": "인스타",
+        "youtube": "유튜브"
     },
     "regionPage": {
         "titleSuffix":"여행지",

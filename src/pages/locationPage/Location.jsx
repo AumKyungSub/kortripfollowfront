@@ -14,6 +14,7 @@ import FailedData from '@/features/failedData/FailedData'
 // Components
 import Header from '@/widgets/header/Header'
 import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
 import MainImage from '@/pages/locationPage/components/mainImage/MainImage'
 import Explain from '@/pages/locationPage/components/explain/Explain'
@@ -78,6 +79,7 @@ const Location = () => {
                     <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
             }
+            {isFullMobile && <EmptyFooter/>}
             <Footer/>
         </div>
     )

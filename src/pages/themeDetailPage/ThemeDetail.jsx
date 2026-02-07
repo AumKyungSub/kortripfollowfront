@@ -24,6 +24,7 @@ import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
 import DetailVideo from '@/widgets/detailVideo/DetailVideo'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
 
 // Page css
@@ -101,6 +102,7 @@ const ThemeDetail = () => {
                     </div>
                 </div>
             }
+            {isFullMobile && <EmptyFooter/>}
             <Footer/>
         </>
     )

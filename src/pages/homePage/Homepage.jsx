@@ -22,6 +22,7 @@ import Seasons from '@/pages/homePage/components/seasons/Seasons'
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
 import HomeSeason from '@/pages/homePage/components/homeSeason/HomeSeason'
 import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer'
 
 //Page Css
@@ -55,6 +56,7 @@ const Homepage = () => {
       {!isFullMobile && <HomeRegion rankingData={rankings} lang={lang}/>}
       {!isFullMobile && <HomeSeason rankingData={rankings}/>}
       <HomeTheme isFullMobile={isFullMobile}/>
+      {isFullMobile && <EmptyFooter/>}
       <Footer/>
     </div>
   )

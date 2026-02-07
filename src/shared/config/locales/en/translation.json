@@ -53,7 +53,10 @@
         "region": "By Region",
         "season": "By Season",
         "theme": "By Theme",
-        "about": "About Site"
+        "about": "About",
+        "blog": "Blog",
+        "insta": "Insta",
+        "youtube": "Youtube"
     },
     "regionPage": {
         "titleSuffix":"Travel Destinations",

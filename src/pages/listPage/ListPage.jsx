@@ -22,6 +22,7 @@ import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
 import List from '@/widgets/list/List';
 import Bottom from '@/widgets/bottom/Bottom';
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
 
 import './ListPage.style.css'
@@ -203,7 +204,7 @@ const ListPage = ({mode}) => {
       <Bottom
         type = {bottomType}
       />
-
+      {isFullMobile && <EmptyFooter/>}
       <Footer />
     </>
   )
