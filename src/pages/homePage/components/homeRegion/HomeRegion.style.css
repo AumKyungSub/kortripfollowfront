@@ -68,7 +68,8 @@
     .homeRegionList {
         border: solid 1px;
         width: calc((100% - 48px) / 4);
-        aspect-ratio: 20/21;
+        /* aspect-ratio: 20/21; */
+        aspect-ratio: 19/16;
         border-radius: 10px;
         overflow: hidden;
         cursor: pointer;
