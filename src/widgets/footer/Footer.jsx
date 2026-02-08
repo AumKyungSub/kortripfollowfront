@@ -47,7 +47,7 @@ const Footer = () => {
       key: 'youtube',
       label: t('menu.youtube'),
       image: 'youtubeIcon',
-      href: 'https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BC',
+      href: 'https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BCKortrip',
     },
     {
       key: 'about',
