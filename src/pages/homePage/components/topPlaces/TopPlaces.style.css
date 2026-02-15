@@ -3,46 +3,54 @@
 }
 
 .topPlaces .cards {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* Hide Scroll Bar */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  margin-top: 20px;
   /* Flex */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.topPlaces .card:nth-of-type(2) {
-  width: 100%;
-  height: 50.6667vw;
+  flex-direction: row;
+  gap: 15px;
 }
 
 .topPlaces .card {
-  /* (162/343)*100 = 47.23032069970846 */
-  /* (167/343)*100 = 48.68804664723032 */
-  width: 48.68804664723032%;
-  /* width: 47.23032069970846%; */
-  margin-top: 10px;
-  background: #fff;
-  border-radius: 15px;
+  width: 240px;
+  height: 225px;
   overflow: hidden;
-  /* Position */
-  position: relative;
+  border-radius: 10px;
+  /* flex */
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.topPlaces .card:nth-of-type(2) img {
-  height: 110%;
-}
-
-.topPlaces .card img {
+.cardImgCover {
   width: 100%;
-  height: auto;
+  height: 180px;
+  border-radius: 10px;
+  /* Background Image */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
-.topPlaces .card span {
-  width: 45px;
-  height: 45px;
-  margin: 10px 10px 0;
-  background-color: rgba(238, 238, 238, 0.7);
-  border-radius: 100%;
+.cardTextCover {
+  padding-left: 5px;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 5px;
+}
+
+.topRanking {
   /* Font */
   color: #515151;
   font-size: 0.625rem;
@@ -51,30 +59,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Position */
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 
-.topPlaces .card p {
+.topName {
   width: 100%;
-  margin-bottom: 10px;
-  text-align: center;
-  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  text-align: left;
   /* Font */
-  color: #fff;
+  color: #1a1a1a;
   font-size: 1.125rem;
   font-weight: bold;
-  /* Flex */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Position */
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 0%);
 }
 
 
@@ -84,38 +77,6 @@
 }
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
-  .topPlaces {
-    max-width: 550px;
-    padding: 10px 16px 30px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .topPlaces .card:nth-of-type(2) img {
-    height: auto;
-  }
-
-  .topPlaces .card:nth-of-type(2) {
-    /* (323/518)*100 = 62.35521235521235 */
-    width: 62.35521235521235%;
-    height: auto;
-    max-height: 179px;
-    /* height: 190px; */
-  }
-
-  .topPlaces .card:nth-of-type(3) {
-    /* (179/518)*100 = 34.55598455598455 */
-    width: 34.55598455598455%;
-    height: 100%;
-  }
-
-  .topPlaces .card:nth-of-type(4),
-  .topPlaces .card:nth-of-type(5),
-  .topPlaces .card:nth-of-type(6) {
-    /* (162/518)*100 = 31.27413127413127 */
-    width: 31.27413127413127%;
-    height: 100%;
-  }
 }
 
 @media only all and (min-width: 768px) {
@@ -132,6 +93,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .topPlaces .cards {
+    overflow: visible;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: auto;
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+    /* Flex */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5px;
   }
   
   .mainCard {
@@ -179,11 +154,20 @@
 
   .mainCard .card {
     width: calc((100% - 60px)/5);
+    height: auto;
     aspect-ratio: 16/5;
     margin-top: 14px;
     opacity: 0.5;
     cursor: pointer;
     transition: transform 0.2s, border 0.2s;
+    overflow: hidden;
+    /* Position */
+    position: relative;
+  }
+
+  .mainCard .card img {
+    width: 100%;
+    height: auto;
   }
 
   .mainCard .card:not(.card.selected):hover {
@@ -212,6 +196,23 @@
   }
 
   .mainCard .card p {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  /* Font */
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: bold;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Position */
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0%);
     /* Font */
     font-size: 1rem;
     font-weight: 500;

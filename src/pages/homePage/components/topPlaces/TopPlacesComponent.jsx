@@ -10,6 +10,7 @@ const TopPlacesComponent = ({
   onSelect,
   lang
 }) => {
+
   const navigate = useNavigate();
 
   const goToLocationDetail = () => {
@@ -19,28 +20,22 @@ const TopPlacesComponent = ({
     navigate(`/location/${selectedAll?.id}`);
   };
 
+  const addressText = lang === "ko"
+    ? selectedAll?.location?.address?.ko?.[0]
+    : selectedAll?.location?.address?.en?.[1];
+  
+  const bgcImg = selectedAll?.img?.link + "0M.jpg";
+
   return (
     <>
       {isFullMobile ? (
         <div className="card" onClick={goToLocationDetail}>
-          <img
-            src={
-              isMobile
-                ? selectedAll?.top === 1
-                  ? selectedAll?.img?.link + "0M.jpg"
-                  : selectedAll?.img?.link + "1.jpg"
-                : isFullMobile
-                ? selectedAll?.top === 1
-                  ? selectedAll?.img?.link + "0Z.jpg"
-                  : selectedAll?.img?.link + "1.jpg"
-                : selectedAll?.top === 1
-                ? selectedAll?.img?.link + "0T.jpg"
-                : selectedAll?.img?.link + "1.jpg"
-            }
-            alt={selectedAll?.location?.name?.[lang]}
-          />
-          <span className="topRanking">TOP {selectedAll?.top}</span>
-          <p>{selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}</p>
+          <div className="cardImgCover" style={{ backgroundImage: `url(${bgcImg})` }}>
+          </div>
+          <div className="cardTextCover">
+            <span className='topName'>{selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}</span>
+            <span className="topRanking">{addressText || ""}</span>
+          </div>
         </div>
       ) : (
         <div className="mainCard">

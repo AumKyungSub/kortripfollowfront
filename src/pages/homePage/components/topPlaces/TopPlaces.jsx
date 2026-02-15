@@ -30,13 +30,9 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
 
     return (
         <section className="topPlaces">
-            {isFullMobile && <h3 className='homePageCateTitle'>{t("homepage.topPlaces.title")}</h3>}
+            <h3 className='homePageCateTitle'>{t("homepage.topPlaces.title")}</h3>
 
             <div className="cards">
-                <div className="cardsTitle768">
-                    {!isFullMobile && <h3 className='homePageCateTitle'>{t("homepage.topPlaces.title")}</h3>}
-                </div>
-
                 {isFullMobile ? (
                     rankingList.map((menu) => (
                         <TopPlacesComponent
