@@ -67,18 +67,11 @@
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
     .seasons {
-        max-width: 550px;
-        margin: 0 auto;
-        padding: 60px 16px 30px;
-    }
-
-    .seasons .cards {
-        /* Flex */
-        gap: 50px;
+        padding: 70px 16px 20px;
     }
 
     .seasons .card {
-    width: calc((100% - 50px) / 3);
+        aspect-ratio: 16/9;
     }
 }
 
