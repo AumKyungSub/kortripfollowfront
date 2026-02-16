@@ -28,7 +28,7 @@ const About = () => {
   }
 
   const goToYoutube = () => {
-        window.open("https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BC", "_blank", "noopener,noreferrer");
+        window.open("https://www.youtube.com/@%EA%B5%AD%ED%8A%B8%EB%94%B0%EB%9D%BCKortrip", "_blank", "noopener,noreferrer");
   }
 
   return (
