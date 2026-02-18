@@ -4,7 +4,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Components
-import HomeCategoryComponent from './homeCategoryComponent'
+import HomeCategoryComponent from './HomeCategoryComponent'
 
 // Page css
 import './HomeCategory.style.css'
