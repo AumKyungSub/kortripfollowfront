@@ -79,21 +79,16 @@ const handleThumbSelect = async (idx) => {
     if (mainItem?.id) navigate(`/location/${mainItem.id}`);
   };
 
+  const backgroundImage = mainItem
+  ? `url(${getImageSrc(mainItem.img.link)})`
+  : "none";
   /* ========================================================= */
 
   return (
-    <div className="homeBannerWrapper">
+    <div className="homeBannerBackground" style={{ backgroundImage }}>
       {/* 메인 배너 이미지 */}
-      <div ref={bannerRef} className="homeMainBannerCover">
-        {mainItem && (
-          <img
-            className="mainBannerImg"
-            src={getImageSrc(mainItem.img.link)}
-            alt={mainItem.location?.name?.[lang]}
-          />
-        )}
-      </div>
 
+    <div className="homeBannerWrapper">
       {/* 텍스트 영역 */}
       <div className="homeBannerTextCover">
         <p className='homeBannerLocation'>
@@ -134,6 +129,7 @@ const handleThumbSelect = async (idx) => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
