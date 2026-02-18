@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';    
 
-const homeCategoryComponent = (props) => {
+const HomeCategoryComponent = (props) => {
   const navigate = useNavigate();
 
   const goToNext = () => {
@@ -18,4 +18,4 @@ const homeCategoryComponent = (props) => {
   )
 }
 
-export default homeCategoryComponent
+export default HomeCategoryComponent
