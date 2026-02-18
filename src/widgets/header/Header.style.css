@@ -36,6 +36,7 @@ header .logo img {
   display: flex;
   justify-content: end;
   align-items: center;
+  gap: 10px;
 }
 
 .search img {
@@ -44,34 +45,18 @@ header .logo img {
   margin-left: 5px;
 }
 
-.langButtons button {
+.search button {
   border: none;
   background: transparent;
-  margin-left: 12px;
   /* Font */
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.langMobile {
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.langButtons button {
-  border: none;
-  background: transparent;
-  margin-left: 10px;
   font-size: 1rem;
   font-weight: 500;
   color: #111;
   cursor: pointer;
 }
 
-.langButtons button.active {
+.search button.active {
   font-weight: 700;
   color: #111111;
 }
@@ -102,7 +87,7 @@ header .logo img {
     /* Flex */
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
   }
   
   .gnbPc ul {
@@ -133,3 +118,10 @@ header .logo img {
     max-width: 1440px;
   }
 }
+
+@media only all and (min-width: 1921px) {
+  .headerCover {
+    max-width: 1920px;
+  }
+}
+

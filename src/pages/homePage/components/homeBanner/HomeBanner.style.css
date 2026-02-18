@@ -285,3 +285,12 @@
   }
   
 }
+
+@media only all and (min-width: 1921px) {
+  .homeBannerWrapper {
+    max-width: 1920px;
+  }
+  .homeBannerTextCover {
+    max-width: 1920px;
+  }
+}

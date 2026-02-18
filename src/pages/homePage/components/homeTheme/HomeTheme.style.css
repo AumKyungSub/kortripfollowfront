@@ -88,3 +88,9 @@
         max-width: 1440px;
     }
 }
+
+@media only all and (min-width: 1921px) {
+    .homeThemeWrapper {
+        max-width: 1920px;
+    }
+}

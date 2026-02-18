@@ -11,3 +11,9 @@
 
 @media only all and (min-width: 1024px) {
 }
+
+@media only all and (min-width: 1921px) {
+  .headerCover {
+    max-width: 1920px;
+  }
+}

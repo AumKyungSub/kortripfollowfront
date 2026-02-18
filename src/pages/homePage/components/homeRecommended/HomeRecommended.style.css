@@ -270,3 +270,9 @@
     }
 
 }
+
+@media only all and (min-width: 1921px) {
+  .homeRecommendedWrapper {
+    max-width: 1920px;
+  }
+}

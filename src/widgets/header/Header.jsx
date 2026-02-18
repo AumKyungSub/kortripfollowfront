@@ -71,24 +71,21 @@ const Header = () => {
             </ul>
           </nav>
         }
-          <div className='search'>
-            {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
-            {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
-            
-            {/* 모바일: 토글 방식 */}
-            <div className="langButtons">
-              <button
-                className={lang === "ko" ? "active" : ""} 
-                onClick={() => changeLanguage("ko")}>
-                한국어
-              </button>
-              <button
-                className={lang === "en" ? "active" : ""} 
-                onClick={() => changeLanguage("en")}>
-                ENGLISH
-              </button>
-            </div>
-          </div>
+        <div className='search'>
+          {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
+          {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
+          
+          <button
+            className={lang === "ko" ? "active" : ""} 
+            onClick={() => changeLanguage("ko")}>
+            한국어
+          </button>
+          <button
+            className={lang === "en" ? "active" : ""} 
+            onClick={() => changeLanguage("en")}>
+            ENGLISH
+          </button>
+        </div>
       </div>
     </header>
   )

@@ -119,3 +119,9 @@
         width: 50px;
     }
 }
+
+@media only all and (min-width: 1921px) {
+    .homeSeasonWrapper {
+        max-width: 1920px;
+    }
+}

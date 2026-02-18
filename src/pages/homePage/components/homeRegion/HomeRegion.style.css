@@ -180,3 +180,9 @@
         left: 20px;
     }
 }
+
+@media only all and (min-width: 1921px) {
+    .homeRegionWrapper {
+        max-width: 1920px;
+    }
+}

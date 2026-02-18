@@ -83,13 +83,13 @@ const Footer = () => {
             </div>
             {!isFullMobile && 
               <div className='footerTextCover'>
-                <p className='warnings'>
+                <p className='warnings subFont'>
                   {t("footer.warning")}
                 </p>
                 <p className='footerEmail'>
                   {t("footer.email")}: qnzldmad91@gmail.com
                 </p>
-                <p className='footerCopyRight'>
+                <p className='footerCopyRight subFont'>
                   COPYRIGHT&copy; 2025 By Aum Kyung Sub.<br/> All RIGHT's RESERVED
                 </p>
               </div>
