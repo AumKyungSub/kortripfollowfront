@@ -1,9 +1,10 @@
-.homeRegionWholeCover {
-    padding: 20px 16px 10px;
+.homeRegionWrapper {
+    padding: 10px 16px;
     overflow: hidden;
 }
 
 .homeRegionCover {
+    margin-top: 16px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -12,7 +13,6 @@
     /* Hide Scroll Bar */
     scrollbar-width: none; 
     -ms-overflow-style: none; 
-    margin-top: 20px;
     /* Flex */
     display: flex;
     flex-direction: row;
@@ -25,16 +25,11 @@
     aspect-ratio: 1/1;
     overflow: hidden;
     border-radius: 50%;
+    /* Background */
+    background-size: cover;
+    background-position: center center;
 }
 
-.homeRegionList img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center center;
-    
-}
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
@@ -45,8 +40,8 @@
         background-color: #f2f2f7;
     }
 
-    .homeRegionWholeCover {
-        padding: 80px 16px 80px;
+    .homeRegionWrapper {
+        padding: 24px 16px;
         margin-left: auto;
         margin-right: auto;
         /* Flex */
@@ -55,7 +50,6 @@
     }
 
     .homeRegionCover {
-        margin-top: 0;
         /* Flex */
         display: flex;
         flex-wrap: wrap;
@@ -66,10 +60,8 @@
     }
 
     .homeRegionList {
-        border: solid 1px;
         width: calc((100% - 48px) / 4);
-        /* aspect-ratio: 20/21; */
-        aspect-ratio: 19/16;
+        aspect-ratio: 1/1;
         border-radius: 10px;
         overflow: hidden;
         cursor: pointer;
@@ -96,57 +88,7 @@
         border-radius: 0;
     }
 
-    .homeRegionList img {
-        width: 100%;
-        height: 100%;
-        transition: all 0.5s linear;
-        z-index: 9;
-    }
-
-    .homeRegionListHeader {
-        width: calc(100% - 30px);
-        /* Font */
-        color: #fff;
-        font-size: 0.75rem;
-        font-weight: 400;
-        /* Flex */
-        display: flex;
-        justify-content: space-between;
-        /* Position */
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        z-index: 99;
-    }
-
-    .listHeaderFstSpan {
-        max-width: 70%;
-        padding: 10px 15px;
-        border-radius: 9999px;
-        background-color: rgba(255, 255, 255, 0.2);
-        /* Cut Text */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        /* Flex */
-        display: flex;
-        align-items: center;
-    }
-
-    .listHeaderSndSpan {
-        font-weight: 600;
-        /* Flex */
-        display: flex;
-        justify-content: start;
-        align-items: center;
-    }
-
-    .listHeaderFstSpan img {
-        width: 14px;
-        margin-right: 2px;
-    }
-
-    .regionExampleList {
+    .homeRegionExampleList {
         width: calc(100% - 15px);
         /* Flex */
         display: flex;
@@ -159,37 +101,32 @@
         z-index: 99;
     }
 
-    .regionExampleList .regionArea {
+    .homeRegionCount {
         /* Font */
         color: #fff;
-        font-size: 1rem;
-        font-weight: 500;
+        font-weight: 700;
     }
 
-    .regionExampleList .regionLooking {
-        opacity: 0.8;
+    .homeRegionLearnMore {
         /* Font */
         color: #fff;
-        font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
     }
 
-    .regionAreaListCover {
+    .homeRegionListCover {
+        width: 100%;
         /* Flex */
         display: flex;
         flex-wrap: wrap;
+        gap: 5px;
     }
 
-    .regionExampleList .regionAreaList {
-        margin-bottom: 5px;
-        margin-right: 5px;
-        padding: 5px;
-        border-radius: 9999px;
-        background-color: rgba(255, 255, 255, 0.2);
+    .homeRegionAreaList {
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
         /* Font */
         color: #fff;
-        font-size: 0.625rem;
-        font-weight: 400;
         /* Position */
         position: absolute;
         bottom: 0;
@@ -210,7 +147,7 @@
     }
 
     /* hover 시 li 등장 */
-    .homeRegionList:hover .regionExampleList .regionAreaList {
+    .homeRegionList:hover .homeRegionAreaList {
         /* Position */
         position: static;
         /* Show */
@@ -219,11 +156,8 @@
     }
 }
 
-@media only all and (min-width: 768px) and (max-width: 889px) {
-}
-
 @media only all and (min-width: 1024px) {
-    .homeRegionWholeCover {
+    .homeRegionWrapper {
         max-width: 1440px;
         padding: 40px 16px 40px;
     }
@@ -231,50 +165,18 @@
     .homeRegionCover {
         /* Flex */
         gap: 24px;
-
     }
 
     .homeRegionList {
         width: calc((100% - 72px) / 4);
     }
 
-    .homeRegionListHeader {
-        width: calc(100% - 40px);
-        /* Font */
-        font-size: 1rem;
-        /* Position */
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    }
-
-    .listHeaderFstSpan img {
-        width: 20px;
-        margin-right: 3px;
-    }
-
-    .regionExampleList {
+    .homeRegionExampleList {
         width: calc(100% - 20px);
         gap: 10px;
         /* Position */
         position: absolute;
         bottom: 20px;
         left: 20px;
-    }
-
-    .regionExampleList .regionArea {
-        /* Font */
-        font-size: 1.25rem;
-    }
-
-    .regionExampleList .regionLooking {
-        /* Font */
-        font-size: 1rem;
-    }
-
-    .regionExampleList .regionAreaList {
-        margin-right: 10px;
-        /* Font */
-        font-size: 0.75rem;
     }
 }

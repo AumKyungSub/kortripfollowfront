@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from 'react';
 
 // (hook) Navigate
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Page css
-import "./Banner.style.css";
+import './HomeBanner.style.css';
 
-const Banner = ({ rankingsData, isMobile, isFullMobile, isDesktop, lang }) => {
+const HomeBanner = ({ rankingsData, isFullMobile, isDesktop, lang }) => {
 
   const {t} = useTranslation();
   
@@ -80,13 +79,15 @@ const handleThumbSelect = async (idx) => {
     if (mainItem?.id) navigate(`/location/${mainItem.id}`);
   };
 
+  /* ========================================================= */
+
   return (
-    <div className="bannerWrapper">
+    <div className="homeBannerWrapper">
       {/* 메인 배너 이미지 */}
-      <div ref={bannerRef} className="mainBannerArea">
+      <div ref={bannerRef} className="homeMainBannerCover">
         {mainItem && (
           <img
-            className="mainBannerImg fadeInMain"
+            className="mainBannerImg"
             src={getImageSrc(mainItem.img.link)}
             alt={mainItem.location?.name?.[lang]}
           />
@@ -94,35 +95,35 @@ const handleThumbSelect = async (idx) => {
       </div>
 
       {/* 텍스트 영역 */}
-      <div className="bannerTextWrapper">
-        <h1 className='bannerLocation'>
+      <div className="homeBannerTextCover">
+        <p className='homeBannerLocation'>
           {isKorean
           ?
             `${mainItem?.location?.address?.ko?.[0]} 명소`
           :
             `Attractions in ${mainItem?.location?.address?.en?.[1]}`
           }
-        </h1>
-        <hr className='bannerTextLine' />
-        <h2 className="bannerTextH2">
+        </p>
+        <hr className='homeBannerTextLine' />
+        <h1 className="homeBannerName">
           {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
-        </h2>
+        </h1>
 
-        <p className="bannerTextP1">
+        <p className="homeBannerDetail">
           {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
         </p>
 
-        <span className='learnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
+        <span className='homeBannerLearnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
           {t("homepage.button.learnMore")}
         </span>
       </div>
 
       {/* 썸네일 그룹 */}
-      <div className="thumbContainer">
+      <div className="homeBannerThumbCover">
         {thumbs.map((item, idx) => (
           <div
             key={item.id}
-            className="thumbItem"
+            className="homeBannerThumbItem"
             ref={(el) => (thumbRefs.current[idx] = el)}
             onClick={() => handleThumbSelect(idx)}
           >
@@ -137,4 +138,4 @@ const handleThumbSelect = async (idx) => {
   );
 };
 
-export default Banner;
+export default HomeBanner

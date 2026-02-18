@@ -8,22 +8,15 @@
 }
 
 @media only all and (min-width: 768px) {
-    .homeSeasonWholeCover {
+    .homeSeasonWrapper {
         width: 100%;
         margin: 0 auto;
-        padding: 80px 16px 80px;
+        padding: 24px 16px;
     }
 
-    .homeSeasonH2 {
-        width: 100%;
-        margin-bottom: 46px;
-        /* Font */
-        text-align: left;
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-
-    .homeSeasonAllCover {
+    .homeSeasonCover {
+        margin-top: 16px;
+        cursor: pointer;
         /* Flex */
         display: flex;
         flex-direction: row;
@@ -31,37 +24,37 @@
 
     }
 
-    .homeSeasonCover {
+    .homeSeasonTextCover {
         width: calc((100% - 72px) / 4);
         aspect-ratio: 19 / 16;
-        padding: 20px;
+        padding: 10px;
         border-radius: 10px;
         overflow: hidden;
-        background-color: #fff;
+        /* Background */
+        background-size: cover;
         background-position: center bottom;
-        cursor: pointer;
         /* Font */
         color: #fff;
-        font-weight: 600;
         /* Flex */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 10px;
         /* Position */
         position: relative;
     }
 
-    .homeSeasonCover::before {
+    .homeSeasonTextCover::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), 40%, rgba(255, 255, 255, 0.2));
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), 60%, rgba(255, 255, 255, 0.1));
         z-index: 11;
     }
     
 
-    .homeSeasonCover::after {
+    .homeSeasonTextCover::after {
         content: " ";
         display: block;
         width: 100%;
@@ -79,21 +72,19 @@
         z-index: 10;
     }
 
-    .homeSeasonCover:hover::after {
+    .homeSeasonTextCover:hover::after {
         transform: scale(1.1);
     }
 
-    .homeSeasonCover:hover::before {
+    .homeSeasonTextCover:hover::before {
         background: linear-gradient(to top, rgba(0, 0, 0, 0.8), 50%, rgba(255, 255, 255, 0.2));
     }
 
     .homeSeasonImgCover {
-        /* (52/294)*100 = 17.687074829931973 = 19.047619047619047 = 16.766467065868262 */
-        width: 17.687074829931973%;
+        width: 30px;
         aspect-ratio: 1/1;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 16px;
+        background-color: rgba(255, 255, 255, 0.8);
         z-index: 99;
         /* Flex */
         display: flex;
@@ -102,28 +93,29 @@
         align-content: center;
     }
 
-    .homeSeasonCover img {
+    .homeSeasonTextCover img {
         width: 50%;
         height: 50%;
     }
 
-    .homeSeasons {
-        margin-bottom: 16px;
+    .homeSeasonTitle {
         z-index: 99;
         /* Font */
-        font-size: 1.25rem;
+        font-weight: 600;
     }
 
-    .homeSeasonsP {
+    .homeSeasonsCount {
         z-index: 99;
-        /* Font */
-        font-size: 0.875rem;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .homeSeasonWholeCover {
+    .homeSeasonWrapper {
         max-width: 1440px;
         padding: 40px 16px 40px;
+    }
+
+    .homeSeasonImgCover {
+        width: 50px;
     }
 }

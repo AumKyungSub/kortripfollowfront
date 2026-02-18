@@ -1,5 +1,5 @@
   /* Mobile First 모바일 퍼스트 */
-  .bannerWrapper {
+  .homeBannerWrapper {
     white-space: pre-wrap;
     width: 100%;
     aspect-ratio: 16/14;
@@ -9,7 +9,7 @@
   }
 
     /* 메인 배너 */
-  .mainBannerArea {
+  .homeMainBannerCover {
     width: 100vw;
     aspect-ratio: 16/14;
     overflow: hidden;
@@ -18,11 +18,11 @@
     z-index: 1;
   }
 
-  .mainBannerArea::after {
+  .homeMainBannerCover::after {
     content: "";
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), 25%, rgba(255, 255, 255, 0.1));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), 60%, rgba(255, 255, 255, 0.1));
     /* Position */
     position: absolute;
     top: 0;
@@ -30,7 +30,7 @@
     z-index: 10;
   }
 
-  .bannerTextWrapper {
+  .homeBannerTextCover {
     width: calc(100% - 32px);
     height: calc(100% - 30px);
     margin: 0 auto;
@@ -45,41 +45,35 @@
     z-index: 10;
   }
   
-  .bannerLocation {
+  .homeBannerLocation {
     padding: 15px 0;
     /* Font */
     font-weight: 600;
   }
-  .bannerTextLine {
+  .homeBannerTextLine {
     border: 1px solid #fff;
     margin: 0 0 20px 0;
   }
 
-  .bannerTextH2 {
-    margin-bottom: 28px;
+  .homeBannerName {
+    margin-bottom: 20px;
     /* Font */
-    font-size: 28px;
-    font-weight: 700;
     color: #fff;
-    line-height: 30px;
-    letter-spacing: 0.02em;
   }
 
-  .bannerTextP1 {
+  .homeBannerDetail {
     /* Font */
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0.02em;
+    font-weight: 500;
   }
 
-  .learnMore {
+  .homeBannerLearnMore {
     display: inline-block;
     padding: 10px 30px;
-    border: 1px solid #fafaf8;
-    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+    background: rgba(0,0,0,0.6);
     /* Font */
-    text-shadow: 2px 0 #1a1a1a;
+    color: #fff;
+    font-weight: 600;
     /* Position */
     position: absolute;
     left: 50%;
@@ -93,16 +87,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center bottom;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.6s ease;
   }
 
-  .fadeInMain {
-    opacity: 1;
-  }
-
   /* 썸네일 – 항상 최상단 */
-  .thumbContainer {
+  .homeBannerThumbCover {
     width: 100%;
     padding: 16px;
     margin: 0 auto;
@@ -116,7 +106,7 @@
     z-index: 97;
   }
 
-  .thumbItem {
+  .homeBannerThumbItem {
     width: calc((100% - 15px) / 4);
     aspect-ratio: 16/12;
     overflow: hidden;
@@ -124,7 +114,7 @@
     cursor: pointer;
   }
 
-  .thumbItem img {
+  .homeBannerThumbItem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -146,58 +136,51 @@
   }
 
 @media only all and (min-width: 480px) {
-  .bannerWrapper {
+  .homeBannerWrapper {
     aspect-ratio: 16/11;
   }
 
     /* 메인 배너 */
-  .mainBannerArea {
+  .homeMainBannerCover {
     aspect-ratio: 16/11;
   }
 
-  .bannerTextWrapper {
+  .homeBannerTextCover {
     width: calc(100% - 40px);
   }
 
   /* 썸네일 – 항상 최상단 */
-  .thumbContainer {
+  .homeBannerThumbCover {
     /* Position */
     bottom: -13%;
   }
 
-  .thumbItem {
+  .homeBannerThumbItem {
     aspect-ratio: 16/10;
   }
 }
 
 @media only all and (min-width: 550px) and (max-width: 767px) {
-  .bannerWrapper {
+  .homeBannerWrapper {
     aspect-ratio: 16/10;
   }
 
-  .bannerTextH2 {
+  .homeBannerName {
     margin-top: 30px;
     margin-bottom: 30px;
-    /* Font */
-    font-size: 1.875rem;
   }
 
-  .bannerTextP1 {
-    /* Font */
-    font-size: 1rem;
-  }
-
-  .learnMore {
+  .homeBannerLearnMore {
     /* Position */
     bottom: 13%;
   }
 
     /* 메인 배너 */
-  .mainBannerArea {
+  .homeMainBannerCover {
     aspect-ratio: 16/10;
   }
   /* 썸네일 – 항상 최상단 */
-  .thumbContainer {
+  .homeBannerThumbCover {
     width: 100%;
     max-width: 550px;
     padding: 16px;
@@ -215,18 +198,18 @@
 }
 
 @media only all and (min-width: 768px) {
-  .bannerWrapper {
+  .homeBannerWrapper {
     height: 450px;
     max-width: 1440px;
   }
 
-  .learnMore {
+  .homeBannerLearnMore {
     /* Position */
     bottom: 28%;
   }
 
   /* 메인 배너 */
-  .mainBannerArea {
+  .homeMainBannerCover {
     height: 450px;
     /* Position */
     left: 50%;
@@ -235,7 +218,7 @@
     margin-right: -50vw;  /* 화면 오른쪽까지 확장 */
   }
 
-  .bannerTextWrapper {
+  .homeBannerTextCover {
     width: calc(100% - 50px);
     max-width: 1440px;
     /* Positiong */
@@ -246,19 +229,12 @@
     z-index: 10;
   }
 
-  .bannerTextH2 {
+  .homeBannerName {
     margin-bottom: 40px;
-    /* Font */
-    font-size: 48px;
-    line-height: 50px;
   }
 
-  .bannerTextP1 {
+  .homeBannerDetail {
     margin-bottom: 10px;
-    /* Font */
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
   }
   .bannerTextP2 {
     font-size: 18px;
@@ -268,7 +244,7 @@
   }  
 
   /* 썸네일 – 항상 최상단 */
-  .thumbContainer {
+  .homeBannerThumbCover {
     width: calc(100% - 150px);
     margin-left: 0;
     padding: 0;
@@ -280,36 +256,30 @@
     right: 25px;
   }
 
-  .thumbItem {
+  .homeBannerThumbItem {
     width: 100px;
     aspect-ratio: 16/10;
   }
 }
 
 @media only all and (min-width: 1280px) {
-  .bannerWrapper {
+  .homeBannerWrapper {
     aspect-ratio: 16/6;
     height: auto;
   }
   
   /* 메인 배너 */
-  .mainBannerArea {
+  .homeMainBannerCover {
     aspect-ratio: 16/6;
     height: auto;
   }
 
-  .bannerTextH2 {
+  .homeBannerName {
     margin-top: 50px;
     margin-bottom: 40px;
   }
 
-  .bannerTextP1 {
-    /* Font */
-    font-size: 1.25rem;
-    line-height: 30px;
-  }
-
-  .learnMore {
+  .homeBannerLearnMore {
     /* Position */
     bottom: 30%;
   }

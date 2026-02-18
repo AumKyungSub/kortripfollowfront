@@ -14,9 +14,9 @@ const HomeTheme = ({isFullMobile}) => {
   const {t} = useTranslation();
 
   return (
-    <div className='homeTheme'>
-        <section className="homeThemeWholeCover">
-            <h2 className='homePageCateTitle'>{t("homepage.homeTheme.title")}</h2>
+    <div className='homeThemeBackground'>
+        <section className="homeThemeWrapper">
+            <h2>{t("homepage.homeTheme.title")}</h2>
             <HomeThemeComponent img={"cafe"} homeThemeP={t("homepage.homeTheme.cafeP")} homeThemePSnd={t("homepage.homeTheme.cafeName")} themeCode={"CAFE"} isFullMobile={isFullMobile}/>
             <HomeThemeComponent img={"restaurant"} homeThemeP={t("homepage.homeTheme.restP")} homeThemePSnd={t("homepage.homeTheme.restName")} themeCode={"RESTAURANT"} isFullMobile={isFullMobile} />
             <HomeThemeComponent img={"lodging"} homeThemeP={t("homepage.homeTheme.lodgingP")} homeThemePSnd={t("homepage.homeTheme.lodgingName")} themeCode={"LODGING"} isFullMobile={isFullMobile} />

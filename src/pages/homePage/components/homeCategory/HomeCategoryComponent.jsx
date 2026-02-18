@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';    
 
-const SeasonsComponent = (props) => {
+const homeCategoryComponent = (props) => {
   const navigate = useNavigate();
 
   const goToNext = () => {
@@ -9,13 +9,13 @@ const SeasonsComponent = (props) => {
   };
 
   return (
-    <div className="card" onClick={goToNext}>
-      <div className="catImgCover">
+    <div className="homeCategoryCard" onClick={goToNext}>
+      <div className="homeCategoryImgCover">
         <img src={`/images/icon/${props.imgName}`} alt={props.imgName} />
       </div>
-      <p>{props.name}</p>
+      <p className='subFont'>{props.name}</p>
     </div>
   )
 }
 
-export default SeasonsComponent
+export default homeCategoryComponent

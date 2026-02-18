@@ -1,0 +1,272 @@
+.homeRecommendedWrapper {
+    padding: 10px 16px;
+    background-color: #f2f2f7;
+}
+
+.homeRecommendedCards {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide Scroll Bar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    margin-top: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.homeRecommendedCard {
+    width: 240px;
+    overflow: hidden;
+    border-radius: 10px;
+    /* flex */
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.homeRecommendedCardImgCover {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    /* Background Image */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.homeRecommendedCardTextCover {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 5px;
+}
+
+.homeRecommendedRegion {
+    /* Font */
+    color: #515151;
+    font-weight: 800 !important;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeRecommendedName {
+    /* Font */
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) {
+    .homeRecommendedWrapper {
+        padding: 24px 16px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: transparent;
+    }
+
+    .homeRecommendedCards {
+        overflow: visible;
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+        -webkit-overflow-scrolling: auto;
+        scrollbar-width: auto;
+        -ms-overflow-style: auto;
+        /* Flex */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .homeRecommendedMainCardCover {
+        width: 100%;
+    }
+
+    .homeRecommendedMainCardImg {
+        width: 100%;
+        aspect-ratio: 16/7;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 20px 30px;
+        /* Background */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: left;
+    }
+
+    .homeRecommendedMainCardImgTextCover {
+        width:50%;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        /* Font */
+        color: #fff;
+        text-align: left;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homeRecommendedMainCardLocation img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .homeRecommendedMainCardLocation {
+        margin-bottom: 20px;
+        /* Flex */
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 5px;
+        
+    }
+
+    .homeRecommendedMainCardRegion {
+        margin-bottom: 20px;
+    }
+
+    .homeRecommendedMainCardExplain {
+        margin-bottom: 10px;
+
+        flex: 1;              
+        overflow: hidden; 
+    }
+
+    .homeRecommendedListCardCover {
+        width: 90%;
+        margin: 16px auto 0;
+        /* Flex */
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .homeRecommendedListCard {
+        width: calc((100% - 60px)/5);
+        height: auto;
+        aspect-ratio: 16/5;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: transform 0.2s, border 0.2s;
+        overflow: hidden;
+        border-radius: 10px;
+        /* Background */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        /* Position */
+        position: relative;
+    }
+
+    .homeRecommendedListCard:not(.card.selected):hover {
+        opacity: 0.8;
+    }
+
+    .homeRecommendedListCard::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0 , 0, 0, 0.6);
+        /* Position */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .homeRecommendedListCard p {
+        width: 100%;
+        text-align: center;
+        /* Font */
+        color: #fff;
+        /* Flex */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Position */
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 0%);
+        /* Position */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+    }
+
+    .homeRecommendedListCard.selected {
+        border-radius: 10px;
+        transform: scale(1.1);
+        opacity: 1;
+        /* Font */
+        font-weight: 600;
+    }
+
+}   
+
+@media only all and (min-width: 1024px) {
+    .homeRecommendedWrapper {
+        max-width: 1440px;
+        padding: 24px 16px;
+    }
+
+    .homeRecommendedMainCardImgTextCover {
+        padding: 30px;
+    }
+
+    .homeRecommendedMainCardRegion {
+        /* Font */
+        font-size: 2rem;
+    }
+
+    .homeRecommendedListCardCover {
+        gap: 20px;
+    }
+
+    .homeRecommendedListCard {
+        width: calc((100% - 80px)/5);
+        margin-top: 16px;
+    }
+
+    .homeRecommendedListCard p {
+        /* Font */
+        font-size: 1.25rem;
+    }
+}
+
+
+@media only all and (min-width: 1921px) {
+    .homeRecommendedMainCardLocation img {
+        width: 16px;
+        height: 16px;
+    }
+
+}

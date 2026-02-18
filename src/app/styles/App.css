@@ -3,14 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  font-family: 'Paperozi', sans-serif;
-}
-
-/* 영어 페이지일 때 */
-:lang(en) {
-  font-family: 'Lato', sans-serif;
-}
 /* 구분선 8px */
 .emptyLine {
   width: 100%;

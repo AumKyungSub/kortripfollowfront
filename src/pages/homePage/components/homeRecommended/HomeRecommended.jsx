@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { useTranslation } from 'react-i18next';
 
-import TopPlacesComponent from './TopPlacesComponent';
-import './TopPlaces.style.css'
+// i18n -> Transition Language
+import { useTranslation } from 'react-i18next'
 
-const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
+// Components
+import HomeRecommendedComponent from './HomeRecommendedComponent'
+
+// Page Css
+import './HomeRecommended.style.css'
+
+const HomeRecommended = ({rankingsData = [], isFullMobile, isDesktop}) => {
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
 
@@ -29,23 +34,22 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
     };
 
     return (
-        <section className="topPlaces">
-            <h3 className='homePageCateTitle'>{t("homepage.topPlaces.title")}</h3>
+        <section className="homeRecommendedWrapper">
+            <h2>{t("homepage.homeRecommended.title")}</h2>
 
-            <div className="cards">
+            <div className="homeRecommendedCards">
                 {isFullMobile ? (
                     rankingList.map((menu) => (
-                        <TopPlacesComponent
+                        <HomeRecommendedComponent
                             key={menu.id}
                             selectedAll={menu}
-                            isMobile={isMobile}
                             isFullMobile={isFullMobile}
                             isDesktop={isDesktop}
                             lang={lang}
                         />
                     ))
                 ) : (
-                    <TopPlacesComponent
+                    <HomeRecommendedComponent
                         key={rankingList.id}
                         rankingList={rankingList}
                         onSelect={handleSelect}
@@ -56,7 +60,7 @@ const TopPlaces = ({rankingsData = [], isMobile, isFullMobile, isDesktop}) => {
                 )}
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default TopPlaces;
+export default HomeRecommended

@@ -37,15 +37,14 @@ const HomeRegion = ({ rankingData = [], lang, isFullMobile }) => {
 
   return (
     <div className="homeRegionBackground">
-      <div className="homeRegionWholeCover">
-        <div className="cardsTitle768">
-          <h3 className='homePageCateTitle'>{t("homepage.homeRegion.title")}</h3>
-        </div>
+      <div className="homeRegionWrapper">
+          <h2>{t("homepage.homeRegion.title")}</h2>
 
         <div className="homeRegionCover">
           {regionOptions.map((region, index) => {
             const list = filterByRegion(region.code);
             const randomList = getRandomThreeLocation(list);
+            const homeRegionListBgi = `/images/regionBackground/regionBackground${index + 1}${t("language.shortWord")}.jpg`;
 
             return (
               <div
@@ -53,32 +52,30 @@ const HomeRegion = ({ rankingData = [], lang, isFullMobile }) => {
                 className="homeRegionList"
                 onClick={() => goToRegion(region.code)}
               >
-                <div className='homeRegionListImgCover'>
-                  <img
-                    src={`/images/regionBackground/regionBackground${index + 1}${t("language.shortWord")}.jpg`}
-                    alt={region.label}
-                    />
-                </div>
+                <div 
+                  className='homeRegionListImgCover'
+                  style={{ backgroundImage: `url(${homeRegionListBgi})` }}
+                ></div>
 
                 {!isFullMobile && 
-                  <div className="regionExampleList">
-                    <span className="regionArea">
+                  <div className="homeRegionExampleList">
+                    <p className="homeRegionCount">
                       {region.code === "ALL"
                         ? rankingData.length
                         : regionCounts[region.code] || 0}
                       {t("homepage.homeRegion.placesSuffix")}
-                    </span>
-                    <div className="regionAreaListCover">
+                    </p>
+                    <div className="homeRegionListCover">
                       {randomList.map((item) => (
                         <span
                         key={item?.id}
-                        className="regionAreaList"
+                        className="homeRegionAreaList subFont"
                         >
                           {item?.location?.name?.[lang]}
                         </span>
                       ))}
                     </div>
-                    <p className="regionLooking">
+                    <p className="homeRegionLearnMore subFont">
                       {t("homepage.homeRegion.viewSpots")}
                     </p>
                   </div>

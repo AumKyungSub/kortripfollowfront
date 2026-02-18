@@ -1,14 +1,3 @@
-.homePageCateTitle {
-  width: 100%;
-  /* Font */
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.homePageCateTitle {
-  white-space: pre-wrap;
-}
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {

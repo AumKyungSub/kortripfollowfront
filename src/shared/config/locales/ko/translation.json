@@ -6,13 +6,14 @@
         "button":{
             "learnMore":"자세히 보기"
         },
-        "topPlaces": {
+        "homeRecommended": {
             "title": "추천 여행지"
         },
-        "seasons": {
+        "homeCategory": {
             "region": "지역별",
             "season": "계절별",
-            "theme": "테마"
+            "theme": "테마",
+            "goods": "굿즈"
         },
         "homeRegion": {
             "title": "지역별 여행지",
@@ -104,7 +105,6 @@
         "listCountMobile":"곳"
     },
     "homeSeason":{
-        "homeSeasonTravel":"여행",
         "homeSeasonCount":"개의 여행지"
     },
     "theme":{

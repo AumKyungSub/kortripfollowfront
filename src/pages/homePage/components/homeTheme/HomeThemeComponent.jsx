@@ -21,19 +21,21 @@ const HomeThemeComponent = ({homeThemeP, homeThemePSnd, img, themeCode, isFullMo
         >
             {!isFullMobile ?
             <>
-                <p className='homeThemeP'>{homeThemeP}</p>
-                <p className='homeThemeP homeThemePSnd'>
-                    {lang === "ko"
-                        ? `추천 ${homeThemePSnd} 보러가기`
-                        : `Explore Recommended ${homeThemePSnd}`
-                    }
+                <h3 className='homeThemeText'>{homeThemeP}</h3>
+                <span className='homeThemeLinkCover'>
+                    <h3 className='homeThemeText'>
+                        {lang === "ko"
+                            ? `추천 ${homeThemePSnd} 보러가기`
+                            : `Explore Recommended ${homeThemePSnd}`
+                        }
+                    </h3>
                     <img src="/images/icon/rightIcon.png" alt="rightIcon" />
-                </p>
+                </span>    
             </> 
             :
             <>
-                <p className='homeThemeP'>#{homeThemePSnd}</p>
-                <p className='homeThemePSmall'>{homeThemeP}</p>
+                <h3 className='homeThemeText'>#{homeThemePSnd}</h3>
+                <p className='homeThemeText'>{homeThemeP}</p>
             </>
             }
         </div>

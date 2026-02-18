@@ -18,12 +18,12 @@ const HomeSeasonComponent = ({ img, seasons, seasonCode, rankingData = []}) => {
 
     return (
         <>
-            <div className="homeSeasonCover" onClick={goToSeason} style={{backgroundImage: `url(images/seasons/${img}2.jpg)`}}>
+            <div className="homeSeasonTextCover" onClick={goToSeason} style={{backgroundImage: `url(images/seasons/${img}2.jpg)`}}>
                 <div className="homeSeasonImgCover">
-                <img src={`/images/icon/${img}Icon.png`} alt={seasons} />
+                    <img src={`/images/icon/${img}Icon.png`} alt={seasons} />
                 </div>
-                <h3 className="homeSeasons">{seasons} {t("homeSeason.homeSeasonTravel")}</h3>
-                <p className="homeSeasonsP">{seasonCount} {t("homeSeason.homeSeasonCount")}</p>
+                <h3 className="homeSeasonTitle">{seasons}</h3>
+                <p className="homeSeasonsCount subFont">{seasonCount} {t("homeSeason.homeSeasonCount")}</p>
             </div>   
         </>
     )

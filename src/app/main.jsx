@@ -4,6 +4,7 @@ import App from '@/app/App.jsx'
 
 import './styles/index.css'
 import './styles/App.css'
+import './styles/fonts.css'
 import '@/shared/config/118n.js';
 
 createRoot(document.getElementById('root')).render(

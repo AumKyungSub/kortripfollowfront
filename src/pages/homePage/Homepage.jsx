@@ -16,9 +16,9 @@ import FailedData from '@/features/failedData/FailedData';
 // Components
 import Header from '@/widgets/header/Header'
 import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
-import Banner from '@/pages/homePage/components/banner/Banner'
-import TopPlaces from '@/pages/homePage/components/topPlaces/TopPlaces'
-import Seasons from '@/pages/homePage/components/seasons/Seasons'
+import HomeBanner from '@/pages/homePage/components/homeBanner/HomeBanner';
+import HomeRecommended from '@/pages/homePage/components/homeRecommended/HomeRecommended';
+import HomeCategory from '@/pages/homePage/components/homeCategory/HomeCategory';
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
 import HomeSeason from '@/pages/homePage/components/homeSeason/HomeSeason'
 import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
@@ -50,9 +50,9 @@ const Homepage = () => {
     <div>
       <Header />
       {!isFullMobile && <EmptyHeader/>}
-      <Banner rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
-      {isFullMobile && <Seasons/>}
-      <TopPlaces rankingsData={rankings} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
+      <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
+      {isFullMobile && <HomeCategory/>}
+      <HomeRecommended rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
       <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile}/>
       {!isFullMobile && <HomeSeason rankingData={rankings}/>}
       <HomeTheme isFullMobile={isFullMobile}/>

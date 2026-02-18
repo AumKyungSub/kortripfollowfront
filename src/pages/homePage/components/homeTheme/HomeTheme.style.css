@@ -1,5 +1,10 @@
-.homeThemeWholeCover {
-    padding: 20px 16px 10px;
+
+.homeThemeBackground{
+    background-color: #f2f2f7;
+}
+
+.homeThemeWrapper {
+    padding: 10px 16px;
     margin: 0 auto;
 }
 
@@ -7,7 +12,7 @@
     width: 100%;
     aspect-ratio: 16/6;
     border-radius: 10px;
-    margin-top: 15px;
+    margin-top: 16px;
     overflow: hidden;
     cursor: pointer;
     /* Background */
@@ -19,7 +24,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     /* Position */
     position: relative;
 }
@@ -28,7 +32,7 @@
     content: "";
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     /* Position */
     position: absolute;
     top: 0;
@@ -36,25 +40,13 @@
     z-index: 10;
 }
 
-.homeThemeP,
-.homeThemePSmall{
+.homeThemeText {
     /* Font */
     color: #fff;
+    font-weight: 600;
     /* Position */
     position: relative;
     z-index: 11;
-}
-
-.homeThemeP {
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 900;
-}
-
-.homeThemePSmall {
-    /* Font */
-    font-size: 1rem;
-    font-weight: 600;
 }
 
 /* ---------------------------------------------------- */
@@ -66,40 +58,33 @@
 }
 
 @media only all and (min-width: 768px) {
-    .homeTheme{
-        background-color: #f2f2f7;
-    }
-
-    .homeThemeWholeCover {
-        padding: 80px 16px 80px;
+    .homeThemeWrapper {
+        padding: 24px 16px;
     }
 
     .homeThemeCover {
         aspect-ratio: 16/2;
         border-radius: 15px;
         padding: 20px;
-        margin-top: 20px;
         /* Flex */
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .homeThemePSnd {
+    .homeThemeLinkCover {
         /* Flex */
         display: flex;
+        justify-content: center;
         align-items: center;
-        gap: 10px;    
+        gap: 5px;
+        /* Position */
+        position: relative;
+        z-index: 11;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .homeThemeWholeCover {
+    .homeThemeWrapper {
         max-width: 1440px;
-        padding: 40px 16px 80px;
-    }
-
-    .homeThemeP {
-        /* Font */
-        font-size: 1.75rem;
     }
 }

@@ -20,9 +20,9 @@ const HomeSeason = ({rankingData = []}) => {
     };
     return (
         <>
-            <section className='homeSeasonWholeCover'>
-                <h2 className='homeSeasonH2'>{lang === "ko" ? "계절별 여행지" : "Travel destinations by Season"}</h2>
-                <div className="homeSeasonAllCover">
+            <section className='homeSeasonWrapper'>
+                <h2>{lang === "ko" ? "계절별 여행지" : "Travel destinations by Season"}</h2>
+                <div className="homeSeasonCover">
                     {Object.entries(seasonMap).map(([code, name]) => (
                         <HomeSeasonComponent
                             key={code}

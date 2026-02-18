@@ -6,16 +6,17 @@
         "button":{
             "learnMore":"Learn More"
         },
-        "topPlaces": {
-            "title": "Recommended"
+        "homeRecommended": {
+            "title": "Top Picks"
         },
-        "seasons": {
+        "homeCategory": {
             "region": "Region",
             "season": "Season",
-            "theme": "Theme"
+            "theme": "Theme",
+            "goods": "Goods"
         },
         "homeRegion": {
-            "title": "Travel destinations by region",
+            "title": "Regions",
             "viewSpots": "Explore the destinations",
             "placesSuffix": " places",
             "regions": {
@@ -30,7 +31,7 @@
             }
         },
         "homeTheme": {
-            "title": "By Theme",
+            "title": "Themes",
             "cafeP": "A peaceful break during trip",
             "cafeName": "Cafe",
             "restP": "Another charm of traveling",
@@ -104,7 +105,6 @@
         "listCountMobile":" "
     },
     "homeSeason":{
-        "homeSeasonTravel":" ",
         "homeSeasonCount":"Destinations"
     },
     "theme":{
