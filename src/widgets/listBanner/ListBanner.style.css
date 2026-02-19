@@ -1,4 +1,14 @@
 
+    .listBannerCover {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/7;
+        margin: 0 auto;
+        /* Background */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
@@ -6,18 +16,18 @@
 
 @media only all and (min-width: 768px) {
     .listBannerCover {
-        width: 100%;
-        margin: 0 auto;
-    }
-    
-    .listBannerCover img {
-        width: 100% !important;
-        display: block;
+        aspect-ratio: 16/5;
     }
 }
 
 @media only all and (min-width: 1024px) {
     .listBannerCover {
         max-width: 1440px;
+    }
+}
+
+@media only all and (min-width: 1921px) {
+    .listBannerCover {
+        max-width: 1920px;
     }
 }

@@ -151,7 +151,9 @@ const ListPage = ({mode}) => {
   const title =
     isThemeMode
       ? `${t("theme.titleSuffix")} ${selectedText} ${t("theme.list")}`
-      : `${selectedText} ${t("regionPage.titleSuffix")}`;
+      : lang.startsWith("ko")
+    ? `${selectedText} ${t("regionPage.titleSuffix")}`
+    : `${t("regionPage.titleSuffix")} ${selectedText}`;
 
   const countText =
     isThemeMode
@@ -174,12 +176,10 @@ const ListPage = ({mode}) => {
       <Header />
       {!isFullMobile && <EmptyHeader />}
 
-      {isDesktop && (
-        <ListBanner
-          type={mode}
-          images={!isThemeMode ? filteredList : null}
-        />
-      )}
+      <ListBanner
+        type={mode}
+        images={!isThemeMode ? filteredList : null}
+      />
 
       <ListCategory
         options={categoryOptions}

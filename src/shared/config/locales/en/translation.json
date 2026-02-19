@@ -60,7 +60,7 @@
         "youtube": "Youtube"
     },
     "regionPage": {
-        "titleSuffix":"Travel Destinations",
+        "titleSuffix":"Travel in",
         "totalCount": "There are {{count}} destinations",
         "noData": "No data available."
     },

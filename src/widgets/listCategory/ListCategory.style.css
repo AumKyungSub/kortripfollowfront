@@ -1,45 +1,59 @@
-.categoryCover {
+.listCategoryCover {
+    /* Scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide Scroll Bar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    /* Basic */
     width: 100%;
     height: 51px;
     white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden; 
     position: relative; /* 기본은 flow에 따라 위치 */
     transition: top 0.3s;
 }
 
-.categoryCover.fixed {
+.listCategoryCover.fixed {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 }
 
-.categoryUl {
+.ListCategoryUl {
     height: inherit;
-    padding: 0;
     margin: 0;
 }
 
-.categoryLi {
+.ListCategoryLi {
     height: inherit;
-    display: inline-block;
+    display: inline-flex;    /* inline-block → flex 로 변경 */
+    justify-content: center;    /* 가로 중앙 */
+    align-items: center;  
     background: #fff;
     padding: 0 9%;
     cursor: pointer;
     text-align: center;
     /* Font */
-    font-size: 1rem;
     font-weight: 700;
     color: #6c757d;
-    line-height: 45px;
+    /* Position R */
+    position: relative;  
 }
 
-.categoryLi.active::after {
+.ListCategoryLi.active::after {
     content: '';
-    display: block;
+    width: 40%;
     height: 3px; /* 밑줄 두께 */
     background-color: #4285f4;
+    /* Position */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -47,18 +61,18 @@
 }
 
 @media only all and (min-width: 768px) {
-    .categoryCover {
+    .listCategoryCover {
         overflow-x: visible;
     }
 
-    .categoryUl {
+    .ListCategoryUl {
         width: 100%;
         /* Flex */
         display: flex;
         justify-content: center;
     }
 
-    .categoryLi {
+    .ListCategoryLi {
         margin-right: 5px;
         padding: 0;
         overflow: hidden;
@@ -69,26 +83,20 @@
         align-items: center;
     }
 
-    .categoryLi:last-of-type {
+    .ListCategoryLi:last-of-type {
         margin-right: 0;
-    }
-
-    .categoryLi.active::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 3px; /* 밑줄 두께 */
-      background-color: #4285f4;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .categoryCover {
+    .listCategoryCover {
         max-width: 1440px;
         margin: 0 auto;
     }
+}
 
-    .categoryLi.active::after {
-      width: 25%;
+@media only all and (min-width: 1921px) {
+    .listCategoryCover {
+        max-width: 1920px;
     }
 }

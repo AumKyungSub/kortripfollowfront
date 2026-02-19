@@ -27,8 +27,7 @@ const ListBanner = ({type = "theme", images = []}) => {
   if (!imgSrc) return null;
 
   return (
-    <div className="listBannerCover">
-      <img src={imgSrc} alt="Banner Img" />
+    <div className="listBannerCover" style={{ backgroundImage: `url(${imgSrc})` }}>
     </div>
   )
 }

@@ -16,7 +16,7 @@ const Bottom = ({type}) => {
   const keyValue = `bottom.${typeName}`;
                     
   return (
-    <article className='bottomWholeCover'>
+    <article className='bottomWrapper'>
         <div className="bottomCover">
             <div className="bottomTextCover">
               <div className="bottomText">
@@ -25,10 +25,10 @@ const Bottom = ({type}) => {
               </div>
               <div className="bottomBox">
                   <span className="bottomLeftBox">
-                      {t(`${keyValue}.leftTitle`)} <br /><br /> <a>{t(`${keyValue}.leftText`)}</a>
+                      {t(`${keyValue}.leftTitle`)} <a>{t(`${keyValue}.leftText`)}</a>
                   </span>
                   <span className="bottomRightBox">
-                      {t(`${keyValue}.rightTitle`)} <br /><br /> <a>{t(`${keyValue}.rightText`)}</a>
+                      {t(`${keyValue}.rightTitle`)} <a>{t(`${keyValue}.rightText`)}</a>
                   </span>
               </div>
             </div>

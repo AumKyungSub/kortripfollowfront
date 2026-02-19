@@ -13,7 +13,7 @@ const ListCount = ({title, count,countM, isFullMobile}) => {
       {!isFullMobile ? (
         <p>{count}{t("listCount.listCountPc")}</p>
       ) : (
-        <p>{t("listCount.listContTotal")} {countM}{t("listCount.listCountMobile")}</p>
+        <p className='subFont'>{t("listCount.listContTotal")} {countM}{t("listCount.listCountMobile")}</p>
       )}
     </div>
   )

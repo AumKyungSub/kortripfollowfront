@@ -9,16 +9,11 @@
 
 .listTitleCover h3 {
     /* Font */
-    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0.02em;
 }
 
 .listTitleCover p {
-    /* Font */
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    font-weight: 600;
 }
 
 /* ---------------------------------------------------- */
@@ -31,26 +26,18 @@
         padding: 20px 20px 0;
         display: block;
     }
-
-    .listTitleCover h3 {
-        /* Font */
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-    }
-
-    .listTitleCover p {
-        margin-top: 10px;
-        /* Font */
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-    }
 }
 
 @media only all and (min-width: 1024px) {
     .listTitleCover {
         max-width: 1480px;
+        margin: 0 auto;
+    }
+}
+
+@media only all and (min-width: 1921px) {
+    .listTitleCover {
+        max-width: 1920px;
         margin: 0 auto;
     }
 }

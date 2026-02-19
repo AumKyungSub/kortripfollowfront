@@ -11,27 +11,27 @@ export const useRegionList = ({ data = [], lang = "ko" }) => {
             en: "Seoul" 
         },
         GGICN: { 
-            ko: "경기/인천", 
-            en: "Gyeonggi/Incheon" 
+            ko: "경기도", 
+            en: "Gyeonggi" 
         },
         GANGWON: { 
-            ko: "강원", 
+            ko: "강원특별자치도", 
             en: "Gangwon" 
         },
         CCDAEJEON: { 
-            ko: "충청/대전", 
+            ko: "충청도", 
             en: "Chungcheong" 
         },
         GSBUSANDAEGUULSAN: {
-            ko: "경상/부산",
-            en: "Gyeongsang/Busan",
+            ko: "경상도",
+            en: "Gyeongsang",
         },
         JRGWANGJU: { 
-            ko: "전라/광주", 
-            en: "Jeolla/Gwangju" 
+            ko: "전라도", 
+            en: "Jeolla" 
         },
         JEJU: { 
-            ko: "제주", 
+            ko: "제주도", 
             en: "Jeju" 
         },
     };

@@ -10,12 +10,12 @@ const ListCategory = ({options, selected, setSelected, isFullMobile }) => {
       
   return (
     <>
-      <div ref={categoryRef} className={`categoryCover ${fixed ? "fixed" : ""}`}>
-        <ul className="categoryUl">
+      <div ref={categoryRef} className={`listCategoryCover ${fixed ? "fixed" : ""}`}>
+        <ul className="ListCategoryUl">
           {options.map((item) => (
             <li
               key={item.code}
-              className={`categoryLi ${
+              className={`ListCategoryLi ${
                 selected === item.code ? 'active' : ''
               }`}
               onClick={() => setSelected(item.code)}
@@ -25,7 +25,9 @@ const ListCategory = ({options, selected, setSelected, isFullMobile }) => {
                   : undefined
               }
             >
-              {item.label}
+              <p>
+                {item.label}
+              </p>
             </li>
           ))}
             </ul>

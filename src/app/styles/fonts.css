@@ -2,7 +2,7 @@
 
 /* Font Style ---------------------------------------------------------------------------------------*/
 /* 모바일 퍼스트 Mobile First */
-body,h4,h5,h6 {
+body,h5,h6 {
     font-size: 100%; /* 16px */
     font-weight: normal;
     line-height: 24px;

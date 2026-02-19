@@ -32,14 +32,13 @@ const List = ({filteredList, link, selectedTheme}) => {
     };
 
     return (
-        <section className='listWholeCover'>
+        <section className='listWrapper'>
             {filteredList.map((data)=>(
                 <div key={data.id} className='listCover' onClick={() => handleClick(data)}>
-                    <div className="listImgCover">
-                        <img src={`${data?.img?.link}3R.jpg`} alt={`${data?.img?.link}3R.jpg`} />
+                    <div className="listImgCover" style={{backgroundImage: `url(${`${data?.img?.link}3R.jpg`})`}}>
                     </div>
                     <div className="listTextCover">
-                        <p className="listName">
+                        <p className="listName subFont">
                             <img src="/images/icon/regionIcon.png" alt="region" />
                             {data?.location?.region?.[lang]}
                         </p>
