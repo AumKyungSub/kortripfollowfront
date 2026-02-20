@@ -16,7 +16,7 @@ import FailedData from '@/features/failedData/FailedData'
 // Components
 import Header from '@/widgets/header/Header'
 import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
-import ThemeDetailBanner from '@/pages/themeDetailPage/components/themeDetailBanner/ThemeDetailBanner'
+import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import ThemeDetailCafeInfo from '@/pages/themeDetailPage/components/themeDetailCafeInfo/ThemeDetailCafeInfo'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'
 import ThemeDetailMap from '@/pages/themeDetailPage/components/themeDetailMap/ThemeDetailMap'
@@ -66,7 +66,27 @@ const ThemeDetail = () => {
         <>
             {!isFullMobile && <Header/>}
             {!isFullMobile && <EmptyHeader/>}
-            <ThemeDetailBanner data={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
+            {data && <DetailBanner 
+                name={
+                    `${data.location?.name?.[lang]}`
+                }
+                subName={
+                    data?.description?.star
+                        ? `${data.description.star}성`
+                        : data.location?.chain?.[lang]
+                            ? `(${data.location.chain[lang]})`
+                            : ""
+                }
+                address={data.location?.region?.[lang]}
+                slogan={
+                    isDesktop
+                        ? data.description?.slide?.[lang]
+                        : data.description?.title?.[lang]
+                }
+                imgLink={data.img?.link}
+                isFullMobile={isFullMobile}
+                isDesktop={isDesktop}
+            />}
             {!isFullMobile ? 
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">

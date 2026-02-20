@@ -16,7 +16,7 @@ import Header from '@/widgets/header/Header'
 import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
-import LocationDetailBanner from '@/pages/locationDetailPage/components/locationDetailBanner/LocationDetailBanner'
+import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import LocationDetailExplain from '@/pages/locationDetailPage/components/locationDetailExplain/LocationDetailExplain'
 import Parking from '@/pages/locationPage/components/parking/Parking'
 import LocInfo from '@/pages/locationPage/components/locationInfo/LocInfo'
@@ -53,7 +53,18 @@ const LocationDetailPage = () => {
           <div>
               {!isFullMobile && <Header/>}
               {!isFullMobile && <EmptyHeader/>}
-              {data && <LocationDetailBanner rankingData={data} isMobile={isMobile} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>}
+              {data && <DetailBanner 
+                name={data.location?.name?.[lang]}
+                address={
+                    lang === "ko"
+                        ? data.location?.address?.ko?.[0]
+                        : data.location?.address?.en?.[1]
+                }
+                slogan={data.description?.short?.[lang]}
+                imgLink={data.img?.link}
+                isFullMobile={isFullMobile}
+                isDesktop={isDesktop}
+                />}
               {!isFullMobile ?
                   <div className='locationDetailWholeCover'>
                       <div className="locationDetailLeftWholeCover">

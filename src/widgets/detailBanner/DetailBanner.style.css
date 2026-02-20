@@ -1,4 +1,4 @@
-.locationDetailBannerWrapper {
+.detailBannerWrapper {
     width: 100%;
     aspect-ratio: 16/11;
     display: block;
@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.locationDetailBannerWrapper::after {
+.detailBannerWrapper::after {
     content: "";
     width: 100%;
     height: 100%;
@@ -27,7 +27,7 @@
     z-index: 10;
 }
 
-.locationDetailBannerTextCover {
+.detailBannerTextCover {
     width: 100%;
     /* Font */
     color: #fff;
@@ -40,12 +40,12 @@
     z-index: 99;
 }
 
-.locationDetailBannerTextName {
+.detailBannerTextName {
     /* Font */
     font-weight: 600;
 }
 
-.locationDetailBannerTextAddress {
+.detailBannerTextAddress {
     /* Flex */
     display: flex;
     align-items: center;
@@ -53,11 +53,11 @@
     gap: 5px;
 }
 
-.locationDetailBannerTextAddress img {
+.detailBannerTextAddress img {
     width: 14px;
 }
 
-.locationDetailBannerTextSlogan {
+.detailBannerTextSlogan {
     /* Font */
     font-weight: 500;
 }
@@ -68,7 +68,7 @@
 }
 
 @media only all and (min-width: 480px) {
-    .locationDetailBannerWrapper {
+    .detailBannerWrapper {
         aspect-ratio: 16/9;
         padding: 20px;
     }
@@ -78,18 +78,18 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .locationDetailBannerWrapper {
+    .detailBannerWrapper {
         aspect-ratio: 16/5;
     }
     
-    .locationDetailBannerTextCover {
+    .detailBannerTextCover {
         max-width: 1440px;
         margin: 0 auto;
     }
 }
 
 @media only all and (min-width: 1921px) {
-    .locationDetailBannerTextCover {
+    .detailBannerTextCover {
         max-width: 1920px;
     }
 }
