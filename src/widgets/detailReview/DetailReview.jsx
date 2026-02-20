@@ -14,7 +14,7 @@ const DetailReview = ({data, isFullMobile}) => {
             <section className='reviewCover'>
                 {!isFullMobile ? 
                     <>
-                        <h6 className="detailTitleMin768">{t("locationPage.info.review")}</h6>
+                        <h4 className="detailTitleMin768">{t("locationPage.info.review")}</h4>
                         <div className='emptyLine1px'></div>
                     </>
                 :

@@ -1,0 +1,101 @@
+.locationDetailExplainCover {
+    width: 100%;
+    padding: 16px;
+    word-break: break-all;
+    /* Position */
+    position: relative;
+}
+
+.locationDetailExplainTitle {
+    width: 100%;
+    margin-bottom: 16px;
+    text-align: center;
+    /* Font */
+    font-weight: 900;
+}
+
+.locationDetailExplain {
+    width: 100%;
+    margin-bottom: 16px;
+    /* Font */
+    font-weight: 400;
+}
+
+.locationDetailExplainLast {
+    width: 100%;
+    margin-bottom: 16px;
+    text-align: center;
+    /* Font */
+    color: #525252;
+    font-weight: 700 !important;
+    white-space: pre-wrap;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+    .locationDetailExplainCover .explain  {
+        max-width: 517px;
+        margin: 0 auto 16px;        
+    }
+}
+
+@media only all and (min-width: 768px) {    
+    .locationDetailExplainCover {
+        padding: 0;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+    }
+    
+    .locationDetailExplainTextImgCover {
+        width: 100%;
+        padding: 16px 0;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .locationDetailExplainImgCover {
+        width: 100%;
+        aspect-ratio: 16/6;
+        border-radius: 5px;
+        overflow: hidden;
+        /* Background */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .locationDetailExplainTextCover {
+        width: 100%;
+    }
+
+    .locationDetailExplainTitle  {
+        text-align: left;
+    }
+
+    .locationDetailExplain  {
+        text-align: left;    
+        /* Font */
+        font-size: 1rem; 
+        line-height: 30px;
+        letter-spacing: 0.02em;  
+    }
+
+    .locationDetailExplainLast {
+        margin-bottom: 0;
+        /* Font */
+        text-align: left;
+    }
+}
+
+@media only all and (min-width: 1024px) {    
+}

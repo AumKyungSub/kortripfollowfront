@@ -19,7 +19,7 @@ const DetailGallery = ({data, isFullMobile}) => {
                 <section className="detailGalleryWrap">
                     {!isFullMobile ? 
                         <>
-                            <h6 className='detailTitleMin768'>{t("locationPage.recommend.title")}</h6>
+                            <h4 className='detailTitleMin768'>{t("locationPage.recommend.title")}</h4>
                             <div className='emptyLine1px'></div>
                         </>
                     :

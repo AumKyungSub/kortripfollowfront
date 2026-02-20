@@ -45,7 +45,7 @@ const separator = lang.startsWith('ko') ? ' ' : ', ';
     <div className='topParkingWholeCover'>
       {!isFullMobile && 
         <>
-          <h6 className='detailTitleMin768'>{t("locationPage.parking.title")}</h6>
+          <h4 className='detailTitleMin768'>{t("locationPage.parking.title")}</h4>
           <div className="emptyLine1px"></div>
         </>
       }

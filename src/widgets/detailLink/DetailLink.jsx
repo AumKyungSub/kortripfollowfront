@@ -25,7 +25,7 @@ const DetailLink = ({data, isFullMobile}) => {
                     <>
                         {!isFullMobile ? 
                             <>
-                                <h6 className="detailTitleMin768">{t("locationPage.info.sns")}</h6>
+                                <h4 className="detailTitleMin768">{t("locationPage.info.sns")}</h4>
                                 <div className='emptyLine1px'></div>
                             </>
                         :

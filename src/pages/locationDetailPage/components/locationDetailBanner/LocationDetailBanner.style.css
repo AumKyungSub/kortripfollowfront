@@ -1,12 +1,13 @@
-.mainImageCover {
+.locationDetailBannerWrapper {
     width: 100%;
     aspect-ratio: 16/11;
     display: block;
     overflow: hidden;
+    padding: 16px;
+    /* Background */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 16px;
     /* Flex */
     display: flex;
     align-items: end;
@@ -14,11 +15,11 @@
     position: relative;
 }
 
-.mainImageCover::after {
+.locationDetailBannerWrapper::after {
     content: "";
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), 40%, rgba(255, 255, 255, 0.2));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), 45%, rgba(255, 255, 255, 0.2));
     /* Position */
     position: absolute;
     top: 0;
@@ -26,37 +27,39 @@
     z-index: 10;
 }
 
-.mainImageTextCover {
+.locationDetailBannerTextCover {
+    width: 100%;
     /* Font */
     color: #fff;
     /* Flex */
     display: flex;
-    align-items: end;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
     /* Position */
     z-index: 99;
 }
 
-.locationName {
-    margin-bottom: 10px;
+.locationDetailBannerTextName {
     /* Font */
-    font-size: 1.25rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
 }
 
-.locationAddress {
-    margin-bottom: 10px;
+.locationDetailBannerTextAddress {
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    gap: 5px;
 }
 
-.locationAddress img {
-    width: 16px;
+.locationDetailBannerTextAddress img {
+    width: 14px;
 }
 
-.locationSlogan {
+.locationDetailBannerTextSlogan {
     /* Font */
-    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
 }
 
 /* ---------------------------------------------------- */
@@ -65,19 +68,9 @@
 }
 
 @media only all and (min-width: 480px) {
-    .mainImageCover {
+    .locationDetailBannerWrapper {
         aspect-ratio: 16/9;
         padding: 20px;
-    }
-
-    .locationName {
-        /* Font */
-        font-size: 1.5rem;
-    }
-    
-    .locationSlogan {
-        /* font */
-        font-size: 1.25rem;
     }
 }
 
@@ -85,23 +78,18 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .mainImageCover {
+    .locationDetailBannerWrapper {
         aspect-ratio: 16/5;
     }
-
-    .mainImageTextCover {
-        width: 100%;
+    
+    .locationDetailBannerTextCover {
         max-width: 1440px;
         margin: 0 auto;
     }
+}
 
-    .locationAddress {
-        margin-bottom: 20px;
-    }
-
-    .locationName {
-        margin-bottom: 20px;
-        /* Font */
-        font-size: 2rem;
+@media only all and (min-width: 1921px) {
+    .locationDetailBannerTextCover {
+        max-width: 1920px;
     }
 }

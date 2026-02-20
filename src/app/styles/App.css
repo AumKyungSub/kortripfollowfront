@@ -21,18 +21,12 @@
 .detailTitleMin768 {
   display: block;
   width: 100%;
-  padding: 20px 20px 20px 0;
-  /* Font */
-  font-size: 1.25rem;
-  font-weight: 600;
+  padding: 16px 16px 16px 0;
 }
 
 /* Detail Page Max 767px Title */
 .detailTitleMax768 {
     margin-bottom: 20px;
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 600;
 }
 
 
