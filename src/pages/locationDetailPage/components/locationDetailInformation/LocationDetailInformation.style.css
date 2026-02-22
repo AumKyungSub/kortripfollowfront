@@ -1,0 +1,55 @@
+.locationDetailInformationWrapper {
+    padding: 0 16px 16px;
+}
+
+.locationDetailInformationCover {
+    padding: 16px 0;
+    white-space: pre-wrap;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 16px;
+}
+
+.locationDetailInformationTitleCover {
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.locationDetailInformationTitleCover img {
+    width: 20px;
+    height: 20px;
+}
+
+    .locationDetailInformationText {
+    padding-left: 25px;
+
+    }
+
+.warningInfo {
+    /* Font */
+    font-weight: 900 !important;
+    text-align: center;
+}
+
+/*---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only all and (min-width: 768px) {
+    .locationDetailInformationWrapper {
+        padding:  0 0 16px;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+
+}

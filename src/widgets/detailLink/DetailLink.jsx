@@ -19,7 +19,7 @@ const DetailLink = ({data, isFullMobile}) => {
 
     return (
         <>
-            <section className="linkWrap">
+            <section className="detailLinkWrapper">
                 {data?.location?.homepage
                 ?
                     <>
@@ -30,17 +30,17 @@ const DetailLink = ({data, isFullMobile}) => {
                             </>
                         :
                             <>
-                                <h6 className="detailTitleMax768">{t("locationPage.info.sns")}</h6>
+                                <h4 className="detailTitleMax768">{t("locationPage.info.sns")}</h4>
                             </>
                         }
-                        <div className="linkCover">
+                        <div className="detailLinkCover">
                             {data?.location?.homepage &&
-                                <span className='linkInfoSpan' onClick={goToHomepage}>
+                                <span className='detailLinkIcon' onClick={goToHomepage}>
                                     <img src="/images/icon/homepageIcon.png" alt="homepage" />
                                 </span> 
                             }
                             {data?.location?.instagram &&
-                                <span className='linkInfoSpan' onClick={goToInstagram}>
+                                <span className='detailLinkIcon' onClick={goToInstagram}>
                                     <img src="/images/icon/instaIcon.png" alt="instagram" />
                                 </span>
                             }

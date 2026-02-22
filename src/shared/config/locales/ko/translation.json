@@ -84,7 +84,7 @@
             "reviewNone": "리뷰가 준비중 입니다"
         },
         "parking": {
-            "title": "위치 정보",
+            "title": "위치",
             "parkingArea": "주차장",
             "parkingAvailable": "주차 가능",
             "parkingNotAvailable": "주차 불가능",

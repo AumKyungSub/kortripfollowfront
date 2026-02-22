@@ -1,9 +1,9 @@
-.reviewCover {
+.detailReviewWrapper {
     padding: 16px;
 }
 
-.reviewPC,
-.reviewPCYet {
+.detailReview,
+.detailReviewYet {
     width: 100%;
     display: block;
     padding: 20px;
@@ -32,13 +32,12 @@
 }
 
 @media only all and (min-width: 768px) {
-    .reviewCover {
-        padding: 0;
-        margin-top: 20px;
+    .detailReviewWrapper {
+        padding: 0 0 16px;
     }
 
-    .reviewPC,
-    .reviewPCYet {
+    .detailReview,
+    .detailReviewYet {
         margin-top: 16px;
     }
 

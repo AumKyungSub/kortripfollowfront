@@ -1,20 +1,20 @@
-.linkWrap {
+.detailLinkWrapper {
     padding: 16px;
 }
 
-.linkCover {
+.detailLinkCover {
     cursor: pointer;
     /* Flex */
     display: flex;
     gap: 20px;
 }
 
-.linkInfoSpan {
-    width: 40px;
+.detailLinkIcon {
+    width: 35px;
     aspect-ratio: 1/1;
 }
 
-.linkInfoSpan img {
+.detailLinkIcon img {
     width: 100%;
 }
 
@@ -28,12 +28,11 @@
 }
 
 @media only all and (min-width: 768px) {
-    .linkWrap {
+    .detailLinkWrapper {
         padding: 0;
-        margin-top: 20px;
     }
 
-    .linkCover {
+    .detailLinkCover {
         padding: 16px;
         padding-left: 0;
     }

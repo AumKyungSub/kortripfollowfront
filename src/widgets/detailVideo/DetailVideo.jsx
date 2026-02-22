@@ -14,12 +14,12 @@ const DetailVideo = ({video, isFullMobile}) => {
       <section className="detailVideo">
         {!isFullMobile ?
           <>
-            <h6 className='detailTitleMin768'>{t("detailVideo.title")}</h6>
+            <h4 className='detailTitleMin768'>{t("detailVideo.title")}</h4>
             <div className='emptyLine1px'></div>
           </>
         :
           <>
-            <h6 className='detailTitleMax768'>{t("detailVideo.title")}</h6>
+            <h4 className='detailTitleMax768'>{t("detailVideo.title")}</h4>
           </>
         }
         <div className="detailVideoFrameWrap">

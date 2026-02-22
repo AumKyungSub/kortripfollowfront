@@ -16,7 +16,7 @@ const ThemeDetailCafeInfo = ({data, isFullMobile, themeName, lang}) => {
     return (
         <>
             <section className="themeDetailCafeInfoWholeCover">
-                {!isFullMobile && <h1 className='themeDetailInfoH1'>{themeName} {t("themeDetail.tDCI.tDCIHInfo")}</h1>}
+                {!isFullMobile && <h4 className='themeDetailInfoH1'>{themeName} {t("themeDetail.tDCI.tDCIHInfo")}</h4>}
                 {!isFullMobile && <div className='emptyLine1px'></div>}
                 {isFullMobile && <div className='emptyLine'></div>}
                 <div className="themeDetailInfoOperatingHourCover">

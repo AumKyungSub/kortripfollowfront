@@ -84,7 +84,7 @@
             "reviewNone": "Review coming soon."
         },
         "parking": {
-            "title": "Address Info",
+            "title": "Address",
             "parkingArea": "Parking lot",
             "parkingAvailable": "Parking Available",
             "parkingNotAvailable": "No Parking Area",

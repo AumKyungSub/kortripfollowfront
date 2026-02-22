@@ -24,7 +24,7 @@ const DetailGallery = ({data, isFullMobile}) => {
                         </>
                     :
                         <>
-                            <h6 className='detailTitleMax768'>{t("locationPage.recommend.title")}</h6>
+                            <h4 className='detailTitleMax768'>{t("locationPage.recommend.title")}</h4>
                         </>
                     }
                     <div className="detailGalleryCover">

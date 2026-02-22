@@ -19,7 +19,7 @@ import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import ThemeDetailCafeInfo from '@/pages/themeDetailPage/components/themeDetailCafeInfo/ThemeDetailCafeInfo'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'
-import ThemeDetailMap from '@/pages/themeDetailPage/components/themeDetailMap/ThemeDetailMap'
+import DetailMap from '@/widgets/detailMap/DetailMap'
 import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
@@ -40,13 +40,13 @@ const ThemeDetail = () => {
     const { type } = location.state || {};
 
     
-  const { getThemeCode, getThemeName } = useThemeList();
-  const themeCode = getThemeCode(type);
-  const themeName = getThemeName(themeCode, lang);
+    const { getThemeCode, getThemeName } = useThemeList();
+    const themeCode = getThemeCode(type);
+    const themeName = getThemeName(themeCode, lang);
 
     const { data, loading, error } = useReadOneDB(type, id);
 
-  const isLodging = themeCode === 'LODGING';
+    const isLodging = themeCode === 'LODGING';
 
     // 로딩 화면
     if (loading) return <div><Loading/></div>
@@ -57,7 +57,7 @@ const ThemeDetail = () => {
     
     // 4. Draft / 비공개 데이터 차단
     if (data.visibility === false) {
-      return <FailedData />;
+        return <FailedData />;
     }
 
 
@@ -98,7 +98,12 @@ const ThemeDetail = () => {
                         <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                     <div className="themeDetailRightWholeCover">
-                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang} />
+                        <DetailMap 
+                            data={data}
+                            isFullMobile={isFullMobile}
+                            lang={lang}
+                            showParkingInfo={false} 
+                        />
                         <DetailLink data={data} isFullMobile={isFullMobile} />
                         <DetailReview data={data} isFullMobile={isFullMobile} />
                         <DetailVideo video={data.video} isFullMobile={isFullMobile} />
@@ -107,7 +112,12 @@ const ThemeDetail = () => {
             : 
             <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
-                        <ThemeDetailMap data={data} isFullMobile={isFullMobile} lang={lang}/>
+                        <DetailMap 
+                            data={data}
+                            isFullMobile={isFullMobile}
+                            lang={lang}
+                            showParkingInfo={false}
+                        />
                     </div>
                     <div className="themeDetailRightWholeCover">
                         {isLodging?

@@ -18,8 +18,8 @@ import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import LocationDetailExplain from '@/pages/locationDetailPage/components/locationDetailExplain/LocationDetailExplain'
-import Parking from '@/pages/locationPage/components/parking/Parking'
-import LocInfo from '@/pages/locationPage/components/locationInfo/LocInfo'
+import DetailMap from '@/widgets/detailMap/DetailMap'
+import LocationDetailInformation from '@/pages/locationDetailPage/components/locationDetailInformation/LocationDetailInformation'
 import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
@@ -46,14 +46,14 @@ const LocationDetailPage = () => {
 
     // 4. Draft / 비공개 데이터 차단
     if (data.visibility === false) {
-      return <FailedData />;
+        return <FailedData />;
     }
 
-  return (
-          <div>
-              {!isFullMobile && <Header/>}
-              {!isFullMobile && <EmptyHeader/>}
-              {data && <DetailBanner 
+    return (
+        <div>
+            {!isFullMobile && <Header/>}
+            {!isFullMobile && <EmptyHeader/>}
+            {data && <DetailBanner 
                 name={data.location?.name?.[lang]}
                 address={
                     lang === "ko"
@@ -64,36 +64,54 @@ const LocationDetailPage = () => {
                 imgLink={data.img?.link}
                 isFullMobile={isFullMobile}
                 isDesktop={isDesktop}
-                />}
-              {!isFullMobile ?
-                  <div className='locationDetailWholeCover'>
-                      <div className="locationDetailLeftWholeCover">
-                          <LocationDetailExplain rankingData={data} isFullMobile={isFullMobile} isDesktop={isDesktop} isTablet={isTablet} lang={lang}/>
-                          <Parking rankingData={data}  isFullMobile={isFullMobile} lang={lang}/>
-                      <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
-                      </div>
-                      <div className="locationDetailRightWholeCover">
-                          <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                          <DetailLink data={data} isFullMobile={isFullMobile} />
-                          <DetailReview data={data} isFullMobile={isFullMobile} />
-                          <DetailVideo video={data.video} isFullMobile={isFullMobile} />
-                      </div>
-                  </div>
-              :
-                  <div>
-                      <LocationDetailExplain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                      <LocInfo rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                      <DetailLink data={data} isFullMobile={isFullMobile} />
-                      <DetailReview data={data} isFullMobile={isFullMobile} />
-                      <Parking rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                      <DetailVideo video={data.video} isFullMobile={isFullMobile} />
-                      <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
-                  </div>
-              }
-              {isFullMobile && <EmptyFooter/>}
-              <Footer/>
-          </div>
-  )
+                />
+            }
+            {!isFullMobile 
+            ?
+                <div className='locationDetailWholeCover'>
+                    <div className="locationDetailLeftWholeCover">
+                        <LocationDetailExplain 
+                            rankingData={data} 
+                            isFullMobile={isFullMobile} 
+                            isDesktop={isDesktop} 
+                            isTablet={isTablet} 
+                            lang={lang}
+                        />
+                        <DetailMap 
+                            data={data}
+                            isFullMobile={isFullMobile}
+                            lang={lang}
+                            showParkingInfo={true}
+                        />
+                        <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
+                    </div>
+                    <div className="locationDetailRightWholeCover">
+                        <LocationDetailInformation rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                        <DetailLink data={data} isFullMobile={isFullMobile} />
+                        <DetailReview data={data} isFullMobile={isFullMobile} />
+                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                    </div>
+                </div>
+            :
+                <div>
+                    <LocationDetailExplain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <LocationDetailInformation rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
+                    <DetailLink data={data} isFullMobile={isFullMobile} />
+                    <DetailReview data={data} isFullMobile={isFullMobile} />
+                    <DetailMap 
+                        data={data}
+                        isFullMobile={isFullMobile}
+                        lang={lang}
+                        showParkingInfo={true}
+                    />
+                    <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                    <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
+                </div>
+            }
+            {isFullMobile && <EmptyFooter/>}
+            <Footer/>
+        </div>
+    )
 }
 
 export default LocationDetailPage

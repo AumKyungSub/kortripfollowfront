@@ -11,7 +11,7 @@ const DetailReview = ({data, isFullMobile}) => {
 
     return (
         <>
-            <section className='reviewCover'>
+            <section className='detailReviewWrapper'>
                 {!isFullMobile ? 
                     <>
                         <h4 className="detailTitleMin768">{t("locationPage.info.review")}</h4>
@@ -19,18 +19,18 @@ const DetailReview = ({data, isFullMobile}) => {
                     </>
                 :
                 <>
-                        <h6 className="detailTitleMax768">{t("locationPage.info.review")}</h6>
+                        <h4 className="detailTitleMax768">{t("locationPage.info.review")}</h4>
 
                     </>
                 }
                 {data?.review?.existence?
                     <a href={data?.review?.link} target="_blank" rel="noopener noreferrer" className='reviewCover'>
-                        <span className='reviewPC'>{t("locationPage.info.reviewGo")}</span>
+                        <span className='detailReview'>{t("locationPage.info.reviewGo")}</span>
                     </a>
                 : 
                 <div>
-                        <span className='reviewPCYet'>{t("locationPage.info.reviewNone")}</span>
-                    </div>
+                        <span className='detailReviewYet'>{t("locationPage.info.reviewNone")}</span>
+                </div>
                 }
             </section>
             {isFullMobile && <div className="emptyLine"></div>}

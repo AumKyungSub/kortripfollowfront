@@ -1,0 +1,115 @@
+.detailMapWrapper{
+    padding: 0 16px 16px;
+}
+
+.detailMapRectangle,
+.detailMapSquare {
+    width: 100%;
+    aspect-ratio: 16/11;
+    max-height: 300px;
+    margin-top: 16px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.detailMapTextWrapper {
+    padding: 16px 0;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+}
+
+.detailMapAddress {
+    /* Font */
+    font-weight: 600 !important;
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.detailMapParkingInfo {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.detailMapParkingFee {
+    /* Font */
+    font-weight: 700 !important;
+}
+    
+.detailMapAddress img,
+.detailMapParkingInfo img,
+.detailMapButtons img {
+    width: 16px;
+    height: 16px;
+}
+
+.detailMapButtons {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.detailMapBtnFull,
+.detailMapBtnHalf {
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    /* Font */
+    text-align: center;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.detailMapBtnHalf {
+    width: calc((100% - 10px) / 2);
+}
+
+.detailMapBtnFull {
+    width: 100%;
+}
+
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) {
+    .detailMapWrapper{
+        padding: 0;
+    }
+
+    .detailMapRectangle {
+        width: 100%;
+        aspect-ratio: 16/9;
+        max-height: 400px;
+    }
+    .detailMapSquare {
+        aspect-ratio: 1/1;
+        max-height: 400px;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+}
