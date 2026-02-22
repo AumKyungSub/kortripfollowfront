@@ -41,7 +41,7 @@ const DetailLink = ({data, isFullMobile}) => {
                             }
                             {data?.location?.instagram &&
                                 <span className='detailLinkIcon' onClick={goToInstagram}>
-                                    <img src="/images/icon/instaIcon.png" alt="instagram" />
+                                    <img src="/images/logo/instaIcon.png" alt="instagram" />
                                 </span>
                             }
                         </div>

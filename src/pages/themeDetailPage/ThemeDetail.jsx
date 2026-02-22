@@ -17,7 +17,7 @@ import FailedData from '@/features/failedData/FailedData'
 import Header from '@/widgets/header/Header'
 import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
-import ThemeDetailCafeInfo from '@/pages/themeDetailPage/components/themeDetailCafeInfo/ThemeDetailCafeInfo'
+import ThemeDetailInformation from '@/pages/themeDetailPage/components/themeDetailInformation/ThemeDetailInformation'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'
 import DetailMap from '@/widgets/detailMap/DetailMap'
 import DetailLink from '@/widgets/detailLink/DetailLink'
@@ -93,7 +93,7 @@ const ThemeDetail = () => {
                         {isLodging?
                             <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
-                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
+                            <ThemeDetailInformation data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
                         <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
@@ -123,7 +123,7 @@ const ThemeDetail = () => {
                         {isLodging?
                             <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
-                            <ThemeDetailCafeInfo data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
+                            <ThemeDetailInformation data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
                         <DetailLink data={data} isFullMobile={isFullMobile}/>
                         <DetailReview data={data} isFullMobile={isFullMobile}/>

@@ -28,3 +28,9 @@
 
 @media only all and (min-width: 1024px) {
 }
+
+@media only all and (min-width: 1921px) {
+    .themeDetailWholeCover {
+        max-width: 1960px;
+    }
+}
