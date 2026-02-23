@@ -1,64 +1,37 @@
-.themeDetailLodgingInfoWholeCover {
+.themeDetailLodgingInfoWrapper {
     white-space: pre-line;
+    padding: 0 16px 16px;
 }
 
 .themeDetailBasicInfoCover{
-    padding: 16px;
-}
-
-.themeDetailBasicInfoH3 {
-    margin-bottom: 16px;
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.themeDetailBasicInfoP {
-    /* font */
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 32px;
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
 }
 
 .themeDetailBasicInfoSubCover {
     /* Flex */
     display: flex;
+    justify-content: start;
     align-items: center;
     gap: 5px;
-    margin-bottom: 8px;
 }
 
 .themeDetailBasicInfoSubCover img {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 
-.title {
-    width: 100px;
-    font-weight: 600;
-    flex-shrink: 0;
+.themeDetailBasicInfoTitle {
     /* font */
-    font-size: 1rem;
     font-weight: 600;
-    line-height: 22px;
-}
-
-.value {
-    flex: 1;
-    /* font */
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 22px;
 }
 
 /* 숙소 객실 정보 */
-.themeDetailRoomInfoListTitle {
-    padding-left: 5px;
-    /* Font */
-    font-size: 1.125rem;
-    font-weight: 500;
-}
-
 .themeDetailRoomInfoList {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -77,33 +50,33 @@
     min-width: 240px;
     background: #fff;
     border-radius: 10px;
-    padding: 5px;
-    padding-left: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    border: 1px solid #bababa;
     scroll-snap-align: start;
+    padding: 10px;
     /* Flex */
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
 }
-.roomCard h3 {
-    margin-bottom: 5px;
+
+.themeDetailRoomInfoListTitle {
     /* Font */
-    font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .roomCardInfo {
     /* Flex */
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 .roomCardInfo p {
     width: calc((100% - 10px)/2);
-    margin: 5px 0;
-    /* Font */
-    font-size: 0.825rem;
-    color: #000;
 }
 
 .roomCardInfo p span{
@@ -115,65 +88,65 @@
 /* 숙소 식당 */
 
 .themeDetailRestaurantsInfoList {
-        overflow-y: auto;
-        scroll-snap-type: x mandatory;
-        /* Flex */
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-}
-
-.themeDetailRestaurantsInfoListCard {
-    background: #fff;
-    border-radius: 10px;
-    padding: 5px;
-    padding-left: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
-    scroll-snap-align: start;
-    /* Flex */
-    flex: 0 0 auto;
-}
-
-.themeDetailRestaurantsInfoListCard h3 {
-    margin-bottom: 10px;
-    /* Font */
-    font-size: 1.125rem;
-    font-weight: 600;
-}
-
-.themeDetailRestaurantsInfoListCardInfo {
+    width: 100%;
+    overflow-y: auto;
+    scroll-snap-type: x mandatory;
     /* Flex */
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.themeDetailRestaurantsInfoListCardInfo p {
-    padding-left: 5px;
-    /* Font */
-    font-size: 0.75rem;
+.themeDetailRestaurantsInfoListCard {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #bababa;
+    padding: 10px;
+    scroll-snap-align: start;
+    /* Flex */
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+}
+.themeDetailInfoTitleCover {
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    gap: 5px;
 }
 
+.themeDetailInfoTitle {
+    /* Font */
+    font-weight: 700;
+}
+
+.themeDetailRestaurantsInfoListCardInfo {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
 
 @media only all and (min-width: 767px) {
-    .themeDetailBasicInfoH1 {
-        padding: 20px;
-        padding-left: 0;
-        /* Font */
-        font-size: 1.25rem;
-        font-weight: 600;
+    .themeDetailLodgingInfoWrapper {
+        padding: 0 0 16px;
     }
     
-    .themeDetailBasicInfoCover{
-        padding-left: 0;
+    .themeDetailBasicInfoCover,
+    .themeDetailRoomInfoCover {
+        padding: 16px 0 0 0;
     }
 
     /* 객실 정보 */
-
     .themeDetailRoomInfoList {
         height: 300px;
         overflow-y: auto;
@@ -196,44 +169,19 @@
         /* Flex */
         flex: 0 0 auto;
     }
-    
-    .roomCard h3 {
-        margin-bottom: 20px;
-    /* Font */
-    font-size: 1.125rem;
-    font-weight: 600;
-    }
 
     .roomCardInfo {
+        width: 100%;
         /* Flex */
         flex-wrap: nowrap;
-        justify-content: start;
+        justify-content: space-between;
     }
     
     .roomCardInfo p {
-        /* Font */
-        font-weight: 1rem;
         /* Flex */
         display: flex;
         flex-direction: column;
         gap: 5px;
-    }
-
-    /* 숙소 식당 */
-    .themeDetailRestaurantsInfoListCardInfo p {
-        /* Font */
-        font-size: 1rem;
-    }
-
-    .themeDetailRestaurantsInfoListCard {
-        background: #fff;
-        border-radius: 0;
-        padding: 5px;
-        padding-left: 5px;
-        box-shadow: none;
-        scroll-snap-align: start;
-        /* Flex */
-        flex: 0 0 auto;
     }
 }
 
