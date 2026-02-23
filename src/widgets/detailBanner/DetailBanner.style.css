@@ -1,6 +1,7 @@
 .detailBannerWrapper {
     width: 100%;
     aspect-ratio: 16/11;
+    max-height: 400px;
     display: block;
     overflow: hidden;
     padding: 16px;
@@ -69,7 +70,6 @@
 
 @media only all and (min-width: 480px) {
     .detailBannerWrapper {
-        aspect-ratio: 16/9;
         padding: 20px;
     }
 }
@@ -78,10 +78,6 @@
 }
 
 @media only all and (min-width: 1024px) {
-    .detailBannerWrapper {
-        aspect-ratio: 16/5;
-    }
-    
     .detailBannerTextCover {
         max-width: 1440px;
         margin: 0 auto;

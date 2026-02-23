@@ -19,8 +19,8 @@ const DetailBanner = ({
     const bgi = isDesktop
         ? `${imgLink}2.jpg`
         : isFullMobile
-        ? `${imgLink}2M.jpg`
-        : `${imgLink}2T.jpg`
+        ? `${imgLink}2.jpg`
+        : `${imgLink}2.jpg`
         
     return (
         <section
