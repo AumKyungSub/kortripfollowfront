@@ -1,0 +1,101 @@
+.collectionListWrapper {
+    width: 100%;
+    padding: 16px;
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.collectionListCard {
+    width: 100%;    
+    background-color: #fff;
+}
+
+.collectionListCardImgCover {
+    width: 100%;    
+    aspect-ratio: 1/1;
+    padding: 10px;
+    /* Background */
+    background-size: cover;  
+    background-clip: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.collectionListCardTextCover{
+    padding: 0 10px 10px;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+}
+
+.collectionListCardTextCover * {
+    width: 100%;
+    /* over text hidden and ... */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collectionListCardCamera {
+    /* Font */
+    color: #777777;
+    font-weight: 500 !important;
+}
+
+.collectionListCardLink {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #525252;
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+    .collectionListWrapper {
+        /* flex */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: start;
+        gap: 10px;
+    }
+    .collectionListCard {
+        width: calc((100% - 10px) / 2);    
+        background-color: #fff;
+    }
+}
+
+@media only all and (min-width: 768px) {
+    .collectionListWrapper {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    .collectionListCard {
+        width: calc((100% - 20px) / 3);    
+        background-color: #fff;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+    .collectionListCard {
+        width: calc((100% - 30px) / 4);    
+        background-color: #fff;
+    }
+}
+
+@media only all and (min-width: 1921px) {
+    .collectionListWrapper {
+        max-width: 1920px;
+    }
+}

@@ -1,0 +1,70 @@
+
+
+.collectionDetailPageTextCover {
+    padding-bottom: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 16px;
+}
+
+.collectionDetailPageTagCover {
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.collectionDetailPageTagCover p {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #d7d7d7;
+}
+
+.collectionDetailPageImgCover{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.collectionDetailPageImgCover img {
+    width: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 768px) {
+    .collectionDetailPageMainWrapper {
+        width: 100%;
+        /* Flex */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: start;
+        gap: 16px;
+    }
+    .collectionDetailPageImgCover {
+        width: calc((100% - 16px) * 0.4);
+    }
+    .collectionDetailPageTextCover {
+        width: calc((100% - 16px) * 0.6);
+
+    }
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+}

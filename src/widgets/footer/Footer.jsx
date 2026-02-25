@@ -26,7 +26,7 @@ const Footer = () => {
   /* ------------------------ links config ------------------------ */
   const links = [
     {
-      key: 'about',
+      key: 'home',
       label: t('menu.home'),
       image: 'logoIcon',
       onClick: goTo('/'),

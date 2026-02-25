@@ -1,0 +1,35 @@
+.collectionDetailPageWrapper {
+    padding: 20px 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 768px) {
+    .collectionDetailPageWrapper {
+        max-width: 1440px;
+        margin: 0 auto;
+        white-space: pre-wrap;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+    .collectionDetailPageWrapper {
+        max-width: 1920px;
+    }
+}

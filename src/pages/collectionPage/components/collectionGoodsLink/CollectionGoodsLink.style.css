@@ -1,0 +1,60 @@
+.collectoinGoodsLinkWrapper {
+    background-color: #f3e6e8;
+}
+
+.collectionGoodsLinkCover {
+    padding: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.collectionGoodsLink {
+    width: calc((100% - 10px) / 2);
+    aspect-ratio: 16/5;
+    border-radius: 5px;
+    /* Font */
+    color: #fff;
+    /* Background */
+    background-image: url('/images/collection/moreback.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 768px) {
+    .collectionGoodsLinkCover {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+.collectionGoodsLink {
+    border-radius: 10px;
+}
+
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+    .collectionGoodsLinkCover {
+        max-width: 1920px;
+    }
+}

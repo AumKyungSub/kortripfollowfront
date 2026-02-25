@@ -1,0 +1,90 @@
+.collectionDetailPageLinkWrapper {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.collectionDetailPageLinkWrapper h1 {
+    text-align: center;
+}
+
+.collectionDetailPageCard {
+    width: calc((100% - 15px) / 2);
+}
+
+.collectionDetailPageCardCover {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.collectionDetailPageCard {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.collectionDetailPageCardImg{
+    width: 100%;
+    overflow: hidden;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collectionDetailPageCardImgHorizontal {
+    width: 100%;
+    border-radius: 10px;
+}
+.collectionDetailPageCardImgVertical {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.collectionDetailPageCardLink {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    background-color: #4185F4;
+    border-radius: 5px;
+    padding: 15px 0;
+    /* Fonts */
+    color: #fff;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 768px) {
+    .collectionDetailPageLinkWrapper {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        white-space: pre-wrap;
+    }
+    
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+    .collectionDetailPageLinkWrapper {
+        max-width: 1920px;
+    }
+}

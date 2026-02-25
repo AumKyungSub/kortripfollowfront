@@ -44,7 +44,8 @@ const Header = () => {
     { key: 'home', path: '/', label: t('menu.home') },
     { key: 'region', path: '/region', startsWith: '/location', label: t('menu.region') },
     { key: 'season', path: '/season', label: t('menu.season') },
-    { key: 'theme', path: '/theme', startsWith: '/themeDetail', label: t('menu.theme') },
+    { key: 'theme', path: '/theme', startsWith: '/themeDetail', label: t('menu.theme') },,
+    { key: 'collection', path: '/collection', label: t('menu.collection') },
     { key: 'about', path: '/about', label: t('menu.about') },
   ]
   

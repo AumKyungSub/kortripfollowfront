@@ -13,7 +13,7 @@
             "region": "Region",
             "season": "Season",
             "theme": "Theme",
-            "goods": "Goods"
+            "collection": "Collection"
         },
         "homeRegion": {
             "title": "Regions",
@@ -51,9 +51,10 @@
     },
     "menu": {
         "home": "Home",
-        "region": "By Region",
-        "season": "By Season",
-        "theme": "By Theme",
+        "region": "Region",
+        "season": "Season",
+        "theme": "Theme",
+        "collection": "Collection",
         "about": "About",
         "blog": "Blog",
         "insta": "Insta",
@@ -212,6 +213,19 @@
             "leftText":"CheonanWalnutCakes",
             "rightTitle":"Signature Menu",
             "rightText":"Amber butter"
+        }
+    },
+    "collection":{
+        "banner":{
+            "title":"Collection",
+            "sellTitle":"Own This Moment",
+            "textFst":"Trips may pass, but the memories stay.",
+            "textSnd":"Discover KortripFollow's moments as timeless pieces.",
+            "collectionDetailPageLink":"To keep this moment",
+            "keepPuzzle":"Keep as Puzzle",
+            "keepFrame":"Keep as Frame",
+            "morePuzzle":"More Puzzles",
+            "moreArt":"More Art"
         }
     }
 }

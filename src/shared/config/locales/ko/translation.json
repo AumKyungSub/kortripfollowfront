@@ -13,7 +13,7 @@
             "region": "지역별",
             "season": "계절별",
             "theme": "테마",
-            "goods": "굿즈"
+            "collection": "컬렉션"
         },
         "homeRegion": {
             "title": "지역별 여행지",
@@ -54,6 +54,7 @@
         "region": "지역별",
         "season": "계절별",
         "theme": "테마별",
+        "collection": "컬렉션",
         "about": "소개",
         "blog": "블로그",
         "insta": "인스타",
@@ -212,6 +213,19 @@
             "leftText":"천안옛날호두과자",
             "rightTitle":"대표 메뉴",
             "rightText":"앙버터"
+        }
+    },
+    "collection":{
+        "banner":{
+            "title":"컬렉션",
+            "sellTitle":"이 순간을 소장하는 방법",
+            "textFst":"여행은 지나가지만, 그날의 기록은 남습니다.",
+            "textSnd":"국트따라의 순간들을 작품으로 만나보세요.",
+            "collectionDetailPageLink":"이 장면을 간직하기",
+            "keepPuzzle":"퍼즐로 간직하기",
+            "keepFrame":"액자로 간직하기",
+            "morePuzzle":"더 많은 퍼즐보기",
+            "moreArt":"더 많은 작품보기"
         }
     }
 }
