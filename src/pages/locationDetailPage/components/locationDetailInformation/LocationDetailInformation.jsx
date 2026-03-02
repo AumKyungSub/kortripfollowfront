@@ -34,9 +34,15 @@ const LocationDetailInformation = ({rankingData, isFullMobile, lang}) => {
       value:
         operating?.entranceFee?.[lang] ||
         t('locationPage.info.free'),
-    },
+    }
   ];
-
+  if (operating?.etcFee?.[lang]) {
+    infoList.push({
+      icon: '/images/icon/feesIcon.png',
+      title: t('locationPage.info.etc'),
+      value: operating.etcFee[lang],
+    });
+  }
   return (
     <>
       <section className='locationDetailInformationWrapper'>

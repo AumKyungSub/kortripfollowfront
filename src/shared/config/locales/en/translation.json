@@ -74,6 +74,7 @@
             "operating": "Operating hours",
             "closedDay": "Closed day",
             "entrance": "Entrance Fee",
+            "etc":"Extra charges",
             "free": "Free",
             "allday": "24 hours a day",
             "openAll": "24/7",
