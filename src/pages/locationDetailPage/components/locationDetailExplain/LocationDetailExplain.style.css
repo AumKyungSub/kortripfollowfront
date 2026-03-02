@@ -19,6 +19,7 @@
     margin-bottom: 16px;
     /* Font */
     font-weight: 400;
+    white-space: pre-wrap;
 }
 
 .locationDetailExplainLast {
