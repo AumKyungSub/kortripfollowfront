@@ -12,6 +12,21 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>신륵사</title>
+      <link>https://kortripfollow.shop/location/22</link>
+      <description>여주팔경의 첫 번째 풍경, 신륵사</description>
+      <guid>https://kortripfollow.shop/location/22</guid>
+      <pubDate>Mon, 02 Mar 2026 15:50:00 +0900</pubDate>
+    </item>
+
+      <title>불국사</title>
+      <link>https://kortripfollow.shop/location/21</link>
+      <description>다사다난한 천년의 시간을 건너온 사찰, 불국사</description>
+      <guid>https://kortripfollow.shop/location/21</guid>
+      <pubDate>Mon, 02 Mar 2026 15:50:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>독수리바위</title>
       <link>https://kortripfollow.shop/location/20</link>
       <description>석양이 물드는 호미곶의 절경, 독수리바위</description>
@@ -74,22 +89,6 @@
       <description>대자연과 인공미가 조화된, 철원의 새로운 상징</description>
       <guid>https://kortripfollow.shop/location/13</guid>
       <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>영녕릉</title>
-      <link>https://kortripfollow.shop/location/12</link>
-      <description>역사와 품격이 살아 있는 왕릉의 조화</description>
-      <guid>https://kortripfollow.shop/location/12</guid>
-      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>오동도</title>
-      <link>https://kortripfollow.shop/location/11</link>
-      <description>전라남도 여수시 수정동에 위치한 오동도 — 전라남도 여수시 수정동에 위치한 오동도</description>
-      <guid>https://kortripfollow.shop/location/11</guid>
-      <pubDate>Mon, 10 Nov 2025 09:00:00 +0900</pubDate>
     </item>
 
     <!-- 최신 카페 10개 (id 높은 순) -->
