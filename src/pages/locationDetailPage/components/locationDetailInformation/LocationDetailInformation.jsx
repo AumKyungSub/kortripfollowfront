@@ -17,30 +17,30 @@ const LocationDetailInformation = ({rankingData, isFullMobile, lang}) => {
     {
       icon: '/images/icon/clockIcon.png',
       title: t('locationPage.info.operating'),
-      value:
-        operating?.operatingHour?.[lang] ||
-        t('locationPage.info.allday'),
+      value: operating?.operatingHour?.[lang]?.length
+              ? operating.operatingHour[lang]
+              : t('locationPage.info.allday'),
     },
     {
       icon: '/images/icon/bookingIcon.png',
       title: t('locationPage.info.closedDay'),
-      value:
-        operating?.closeDay?.[lang] ||
-        t('locationPage.info.openAll'),
+      value: operating?.closeDay?.[lang]?.length
+              ? operating.closeDay[lang]
+              : t('locationPage.info.openAll'),
     },
     {
       icon: '/images/icon/feesIcon.png',
       title: t('locationPage.info.entrance'),
-      value:
-        operating?.entranceFee?.[lang] ||
-        t('locationPage.info.free'),
+      value: operating?.entranceFee?.[lang]?.length
+              ? operating.entranceFee[lang]
+              : t('locationPage.info.free')
     }
   ];
   if (operating?.etcFee?.[lang]) {
     infoList.push({
       icon: '/images/icon/feesIcon.png',
       title: t('locationPage.info.etc'),
-      value: operating.etcFee[lang],
+      value: operating.etcFee[lang]
     });
   }
   return (

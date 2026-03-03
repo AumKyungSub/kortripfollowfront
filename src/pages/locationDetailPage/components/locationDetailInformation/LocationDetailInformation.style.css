@@ -23,11 +23,49 @@
     width: 20px;
     height: 20px;
 }
-
-    .locationDetailInformationText {
+.locationDetailInformationTextCover {
+    width: 100%;
     padding-left: 25px;
+}
+.locationDetailInformationText {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    align-items: center; 
+}
 
-    }
+.locationDetailSubTypeTitle {
+    /* Font */
+    font-weight: 700 !important;
+}
+.locationDetailSubTypeLabel {
+    flex-shrink: 1;  /* 줄어들 수 있음 */
+    min-width: 0; /* 단어 길어도 강제 줄바꿈 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;  /* 최대 2줄 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.locationDetailSubTypeValue {
+    white-space: nowrap;       /* 가격은 한 줄 유지 */
+    flex-shrink: 0;  /* 절대 줄어들지 않음 */
+    /* Font */
+    font-weight: 600 !important;
+}
+
+.dotLine {
+    flex: 1;
+    border-bottom: 1px dashed #cfcfcf;
+    margin: 0 8px;
+    /* align-self: center; */
+}
+
+.locationDetailSubTypeText {
+    /* Font */
+    color: #525252;
+    font-weight: 700 !important;
+}
 
 .warningInfo {
     /* Font */
