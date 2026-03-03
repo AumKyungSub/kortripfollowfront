@@ -31,6 +31,9 @@ const LocationDetailInformationComponent = ({ icon, title, value }) => {
                                         {item.value}
                                     </p>
                                 </div>
+                                <p className='subFont locationDetailSubTypeText'>
+                                    {item.exps}
+                                </p>
                             </div>
                         );
                     }
