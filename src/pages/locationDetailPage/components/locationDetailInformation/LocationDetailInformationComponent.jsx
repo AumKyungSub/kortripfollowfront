@@ -26,7 +26,7 @@ const LocationDetailInformationComponent = ({ icon, title, value }) => {
                                     <p className='locationDetailSubTypeLabel'>
                                         {item.label}  
                                     </p>
-                                    {item.label && <span className="dotLine" />}
+                                    {item.label && item.value && <span className="dotLine" />}
                                     <p className='locationDetailSubTypeValue'>
                                         {item.value}
                                     </p>
