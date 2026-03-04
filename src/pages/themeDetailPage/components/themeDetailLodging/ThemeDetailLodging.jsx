@@ -53,7 +53,7 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
                         {t("themeDetail.tDCI.tDCIHAmenities")}
                     </p>
                     <p>
-                        {data?.info?.facility?.[lang].join(", ")}
+                        {data?.info?.facility?.[lang]?.join(", ") || ""}
                     </p>
                 </div>
                 <div className="themeDetailBasicInfoSubCover">
@@ -62,7 +62,7 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
                         {t("themeDetail.tDL.tDLNP")}
                     </p>
                     <p>
-                        {data?.info?.noProvided?.[lang].join(", ")}
+                        {data?.info?.noProvided?.[lang]?.join(", ") || ""}
                     </p>
                 </div>
                 <div className="themeDetailBasicInfoSubCover">
@@ -122,7 +122,7 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
                                         <span>
                                             {t("themeDetail.tDL.tDLRooms.tDLRoomsViewTitle")}
                                         </span>
-                                        {isFullMobile && ":"} {rooms.view?.[lang].join(` ${t("themeDetail.tDL.tDLRooms.tDLRoomsView")}, `)} {t("themeDetail.tDL.tDLRooms.tDLRoomsView")}
+                                        {isFullMobile && ":"} {rooms.view?.[lang]?.join(` ${t("themeDetail.tDL.tDLRooms.tDLRoomsView")}, `) || ""} {t("themeDetail.tDL.tDLRooms.tDLRoomsView")}
                                     </p>
                                     <p className='subFont'>
                                         <span>

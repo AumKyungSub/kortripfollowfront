@@ -46,7 +46,7 @@ const themeCode = getThemeCode(category.toUpperCase());
 
     const { data, loading, error } = useReadOneDB(category, id);
 
-    const isLodging = themeCode === 'LODGING';
+   const isLodging = category.toLowerCase() === 'lodging';
 
     // 로딩 화면
     if (loading) return <div><Loading/></div>
