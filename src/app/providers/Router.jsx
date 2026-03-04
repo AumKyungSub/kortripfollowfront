@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
 import Homepage from '@/pages/homePage/Homepage';
@@ -18,7 +18,7 @@ const Router = () => {
                 <Route path="/theme" element={<ListPage mode="theme" />} />
                 <Route path="/region" element={<ListPage mode="region" />} />
                 <Route path='/season' element={<SeasonPage />} />
-                <Route path='/themeDetail/:id' element={<ThemeDetail />} />
+                <Route path='/theme/:category/:id' element={<ThemeDetail />} />
                 <Route path='/location/:id' element={<LocationDetailPage />} />
                 <Route path='/collection' element={<CollectionPage />}/>
                 <Route path='/collection/:id' element={<CollectionDetailPage />}/>

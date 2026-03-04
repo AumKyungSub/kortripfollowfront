@@ -23,13 +23,17 @@ const List = ({filteredList, link, selectedTheme}) => {
 
     // Navigate
     const navigate = useNavigate();
-    const handleClick = (data) => {
-        navigate(`/${link}/${data?.id}`, {
-            state: {
-                type: themeType[selectedTheme],
-            },
-        });
-    };
+const handleClick = (data) => {
+    if (link === "location") {
+        navigate(`/location/${data?.id}`);
+        return;
+    }
+
+    if (link === "theme") {
+        const category = selectedTheme?.toLowerCase();
+        navigate(`/theme/${category}/${data?.id}`);
+    }
+};
 
     return (
         <section className='listWrapper'>

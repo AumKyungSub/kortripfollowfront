@@ -9,6 +9,7 @@ import { useReadOneDB } from '@/shared/api/useReadOneDB'
 
 import { useThemeList } from '@/shared/hooks/useThemeList'
 
+
 // Function Component
 import Loading from '@/features/loading/Loading'
 import FailedData from '@/features/failedData/FailedData'
@@ -35,16 +36,15 @@ const ThemeDetail = () => {
     const lang = i18n.language;
     // maxWidth: 479, maxWidth: 767, minWidth: 1024
     const {isMobile, isFullMobile, isDesktop} = useResponsive();
-    const { id } = useParams();
-    const location = useLocation();
-    const { type } = location.state || {};
-
+    const { category, id } = useParams();
+    // const location = useLocation();
+    // const { type } = location.state || {};
     
     const { getThemeCode, getThemeName } = useThemeList();
-    const themeCode = getThemeCode(type);
+const themeCode = getThemeCode(category.toUpperCase());
     const themeName = getThemeName(themeCode, lang);
 
-    const { data, loading, error } = useReadOneDB(type, id);
+    const { data, loading, error } = useReadOneDB(category, id);
 
     const isLodging = themeCode === 'LODGING';
 

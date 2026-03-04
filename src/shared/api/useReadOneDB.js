@@ -10,18 +10,35 @@ export const useReadOneDB = (collection, id) => {
 
     const dbURL = import.meta.env.VITE_API_URL;
 
+    // 🔥 단수 → 복수 매핑
+    const collectionMap = {
+        cafe: "cafes",
+        restaurant: "restaurants",
+        lodging: "lodgings",
+        food: "foods",
+        collection: "collections",
+        ranking: "rankings",
+        season: "seasons"
+    };
+
     const fetchOne = useCallback(async () => {
         if (!collection || !id) return;
-        
+
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${dbURL}/${collection}/${id}`);
-            if (!res.ok) throw new Error(t("common.error"));
+            const endpoint = collectionMap[collection] || collection;
+
+            const res = await fetch(`${dbURL}/${endpoint}/${id}`);
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
 
             const json = await res.json();
             setData(json);
+
         } catch (err) {
             console.error("ID 데이터 로딩 실패:", err);
             setError(t("common.error"));

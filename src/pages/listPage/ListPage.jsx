@@ -197,7 +197,7 @@ const ListPage = ({mode}) => {
 
       <List
         filteredList={filteredList}
-        link={isThemeMode ? "themeDetail" : "location"}
+        link={isThemeMode ? "theme" : "location"}
         selectedTheme={selected}
       />
 
