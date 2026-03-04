@@ -94,92 +94,99 @@
     <!-- 최신 카페 10개 (id 높은 순) -->
     <item>
       <title>서쪽하늘</title>
-      <link>https://kortripfollow.shop/themeDetail/5</link>
+      <link>https://kortripfollow.shop/theme/cafe/5</link>
       <description>노을이 물드는 순간, 여유를 머금은 시간을 선사하는 카페</description>
-      <guid>https://kortripfollow.shop/themeDetail/5</guid>
+      <guid>https://kortripfollow.shop/theme/cafe/5</guid>
       <pubDate>Thur, 11 Dec 2025 02:00:00 +0900</pubDate>
     </item>
     <item>
       <title>홀츠가르텐</title>
-      <link>https://kortripfollow.shop/themeDetail/4</link>
+      <link>https://kortripfollow.shop/theme/cafe/4</link>
       <description>한국에서 느끼는 독일 감성 프레첼과 커피</description>
-      <guid>https://kortripfollow.shop/themeDetail/4</guid>
+      <guid>https://kortripfollow.shop/theme/cafe/4</guid>
       <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
     </item>
     <item>
       <title>카페무르</title>
-      <link>https://kortripfollow.shop/themeDetail/3</link>
+      <link>https://kortripfollow.shop/theme/cafe/3</link>
       <description>남한강 바로 앞 넓은 공간에서 즐기는 커피 한잔</description>
-      <guid>https://kortripfollow.shop/themeDetail/3</guid>
+      <guid>https://kortripfollow.shop/theme/cafe/3</guid>
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
     </item>
     <item>
       <title>고모리 691</title>
-      <link>https://kortripfollow.shop/themeDetail/2</link>
+      <link>https://kortripfollow.shop/theme/cafe/2</link>
       <description>고모리 저수지 근처 아름다운 풍경을 감상하며 즐기는 브런치와 커피</description>
-      <guid>https://kortripfollow.shop/themeDetail/2</guid>
+      <guid>https://kortripfollow.shop/theme/cafe/2</guid>
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
     </item>
     <item>
       <title>카페산</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <link>https://kortripfollow.shop/theme/theme/cafe/1</link>
       <description>푸른 산과 강이 어우러진 단양의 절경과 이곳만의 색다른 또 하나의 매력 멋진 비행과 함께하는 풍경</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <guid>https://kortripfollow.shop/theme/theme/cafe/1</guid>
       <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
     </item>
     
     <!-- 최신 식당 10개 (id 높은 순) -->
     <item>
-      <title>한강삼계탕</title>
-      <link>https://kortripfollow.shop/themeDetail/5</link>
+      <title>원조 장작불 곰탕</title>
+      <link>https://kortripfollow.shop/theme/restaurant/6</link>
       <description>전통적인 맑은 국물의 삼계탕</description>
-      <guid>https://kortripfollow.shop/themeDetail/5</guid>
+      <guid>https://kortripfollow.shop/theme/restaurant/6</guid>
+      <pubDate>Wed, 4 Mar 2026 00:10:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>한강삼계탕</title>
+      <link>https://kortripfollow.shop/theme/restaurant/5</link>
+      <description>전통적인 맑은 국물의 삼계탕</description>
+      <guid>https://kortripfollow.shop/theme/restaurant/5</guid>
       <pubDate>Sat, 7 Feb 2026 00:10:00 +0900</pubDate>
     </item>
     <item>
       <title>옛날시골밥상</title>
-      <link>https://kortripfollow.shop/themeDetail/4</link>
+      <link>https://kortripfollow.shop/theme/restaurant/4</link>
       <description>신선한 재료로 차린 옛맛 그대로의 정성 가득한 한상</description>
-      <guid>https://kortripfollow.shop/themeDetail/3</guid>
+      <guid>https://kortripfollow.shop/theme/restaurant/3</guid>
       <pubDate>Mon, 15 Dec 2025 02:00:00 +0900</pubDate>
     </item>
     <item>
       <title>중암리 손두부집</title>
-      <link>https://kortripfollow.shop/themeDetail/3</link>
+      <link>https://kortripfollow.shop/theme/restaurant/3</link>
       <description>옛 손두부의 담백한 맛과 정겨운 시골집 분위기가 편안한 쉼을 선사하는 작은 식당</description>
-      <guid>https://kortripfollow.shop/themeDetail/3</guid>
+      <guid>https://kortripfollow.shop/theme/restaurant/3</guid>
       <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
     </item>
     <item>
       <title>어부네코다리조림</title>
-      <link>https://kortripfollow.shop/themeDetail/2</link>
+      <link>https://kortripfollow.shop/theme/restaurant/2</link>
       <description>정갈한 코다리와 푸짐한 밑반찬의 조화</description>
-      <guid>https://kortripfollow.shop/themeDetail/2</guid>
+      <guid>https://kortripfollow.shop/theme/restaurant/2</guid>
       <pubDate>thur, 23 Nov 2025 01:00:00 +0900</pubDate>
     </item>
     <item>
       <title>연사랑</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <link>https://kortripfollow.shop/theme/restaurant/1</link>
       <description>철원 오대쌀과 신선한 제철 채소 그리고 파프리카로 만든 고추장으로 방문객들의 만족도를 높이는 건강한 식당</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <guid>https://kortripfollow.shop/theme/restaurant/1</guid>
       <pubDate>Sat, 15 Nov 2025 09:00:00 +0900</pubDate>
     </item>
     
     <!-- 최신 숙소 10개 (id 높은 순) -->
     <item>
       <title>라한호텔 전주 4성</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <link>https://kortripfollow.shop/theme/lodging/1</link>
       <description>전통 문화의 도시 전주의 한옥마을이 한눈에 내려다보이는 호텔</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <guid>https://kortripfollow.shop/theme/lodging/1</guid>
       <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
     </item>
     
     <!-- 최신 먹거리 10개 (id 높은 순) -->
     <item>
       <title>천안옛날호두과자</title>
-      <link>https://kortripfollow.shop/themeDetail/1</link>
+      <link>https://kortripfollow.shop/theme/food/1</link>
       <description>천안의 명물과 60년 전통의 앙금기술로 만들어진 호두과자</description>
-      <guid>https://kortripfollow.shop/themeDetail/1</guid>
+      <guid>https://kortripfollow.shop/theme/food/1</guid>
       <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
     </item>
     

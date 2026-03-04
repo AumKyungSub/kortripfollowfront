@@ -51,32 +51,53 @@
 
   <!-- 상세 페이지 (예시용 3개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/location/1</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://kortripfollow.shop/location/20</loc>
+    <lastmod>2026-03-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kortripfollow.shop/location/2</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://kortripfollow.shop/location/21</loc>
+    <lastmod>2026-03-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kortripfollow.shop/location/3</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://kortripfollow.shop/location/22</loc>
+    <lastmod>2026-03-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- 테마 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
+  <!-- 카페 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/themeDetail/1</loc>
-    <lastmod>2025-11-15</lastmod>
+    <loc>https://kortripfollow.shop/theme/cafe/1</loc>
+    <lastmod>2026-03-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
+  <!-- 식당 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
+  <url>
+    <loc>https://kortripfollow.shop/theme/restaurant/1</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- 숙소 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
+  <url>
+    <loc>https://kortripfollow.shop/theme/lodging/1</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- 먹거리 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
+  <url>
+    <loc>https://kortripfollow.shop/theme/food/1</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- 컬렉션 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
   <url>
     <loc>https://kortripfollow.shop/collection/1</loc>
