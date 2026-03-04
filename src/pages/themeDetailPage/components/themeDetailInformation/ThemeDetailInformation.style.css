@@ -12,27 +12,33 @@
     gap: 10px;
 }
 
+.themeDetailInformationTextLabel{
+    margin-bottom: 5px;
+    /* Font */
+    font-weight: 500;
+}
+
 .themeDetailInformationNote {
     /* Font */
     color: #f92e2e;
     font-weight: 600;
 }
 
-
 .themeDetailInfoMenuCover {
     width: 100%;
-    /* Flex */
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
 }
 
-.themeDetailInfoMenuLeftCover {
-    text-align: left;
+.themeDetailInformationText {
+    white-space: nowrap;
 }
 
-.themeDetailInfoMenuRightCover {
-    text-align: right;
+.dotLine {
+    flex: 1;
+    border-bottom: 1px dashed #cfcfcf;
+    margin: 0 8px;
 }
 
 .themeDetailInfoBtn {
@@ -48,6 +54,7 @@
 }
 
 .themeDetailInformationTextCover {
+    width: 100%;
     /* Flex */
     display: flex;
     flex-direction: column;
