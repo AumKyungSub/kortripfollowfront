@@ -228,5 +228,10 @@
             "morePuzzle":"More Puzzles",
             "moreArt":"More Art"
         }
+    },
+
+    "emptyState":{
+        "emptyStateTitle": "No destinations available yet",
+        "emptyStateSub": "We’ll be adding amazing places soon!"
     }
 }

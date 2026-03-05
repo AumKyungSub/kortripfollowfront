@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* 구분선 8px */
 .emptyLine {
   width: 100%;
@@ -12,9 +13,9 @@
 
 /* 구분선 1px */
 .emptyLine1px {
-    width: 100%;
-    height: 1px;
-    background-color: rgba(230, 231, 232, 0.647);
+  width: 100%;
+  height: 1px;
+  background-color: rgba(230, 231, 232, 0.647);
 }
 
 /* Detail Page Min 768px Title */
@@ -26,17 +27,38 @@
 
 /* Detail Page Max 767px Title */
 .detailTitleMax768 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+
+/* click box ui design */
+.clickBtnCover {
+  padding: 12px 24px;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.clickBtnCover:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.clickBtnCover:active {
+  background-color: #1d4ed8;
+  transform: translateY(0);
 }
 
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (max-width: 479px) {}
 
-@media only all and (min-width: 480px) and (max-width: 1023px) {
-}
+@media only all and (min-width: 480px) and (max-width: 1023px) {}
 
-@media only all and (min-width: 1024px) {
-}
+@media only all and (min-width: 1024px) {}

@@ -1,5 +1,7 @@
 .collectoinGoodsLinkWrapper {
-    background-color: #f3e6e8;
+    background-color: transparent;
+    /* Remove baby pink bg */
+    padding: 24px 0;
 }
 
 .collectionGoodsLinkCover {
@@ -14,29 +16,40 @@
 }
 
 .collectionGoodsLink {
-    width: calc((100% - 10px) / 2);
-    aspect-ratio: 16/5;
-    border-radius: 5px;
+    width: calc((100% - 16px) / 2);
+    min-width: 150px;
+    padding: 24px 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     /* Font */
-    color: #fff;
-    /* Background */
-    background-image: url('/images/collection/moreback.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    color: #ffffff;
+    text-align: center;
     /* Flex */
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.collectionGoodsLink h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.collectionGoodsLink:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #3a3a3a 0%, #252525 100%);
 }
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (max-width: 479px) {}
 
-@media only all and (min-width: 480px) {
-}
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
     .collectionGoodsLinkCover {
@@ -44,14 +57,13 @@
         margin: 0 auto;
     }
 
-.collectionGoodsLink {
-    border-radius: 10px;
-}
+    .collectionGoodsLink {
+        border-radius: 10px;
+    }
 
 }
 
-@media only all and (min-width: 1024px) {
-}
+@media only all and (min-width: 1024px) {}
 
 @media only all and (min-width: 1921px) {
     .collectionGoodsLinkCover {

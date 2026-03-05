@@ -10,9 +10,9 @@ import { useCollectionList } from '@/shared/hooks/useCollectionList'
 // Page css
 import './CollectionList.style.css'
 
-const CollectionList = ({collections,lang}) => {
+const CollectionList = ({ collections, lang }) => {
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
 
   const goToCollectionDetail = (id) => {
@@ -23,19 +23,24 @@ const CollectionList = ({collections,lang}) => {
     <section className="collectionListWrapper">
       {collections.map((item) => (
         <div className="collectionListCard" key={item.id}>
-          <div
-            className="collectionListCardImgCover"
-            style={{
-              backgroundImage: `url('${item.img}.jpg')`
-            }}
-          />
+          <div className="collectionListCardImgCover">
+            {/* Blurred Background */}
+            <div
+              className="collectionListCardImgBlur"
+              style={{ backgroundImage: `url('${item.img}.jpg')` }}
+            />
+            {/* Main Foreground Image */}
+            <div
+              className="collectionListCardImgMain"
+              style={{ backgroundImage: `url('${item.img}.jpg')` }}
+            />
+          </div>
 
           <div className="collectionListCardTextCover">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-            <p className="collectionListCardCamera subFont">
-              {item.camera}
-            </p>
+            <h3 className="collectionTitleText">{item.title}</h3>
+            {/* Text description and camera are set to display:none in CSS */}
+            <p className="collectionListCardDescription">{item.text}</p>
+            <p className="collectionListCardCamera subFont">{item.camera}</p>
 
             <span
               onClick={() => goToCollectionDetail(item.id)}

@@ -16,30 +16,30 @@ const themeType = {
     FOOD: 'foods',
 };
 
-const List = ({filteredList, link, selectedTheme}) => {
+const List = ({ filteredList, link, selectedTheme }) => {
     // Transition Language
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
 
     // Navigate
     const navigate = useNavigate();
-const handleClick = (data) => {
-    if (link === "location") {
-        navigate(`/location/${data?.id}`);
-        return;
-    }
+    const handleClick = (data) => {
+        if (link === "location") {
+            navigate(`/location/${data?.id}`);
+            return;
+        }
 
-    if (link === "theme") {
-        const category = selectedTheme?.toLowerCase();
-        navigate(`/theme/${category}/${data?.id}`);
-    }
-};
+        if (link === "theme") {
+            const category = selectedTheme?.toLowerCase();
+            navigate(`/theme/${category}/${data?.id}`);
+        }
+    };
 
     return (
         <section className='listWrapper'>
-            {filteredList.map((data)=>(
+            {filteredList.map((data) => (
                 <div key={data.id} className='listCover' onClick={() => handleClick(data)}>
-                    <div className="listImgCover" style={{backgroundImage: `url(${`${data?.img?.link}3R.jpg`})`}}>
+                    <div className="listImgCover" style={{ backgroundImage: `url(${`${data?.img?.link}3R.jpg`})` }}>
                     </div>
                     <div className="listTextCover">
                         <p className="listName subFont">
@@ -55,7 +55,7 @@ const handleClick = (data) => {
                 </div>
             ))}
         </section>
-    ) 
+    )
 }
 
 export default List

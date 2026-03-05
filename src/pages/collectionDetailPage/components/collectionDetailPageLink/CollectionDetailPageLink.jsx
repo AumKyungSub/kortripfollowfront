@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next'
 // Page css
 import './CollectionDetailPageLink.style.css'
 
-const CollectionDetailPageLink = ({collection}) => {
-  const {t} = useTranslation();
+const CollectionDetailPageLink = ({ collection }) => {
+  const { t } = useTranslation();
 
 
   const goToPuzzlePuzzle = () => {
@@ -19,39 +19,27 @@ const CollectionDetailPageLink = ({collection}) => {
 
   return (
     <section className="collectionDetailPageLinkWrapper">
-        <h1>
-          {t("collection.banner.sellTitle")}
-        </h1>
-        <div className="collectionDetailPageCardCover">
-          <div className="collectionDetailPageCard">
-            <div className="collectionDetailPageCardImg">
-              <img src={`${collection.img}2.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal'/>
-            </div>
-              <span
-                onClick={() => goToPuzzlePuzzle()}
-                className="collectionDetailPageCardLink"
-                style={{ cursor: "pointer" }}
-              >
-                <h4>
-                  {t("collection.banner.keepPuzzle")}
-                </h4>
-              </span>
+      <h1>
+        {t("collection.banner.sellTitle")}
+      </h1>
+      <div className="collectionDetailPageCardCover">
+        <div className="collectionDetailPageCard">
+          <div className="collectionDetailPageCardImg">
+            <img src={`${collection.img}2.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal' />
           </div>
-          <div className="collectionDetailPageCard">
-            <div className="collectionDetailPageCardImg">
-              <img src={`${collection.img}3.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal' />
-            </div>
-              <span
-                onClick={() => goToPuzzleFrame()}
-                className="collectionDetailPageCardLink"
-                style={{ cursor: "pointer" }}
-              >
-                <h4>
-                  {t("collection.banner.keepFrame")}
-                </h4>
-              </span>
-          </div>
+          <button className="clickBtnCover" style={{ width: "100%" }} onClick={() => goToPuzzlePuzzle()}>
+            {t("collection.banner.keepPuzzle")}
+          </button>
         </div>
+        <div className="collectionDetailPageCard">
+          <div className="collectionDetailPageCardImg">
+            <img src={`${collection.img}3.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal' />
+          </div>
+          <button className="clickBtnCover" style={{ width: "100%" }} onClick={() => goToPuzzleFrame()}>
+            {t("collection.banner.keepFrame")}
+          </button>
+        </div>
+      </div>
     </section>
   )
 }

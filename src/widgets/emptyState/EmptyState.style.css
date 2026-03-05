@@ -1,0 +1,41 @@
+.emptyStateWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    min-height: 400px;
+}
+
+.emptyStateContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+}
+
+.emptyStateImg {
+    width: 240px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.emptyStateTitle {
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.emptyStateSub {
+    font-weight: 600;
+    color: #525252;
+    margin-bottom: 24px;
+}
+
+/* Responsive adjustment */
+@media only all and (min-width: 768px) {
+    .emptyStateWrapper {
+        padding: 80px 20px;
+        min-height: 500px;
+    }
+}

@@ -1,13 +1,35 @@
-
+.collectionDetailPageMainWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
 
 .collectionDetailPageTextCover {
-    padding-bottom: 16px;
+    width: 100%;
+    padding: 24px 20px;
     /* Flex */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
-    gap: 16px;
+    align-items: center;
+    /* Center align for elegance */
+    text-align: center;
+    gap: 20px;
+}
+
+.collectionDetailPageTextCover h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.collectionDetailPageTextCover p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
 }
 
 .collectionDetailPageTagCover {
@@ -25,46 +47,43 @@
     background-color: #d7d7d7;
 }
 
-.collectionDetailPageImgCover{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.collectionDetailPageImgCover {
+    width: 100vw;
+    /* Full width viewport */
+    max-width: 100%;
+    height: 60vh;
+    /* Hero section height */
+    min-height: 400px;
     overflow: hidden;
+    position: relative;
+    /* remove border-radius for full immersive feel */
 }
 
 .collectionDetailPageImgCover img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Keep the original ratio without cropping, with a blurred background or dark bg */
+    background-color: #f8f9fa;
+    /* Soft background */
 }
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (max-width: 479px) {}
 
-@media only all and (min-width: 480px) {
-}
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
-    .collectionDetailPageMainWrapper {
-        width: 100%;
-        /* Flex */
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: start;
-        gap: 16px;
+    .collectionDetailPageTextCover h1 {
+        font-size: 2.5rem;
     }
+
     .collectionDetailPageImgCover {
-        width: calc((100% - 16px) * 0.4);
-    }
-    .collectionDetailPageTextCover {
-        width: calc((100% - 16px) * 0.6);
-
+        height: 70vh;
     }
 }
 
-@media only all and (min-width: 1024px) {
-}
+@media only all and (min-width: 1024px) {}
 
-@media only all and (min-width: 1921px) {
-}
+@media only all and (min-width: 1921px) {}

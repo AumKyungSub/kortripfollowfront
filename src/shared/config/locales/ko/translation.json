@@ -228,5 +228,10 @@
             "morePuzzle":"더 많은 퍼즐보기",
             "moreArt":"더 많은 작품보기"
         }
+    },
+
+    "emptyState":{
+        "emptyStateTitle":"아직 등록된 여행지가 없어요",
+        "emptyStateSub":"곧 멋진 장소들을 업데이트할 예정입니다!"
     }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 // (hook) Get Navigate State
 import { useLocation } from 'react-router-dom';
 // (hook) Device Size
@@ -21,6 +21,7 @@ import ListBanner from '@/widgets/listBanner/ListBanner';
 import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
 import List from '@/widgets/list/List';
+import EmptyState from '@/widgets/emptyState/EmptyState';
 import Bottom from '@/widgets/bottom/Bottom';
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
@@ -44,7 +45,7 @@ const getThemeNameWithParticle = (themeCode, text, lang) => {
   return text + (particleMap[themeCode] || "");
 };
 
-const ListPage = ({mode}) => {
+const ListPage = ({ mode }) => {
   // Transition Language
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
@@ -58,7 +59,7 @@ const ListPage = ({mode}) => {
   // DB 불러오기
   const { data, loading, error } = useReadDB();
   const { cafes, restaurants, lodgings, foods, rankings } = data;
-  
+
   // Theme List
   const { themeMap } = useThemeList();
 
@@ -67,7 +68,7 @@ const ListPage = ({mode}) => {
     regionMap,
     filterByRegion,
   } = useRegionList({
-    data: rankings, 
+    data: rankings,
     lang,
   });
 
@@ -78,41 +79,41 @@ const ListPage = ({mode}) => {
   // 디폴트 키 선택 (category 가장 처음으로 설정)
   const defaultKey = isThemeMode ? "CAFE" : "ALL";
 
-    // localStorage 또는 navigate state 불러오기
-    const navigateSelected =
-      isThemeMode
-        ? location?.state?.selectedTheme       /* HomeTheme에서 받는값 */
-        : location?.state?.selectedRegionCode; /* HomeRegion에서 받는 값 */
-    
-    const saved = sessionStorage.getItem(`filter-${mode}`);
+  // localStorage 또는 navigate state 불러오기
+  const navigateSelected =
+    isThemeMode
+      ? location?.state?.selectedTheme       /* HomeTheme에서 받는값 */
+      : location?.state?.selectedRegionCode; /* HomeRegion에서 받는 값 */
 
-    const initialSelected = navigateSelected || saved || defaultKey;
+  const saved = sessionStorage.getItem(`filter-${mode}`);
 
-    const [selected, setSelected] = useState(initialSelected);
+  const initialSelected = navigateSelected || saved || defaultKey;
 
-    // Bottom Type 결정 
-    const bottomType = isThemeMode ? selected : "ALL";
+  const [selected, setSelected] = useState(initialSelected);
 
-    // selected 값 검증 (존재하지 않으면 기본값으로 리셋)
-    useEffect(() => {
-      if (!Object.keys(map).includes(selected)) {
-        setSelected(defaultKey);
-        return;
-      }
+  // Bottom Type 결정 
+  const bottomType = isThemeMode ? selected : "ALL";
 
-        // selected가 정상일 경우에만 저장
-        sessionStorage.setItem(`filter-${mode}`, selected);
-    }, [selected, map, mode, defaultKey]);
+  // selected 값 검증 (존재하지 않으면 기본값으로 리셋)
+  useEffect(() => {
+    if (!Object.keys(map).includes(selected)) {
+      setSelected(defaultKey);
+      return;
+    }
 
-    // region -> theme 이동 시 state 초기화
-    useEffect(() => {
-        if (navigateSelected) {
-            window.history.replaceState({}, ""); // state 제거
-        }
-    }, [navigateSelected]);
+    // selected가 정상일 경우에만 저장
+    sessionStorage.setItem(`filter-${mode}`, selected);
+  }, [selected, map, mode, defaultKey]);
+
+  // region -> theme 이동 시 state 초기화
+  useEffect(() => {
+    if (navigateSelected) {
+      window.history.replaceState({}, ""); // state 제거
+    }
+  }, [navigateSelected]);
 
 
-    // 필터링 
+  // 필터링 
   const filteredList = useMemo(() => {
     if (isThemeMode) {
       const themeDataMap = {
@@ -152,24 +153,24 @@ const ListPage = ({mode}) => {
     isThemeMode
       ? `${t("theme.titleSuffix")} ${selectedText} ${t("theme.list")}`
       : lang.startsWith("ko")
-    ? `${selectedText} ${t("regionPage.titleSuffix")}`
-    : `${t("regionPage.titleSuffix")} ${selectedText}`;
+        ? `${selectedText} ${t("regionPage.titleSuffix")}`
+        : `${t("regionPage.titleSuffix")} ${selectedText}`;
 
   const countText =
     isThemeMode
       ? t("theme.totalCount", {
-          count: filteredList.length,
-          themeName: getThemeNameWithParticle(selected, selectedText, lang),
-        })
+        count: filteredList.length,
+        themeName: getThemeNameWithParticle(selected, selectedText, lang),
+      })
       : t("regionPage.totalCount", { count: filteredList.length });
 
   const categoryOptions = Object.entries(map).map(([code, label]) => ({
     code,
     label: label?.[lang] ?? ""
   }));
-  
-    if (loading) return <Loading />;
-    if (error) return <div>{error}</div>;
+
+  if (loading) return <Loading />;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
@@ -195,16 +196,23 @@ const ListPage = ({mode}) => {
         isFullMobile={isFullMobile}
       />
 
-      <List
-        filteredList={filteredList}
-        link={isThemeMode ? "theme" : "location"}
-        selectedTheme={selected}
-      />
+      {filteredList.length > 0 ? (
+        <List
+          filteredList={filteredList}
+          link={isThemeMode ? "theme" : "location"}
+          selectedTheme={selected}
+        />
+      ) : (
+        <EmptyState
+          buttonText={isThemeMode ? "다른 테마 둘러보기" : "다른 지역 둘러보기"}
+          onButtonClick={isThemeMode ? () => setSelected(defaultKey) : () => setSelected("ALL")}
+        />
+      )}
 
       <Bottom
-        type = {bottomType}
+        type={bottomType}
       />
-      {isFullMobile && <EmptyFooter/>}
+      {isFullMobile && <EmptyFooter />}
       <Footer />
     </>
   )
