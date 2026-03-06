@@ -1,4 +1,9 @@
 .collectionDetailPageLinkWrapper {
+    width: 100%;
+}
+
+.collectionDetailPageLinkInner {
+    width: 100%;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -7,12 +12,12 @@
     gap: 10px;
 }
 
-.collectionDetailPageLinkWrapper h1 {
+.collectionDetailPageLinkTitle {
     text-align: center;
 }
 
 .collectionDetailPageCard {
-    width: calc((100% - 15px) / 2);
+    width: calc((100% - 16px) / 2);
 }
 
 .collectionDetailPageCardCover {
@@ -20,8 +25,9 @@
     /* Flex */
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    flex-wrap: wrap;
     gap: 16px;
 }
 
@@ -34,7 +40,7 @@
     gap: 8px;
 }
 
-.collectionDetailPageCardImg{
+.collectionDetailPageCardImg {
     width: 100%;
     overflow: hidden;
     /* Flex */
@@ -42,10 +48,12 @@
     justify-content: center;
     align-items: center;
 }
+
 .collectionDetailPageCardImgHorizontal {
     width: 100%;
     border-radius: 10px;
 }
+
 .collectionDetailPageCardImgVertical {
     height: 100%;
     border-radius: 10px;
@@ -64,10 +72,13 @@
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (max-width: 479px) {}
 
 @media only all and (min-width: 480px) {
+
+    .collectionDetailPageCard {
+        width: calc((100% - 32px) / 3);
+    }
 }
 
 @media only all and (min-width: 768px) {
@@ -77,10 +88,50 @@
         margin: 0 auto;
         white-space: pre-wrap;
     }
-    
+
+    .collectionDetailPageCard {
+        width: calc((100% - 48px) / 4);
+    }
+
 }
 
 @media only all and (min-width: 1024px) {
+    .collectionDetailPageLinkWrapper {
+        flex: 2;
+        width: 100%;
+        position: relative;
+    }
+
+    .collectionDetailPageLinkInner {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        justify-content: flex-start;
+    }
+
+    .collectionDetailPageCardCover {
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        flex: 1;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .collectionDetailPageCardCover::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+
+    .collectionDetailPageCard {
+        width: 100%;
+    }
 }
 
 @media only all and (min-width: 1921px) {

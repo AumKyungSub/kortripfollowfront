@@ -37,14 +37,13 @@ const CollectionList = ({ collections, lang }) => {
           </div>
 
           <div className="collectionListCardTextCover">
-            <h3 className="collectionTitleText">{item.title}</h3>
+            <h4 className="collectionTitleText">{item.title}</h4>
             {/* Text description and camera are set to display:none in CSS */}
-            <p className="collectionListCardDescription">{item.text}</p>
             <p className="collectionListCardCamera subFont">{item.camera}</p>
 
             <span
               onClick={() => goToCollectionDetail(item.id)}
-              className="collectionListCardLink"
+              className="clickBtnCover collectionListCardLink"
               style={{ cursor: "pointer" }}
             >
               {t("collection.banner.collectionDetailPageLink")}

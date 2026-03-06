@@ -3,12 +3,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+}
+
+.collectionDetailPageTitle {
+    margin-bottom: 10px;
 }
 
 .collectionDetailPageTextCover {
     width: 100%;
-    padding: 24px 20px;
+    padding: 16px;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -16,19 +19,10 @@
     align-items: center;
     /* Center align for elegance */
     text-align: center;
-    gap: 20px;
-}
-
-.collectionDetailPageTextCover h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 8px;
+    gap: 16px;
 }
 
 .collectionDetailPageTextCover p {
-    font-size: 1.1rem;
-    line-height: 1.7;
     color: #444;
 }
 
@@ -38,22 +32,23 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .collectionDetailPageTagCover p {
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #d7d7d7;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #f3f4f6;
+    color: #4b5563;
 }
 
 .collectionDetailPageImgCover {
     width: 100vw;
     /* Full width viewport */
     max-width: 100%;
-    height: 60vh;
+    height: 40vh;
     /* Hero section height */
-    min-height: 400px;
+    min-height: 300px;
     overflow: hidden;
     position: relative;
     /* remove border-radius for full immersive feel */
@@ -65,7 +60,6 @@
     object-fit: contain;
     /* Keep the original ratio without cropping, with a blurred background or dark bg */
     background-color: #f8f9fa;
-    /* Soft background */
 }
 
 /* ---------------------------------------------------- */
@@ -75,15 +69,18 @@
 @media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
-    .collectionDetailPageTextCover h1 {
-        font-size: 2.5rem;
-    }
 
     .collectionDetailPageImgCover {
-        height: 70vh;
+        height: 50vh;
     }
 }
 
-@media only all and (min-width: 1024px) {}
+@media only all and (min-width: 1024px) {
+    .collectionDetailPageMainWrapper {
+        flex: 8;
+        width: 100%;
+        overflow: hidden;
+    }
+}
 
 @media only all and (min-width: 1921px) {}

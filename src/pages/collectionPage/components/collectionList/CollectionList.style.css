@@ -23,27 +23,31 @@
 }
 
 .collectionListCardImgBlur {
+    /* Background */
+    background-size: cover;
+    background-position: center;
+    /* Blur */
+    filter: blur(8px) brightness(0.9);
+    /* Position */
     position: absolute;
     top: -10px;
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px) brightness(0.9);
     z-index: 1;
 }
 
 .collectionListCardImgMain {
-    position: relative;
     width: 100%;
     height: 100%;
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 2;
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Position */
+    position: relative;
+    z-index: 2;
 }
 
 .collectionListCardTextCover {
@@ -66,38 +70,18 @@
     text-overflow: ellipsis;
 }
 
-.collectionListCardCamera {
-    display: none;
-    /* Hide per user request */
-}
-
-.collectionListCardDescription {
-    display: none;
-    /* Hide sub-slogan per user request */
-}
-
 .collectionTitleText {
-    font-size: 1.15rem;
-    font-weight: 600;
     color: #111;
 }
 
 .collectionListCardLink {
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background-color: #f3f4f6;
-    color: #4b5563;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    margin-top: 8px;
+    background-color: #f3f4f6 !important;
+    color: #4b5563 !important;
 }
 
 .collectionListCardLink:hover {
-    background-color: #e5e7eb;
-    color: #1f2937;
+    background-color: #e5e7eb !important;
+    color: #1f2937 !important;
 }
 
 /* ---------------------------------------------------- */

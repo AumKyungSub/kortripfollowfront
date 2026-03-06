@@ -11,11 +11,9 @@
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (max-width: 479px) {}
 
-@media only all and (min-width: 480px) {
-}
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
     .collectionDetailPageWrapper {
@@ -26,6 +24,10 @@
 }
 
 @media only all and (min-width: 1024px) {
+    .collectionDetailPageWrapper {
+        flex-direction: row;
+        align-items: stretch;
+    }
 }
 
 @media only all and (min-width: 1921px) {
