@@ -16,10 +16,6 @@
     text-align: center;
 }
 
-.collectionDetailPageCard {
-    width: calc((100% - 16px) / 2);
-}
-
 .collectionDetailPageCardCover {
     width: 100%;
     /* Flex */
@@ -31,55 +27,11 @@
     gap: 16px;
 }
 
-.collectionDetailPageCard {
-    /* Flex */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-.collectionDetailPageCardImg {
-    width: 100%;
-    overflow: hidden;
-    /* Flex */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.collectionDetailPageCardImgHorizontal {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.collectionDetailPageCardImgVertical {
-    height: 100%;
-    border-radius: 10px;
-}
-
-.collectionDetailPageCardLink {
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    background-color: #4185F4;
-    border-radius: 5px;
-    padding: 15px 0;
-    /* Fonts */
-    color: #fff;
-}
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {}
 
-@media only all and (min-width: 480px) {
-
-    .collectionDetailPageCard {
-        width: calc((100% - 32px) / 3);
-    }
-}
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
     .collectionDetailPageLinkWrapper {
@@ -87,10 +39,6 @@
         max-width: 1440px;
         margin: 0 auto;
         white-space: pre-wrap;
-    }
-
-    .collectionDetailPageCard {
-        width: calc((100% - 48px) / 4);
     }
 
 }
@@ -127,10 +75,6 @@
     .collectionDetailPageCardCover::-webkit-scrollbar {
         display: none;
         /* Chrome, Safari and Opera */
-    }
-
-    .collectionDetailPageCard {
-        width: 100%;
     }
 }
 

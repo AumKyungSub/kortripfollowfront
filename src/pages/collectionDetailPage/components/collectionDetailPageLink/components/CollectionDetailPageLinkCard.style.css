@@ -1,0 +1,50 @@
+.collectionDetailPageCard {
+    width: calc((100% - 16px) / 2);
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.collectionDetailPageCardImg {
+    width: 100%;
+    overflow: hidden;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.collectionDetailPageCardImgHorizontal {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {}
+
+@media only all and (min-width: 480px) {
+
+    .collectionDetailPageCard {
+        width: calc((100% - 32px) / 3);
+    }
+}
+
+@media only all and (min-width: 768px) {
+
+    .collectionDetailPageCard {
+        width: calc((100% - 48px) / 4);
+    }
+
+}
+
+@media only all and (min-width: 1024px) {
+    .collectionDetailPageCard {
+        width: 100%;
+    }
+}
+
+@media only all and (min-width: 1921px) {}

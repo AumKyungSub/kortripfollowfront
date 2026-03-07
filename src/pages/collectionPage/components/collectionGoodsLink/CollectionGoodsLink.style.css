@@ -16,7 +16,7 @@
 }
 
 .collectionGoodsLink {
-    width: calc((100% - 16px) / 2);
+    width: 100%;
     min-width: 150px;
     padding: 24px 0;
     border-radius: 8px;
@@ -58,7 +58,8 @@
     }
 
     .collectionGoodsLink {
-        border-radius: 10px;
+        width: calc((100% - 20px) / 3);
+        min-width: 150px;
     }
 
 }

@@ -225,8 +225,10 @@
             "collectionDetailPageLink":"To keep this moment",
             "keepPuzzle":"Keep as Puzzle",
             "keepFrame":"Keep as Frame",
+            "keepPostcard":"Keep as Postcard",
             "morePuzzle":"More Puzzles",
-            "moreArt":"More Art"
+            "moreMapple":"More Mapple",
+            "moreRedbubble":"More Redbubble"
         }
     },
 

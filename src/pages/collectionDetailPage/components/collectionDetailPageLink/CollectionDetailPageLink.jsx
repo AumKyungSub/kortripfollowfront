@@ -1,5 +1,6 @@
 import React from 'react'
-
+// components
+import CollectionDetailPageLinkCard from './components/CollectionDetailPageLinkCard'
 //(hook) Translation
 import { useTranslation } from 'react-i18next'
 // Page css
@@ -17,6 +18,10 @@ const CollectionDetailPageLink = ({ collection }) => {
     window.open(collection.mapple, "_blank");
   };
 
+  const goToPuzzleRedbubble = () => {
+    window.open(collection.redbubble, "_blank");
+  };
+
   return (
     <section className="collectionDetailPageLinkWrapper">
       <div className="collectionDetailPageLinkInner">
@@ -24,22 +29,9 @@ const CollectionDetailPageLink = ({ collection }) => {
           {t("collection.banner.sellTitle")}
         </h3>
         <div className="collectionDetailPageCardCover">
-          <div className="collectionDetailPageCard">
-            <div className="collectionDetailPageCardImg">
-              <img src={`${collection.img}2.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal' />
-            </div>
-            <button className="clickBtnCover" style={{ width: "100%" }} onClick={() => goToPuzzlePuzzle()}>
-              {t("collection.banner.keepPuzzle")}
-            </button>
-          </div>
-          <div className="collectionDetailPageCard">
-            <div className="collectionDetailPageCardImg">
-              <img src={`${collection.img}3.jpg`} alt="{`${collection.img}2.jpg`}" className='collectionDetailPageCardImgHorizontal' />
-            </div>
-            <button className="clickBtnCover" style={{ width: "100%" }} onClick={() => goToPuzzleFrame()}>
-              {t("collection.banner.keepFrame")}
-            </button>
-          </div>
+          <CollectionDetailPageLinkCard collection={collection} category={collection.zazzle} keep="keepPuzzle" num={2} link={goToPuzzlePuzzle} />
+          <CollectionDetailPageLinkCard collection={collection} category={collection.redbubble} keep="keepPostcard" num={4} link={goToPuzzleRedbubble} />
+          <CollectionDetailPageLinkCard collection={collection} category={collection.mapple} keep="keepFrame" num={3} link={goToPuzzleFrame} />
         </div>
       </div>
     </section>

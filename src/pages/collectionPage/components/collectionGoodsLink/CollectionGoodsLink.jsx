@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Components
+import CollectionGoodsLinkBtn from './components/CollectionGoodsLinkBtn'
+
 import { useTranslation } from 'react-i18next'
 
 // Page css
@@ -22,27 +25,19 @@ const CollectionGoodsLink = () => {
     );
   };
 
+  const goToPuzzleMoreRedbubble = () => {
+    window.open(
+      "https://www.redbubble.com/people/kayaum/explore?asc=u&page=1&sortOrder=recent",
+      "_blank"
+    );
+  };
+
   return (
     <section className="collectoinGoodsLinkWrapper">
       <div className="collectionGoodsLinkCover">
-        <span
-          onClick={() => goToPuzzleMorePuzzle()}
-          className="collectionGoodsLink"
-          style={{ cursor: "pointer" }}
-        >
-          <h4>
-            {t('collection.banner.morePuzzle')}
-          </h4>
-        </span>
-        <span
-          onClick={() => goToPuzzleMoreArt()}
-          className="collectionGoodsLink"
-          style={{ cursor: "pointer" }}
-        >
-          <h4>
-            {t('collection.banner.moreArt')}
-          </h4>
-        </span>
+        <CollectionGoodsLinkBtn link={goToPuzzleMorePuzzle} text={t('collection.banner.morePuzzle')} />
+        <CollectionGoodsLinkBtn link={goToPuzzleMoreArt} text={t('collection.banner.moreMapple')} />
+        <CollectionGoodsLinkBtn link={goToPuzzleMoreRedbubble} text={t('collection.banner.moreRedbubble')} />
       </div>
     </section>
   )

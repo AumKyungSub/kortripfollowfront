@@ -39,8 +39,9 @@ export const useCollectionList = ({ lang = "ko" }) => {
       tag: item.description?.tag?.[lang],
       zazzle: item.links?.zazzle,
       mapple: item.links?.mapple,
+      redbubble: item.links?.redbubble,
       zazzleShop: item.links?.zazzleShop,
-      mappleShop: item.links?.mappleShop
+      mappleShop: item.links?.mappleShop,
     }));
   }, [visibleCollections, lang]);
 
