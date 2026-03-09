@@ -1,0 +1,60 @@
+/* 페이지네이션 — 모바일(≤479px)에서는 숨김 */
+@media only all and (max-width: 479px) {
+    .paginationWrapper {
+        display: none;
+    }
+}
+
+.paginationWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 24px 16px 8px;
+}
+
+.paginationBtn {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.15s;
+}
+
+.paginationBtn:hover:not(.paginationDisabled) {
+    background: #f0f4ff;
+    border-color: #a0b4e8;
+    color: #2a4a9e;
+    transform: translateY(-1px);
+}
+
+.paginationActive {
+    background: #2a4a9e !important;
+    color: #fff !important;
+    border-color: #2a4a9e !important;
+    font-weight: 700;
+}
+
+.paginationArrow {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.paginationDisabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+@media only all and (min-width: 1024px) {
+    .paginationWrapper {
+        max-width: 1480px;
+        margin: 0 auto;
+    }
+}

@@ -192,17 +192,24 @@
     
     <!-- 최신 컬렉션 10개 (id 높은 순) -->
     <item>
-      <title>순백의 기상</title>
-      <link>https://kortripfollow.shop/collection/1</link>
-      <description>강물 위의 춤 순백의 기상</description>
-      <guid>https://kortripfollow.shop/collection/1</guid>
-      <pubDate>Thur, 26 Feb 2026 01:40:00 +0900</pubDate>
+      <title>시간이 머무는 정원</title>
+      <link>https://kortripfollow.shop/collection/6</link>
+      <description>초록빛 숲을 배경으로 하얗게 피어난 수국과 세월의 흔적이 묻어나는 풍향계가 조화를 이루는 평화로운 풍경</description>
+      <guid>https://kortripfollow.shop/collection/6</guid>
+      <pubDate>Thue, 10 Mar 2026 03:50:00 +0900</pubDate>
     </item>
     <item>
-      <title>푸른 숨결</title>
-      <link>https://kortripfollow.shop/collection/2</link>
-      <description>단양 카페산에서 찍은 절경</description>
-      <guid>https://kortripfollow.shop/collection/2</guid>
+      <title>분홍빛 선율</title>
+      <link>https://kortripfollow.shop/collection/5</link>
+      <description>촉촉한 이슬을 머금은 채 화사하게 피어난 분홍빛 꽃</description>
+      <guid>https://kortripfollow.shop/collection/5</guid>
+      <pubDate>Thue, 10 Mar 2026 03:50:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>시간을 거스르는 항해</title>
+      <link>https://kortripfollow.shop/collection/4</link>
+      <description>신륵사 남한강의 항해</description>
+      <guid>https://kortripfollow.shop/collection/4</guid>
       <pubDate>Thur, 26 Feb 2026 01:40:00 +0900</pubDate>
     </item>
     <item>
@@ -213,10 +220,17 @@
       <pubDate>Thur, 26 Feb 2026 01:40:00 +0900</pubDate>
     </item>
     <item>
-      <title>시간을 거스르는 항해</title>
-      <link>https://kortripfollow.shop/collection/4</link>
-      <description>신륵사 남한강의 항해</description>
-      <guid>https://kortripfollow.shop/collection/4</guid>
+      <title>푸른 숨결</title>
+      <link>https://kortripfollow.shop/collection/2</link>
+      <description>단양 카페산에서 찍은 절경</description>
+      <guid>https://kortripfollow.shop/collection/2</guid>
+      <pubDate>Thur, 26 Feb 2026 01:40:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>순백의 기상</title>
+      <link>https://kortripfollow.shop/collection/1</link>
+      <description>강물 위의 춤 순백의 기상</description>
+      <guid>https://kortripfollow.shop/collection/1</guid>
       <pubDate>Thur, 26 Feb 2026 01:40:00 +0900</pubDate>
     </item>
 

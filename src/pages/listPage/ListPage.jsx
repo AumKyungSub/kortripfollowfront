@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 // (hook) Get Navigate State
 import { useLocation } from 'react-router-dom';
 // (hook) Device Size
@@ -25,6 +25,7 @@ import EmptyState from '@/widgets/emptyState/EmptyState';
 import Bottom from '@/widgets/bottom/Bottom';
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
+import Pagination from '@/widgets/pagination/Pagination';
 
 import './ListPage.style.css'
 
@@ -51,7 +52,7 @@ const ListPage = ({ mode }) => {
   const lang = i18n.language;
 
   // Device Size
-  const { isFullMobile, isDesktop } = useResponsive();
+  const { isMobile, isFullMobile, isDesktop } = useResponsive();
 
   // Get Navigate State
   const location = useLocation();
@@ -91,6 +92,10 @@ const ListPage = ({ mode }) => {
 
   const [selected, setSelected] = useState(initialSelected);
 
+  // 페이지네이션
+  const ITEMS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
   // Bottom Type 결정 
   const bottomType = isThemeMode ? selected : "ALL";
 
@@ -105,6 +110,11 @@ const ListPage = ({ mode }) => {
     sessionStorage.setItem(`filter-${mode}`, selected);
   }, [selected, map, mode, defaultKey]);
 
+  // 카테고리 변경 시 첫 페이지로 리셋
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selected]);
+
   // region -> theme 이동 시 state 초기화
   useEffect(() => {
     if (navigateSelected) {
@@ -115,6 +125,10 @@ const ListPage = ({ mode }) => {
 
   // 필터링 
   const filteredList = useMemo(() => {
+    const koCollator = new Intl.Collator('ko', { sensitivity: 'base', numeric: true });
+    const sortByName = (a, b) =>
+      koCollator.compare(a?.location?.name?.ko || '', b?.location?.name?.ko || '');
+
     if (isThemeMode) {
       const themeDataMap = {
         CAFE: cafes,
@@ -123,7 +137,8 @@ const ListPage = ({ mode }) => {
         FOOD: foods,
       };
       return (themeDataMap[selected] || [])
-        .filter(item => item.visibility === true);
+        .filter(item => item.visibility === true)
+        .sort(sortByName);
     }
 
     const regionFiltered =
@@ -133,7 +148,7 @@ const ListPage = ({ mode }) => {
 
     return regionFiltered
       .filter(item => item.visibility === true)
-      .sort(() => Math.random() - 0.5);
+      .sort(sortByName);
 
   }, [
     isThemeMode,
@@ -145,6 +160,17 @@ const ListPage = ({ mode }) => {
     rankings,
     filterByRegion,
   ]);
+
+  // 페이지네이션 계산 (모바일 ≤479px 제외)
+  const totalPages = isMobile ? 1 : Math.ceil(filteredList.length / ITEMS_PER_PAGE);
+  const pagedList = isMobile
+    ? filteredList
+    : filteredList.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  const handlePageChange = useCallback((page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   // 텍스트
   const selectedText = map[selected]?.[lang] || ""; // 안전 처리
@@ -197,11 +223,18 @@ const ListPage = ({ mode }) => {
       />
 
       {filteredList.length > 0 ? (
-        <List
-          filteredList={filteredList}
-          link={isThemeMode ? "theme" : "location"}
-          selectedTheme={selected}
-        />
+        <>
+          <List
+            filteredList={pagedList}
+            link={isThemeMode ? "theme" : "location"}
+            selectedTheme={selected}
+          />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </>
       ) : (
         <EmptyState
           buttonText={isThemeMode ? "다른 테마 둘러보기" : "다른 지역 둘러보기"}

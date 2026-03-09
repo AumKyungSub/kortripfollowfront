@@ -22,6 +22,7 @@ import HomeCategory from '@/pages/homePage/components/homeCategory/HomeCategory'
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
 import HomeSeason from '@/pages/homePage/components/homeSeason/HomeSeason'
 import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
+import HomeCollection from '@/pages/homePage/components/homeCollection/HomeCollection';
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer'
 
@@ -31,15 +32,15 @@ import './Homepage.style.css'
 const Homepage = () => {
   // Device Size
   const {
-          isMobile, /*maxWidth: 479*/
-          isFullMobile, /*maxWidth: 767*/ 
-          isDesktop /*minWidth: 1024*/
+    isMobile, /*maxWidth: 479*/
+    isFullMobile, /*maxWidth: 767*/
+    isDesktop /*minWidth: 1024*/
   } = useResponsive();
 
   // Transition Language
   const { i18n } = useTranslation();
   const lang = i18n.language;
-  
+
   // Read DB
   const { data, loading, error, refetch } = useReadDB();
   const { rankings } = data;
@@ -49,15 +50,16 @@ const Homepage = () => {
   return (
     <div>
       <Header />
-      {!isFullMobile && <EmptyHeader/>}
-      <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang}/>
-      {isFullMobile && <HomeCategory/>}
-      <HomeRecommended rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop}/>
-      <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile}/>
-      {!isFullMobile && <HomeSeason rankingData={rankings}/>}
-      <HomeTheme isFullMobile={isFullMobile}/>
-      {isFullMobile && <EmptyFooter/>}
-      <Footer/>
+      {!isFullMobile && <EmptyHeader />}
+      <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang} />
+      {isFullMobile && <HomeCategory />}
+      <HomeRecommended rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} />
+      <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile} />
+      {!isFullMobile && <HomeSeason rankingData={rankings} />}
+      <HomeTheme isFullMobile={isFullMobile} />
+      {/* <HomeCollection /> */}
+      {isFullMobile && <EmptyFooter />}
+      <Footer />
     </div>
   )
 }
