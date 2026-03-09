@@ -22,7 +22,7 @@ import HomeCategory from '@/pages/homePage/components/homeCategory/HomeCategory'
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
 import HomeSeason from '@/pages/homePage/components/homeSeason/HomeSeason'
 import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
-import HomeCollection from '@/pages/homePage/components/homeCollection/HomeCollection';
+import HomeCollection from '@/pages/homePage/components/homeCollection/HomeCollection'
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer'
 
@@ -57,7 +57,7 @@ const Homepage = () => {
       <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile} />
       {!isFullMobile && <HomeSeason rankingData={rankings} />}
       <HomeTheme isFullMobile={isFullMobile} />
-      {/* <HomeCollection /> */}
+      <HomeCollection />
       {isFullMobile && <EmptyFooter />}
       <Footer />
     </div>
