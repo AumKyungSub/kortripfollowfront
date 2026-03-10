@@ -220,6 +220,7 @@
         "banner":{
             "title":"Collection",
             "sellTitle":"Your Moment",
+            "sellSubTitle":"(The purchased product will not have a watermark (Kayaum).)",
             "textFst":"Trips may pass, but the memories stay.",
             "textSnd":"Discover KortripFollow's moments as timeless pieces.",
             "collectionDetailPageLink":"To keep this moment",
@@ -228,7 +229,10 @@
             "keepPostcard":"Keep as Postcard",
             "morePuzzle":"More Puzzles",
             "moreMapple":"More Mapple",
-            "moreRedbubble":"More Redbubble"
+            "moreRedbubble":"More Redbubble",
+            "zazzle":"Zazzle - Keep as Puzzle",
+            "mapple":"MappleShop - Keep as More",
+            "redbubble":"Redbubble - Keep as More"
         }
     },
 

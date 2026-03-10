@@ -220,6 +220,7 @@
         "banner":{
             "title":"컬렉션",
             "sellTitle":"소장 하기",
+            "sellSubTitle":"(구매상품에는 워터마크(Kayaum)가 없습니다.)",
             "textFst":"여행은 지나가지만, 그날의 기록은 남습니다.",
             "textSnd":"국트따라의 순간들을 작품으로 만나보세요.",
             "collectionDetailPageLink":"이 장면을 간직하기",
@@ -228,7 +229,10 @@
             "keepPostcard":"엽서로 간직하기",
             "morePuzzle":"더 많은 퍼즐보기",
             "moreMapple":"마플샵에서 작품보기",
-            "moreRedbubble":"레드버블에서 작품보기"
+            "moreRedbubble":"레드버블에서 작품보기",
+            "zazzle":"제즐 - 퍼즐로 소장하기",
+            "mapple":"마플샵에서 다양하게 소장하기",
+            "redbubble":"레드버블에서 다양하게 소장하기"
         }
     },
 

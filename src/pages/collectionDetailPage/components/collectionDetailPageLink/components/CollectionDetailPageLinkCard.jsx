@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 // Page css
 import './CollectionDetailPageLinkCard.style.css'
 
-const CollectionDetailPageLinkCard = ({ collection, category, keep, num, link }) => {
+const CollectionDetailPageLinkCard = ({ collection, category, keep, num, link, shopName }) => {
     const { t } = useTranslation();
 
     return (
@@ -14,8 +14,8 @@ const CollectionDetailPageLinkCard = ({ collection, category, keep, num, link })
                 <div className="collectionDetailPageCard">
                     <div className="collectionDetailPageCardImg">
                         <img
-                            src={`${collection.img}${num}.jpg`}
-                            alt="{`${collection.img}${num}.jpg`}"
+                            src={`${collection.img}${shopName}${num}.jpg`}
+                            alt={`${collection.img}${shopName}${num}.jpg`}
                             className='collectionDetailPageCardImgHorizontal'
                         />
                     </div>
