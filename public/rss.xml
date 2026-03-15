@@ -12,6 +12,14 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>연산군묘</title>
+      <link>https://kortripfollow.shop/location/23</link>
+      <description>어쩌면 좋은 왕이 될 수 있었던 연산군</description>
+      <guid>https://kortripfollow.shop/location/23</guid>
+      <pubDate>Sun, 15 Mar 2026 22:00:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>신륵사</title>
       <link>https://kortripfollow.shop/location/22</link>
       <description>여주팔경의 첫 번째 풍경, 신륵사</description>
@@ -80,14 +88,6 @@
       <link>https://kortripfollow.shop/location/14</link>
       <description>전주 한옥마을 바로옆에 위치한 오목대</description>
       <guid>https://kortripfollow.shop/location/14</guid>
-      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>한탕강 은하수교 횃불전망대</title>
-      <link>https://kortripfollow.shop/location/13</link>
-      <description>대자연과 인공미가 조화된, 철원의 새로운 상징</description>
-      <guid>https://kortripfollow.shop/location/13</guid>
       <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
     </item>
 
