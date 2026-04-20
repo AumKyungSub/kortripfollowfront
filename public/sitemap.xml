@@ -51,14 +51,14 @@
 
   <!-- 상세 페이지 (예시용 3개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/location/20</loc>
-    <lastmod>2026-03-04</lastmod>
+    <loc>https://kortripfollow.shop/location/24</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kortripfollow.shop/location/21</loc>
-    <lastmod>2026-03-04</lastmod>
+    <loc>https://kortripfollow.shop/location/23</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -71,16 +71,16 @@
 
   <!-- 카페 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/theme/cafe/1</loc>
-    <lastmod>2026-03-04</lastmod>
+    <loc>https://kortripfollow.shop/theme/cafe/6</loc>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- 식당 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/theme/restaurant/1</loc>
-    <lastmod>2026-03-04</lastmod>
+    <loc>https://kortripfollow.shop/theme/restaurant/7</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -100,8 +100,8 @@
   </url>
   <!-- 컬렉션 상세 페이지 (예시용 1개, 실제 여행지별로 추가) -->
   <url>
-    <loc>https://kortripfollow.shop/collection/7</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://kortripfollow.shop/collection/8</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

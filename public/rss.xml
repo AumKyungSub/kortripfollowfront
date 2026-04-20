@@ -12,6 +12,14 @@
     <!-- 최신 여행지 10개 (id 높은 순) -->
 
     <item>
+      <title>명성황후 생가</title>
+      <link>https://kortripfollow.shop/location/24</link>
+      <description>경기도 여주에 위치한 조선 마지막 왕비이자 대한제국의 초대 황후의 생가</description>
+      <guid>https://kortripfollow.shop/location/24</guid>
+      <pubDate>Mon, 20 Apr 2026 23:55:00 +0900</pubDate>
+    </item>
+
+    <item>
       <title>연산군묘</title>
       <link>https://kortripfollow.shop/location/23</link>
       <description>어쩌면 좋은 왕이 될 수 있었던 연산군</description>
@@ -81,14 +89,6 @@
       <description>조선 역사의 숨결이 살아 있는 공간 경기전</description>
       <guid>https://kortripfollow.shop/location/15</guid>
       <pubDate>Wed, 10 Dec 2025 18:00:00 +0900</pubDate>
-    </item>
-
-    <item>
-      <title>오목대</title>
-      <link>https://kortripfollow.shop/location/14</link>
-      <description>전주 한옥마을 바로옆에 위치한 오목대</description>
-      <guid>https://kortripfollow.shop/location/14</guid>
-      <pubDate>Fri, 05 Dec 2025 04:00:00 +0900</pubDate>
     </item>
 
     <!-- 최신 카페 10개 (id 높은 순) -->
