@@ -5,6 +5,7 @@ export const useReadDB = () => {
   const { t } = useTranslation(); // i18n 불러오기
 
     const [data, setData] = useState({
+        blogs: [],
         rankings: [],
         seasons: [],
         cafes: [],
@@ -24,6 +25,7 @@ export const useReadDB = () => {
             setError(null);
 
             const urls = {
+                blogs: `${dbURL}/blogs`,
                 rankings: `${dbURL}/rankings`,
                 seasons: `${dbURL}/seasons`,
                 cafes: `${dbURL}/cafes`,
@@ -33,6 +35,7 @@ export const useReadDB = () => {
             };
 
             const responses = await Promise.all([
+                fetch(urls.blogs),
                 fetch(urls.rankings),
                 fetch(urls.seasons),
                 fetch(urls.cafes),
@@ -47,6 +50,7 @@ export const useReadDB = () => {
       });
 
             const [
+                blogs,
                 rankings,
                 seasons,
                 cafes,
@@ -56,6 +60,7 @@ export const useReadDB = () => {
             ] = await Promise.all(responses.map((res) => res.json()));
 
             setData({
+                blogs,
                 rankings,
                 seasons,
                 cafes,

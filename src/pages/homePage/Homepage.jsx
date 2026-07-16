@@ -43,7 +43,7 @@ const Homepage = () => {
 
   // Read DB
   const { data, loading, error, refetch } = useReadDB();
-  const { rankings } = data;
+  const { blogs, rankings, cafes, restaurants} = data;
   if (loading) return <Loading />;
   if (error) return <FailedData onRetry={refetch} />;
 
@@ -53,7 +53,7 @@ const Homepage = () => {
       {!isFullMobile && <EmptyHeader />}
       <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang} />
       {isFullMobile && <HomeCategory />}
-      <HomeRecommended rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} />
+      <HomeRecommended rankingsData={rankings} blogsData={blogs} cafesData={cafes} restaurantsData={restaurants} isFullMobile={isFullMobile} isDesktop={isDesktop} />
       <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile} />
       {!isFullMobile && <HomeSeason rankingData={rankings} />}
       <HomeTheme isFullMobile={isFullMobile} />
