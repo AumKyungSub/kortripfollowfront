@@ -40,17 +40,18 @@ const HomeRecommended = ({
             restaurants: restaurantsData,
         };
 
-        const merged = blogsData
+        const merged = [...blogsData]
+            .sort((a, b) => b.id - a.id)  
             .map(blog => {
                 const table = tableMap[blog.typeTable];
-console.log("blog :", blog);
-console.log("table :", table);
+// console.log("blog :", blog);
+// console.log("table :", table);
                 if (!table) return null;
 
                 const detail = table.find(
                     item => item.id === blog.otherID
                 );
-console.log("detail :", detail);
+// console.log("detail :", detail);
                 if (!detail) return null;
 
                 return {
@@ -60,7 +61,7 @@ console.log("detail :", detail);
                 };
             })
             .filter(Boolean);
-console.log(merged);
+// console.log(merged);
         setEventList(merged);
 
         if (merged.length > 0) {
