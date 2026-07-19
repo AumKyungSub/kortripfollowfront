@@ -1,0 +1,109 @@
+.aboutMeWrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.aboutMeImg {
+    width: 190px;
+    height: 190px;
+    margin: 20px auto;
+    border-radius: 999px;
+    /* Background */
+    background-image: url("/images/about/aboutMe.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.aboutMeTextSmallTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b54a2f;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.aboutMeTextSmallTitleLine {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background-color: #b54a2f;
+}
+
+.aboutMeTitle {
+    white-space: pre-wrap;
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.aboutMeTextContent {
+    white-space: pre-wrap;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 550px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) {
+    .aboutMeWrapper {
+        max-width: 1200px;
+        /* Flex */
+        flex-direction: row;
+    }
+
+    .aboutMeImg {
+        width: 265px;
+        height: 265px;
+        border-radius: 999px;
+        /* Background */
+        background-image: url("/images/about/aboutMe.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .aboutMeTextSmallTitle {
+        /* Flex */
+        justify-content: left;
+    }
+
+    .aboutMeText {
+        max-width: 863px;
+    }
+
+    .aboutMeTitle {
+        font-size: 32px;
+        text-align: left;
+    }
+}
+
+@media only all and (min-width: 1280px) {
+  
+}
+
+@media only all and (min-width: 1921px) {
+  .aboutMeWrapper {
+    max-width: 1440px;
+  }
+}

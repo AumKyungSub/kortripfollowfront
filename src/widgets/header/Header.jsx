@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 /*------------------------hooks-----------------------------------*/
 // Navigate, Location
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -15,6 +15,9 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 import './Header.style.css'
 
 const Header = () => {
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const {
           isFullMobile /* maxWidth: 767 */
   } = useResponsive();
@@ -48,13 +51,41 @@ const Header = () => {
     { key: 'collection', path: '/collection', startsWith: '/collection', label: t('menu.collection') },
     { key: 'about', path: '/about', label: t('menu.about') },
   ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 처음 렌더링 시에도 실행
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   
   return (
-    <header>
+    <header className={isScrolled ? "scrolled" : ""}>
       <div className="headerCover">
         <div className="logo" onClick={goTo("/")}>
           <img src="/images/logo/logoIcon.png" alt="logoIcon" />
-          <img src="/images/logo/logoText.png" alt="logoText" />
+          {lang === "ko" ? (
+            !isScrolled ? (
+              <img src="/images/logo/logoText.png" alt="logoText" />
+            ) : (
+              <img src="/images/logo/logoTextSc.png" alt="logoText" />
+            )
+          ) : (
+            !isScrolled ? (
+              <img src="/images/logo/logoTextEn.png" alt="logoText" />
+            ) : (
+              <img src="/images/logo/logoTextEnSc.png" alt="logoText" />
+            )
+          ) 
+        }
         </div>
         {!isFullMobile 
         &&
@@ -63,7 +94,10 @@ const Header = () => {
               {gnbList.map(({ key, path, startsWith, label }) => (
                 <li
                   key={key}
-                  className={`gnbPcLi ${isActive(path, startsWith) ? 'active' : ''}`}
+                  className={`
+                    ${isScrolled ? "gnbPcLiSc" : "gnbPcLi"}
+                    ${isActive(path, startsWith) ? "active" : ""}
+                  `}
                   onClick={goTo(path)}
                 >
                   {label}
@@ -77,12 +111,24 @@ const Header = () => {
           {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
           
           <button
-            className={lang === "ko" ? "active" : ""} 
+            className={`
+              ${isScrolled ? 
+                (lang === "ko" ? "activeSc" : "btnSc")
+              : 
+                (lang === "ko" ? "active" : "btn")
+              }
+            `} 
             onClick={() => changeLanguage("ko")}>
             한국어
           </button>
           <button
-            className={lang === "en" ? "active" : ""} 
+            className={`
+              ${isScrolled ? 
+                (lang === "en" ? "activeSc" : "btnSc")
+              : 
+                (lang === "en" ? "active" : "btn")
+              }
+            `} 
             onClick={() => changeLanguage("en")}>
             ENGLISH
           </button>

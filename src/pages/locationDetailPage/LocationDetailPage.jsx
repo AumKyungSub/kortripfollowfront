@@ -13,7 +13,7 @@ import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'

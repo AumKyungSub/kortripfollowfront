@@ -16,8 +16,8 @@ import Loading from '@/features/loading/Loading'
 import FailedData from '@/features/failedData/FailedData';
 
 // Components
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import Header from '@/widgets/header/Header'
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
 import CollectionBanner from '@/pages/collectionPage/components/collectionBanner/CollectionBanner';
@@ -44,7 +44,7 @@ const CollectionPage = () => {
     return (
         <section>
             <Header />
-            {!isFullMobile && <EmptyHeader/>}    
+            <EmptyHeader/>
             <CollectionBanner/>
             <CollectionList collections ={collections} lang = {lang}/>
             <CollectionGoodsLink collections ={collections}/>

@@ -50,7 +50,7 @@ const Homepage = () => {
   return (
     <div>
       <Header />
-      {!isFullMobile && <EmptyHeader />}
+      {/* {!isFullMobile && <EmptyHeader />} */}
       <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang} />
       {isFullMobile && <HomeCategory />}
       <HomeRecommended rankingsData={rankings} blogsData={blogs} cafesData={cafes} restaurantsData={restaurants} isFullMobile={isFullMobile} isDesktop={isDesktop} />

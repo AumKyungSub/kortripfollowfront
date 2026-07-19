@@ -16,7 +16,7 @@ import Loading from '@/features/loading/Loading';
 
 // Components
 import Header from '@/widgets/header/Header';
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader';
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
 import ListBanner from '@/widgets/listBanner/ListBanner';
 import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
@@ -201,7 +201,7 @@ const ListPage = ({ mode }) => {
   return (
     <>
       <Header />
-      {!isFullMobile && <EmptyHeader />}
+      <EmptyHeader/>
 
       <ListBanner
         type={mode}

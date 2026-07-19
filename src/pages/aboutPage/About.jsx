@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
+import AboutBanner from './components/aboutBanner/AboutBanner'
+import AboutStory from './components/aboutStory/AboutStory'
+import AboutValue from './components/aboutValue/AboutValue'
+import AboutMe from './components/aboutMe/AboutMe'
+import Footer from '../../widgets/footer/Footer'
+import EmptyFooter from '../../widgets/emptyHeader/EmptyFooter'
 
 // Page css
 import './About.style.css'
@@ -18,6 +23,10 @@ const About = () => {
     isFullMobile, /*maxWidth: 767*/
     isDesktop
   } = useResponsive();
+  
+  // Transition Language
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
   const {t} = useTranslation();
 
   const goToInstagram = () => {
@@ -33,49 +42,15 @@ const About = () => {
   }
 
   return (
-    <>
+    <article>
       <Header/>
-      {!isFullMobile && <EmptyHeader/>}
-      <article className='aboutWrapper'>
-        <section className='aboutTopCover'>
-          {!isDesktop 
-          ? 
-            <p className="aboutDescription">
-              {t("about.des")}
-            </p>
-          
-          :
-            <h3 className="aboutDescription">
-              {t("about.des")}
-            </h3>
-          }
-        </section>
-        <section className='aboutFstMiddleCover'>
-            <img src="/images/logo/instaIcon.png" alt="Instagram" onClick={goToInstagram} />
-            <img src="/images/logo/naverBlogIcon.png" alt="Naver Blog" onClick={goToBlog} />
-            <img src="/images/logo/youtubeIcon.png" alt="Youtube" onClick={goToYoutube} />
-        </section>
-        <section className='aboutMiddleCover'>
-          {!isDesktop 
-          ? 
-          <>
-            <p>{t("common.logoName")}</p>
-            <h3 className="aboutMiddleTitle">{t("about.title")}</h3>
-            <p className='subFont'>{t("common.myName")}</p>
-          </>
-          
-          :
-          <>
-            <p>{t("common.logoName")}</p>
-            <h2 className="aboutMiddleTitle">{t("about.title")}</h2>
-            <p className='subFont'>{t("common.myName")}</p>
-          </>
-          }
-        </section>
-        <section className='aboutBottomCover'>
-        </section>
-      </article>
-    </>
+      <AboutBanner lang={lang} />
+      <AboutStory isFullMobile={isFullMobile} lang={lang} />
+      <AboutValue lang={lang} />
+      <AboutMe isFullMobile={isFullMobile} lang={lang} />
+      {isFullMobile && <EmptyFooter />}
+      <Footer />
+    </article>
   )
 }
 

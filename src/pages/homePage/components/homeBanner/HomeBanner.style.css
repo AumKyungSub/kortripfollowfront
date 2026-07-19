@@ -10,8 +10,13 @@
   .homeBannerWrapper {
     white-space: pre-wrap;
     width: 100%;
-    aspect-ratio: 16/14;
+    height: 75vh;
     margin: 0 auto;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     /* Position */
     position: relative;
     z-index: 99;
@@ -30,18 +35,10 @@
   }
 
   .homeBannerTextCover {
-    width: calc(100% - 32px);
-    height: calc(100% - 30px);
     margin: 0 auto;
     /* Font */
     color: #fff;
     text-align: center;
-    /* Position */
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    z-index: 10;
   }
   
   .homeBannerLocation {
@@ -50,35 +47,38 @@
     font-weight: 600;
   }
   .homeBannerTextLine {
-    border: 1px solid #fff;
-    margin: 0 0 20px 0;
+    width: 50px;
+    border: 1px solid rgba(255,255,255,0.6);
+    margin: 0 auto;
   }
 
   .homeBannerName {
-    margin-bottom: 20px;
+    margin: 15px;
     /* Font */
     color: #fff;
   }
 
   .homeBannerDetail {
+    margin-bottom: 80px; 
     /* Font */
     font-weight: 500;
   }
 
   .homeBannerLearnMore {
-    display: inline-block;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background: rgba(0,0,0,0.6);
+    padding: 15px 50px;
+    border-radius: 999px;
+    border: 1px solid #fff;
+    background: transparent;
     /* Font */
     color: #fff;
+    font-size: 1rem;
     font-weight: 600;
-    /* Position */
-    position: absolute;
-    left: 50%;
-    bottom: 14%;
-    transform: translateX(-50%);
-    z-index: 999;
+  }
+
+  .homeBannerLearnMore:hover {
+    border: none;
+    background: #fff;
+    color: #000;
   }
 
   .mainBannerImg {
@@ -101,7 +101,7 @@
     gap: 5px;
     /* Position */
     position: absolute;
-    bottom: -10%;
+    bottom: 0;
     z-index: 97;
   }
 
@@ -135,18 +135,8 @@
   }
 
 @media only all and (min-width: 480px) {
-  .homeBannerWrapper {
-    aspect-ratio: 16/11;
-  }
-
   .homeBannerTextCover {
     width: calc(100% - 40px);
-  }
-
-  /* 썸네일 – 항상 최상단 */
-  .homeBannerThumbCover {
-    /* Position */
-    bottom: -13%;
   }
 
   .homeBannerThumbItem {
@@ -155,20 +145,6 @@
 }
 
 @media only all and (min-width: 550px) and (max-width: 767px) {
-  .homeBannerWrapper {
-    aspect-ratio: 16/10;
-  }
-
-  .homeBannerName {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .homeBannerLearnMore {
-    /* Position */
-    bottom: 13%;
-  }
-
   /* 썸네일 – 항상 최상단 */
   .homeBannerThumbCover {
     width: 100%;
@@ -182,40 +158,20 @@
     /* Position */
     position: absolute;
     left: 50%;
-    bottom: -13%;
     z-index: 9999;
   }
 }
 
 @media only all and (min-width: 768px) {
   .homeBannerWrapper {
-    height: 450px;
     max-width: 1440px;
-  }
-
-  .homeBannerLearnMore {
-    /* Position */
-    bottom: 28%;
   }
 
   .homeBannerTextCover {
     width: calc(100% - 50px);
     max-width: 1440px;
-    /* Positiong */
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
   }
 
-  .homeBannerName {
-    margin-bottom: 40px;
-  }
-
-  .homeBannerDetail {
-    margin-bottom: 10px;
-  }
   .bannerTextP2 {
     font-size: 18px;
     font-weight: 600;
@@ -244,18 +200,6 @@
 
 @media only all and (min-width: 1280px) {
   .homeBannerWrapper {
-    aspect-ratio: 16/6;
-    height: auto;
-  }
-
-  .homeBannerName {
-    margin-top: 50px;
-    margin-bottom: 40px;
-  }
-
-  .homeBannerLearnMore {
-    /* Position */
-    bottom: 30%;
   }
   
 }

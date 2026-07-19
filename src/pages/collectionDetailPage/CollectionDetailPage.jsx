@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 import { useResponsive } from '@/shared/hooks/useResponsive'
 
 // Components
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import Header from '@/widgets/header/Header'
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
 import CollectionDetailPageMain from '@/pages/collectionDetailPage/components/collectionDetailPageMain/CollectionDetailPageMain';
@@ -43,7 +43,7 @@ const {
   return (
     <>
         <Header />
-        {!isFullMobile && <EmptyHeader/>}   
+        <EmptyHeader/>
         <section className='collectionDetailPageWrapper'> 
             <CollectionDetailPageMain collection={collection} isFullMobile={isFullMobile}/>
             <CollectionDetailPageLink collection={collection}/>

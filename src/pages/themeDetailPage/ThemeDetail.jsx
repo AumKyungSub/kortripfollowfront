@@ -16,7 +16,7 @@ import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import ThemeDetailInformation from '@/pages/themeDetailPage/components/themeDetailInformation/ThemeDetailInformation'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'

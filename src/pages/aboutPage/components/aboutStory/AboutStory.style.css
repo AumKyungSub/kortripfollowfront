@@ -1,0 +1,88 @@
+.aboutStoryWrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 16px 10px 16px;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.aboutStoryText {
+    width: 100%;
+}
+
+.aboutStoryTextSmallTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b54a2f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.aboutStoryTextSmallTitleLine {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background-color: #b54a2f;
+}
+
+.aboutStoryTitle {
+    white-space: pre-wrap;
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin: 10px 0 20px;
+}
+
+.aboutStoryTextContent {
+    white-space: pre-wrap;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+@media only all and (min-width: 480px) {
+}
+
+@media only all and (min-width: 550px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) {
+    .aboutStoryWrapper {
+        max-width: 1440px;
+    }
+
+    .aboutStoryText {
+        width: calc((100% - 40px)/2);
+    }
+
+    .aboutStoryTitle {
+        font-size: 32px;
+    }
+
+    .aboutStoryImg {
+        width: 400px;
+        height: 492px;
+        border-radius: 15px;
+        /* Background */
+        background-image: url("/images/about/aboutStory12.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+@media only all and (min-width: 1280px) {
+  
+}
+
+@media only all and (min-width: 1921px) {
+  .aboutStoryWrapper {
+    max-width: 1920px;
+  }
+}

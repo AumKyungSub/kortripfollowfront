@@ -1,0 +1,68 @@
+.homeBannerBackground {
+    /* Background */
+    background-image: url("/images/about/aboutBanner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /* Position */
+    position: relative;
+}
+.aboutBannerWrapper {
+    width: 100%;
+    height: 75vh;   
+    margin: 0 auto;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* Position */
+    position: relative;
+    z-index: 99;
+}
+
+.aboutBannerWrapper::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), 60%, rgba(255, 255, 255, 0.1));
+    /* Position */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.aboutBannerTextCover {
+    margin: 0 auto;
+    /* Font */
+    color: #fff;
+    text-align: center;
+    /* Position */
+    position: relative;
+    z-index: 2;
+}
+
+.aboutBannerLocation {
+    padding: 15px 0;
+    /* Font */
+    font-weight: 600;
+}
+
+.aboutBannerTextLine {
+    width: 50px;
+    border: 1px solid rgba(255,255,255,0.6);
+    margin: 0 auto;
+}
+
+.aboutBannerName {
+    margin: 15px;
+    /* Font */
+    color: #fff;
+}
+
+.aboutBannerDetail {
+    white-space: pre-wrap;
+    /* Font */
+    font-weight: 500;
+}

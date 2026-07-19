@@ -175,9 +175,33 @@
     "email": "E-Mail"
   },
   "about": {
-    "title": "Steps away,\nhidden stories of Korea",
-    "slogan": "Even in the small nation of South Korea, endless new scenery awaits.\nJoin us in discovering the thrill of travel across Korea.",
-    "des": "I am an independent developer who loves traveling and documenting hidden destinations across S. Korea.\nFor places I have personally visited, I share real photographs along with experience-based reviews, aiming to provide practical and trustworthy travel information rather than surface-level tips.\nUpdates may be slow, but it will made with care and consistency.\nWith each journey, this project continues to grow into a richer and more meaningful travel guide to S. Korea."
+    "aboutBanner": {
+      "bannerAbout": "About KORTRIP",
+      "bannerTitle": "The Story of KORTRIP",
+      "bannerSlogan": "Every Step Tells a Story\nDiscover Hidden Korea"
+    },
+    "aboutStory": {
+      "storySmallTitle": "KORTRIP STORY",
+      "storyTitle": "The Unique Charm\nof Korea",
+      "storyText": "KORTRIP is short for 'Korea Travel Follow,' a place where we share authentic travel stories from across Korea. Every destination featured on this website has been personally visited, and all information is based on real experiences. Every photo you see was also taken by us, capturing each destination just as it is.\n\nKorea offers a different kind of travel experience. From breathtaking natural landscapes and historic landmarks to charming alleyway cafés and scenery that transforms with every season, each journey reveals a new side of the country waiting to be discovered.\n\nWe hope this website inspires your next trip and helps you discover the beauty, culture, and hidden gems that make Korea a truly memorable destination."
+    },
+    "aboutValue": {
+      "valueSmallTitle": "KORTRIP PROMISE",
+      "valueTitle": "Travel Stories",
+      "valueContents1T": "Captured by Us",
+      "valueContents1C": "Every photo on KORTRIP is taken by us. We capture authentic scenery without excessive editing, so you can see each destination as it truly is.",
+      "valueContents2T": "Hidden Gems",
+      "valueContents2C": "Travel is more than famous landmarks. We introduce charming alleys, cozy cafes, and beautiful hidden spots we've discovered ourselves.",
+      "valueContents3T": "Honest Reviews",
+      "valueContents3C": "We only share places we've personally visited and experienced. Every review is based on real experiences never sponsored.",
+      "valueContents4T": "Travel Starts Here",
+      "valueContents4C": "Whether you're traveling solo, planning a romantic getaway, or enjoying a family trip, we provide trusted travel information to help you explore the best of Korea."
+    },
+    "aboutMe": {
+      "meSmallTitle": "CREATOR",
+      "meTitle": "Kayaum",
+      "meContent": "Hello, I’m Kayaum, the creator of KORTRIP. I’m an ordinary traveler who loves capturing moments through photography and chasing the thrill of discovering new places.\n\nMy happiest memories of traveling aren't from famous tourist spots, but from the simple peace of drinking a cup of coffee at a quiet alley cafe I stumbled upon by chance. I created this space because I wanted to share that small but certain happiness with more people.\n\nMoving forward, I will continue to discover and document the hidden gems all across Korea. I truly hope KORTRIP can inspire your next journey."
+    }
   },
   "bottom": {
     "all": {

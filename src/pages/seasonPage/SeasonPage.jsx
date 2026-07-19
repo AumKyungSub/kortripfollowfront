@@ -12,7 +12,7 @@ import Loading from '@/features/loading/Loading'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
+import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
 import SeasonCategory from '@/pages/seasonPage/components/seasonCategory/SeasonCategory'
 import SeasonBanner from '@/pages/seasonPage/components/seasonBanner/SeasonBanner'
 import SeasonList from '@/pages/seasonPage/components/seasonList/SeasonList'
@@ -52,7 +52,7 @@ const SeasonPage = () => {
   return (
     <div>
       <Header/>
-      {!isFullMobile && <EmptyHeader/>}
+      <EmptyHeader/>
         <SeasonCategory selected={selectedSeason} setSelected={setSelectedSeason} lang={lang} />
         {filteredListBanner.map((sea)=>(
           <SeasonBanner key={sea.id} seasonCategory={sea} lang={lang}/>

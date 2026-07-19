@@ -1,6 +1,18 @@
-header {
-  width: 100%;
-}
+
+  header {
+    width: 100%;
+    background: transparent;
+    transition: background-color .3s ease;
+    /* Position */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+
+  header.scrolled {
+    background: #fff;
+  }
 
 .headerCover {
   width: 100%;
@@ -45,20 +57,40 @@ header .logo img {
   margin-left: 5px;
 }
 
-.search button {
+.search .btn {
   border: none;
   background: transparent;
   /* Font */
   font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
-  color: #111;
+  color: #fafaf8;
+  cursor: pointer;
+}
+
+.search .btnSc {
+  border: none;
+  background: transparent;
+  /* Font */
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1a1a1a;
   cursor: pointer;
 }
 
 .search button.active {
-  font-weight: 700;
-  color: #111111;
+  background: #fafaf8;
+  padding: 5px 15px;
+  border-radius: 50px;
+  color: #1a1a1a;
+}
+
+.search button.activeSc {
+  background: #1a1a1a;
+  padding: 5px 15px;
+  border-radius: 50px;
+  color: #fafaf8;
 }
 
 /* ---------------------------------------------------- */
@@ -70,14 +102,6 @@ header .logo img {
 }
 
 @media only all and (min-width: 768px) {
-  header {
-    background-color: #fff;
-    /* Position */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-  }
   
   .headerCover {
     max-width: 1023px;
@@ -103,13 +127,30 @@ header .logo img {
     /* Font */
     font-size: 1rem;
     font-weight: 500;
-    color: #555;
+    color: #fafaf8;
+    position: relative;
   }
 
-  .gnbPc ul .gnbPcLi.active {
+  .gnbPc ul .gnbPcLiSc {
+    cursor: pointer;
+    margin: 0 10px;
     /* Font */
-    color: #000;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    position: relative;
+  }
+
+  .gnbPc ul li.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
   }
 }
 
