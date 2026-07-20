@@ -13,9 +13,10 @@ import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import Footer from '@/widgets/footer/Footer'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import LocationDetailExplain from '@/pages/locationDetailPage/components/locationDetailExplain/LocationDetailExplain'
 import DetailMap from '@/widgets/detailMap/DetailMap'
@@ -108,8 +109,9 @@ const LocationDetailPage = () => {
                     <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
             }
-            {isFullMobile && <EmptyFooter/>}
             <Footer/>
+            {isFullMobile && <EmptyFooter/>}
+            {isFullMobile && <MobileNavigation/>}
         </div>
     )
 }

@@ -1,39 +1,135 @@
 footer {
-    width: 100vw;
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-top: 15px solid #cacaca;
+    width: 100%;
+    height: auto;
+    background: #161310;
+    color: #fff;
+    /* margin-top: 40px; */
+    letter-spacing: 0.02em;
     /* Position */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-}
-.footerLinkCover {
-    height: 100%;
-    /* Flex */
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    position: relative;
 }
 
-.footerLinkCover a {
-    cursor: pointer;
+.footerWrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 16px;
     /* Flex */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.footerLeftCover .logo {
+    width: 121px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    /* Flex */
+    display: flex;  
+}
+
+.footerLeftCover .logo img {
+    height: 40px;
+    margin-right: 5px;
+}
+
+.footerSlogan {
+    white-space: pre-line;
+    /* Font */
+    font-size: 14px;
+    color: #BAB9B8;
+}
+
+.footerBrowseTitle,
+.footerEmailTitle {
+    margin-bottom: 15px;
+}
+
+.footerBrowse ul li {
+    width: 100px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    /* Font */
+    font-size: 14px;
+    color: #BAB9B8;
+}
+
+.footerBrowse ul li:hover {
+    /* Font */
+    font-weight: 500;
+    color: #fafaf8;
+}
+
+.footerEmail {
+    width: 100%;
+    margin-bottom: 10px;
+    /* Font */
+    font-size: 14px;
+    color:#BAB9B8;
+    /* Flex */
+    display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
-.footerLinkCover a img {
-    width: 30px;
+.footerEmail img {
+    width: 18px;
+    height: 17px;
 }
 
-.footerIcon {
-    width: calc(100% / 6);
+.footerLinks {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
 }
 
+.footerLinks a {
+    width: 35px;
+    height: 35px;
+    background-color: #2E2B28;
+    border-radius: 999px;
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerLinks a:hover {
+    background-color: #b54a2f;
+}
+
+.footerLinks a img {
+    width: 20px;
+    height: 20px;
+}
+
+.footerCopyrightTextCover {
+    padding: 20px 16px;
+    border-top: 1px solid #2E2B28;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    /* Font */
+    color: #8B8984;
+}
+
+.warnings {
+    width: 100%;
+    margin-bottom: 10px;
+}
+    
+.footerCopyRight {
+    width: 100%;
+    /* Font */
+    font-weight: 500;
+}
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
@@ -45,59 +141,34 @@ footer {
 }
 
 @media only all and (min-width: 768px) {
-    footer {
-        width: 100%;
-        height: auto;
-        background: #e2e8f0;
-        color: #000;
-        /* margin-top: 40px; */
-        letter-spacing: 0.02em;
-        /* Position */
-        position: relative;
+
+    .footerWrapper {
+        padding: 20px 0 40px;
+        /* Flex */
+        flex-direction: row;
+        gap: 5px;
     }
 
-    .footerLinkCover,
-    .footerTextCover {
+    .footerWrapper > div {
+        width: calc((100% - 10px)/3);
+    }
+
+    .footerEmailCover {
+        margin-bottom: 15px;
+    }
+
+    .footerCopyrightTextCover {
         max-width: 1440px;
         margin: 0 auto;
-        width: 100%;
-        padding: 30px 16px 0;
-        background-color: transparent;
-    }
-
-    .footerTextCover {
-        padding-top: 0;
-        padding-bottom: 15px;
-    }
-
-    .footerLinkCover {
-        width: 100%;
-        height: auto;
-        margin-bottom: 15px;
+        padding: 20px 0 40px;
         /* Flex */
-        display: flex;
-        justify-content: start;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        gap: 15px;
-    }
-    .warnings {
-        width: 100%;
-        margin-bottom: 10px;
-        /* Font */
-        color: #525252;
-    }
-
-    .footerEmail {
-        width: 100%;
-        margin-bottom: 10px;
-        /* Font */
-        font-weight: 700;
     }
     
     .footerCopyRight {
-        width: 100%;
-        /* Font */
-        font-weight: 500;
+        text-align: right;
     }
 }
 
@@ -105,8 +176,8 @@ footer {
 }
 
 @media only all and (min-width: 1921px) {
-    .footerLinkCover,
-    .footerTextCover {
+    .footerWrapper,
+    .footerCopyrightTextCover {
         max-width: 1920px;
     }
 }

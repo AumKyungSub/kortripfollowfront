@@ -16,7 +16,7 @@ import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import ThemeDetailInformation from '@/pages/themeDetailPage/components/themeDetailInformation/ThemeDetailInformation'
 import ThemeDetailLodging from '@/pages/themeDetailPage/components/themeDetailLodging/ThemeDetailLodging'
@@ -25,8 +25,9 @@ import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
 import DetailVideo from '@/widgets/detailVideo/DetailVideo'
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
 
 // Page css
 import './ThemeDetail.style.css'
@@ -132,8 +133,9 @@ const themeCode = getThemeCode(category.toUpperCase());
                     </div>
                 </div>
             }
-            {isFullMobile && <EmptyFooter/>}
             <Footer/>
+            {isFullMobile && <EmptyFooter/>}
+            {isFullMobile && <MobileNavigation/>}
         </>
     )
 }

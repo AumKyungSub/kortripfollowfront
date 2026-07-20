@@ -17,9 +17,10 @@ import FailedData from '@/features/failedData/FailedData';
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader';
 import Footer from '@/widgets/footer/Footer';
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation';
 import CollectionBanner from '@/pages/collectionPage/components/collectionBanner/CollectionBanner';
 import CollectionList from '@/pages/collectionPage/components/collectionList/CollectionList';
 import CollectionGoodsLink from '@/pages/collectionPage/components/collectionGoodsLink/CollectionGoodsLink';
@@ -48,8 +49,9 @@ const CollectionPage = () => {
             <CollectionBanner/>
             <CollectionList collections ={collections} lang = {lang}/>
             <CollectionGoodsLink collections ={collections}/>
-            {isFullMobile && <EmptyFooter/>}
             <Footer/>
+            {isFullMobile && <EmptyFooter/>}
+            {isFullMobile && <MobileNavigation/>}
         </section>
     )
 }

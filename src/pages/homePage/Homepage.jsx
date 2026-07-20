@@ -25,6 +25,7 @@ import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
 import HomeCollection from '@/pages/homePage/components/homeCollection/HomeCollection'
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer'
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation';
 
 //Page Css
 import './Homepage.style.css'
@@ -58,8 +59,9 @@ const Homepage = () => {
       {!isFullMobile && <HomeSeason rankingData={rankings} />}
       <HomeTheme isFullMobile={isFullMobile} />
       <HomeCollection />
-      {isFullMobile && <EmptyFooter />}
       <Footer />
+      {isFullMobile && <EmptyFooter />}
+      {isFullMobile && <MobileNavigation />}
     </div>
   )
 }

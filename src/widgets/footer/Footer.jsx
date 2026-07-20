@@ -15,8 +15,9 @@ const Footer = () => {
   const {
     isFullMobile /*maxWidth: 767*/
   } = useResponsive();
-
-  const {t} = useTranslation();
+  
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const navigate = useNavigate();
 
@@ -52,48 +53,94 @@ const Footer = () => {
     {
       key: 'about',
       label: t('menu.about'),
-      image: 'infoIcon',
+      image: isFullMobile ? 'infoIcon' : 'infoIconW',
       onClick: goTo('/about'),
     }
   ]
 
+  // li 설정
+  const gnbList = [
+    { key: 'region', path: '/region', startsWith: '/location', label: t('footer.region') },
+    { key: 'season', path: '/season', label: t('footer.season') },
+    { key: 'theme', path: '/theme', startsWith: '/themeDetail', label: t('footer.theme') },
+    { key: 'collection', path: '/collection', startsWith: '/collection', label: t('footer.collection') },
+    { key: 'about', path: '/about', label: t('footer.about') },
+  ]
+
   return (
     <footer>
-            <div className='footerLinkCover'>
-              {links.map((link, index) => (
-                <React.Fragment key={link.key}>
-                  {link.href ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+      <div className="footerWrapper">
+              <div className='footerLeftCover'>
+                <div className="logo" onClick={goTo("/")}>
+                  <img src="/images/logo/logoIcon.png" alt="logoIcon" />
+                  {lang === "ko" ? 
+                    <img src="/images/logo/logoText.png" alt="logoText" />
+                    :
+                    <img src="/images/logo/logoTextEn.png" alt="logoText" />
+                  }
+                </div>
+                <div className="footerSlogan">
+                  <p>
+                    {t("footer.slogan")}
+                  </p>
+                </div>
+              </div>
+              <div className='footerBrowse'>
+                <p className='footerBrowseTitle'>
+                  {t("footer.browse")}
+                </p>
+                <ul>
+                  {gnbList.map(({ key, path, startsWith, label }) => (
+                    <li
+                      key={key}
+                      onClick={goTo(path)}
                     >
-                      <img src={`/images/logo/${link.image}.png`} alt="Naver Blog" className='footerIcon'/>
-                      {isFullMobile && <p>{link.label}</p>}
-                    </a>
-                  ) : (
-                    <a onClick={link.onClick}>
-                      <img src={`/images/logo/${link.image}.png`} alt="Naver Blog" className='footerIcon'/>
-                      {isFullMobile && <p>{link.label}</p>}
-                    </a>
-                  )}
-                  {!isFullMobile && index < links.length - 1 && ' | '}
-                </React.Fragment>
-              ))}
-            </div>
-            {!isFullMobile && 
-              <div className='footerTextCover'>
-                <p className='warnings subFont'>
-                  {t("footer.warning")}
-                </p>
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            <div className="footerLinkCover">
+              <div className='footerEmailCover'>
+                <p className='footerEmailTitle'>Contact</p>
                 <p className='footerEmail'>
-                  {t("footer.email")}: qnzldmad91@gmail.com
-                </p>
-                <p className='footerCopyRight subFont'>
-                  COPYRIGHT&copy; 2025 By Aum Kyung Sub.<br/> All RIGHT's RESERVED
+                  <img src="/images/icon/mail.png" alt="mail" />
+                  qnzldmad91@gmail.com
                 </p>
               </div>
-            }
+              {!isFullMobile &&
+                <div className='footerLinks'>
+                  {links.map((link, index) => (
+                    <React.Fragment key={link.key}>
+                      {link.href ? (
+                        <a
+                        href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img src={`/images/logo/${link.image}.png`} alt="Naver Blog" className='footerIcon'/>
+                          {isFullMobile && <p>{link.label}</p>}
+                        </a>
+                      ) : (
+                        <a onClick={link.onClick}>
+                          <img src={`/images/logo/${link.image}.png`} alt="Naver Blog" className='footerIcon'/>
+                          {isFullMobile && <p>{link.label}</p>}
+                        </a>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              }
+            </div>
+        </div>
+        <div className='footerCopyrightTextCover'>
+          <p className='warnings subFont'>
+            {t("footer.warning")}
+          </p>
+          <p className='footerCopyRight subFont'>
+            COPYRIGHT&copy; 2025 By Aum Kyung Sub. All RIGHT's RESERVED
+          </p>
+        </div>
     </footer> 
   )
 }

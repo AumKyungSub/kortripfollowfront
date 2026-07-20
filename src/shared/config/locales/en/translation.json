@@ -171,8 +171,14 @@
     "title": "Video"
   },
   "footer": {
+    "slogan": "Not sure where to travel in Korea?\nDiscover destinations by region and theme with KORTRIP.",
     "warning": "All photos are my own, and I hold the copyright.",
-    "email": "E-Mail"
+    "browse": "Browse",
+    "region": "Region",
+    "season": "Season",
+    "theme": "Theme",
+    "collection": "Collection",
+    "about": "About"
   },
   "about": {
     "aboutBanner": {

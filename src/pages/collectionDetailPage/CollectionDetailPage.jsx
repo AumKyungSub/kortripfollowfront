@@ -8,9 +8,10 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader';
 import Footer from '@/widgets/footer/Footer';
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation';
 import CollectionDetailPageMain from '@/pages/collectionDetailPage/components/collectionDetailPageMain/CollectionDetailPageMain';
 import CollectionDetailPageLink from '@/pages/collectionDetailPage/components/collectionDetailPageLink/CollectionDetailPageLink';
 import CollectionGoodsLink from '@/pages/collectionPage/components/collectionGoodsLink/CollectionGoodsLink';
@@ -49,8 +50,9 @@ const {
             <CollectionDetailPageLink collection={collection}/>
         </section>
             <CollectionGoodsLink collection={collection}/>
-        {isFullMobile && <EmptyFooter/>}
         <Footer/>
+        {isFullMobile && <EmptyFooter/>}
+        {isFullMobile && <MobileNavigation/>}
     </>
   )
 }

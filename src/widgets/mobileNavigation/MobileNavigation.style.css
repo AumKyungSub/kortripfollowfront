@@ -1,0 +1,50 @@
+.mobileNavigationWrapper {
+    width: 100vw;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Position */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.mobileNavigationLinks {
+    height: 100%;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mobileNavigationLinks a {
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.mobileNavigationLinks a img {
+    width: 30px;
+}
+
+
+/* ---------------------------------------------------- */
+/* 반응형 디자인 media query */
+@media only all and (max-width: 479px) {
+}
+
+@media only all and (min-width: 480px) {
+
+}
+
+@media only all and (min-width: 768px) {
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+}

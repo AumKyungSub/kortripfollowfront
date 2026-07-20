@@ -16,15 +16,16 @@ import Loading from '@/features/loading/Loading';
 
 // Components
 import Header from '@/widgets/header/Header';
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader';
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader';
 import ListBanner from '@/widgets/listBanner/ListBanner';
 import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
 import List from '@/widgets/list/List';
 import EmptyState from '@/widgets/emptyState/EmptyState';
 import Bottom from '@/widgets/bottom/Bottom';
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer';
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation';
 import Pagination from '@/widgets/pagination/Pagination';
 
 import './ListPage.style.css'
@@ -245,8 +246,9 @@ const ListPage = ({ mode }) => {
       <Bottom
         type={bottomType}
       />
-      {isFullMobile && <EmptyFooter />}
       <Footer />
+      {isFullMobile && <EmptyFooter />}
+      {isFullMobile && <MobileNavigation />}
     </>
   )
 }

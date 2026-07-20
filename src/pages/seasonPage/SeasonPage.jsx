@@ -12,12 +12,13 @@ import Loading from '@/features/loading/Loading'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '../../widgets/emptyHeader/EmptyHeader'
+import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import SeasonCategory from '@/pages/seasonPage/components/seasonCategory/SeasonCategory'
 import SeasonBanner from '@/pages/seasonPage/components/seasonBanner/SeasonBanner'
 import SeasonList from '@/pages/seasonPage/components/seasonList/SeasonList'
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import Footer from '@/widgets/footer/Footer'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
 
 // Page css
 import './SeasonPage.style.css'
@@ -62,8 +63,9 @@ const SeasonPage = () => {
           list={filteredListList}
           lang={lang}
           />
-      {isFullMobile && <EmptyFooter/>}
       <Footer/>
+      {isFullMobile && <EmptyFooter/>}
+      {isFullMobile && <MobileNavigation/>}
     </div>
   )
 }

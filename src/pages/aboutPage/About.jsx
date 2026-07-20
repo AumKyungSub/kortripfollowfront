@@ -12,8 +12,9 @@ import AboutBanner from './components/aboutBanner/AboutBanner'
 import AboutStory from './components/aboutStory/AboutStory'
 import AboutValue from './components/aboutValue/AboutValue'
 import AboutMe from './components/aboutMe/AboutMe'
-import Footer from '../../widgets/footer/Footer'
-import EmptyFooter from '../../widgets/emptyHeader/EmptyFooter'
+import Footer from '@/widgets/footer/Footer'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
+import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
 
 // Page css
 import './About.style.css'
@@ -48,8 +49,9 @@ const About = () => {
       <AboutStory isFullMobile={isFullMobile} lang={lang} />
       <AboutValue lang={lang} />
       <AboutMe isFullMobile={isFullMobile} lang={lang} />
-      {isFullMobile && <EmptyFooter />}
       <Footer />
+      {isFullMobile && <EmptyFooter />}
+      {isFullMobile && <MobileNavigation />}
     </article>
   )
 }
