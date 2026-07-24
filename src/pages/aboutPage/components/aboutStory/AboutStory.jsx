@@ -1,14 +1,23 @@
 import React from 'react'
 
-// i18n -> Transition Language
-import { useTranslation } from 'react-i18next'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page CSS
 import './AboutStory.style.css'
 
-const AboutStory = ({isFullMobile, lang}) => {
-
-    const {t} = useTranslation();
+const AboutStory = () => {
+    // Device Size 사용
+    const {isFullMobile} = useResponsive();
+    // Language 사용
+    const {t} = useLanguage();
 
     return (
         <div className="aboutStoryWrapper">

@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react'
 /*------------------------hooks-----------------------------------*/
 // Navigate, Location
 import { useNavigate, useLocation } from 'react-router-dom'
-// Transition Language
-import { useTranslation } from 'react-i18next'
 /*------------------------/hooks-----------------------------------*/
 
 /*------------------------custom hooks-----------------------------------*/
 // Device Size
 import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
 /*------------------------/custom hooks-----------------------------------*/
 
 // Page css
@@ -25,14 +25,8 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
-
-  // 언어 변경 함수
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem("lang", lang);
-  };
+  // Language Hook 사용
+  const { lang, t, changeLanguage, isKo, isEn } = useLanguage();
 
   // path로 경로 설정
   const goTo = (path) => () => navigate(path)
@@ -42,7 +36,17 @@ const Header = () => {
     location.pathname === path ||
     (startsWith && location.pathname.startsWith(startsWith))
 
-  // li 설정
+  // return 문 안의 JSX 영역-------------------------
+  // 헬퍼 모음 (추후 추가 및 수정 가능성 있음)
+  // 1. 로고 텍스트 이미지 경로
+  const getLogoImage = () => {
+    if (isKo) {
+      return isScrolled ? "/images/logo/logoTextSc.png" : "/images/logo/logoText.png";
+    }
+    return isScrolled ? "/images/logo/logoTextEnSc.png" : "/images/logo/logoTextEn.png";
+  };
+
+  // 2. li 리스트 설정
   const gnbList = [
     { key: 'home', path: '/', label: t('menu.home') },
     { key: 'region', path: '/region', startsWith: '/location', label: t('menu.region') },
@@ -51,7 +55,9 @@ const Header = () => {
     { key: 'collection', path: '/collection', startsWith: '/collection', label: t('menu.collection') },
     { key: 'about', path: '/about', label: t('menu.about') },
   ]
+  // ----------------------------------------------
 
+  // 스크롤 이벤트 감지
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -72,30 +78,16 @@ const Header = () => {
       <div className="headerCover">
         <div className="logo" onClick={goTo("/")}>
           <img src="/images/logo/logoIcon.png" alt="logoIcon" />
-          {lang === "ko" ? (
-            !isScrolled ? (
-              <img src="/images/logo/logoText.png" alt="logoText" />
-            ) : (
-              <img src="/images/logo/logoTextSc.png" alt="logoText" />
-            )
-          ) : (
-            !isScrolled ? (
-              <img src="/images/logo/logoTextEn.png" alt="logoText" />
-            ) : (
-              <img src="/images/logo/logoTextEnSc.png" alt="logoText" />
-            )
-          ) 
-        }
+          <img src={getLogoImage()} alt="logoText" />
         </div>
-        {!isFullMobile 
-        &&
-          <nav className="gnbPc">
-            <ul>
+        {!isFullMobile &&
+          <nav className="gnb">
+            <ul className='gnbContainer'>
               {gnbList.map(({ key, path, startsWith, label }) => (
                 <li
                   key={key}
                   className={`
-                    ${isScrolled ? "gnbPcLiSc" : "gnbPcLi"}
+                    ${isScrolled ? "gnbListSc" : "gnbList"}
                     ${isActive(path, startsWith) ? "active" : ""}
                   `}
                   onClick={goTo(path)}
@@ -106,28 +98,20 @@ const Header = () => {
             </ul>
           </nav>
         }
-        <div className='search'>
+        <div className='utilityBar'>
           {/* <img src="/images/icon/searchIcon.png" alt="search" /> 검색기능 추가 후 오픈 */}
           {/* <img src="/images/icon/aboutIcon.png" alt="icon" onClick={goToAbout}/> */}
           
           <button
             className={`
-              ${isScrolled ? 
-                (lang === "ko" ? "activeSc" : "btnSc")
-              : 
-                (lang === "ko" ? "active" : "btn")
-              }
+              ${isKo ? 'active' : 'languageBtn'}${isScrolled ? 'Sc' : ''}
             `} 
             onClick={() => changeLanguage("ko")}>
             한국어
           </button>
           <button
             className={`
-              ${isScrolled ? 
-                (lang === "en" ? "activeSc" : "btnSc")
-              : 
-                (lang === "en" ? "active" : "btn")
-              }
+              ${isEn ? 'active' : 'languageBtn'}${isScrolled ? 'Sc' : ''}
             `} 
             onClick={() => changeLanguage("en")}>
             ENGLISH

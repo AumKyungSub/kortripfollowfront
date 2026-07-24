@@ -1,16 +1,22 @@
 import React from 'react'
 
-// i18n -> Transition Language
-import { useTranslation } from 'react-i18next'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Components
-import HomeCategoryComponent from './HomeCategoryComponent'
+import HomeCategoryComponent from './component/HomeCategoryComponent'
 
 // Page css
 import './HomeCategory.style.css'
 
 const HomeCategory = () => {
-    const {t} = useTranslation();
+    const {t} = useLanguage();
+    
     return (
         <section className="homeCategoryWrapper">
             <div className="homeCategoryCardCover">

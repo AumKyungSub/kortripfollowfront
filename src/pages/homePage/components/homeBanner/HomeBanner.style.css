@@ -1,194 +1,138 @@
-  /* Mobile First 모바일 퍼스트 */
-  .homeBannerBackground {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-    /* Position */
-    position: relative;
+/* Mobile First 모바일 퍼스트 */
+.homeBannerBackground {
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+/* Position */
+position: relative;
 }
 
-  .homeBannerWrapper {
-    white-space: pre-wrap;
-    width: 100%;
-    height: 75vh;
-    margin: 0 auto;
-    /* Flex */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* Position */
-    position: relative;
-    z-index: 99;
-  }
-
-  .homeBannerBackground::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), 60%, rgba(255, 255, 255, 0.1));
-    /* Position */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-
-  .homeBannerTextCover {
-    margin: 0 auto;
-    /* Font */
-    color: #fff;
-    text-align: center;
-  }
-  
-  .homeBannerLocation {
-    padding: 15px 0;
-    /* Font */
-    font-weight: 600;
-  }
-  .homeBannerTextLine {
-    width: 50px;
-    border: 1px solid rgba(255,255,255,0.6);
-    margin: 0 auto;
-  }
-
-  .homeBannerName {
-    margin: 15px;
-    /* Font */
-    color: #fff;
-  }
-
-  .homeBannerDetail {
-    margin-bottom: 80px; 
-    /* Font */
-    font-weight: 500;
-  }
-
-  .homeBannerLearnMore {
-    padding: 15px 50px;
-    border-radius: 999px;
-    border: 1px solid #fff;
-    background: transparent;
-    /* Font */
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .homeBannerLearnMore:hover {
-    border: none;
-    background: #fff;
-    color: #000;
-  }
-
-  .mainBannerImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center bottom;
-    opacity: 1;
-    transition: opacity 0.6s ease;
-  }
-
-  /* 썸네일 – 항상 최상단 */
-  .homeBannerThumbCover {
-    width: 100%;
-    padding: 16px;
-    margin: 0 auto;
-    /* Flex */
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    /* Position */
-    position: absolute;
-    bottom: 0;
-    z-index: 97;
-  }
-
-  .homeBannerThumbItem {
-    width: calc((100% - 15px) / 4);
-    aspect-ratio: 16/12;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .homeBannerThumbItem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  /* 이동 + 확대 + 페이드아웃 */
-  .thumbFly {
-    border-radius: 0;
-    transition:
-    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.3s ease,
-    width 0.1s ease,
-    height 0.9s ease,
-    top 0.9s ease,
-    left 0.1s ease;
-    /* Position */
-    z-index: 100;
-  }
-
-@media only all and (min-width: 480px) {
-  .homeBannerTextCover {
-    width: calc(100% - 40px);
-  }
-
-  .homeBannerThumbItem {
-    aspect-ratio: 16/10;
-  }
+.homeBannerWrapper {
+  white-space: pre-wrap;
+  width: 100%;
+  max-width: 1250px;
+  height: 75vh;
+  margin: 0 auto;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Position */
+  position: relative;
+  z-index: 99;
 }
 
-@media only all and (min-width: 550px) and (max-width: 767px) {
-  /* 썸네일 – 항상 최상단 */
-  .homeBannerThumbCover {
-    width: 100%;
-    max-width: 550px;
-    padding: 16px;
-    margin-left: calc(-550px / 2);
-    /* Flex */
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    /* Position */
-    position: absolute;
-    left: 50%;
-    z-index: 9999;
-  }
+.homeBannerBackground::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), 60%, rgba(255, 255, 255, 0.1));
+  /* Position */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
+
+.homeBannerTextCover {
+  width: 100%;
+  margin: 0 auto;
+  /* Font */
+  color: #fff;
+  text-align: center;
+}
+
+.homeBannerLocation {
+  padding: 15px 0;
+  /* Font */
+  font-weight: 600;
+}
+
+.homeBannerTextLine {
+  width: 50px;
+  border: 1px solid rgba(255,255,255,0.6);
+  margin: 0 auto;
+}
+
+.homeBannerName {
+  margin: 15px;
+  /* Font */
+  color: #fff;
+}
+
+.homeBannerDetail {
+  margin-bottom: 80px; 
+  /* Font */
+  font-weight: 500;
+}
+
+.homeBannerLearnMore {
+  padding: 15px 50px;
+  border-radius: 999px;
+  border: 1px solid #fff;
+  background: transparent;
+  /* Font */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.homeBannerLearnMore:hover {
+  border: none;
+  background: #fff;
+  color: #000;
+}
+
+.mainBannerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* 썸네일 – 항상 최상단 */
+.homeBannerThumbCover {
+  width: 100%;
+  max-width: 550px;
+  padding: 16px;
+  margin: 0 auto;
+  /* Flex */
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  /* Position */
+  position: absolute;
+  bottom: 0;
+  z-index: 97;
+}
+
+.homeBannerThumbItem {
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.homeBannerThumbItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
-  .homeBannerWrapper {
-    max-width: 1440px;
-  }
-
-  .homeBannerTextCover {
-    width: calc(100% - 50px);
-    max-width: 1440px;
-  }
-
-  .bannerTextP2 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 20px;
-
-  }  
 
   /* 썸네일 – 항상 최상단 */
   .homeBannerThumbCover {
-    width: calc(100% - 150px);
-    margin-left: 0;
-    padding: 0;
+    padding: 20px 0;
     /* Flex */
     justify-content: end;
     gap: 12px;
     /* Position */
-    bottom: 20px;
     right: 25px;
   }
 
@@ -198,17 +142,10 @@
   }
 }
 
-@media only all and (min-width: 1280px) {
-  .homeBannerWrapper {
-  }
-  
-}
+@media only all and (min-width: 1280px) {}
 
 @media only all and (min-width: 1921px) {
   .homeBannerWrapper {
-    max-width: 1920px;
-  }
-  .homeBannerTextCover {
     max-width: 1920px;
   }
 }

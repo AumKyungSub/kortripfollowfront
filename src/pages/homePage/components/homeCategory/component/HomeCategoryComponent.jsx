@@ -1,5 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';    
+
+/*------------------------hooks-----------------------------------*/
+// Navigate
+import { useNavigate } from 'react-router-dom';
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+/*------------------------/custom hooks-----------------------------------*/
 
 const HomeCategoryComponent = (props) => {
   const navigate = useNavigate();

@@ -1,32 +1,55 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-// (hook) Navigate
+/*------------------------hooks-----------------------------------*/
+// Navigate
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './HomeBanner.style.css';
 
-const HomeBanner = ({ rankingsData, isFullMobile, isDesktop, lang }) => {
-
-  const {t} = useTranslation();
+const HomeBanner = ({ 
+  rankingsData = []
+}) => {
   
-  const getImageSrc = (link) =>
-  isFullMobile
-    ? link + "3M.jpg"
-    : isDesktop
-    ? link + "3.jpg"
-    : link + "3T.jpg";
-
-  const bannerRef = useRef(null);
+  const navigate = useNavigate();
+  
   const thumbRefs = useRef([]);
   const autoplayRef = useRef(null);
-
+  
   const [items, setItems] = useState([]);
   const [transitioning, setTransitioning] = useState(false);
-  const navigate = useNavigate();
 
-  const isKorean = lang.startsWith('ko');
+  // Device Size Hook 사용
+  const {isFullMobile, isDesktop} = useResponsive();
+  
+  // Language Hook 사용
+  const { lang, t, changeLanguage, isKo, isEn } = useLanguage();
+
+  // return 문 안의 JSX 영역-------------------------
+  // 헬퍼 모음 (추후 추가 및 수정 가능성 있음)
+  // 1. 베너 이미지 경로 헬퍼
+  const getImageSrc = (link) => {
+    if(!link) return '';
+    if(isFullMobile) return `${link}3M.jpg`
+    if(isDesktop) return `${link}3.jpg`
+    return `${link}3T.jpg`
+  }
+
+  // 2. homeBannerLocation 영역
+  const getLocationTitle = (item) => {
+    if (!item) return '';
+    if (isEn) return `Attractions in ${item.address.en?.[1] || ''}`;
+    return `${item.address.ko?.[0] || ''} 명소`; // 기본값: 한국어
+  };
+  // ----------------------------------------------
 
   // ---------- 초기 데이터 세팅 ----------
   useEffect(() => {
@@ -55,25 +78,25 @@ const HomeBanner = ({ rankingsData, isFullMobile, isDesktop, lang }) => {
 
   // ------------유틸---------------
 
-const rotateItems = (selectedIndex) => {
-  setItems((prev) =>
-    prev.slice(selectedIndex).concat(prev.slice(0, selectedIndex))
-  );
-};
+  const rotateItems = (selectedIndex) => {
+    setItems((prev) =>
+      prev.slice(selectedIndex).concat(prev.slice(0, selectedIndex))
+    );
+  };
 
-// ---------- 썸네일 클릭 ---------- 
-const handleThumbSelect = async (idx) => {
-  if (transitioning || !thumbs[idx]) return;
+  // ---------- 썸네일 클릭 ---------- 
+  const handleThumbSelect = async (idx) => {
+    if (transitioning || !thumbs[idx]) return;
 
-  setTransitioning(true);
+    setTransitioning(true);
 
-  const selectedIndex = idx + 1;
-  rotateItems(selectedIndex);
+    const selectedIndex = idx + 1;
+    rotateItems(selectedIndex);
 
-  setTimeout(() => {
-    setTransitioning(false);
-  }, 100);
-};
+    setTimeout(() => {
+      setTransitioning(false);
+    }, 100);
+  };
 
   const goToLocationDetail = () => {
     if (mainItem?.id) navigate(`/location/${mainItem.id}`);
@@ -92,12 +115,7 @@ const handleThumbSelect = async (idx) => {
       {/* 텍스트 영역 */}
       <div className="homeBannerTextCover">
         <p className='homeBannerLocation'>
-          {isKorean
-          ?
-            `${mainItem?.location?.address?.ko?.[0]} 명소`
-          :
-            `Attractions in ${mainItem?.location?.address?.en?.[1]}`
-          }
+          {getLocationTitle(mainItem?.location)}
         </p>
         <hr className='homeBannerTextLine' />
         <h1 className="homeBannerName">
@@ -109,7 +127,7 @@ const handleThumbSelect = async (idx) => {
         </p>
 
         <span className='homeBannerLearnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
-          {t("homepage.button.learnMore")}
+          {t("button.learnMore")}
         </span>
       </div>
 

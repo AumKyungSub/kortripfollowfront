@@ -1,14 +1,19 @@
 import React from 'react'
 
-// i18n -> Transition Language
-import { useTranslation } from 'react-i18next'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './AboutBanner.style.css'
 
-const AboutBanner = ({lang}) => {
-
-    const {t} = useTranslation();
+const AboutBanner = () => {
+    // Language 사용
+    const {t} = useLanguage();
 
     return (
         <div className="homeBannerBackground">

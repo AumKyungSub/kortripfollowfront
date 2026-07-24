@@ -54,11 +54,58 @@
   transform: translateY(0);
 }
 
+/* Logo */
+/* 사용처: Header, Footer */
+.logo {
+  width: 121px;
+  cursor: pointer;
+  /* Flex */
+  display: flex;  
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 5px;
+}
+
+/* Titles */
+.preTitle14px600b54a2fLine {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background-color: #b54a2f;
+}
+
+.preTitle14px600b54a2f {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b54a2f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.title28px40px700 {
+  margin: 10px 0;
+  /* Font */
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+}
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {}
+@media only all and (min-width: 480px) {}
 
-@media only all and (min-width: 480px) and (max-width: 1023px) {}
+@media only all and (min-width: 768px) {
+  .title28px40px700 {
+    /* Font */
+    font-size: 40px;
+  }
+}
 
 @media only all and (min-width: 1024px) {}
+
+@media only all and (min-width: 1921px) {}

@@ -1,13 +1,17 @@
 import React from 'react'
 
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
-
-// (hook) Transition Language
-import { useTranslation } from 'react-i18next'
-
-// (custom hook) Read DB
+/*------------------------API hooks-----------------------------------*/
+// Read DB
 import { useReadDB } from '@/shared/api/useReadDB';
+/*------------------------/API hooks-----------------------------------*/
+
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+/*------------------------/custom hooks-----------------------------------*/
 
 //Function Component
 import Loading from '@/features/loading/Loading'
@@ -15,16 +19,15 @@ import FailedData from '@/features/failedData/FailedData';
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import HomeBanner from '@/pages/homePage/components/homeBanner/HomeBanner';
-import HomeRecommended from '@/pages/homePage/components/homeRecommended/HomeRecommended';
+import HomeReview from '@/pages/homePage/components/homeReview/HomeReview';
 import HomeCategory from '@/pages/homePage/components/homeCategory/HomeCategory';
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
 import HomeSeason from '@/pages/homePage/components/homeSeason/HomeSeason'
 import HomeTheme from '@/pages/homePage/components/homeTheme/HomeTheme'
 import HomeCollection from '@/pages/homePage/components/homeCollection/HomeCollection'
-import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import Footer from '@/widgets/footer/Footer'
+import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter';
 import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation';
 
 //Page Css
@@ -33,14 +36,8 @@ import './Homepage.style.css'
 const Homepage = () => {
   // Device Size
   const {
-    isMobile, /*maxWidth: 479*/
     isFullMobile, /*maxWidth: 767*/
-    isDesktop /*minWidth: 1024*/
   } = useResponsive();
-
-  // Transition Language
-  const { i18n } = useTranslation();
-  const lang = i18n.language;
 
   // Read DB
   const { data, loading, error, refetch } = useReadDB();
@@ -51,15 +48,32 @@ const Homepage = () => {
   return (
     <div>
       <Header />
-      {/* {!isFullMobile && <EmptyHeader />} */}
-      <HomeBanner rankingsData={rankings} isFullMobile={isFullMobile} isDesktop={isDesktop} lang={lang} />
+      {/* 1. Slide */}
+      <HomeBanner 
+        rankingsData={rankings}
+      />
+      {/* 2. Category (Only '~ 767px') */}
       {isFullMobile && <HomeCategory />}
-      <HomeRecommended rankingsData={rankings} blogsData={blogs} cafesData={cafes} restaurantsData={restaurants} isFullMobile={isFullMobile} isDesktop={isDesktop} />
-      <HomeRegion rankingData={rankings} lang={lang} isFullMobile={isFullMobile} />
+      {/* 3. Blog Review */}
+      <HomeReview 
+        rankingsData={rankings} 
+        blogsData={blogs} 
+        cafesData={cafes} 
+        restaurantsData={restaurants} 
+      />
+      {/* 4. By Regions */}
+      <HomeRegion 
+        rankingData={rankings} 
+      />
+      {/* 5. By Seasons (Only '768px ~') */}
       {!isFullMobile && <HomeSeason rankingData={rankings} />}
-      <HomeTheme isFullMobile={isFullMobile} />
+      {/* 6. By Themes */}
+      <HomeTheme />
+      {/* 7. Collections */}
       <HomeCollection />
+      {/* 8. Footer */}
       <Footer />
+      {/* 9. Mobile Navigation (Only '~ 767px') */}
       {isFullMobile && <EmptyFooter />}
       {isFullMobile && <MobileNavigation />}
     </div>

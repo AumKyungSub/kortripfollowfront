@@ -13,7 +13,7 @@ footer {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 20px 16px;
+    padding: 40px 16px;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -143,7 +143,7 @@ footer {
 @media only all and (min-width: 768px) {
 
     .footerWrapper {
-        padding: 20px 0 40px;
+        padding: 70px 0 40px;
         /* Flex */
         flex-direction: row;
         gap: 5px;

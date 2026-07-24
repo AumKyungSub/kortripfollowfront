@@ -1,0 +1,385 @@
+/* Mobile First 모바일 퍼스트 */
+.homeReviewWrapper {
+    padding: 30px 16px 10px;
+    background-color: transparent; 
+}
+
+.homeReviewHeaderCover {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.homeReviewTitleCover{
+    /* Flex */
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.homeReviewNavBtnCover{
+    margin-left: 20px;
+    /* Flex */
+    display:flex;
+    justify-content:center;
+    gap:12px;
+}
+
+.homeReviewNavBtn{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid #ddd;
+    background:#fff;
+    color: #333;
+    cursor:pointer;
+    transition: all 0.3s;
+    /* Flex */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.homeReviewNavBtn svg{
+    width:18px;
+    height:18px;
+}
+
+.homeReviewNavBtn:disabled{
+    opacity:.35;
+    cursor:default;
+}
+
+.homeReviewAuthorBy {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.homeReviewHeaderRight {
+    /* Flex */
+    display: flex;
+    align-items: baseline;
+}
+
+.homeReviewCurrentIDX {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111;
+}
+
+.homeReviewTotalIDX {
+    font-size: 18px;
+    color: #999;
+    margin-left: 5px;
+}
+
+.homeReviewCardCover {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    margin-top: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.homeReviewCard {
+    width: 240px;
+    overflow: hidden;
+    border-radius: 10px;
+    /* Flex */
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.homeReviewImg {
+    flex: 1.3;
+    aspect-ratio: 16/10;
+    border-radius: 10px;
+    cursor: pointer;
+    /* Background */
+    background-size: cover;
+    background-position: center;
+    /* Position */
+    position: relative;
+}
+
+.homeReviewStars {
+    padding: 6px 16px;
+    border-radius: 20px;
+    /* Font */
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+    /* Background */
+    background: rgba(255, 255, 255, 0.8);
+    /* Position */
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 99;
+}
+
+.homeReviewGoToBtn {
+    background: rgba(181, 74, 47, 0.8);
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    /* Font */
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    /* Position */
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.homeReviewCardTextCover {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 5px;
+}
+
+.homeReviewAuthorCover {
+    width: 97%;
+    /* Font */
+    font-size: 13px;
+    font-weight: 700;
+    color: #a88165; 
+    text-transform: uppercase;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+}
+
+.homeReviewRegionName {
+    /* Font */
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.homeReviewAddress {
+    /* Font */
+    color: #515151;
+    font-weight: 800 !important;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only all and (min-width: 480px) and (max-width: 767px) {
+}
+
+@media only all and (min-width: 768px) {
+    .homeReviewWrapper {
+        padding: 60px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .homeReviewHeaderCover {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        /* Flex */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .homeReviewCardCover {
+        overflow: visible;
+        scroll-snap-type: none;
+        display: block; 
+        margin-top: 30px;
+    }
+
+    .homeReviewBodyCover {
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .homeReviewBodyTopCover {
+        /* Flex */
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .homeReviewStars {
+        /* Font */
+        font-size: 14px;
+        /* Position */
+        top: 20px;
+        left: 20px;
+    }
+
+    .homeReviewBodyTopText {
+        /* Flex */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homeReviewBlogName {
+        margin-bottom: 8px;
+        /* Font */
+        font-size: 13px;
+        font-weight: 700;
+        color: #a88165; 
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .homeReviewRegionName {
+        margin-bottom: 20px;
+        /* Font */
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .homeReviewBodyTopDesc {
+        white-space: pre-line;
+        margin-bottom: 30px;
+        /* Font */
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        /* 이하생략 */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;      /* 최대 3줄 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .homeReviewBodyTopInfoCover {
+        border-top: 1px solid #eee;
+        padding: 20px 0 30px;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .homeReviewBodyTopInfo {
+        /* Flex */
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .homeReviewBodyTopInfoIcon {
+        width: 20px;
+        height: 20px;
+        color: #b54a2f;
+        margin-top: 2px;
+    }
+
+    .homeReviewBodyTopInfoDetail {
+        font-size: 15px;
+        color: #333;
+        font-weight: 500;
+        line-height: 1.5;
+        /* Flex */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homeReviewBodyTopInfoDetailDate {
+        color: #777;
+        font-weight: 400;
+    }
+
+    .homeReviewGoToBtn {
+        background-color: #b54a2f;
+        padding: 14px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        /* Font */
+        font-size: 15px;
+        /* Flex */
+        justify-content: start;
+        gap: 8px;
+        /* Position */
+        position: static;
+    }
+    
+    .homeReviewGoToBtn:hover {
+        background-color: #9d3f27;
+    }
+    
+    .homeReviewBodyBottomCover {
+        margin-top: 10px;
+        /* Flex */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .homeReviewBodyBottomList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        /* Flex */
+        display: flex;
+        width: 100%;
+        max-width: 900px;
+    }
+
+    .homeReviewBodyBottomListItem {
+        flex: 1;
+        cursor: pointer;
+        padding: 15px 0;
+        border-top: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+        /* Position */
+        position: relative;
+    }
+
+    .homeReviewBodyBottomListItem.active {
+        border-top: 2px solid #b54a2f;
+    }
+    
+    .homeReviewBodyBottomListItem.active div {
+        color: #1a1a1a;
+        font-weight: 700;
+    }
+
+    .homeReviewBodyBottomListItem div {
+        margin-bottom: 5px;
+        /* Font */
+        font-size: 13px;
+        color: #888;
+        text-align: center;
+    }
+}
+
+@media only all and (min-width: 1024px) {
+}
+
+@media only all and (min-width: 1921px) {
+    .homeReviewWrapper {
+        max-width: 1440px; 
+    }
+}

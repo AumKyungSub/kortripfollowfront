@@ -1,61 +1,101 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+
+/*------------------------hooks-----------------------------------*/
+// Navigate
+import { useNavigate } from 'react-router-dom';
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+// Collection List
 import { useCollectionList } from '@/shared/hooks/useCollectionList'
+/*------------------------/custom hooks-----------------------------------*/
 
 import './HomeCollection.style.css'
 
 const HomeCollection = () => {
     const navigate = useNavigate();
-    const { i18n, t } = useTranslation();
-    const lang = i18n.language === "ko" ? "ko" : "en";
+    // Language 사용
+    const {lang, t} = useLanguage();
+    // Collection List 사용
     const { collections } = useCollectionList({ lang });
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [nextIndex, setNextIndex] = useState(1);
+    const [fade, setFade] = useState(false);
 
-    // 3초마다 자동 슬라이드
     useEffect(() => {
         if (collections.length <= 1) return;
 
         const timer = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % collections.length);
-        }, 3000);
+
+            const next = (currentIndex + 1) % collections.length;
+
+            setNextIndex(next);
+            setFade(true);
+
+            setTimeout(() => {
+                setCurrentIndex(next);
+                setFade(false);
+            }, 800);
+
+        }, 3500);
 
         return () => clearInterval(timer);
-    }, [collections.length]);
+
+    }, [currentIndex, collections.length]);
 
     const goToCollection = useCallback(() => {
-        navigate('/collection');
+        navigate("/collection");
     }, [navigate]);
 
     if (!collections.length) return null;
 
     return (
-        <section className="homeCollectionWrapper" onClick={goToCollection}>
-            {/* 슬라이드 배경 이미지들 */}
-            {collections.map((item, index) => (
-                <div
-                    key={item.id}
-                    className={`homeCollectionBg${index === currentIndex ? ' homeCollectionBgActive' : ''}`}
-                    style={{ backgroundImage: `url('${item.img}.jpg')` }}
-                />
-            ))}
+        <section
+            className="homeCollectionWrapper"
+        >
+            {/* 현재 배경 */}
+            <div
+                className="homeCollectionBg current"
+                style={{
+                    backgroundImage: `url('${collections[currentIndex].img}.jpg')`
+                }}
+            />
 
-            {/* 어두운 오버레이 */}
+            {/* 다음 배경 */}
+            <div
+                className={`homeCollectionBg next ${fade ? "show" : ""}`}
+                style={{
+                    backgroundImage: `url('${collections[nextIndex].img}.jpg')`
+                }}
+            />
+
             <div className="homeCollectionOverlay" />
 
-            {/* 글래스모피즘 텍스트 박스 */}
-            <div className="homeCollectionContent">
-                <p className="homeCollectionSub">COLLECTION</p>
-                <h2 className="homeCollectionTitle">
-                    {t("collection.banner.textFst")}
-                </h2>
-                <p className="homeCollectionDesc">
-                    {t("collection.banner.textSnd")}
-                </p>
-                <span className="homeCollectionBtn clickBtnCover">
-                    {t("collection.banner.title")} →
-                </span>
+            <div className="homeCollectionInner">
+                <div className="homeCollectionContent">
+                    <span className="homeCollectionSub">
+                        <img src="/images/icon/collectionIconS.png" alt="collectionIconS" />
+                        COLLECTION
+                    </span>
+                
+                    <h2 className="homeCollectionTitle">
+                        {t("collection.banner.textFst")}
+                    </h2>
+                
+                    <p className="homeCollectionDesc">
+                        {t("collection.banner.textSnd")}
+                    </p>
+                
+                    <span 
+                        className="homeCollectionBtn"
+                        onClick={goToCollection}
+                        >
+                        {t("collection.banner.title")} →
+                    </span>
+                </div>
             </div>
         </section>
     )

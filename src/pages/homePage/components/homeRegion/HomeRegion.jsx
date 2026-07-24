@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from "react";
 
-// (hook) Transition Language
-import { useTranslation } from "react-i18next";
+/*------------------------hooks-----------------------------------*/
+// Navigate
+import { useNavigate } from 'react-router-dom';
+/*------------------------/hooks-----------------------------------*/
 
-// (hook) Navigate
-import { useNavigate } from "react-router-dom";
-
-// (custom hook) Region List
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+// Region List
 import { useRegionList } from '@/shared/hooks/useRegionList';
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import "./HomeRegion.style.css";
 
-const HomeRegion = ({ rankingData = [], lang, isFullMobile }) => {
-  // Transition Language
-  const { t } = useTranslation();
+const HomeRegion = ({ rankingData = [] }) => {
   // Navigate
   const navigate = useNavigate();
+  
+  // Device Size Hook 사용
+  const {isFullMobile} = useResponsive();
+  
+  // Language Hook 사용
+  const { lang, t } = useLanguage();
 
+  // Region List 사용
   const {
     regionOptions,
     regionCounts,
@@ -38,13 +48,19 @@ const HomeRegion = ({ rankingData = [], lang, isFullMobile }) => {
   return (
     <div className="homeRegionBackground">
       <div className="homeRegionWrapper">
-          <h2>{t("homepage.homeRegion.title")}</h2>
+          <p className="preTitle14px600b54a2f">
+              <span className="preTitle14px600b54a2fLine"></span>
+              {t('preTitle.homeRegion')}
+          </p>
+          <h2 className='title28px40px700'>
+            {t("title.homeRegion")}
+          </h2>
 
         <div className="homeRegionCover">
           {regionOptions.map((region, index) => {
             const list = filterByRegion(region.code);
             const randomList = getRandomThreeLocation(list);
-            const homeRegionListBgi = `/images/regionBackground/regionBackground${index + 1}${t("language.shortWord")}.jpg`;
+            const homeRegionListBgi = `/images/regionBackground/regionBgi${index + 1}.jpg`;
 
             return (
               <div
@@ -55,27 +71,36 @@ const HomeRegion = ({ rankingData = [], lang, isFullMobile }) => {
                 <div 
                   className='homeRegionListImgCover'
                   style={{ backgroundImage: `url(${homeRegionListBgi})` }}
-                ></div>
+                >
+                  {isFullMobile &&
+                    <p className="homeRegionName">
+                      {region.label}
+                    </p>
+                  }
+                  <p className="homeRegionCount">
+                    {region.code === "ALL"
+                      ? rankingData.length
+                      : regionCounts[region.code] || 0}
+                    {t("homepage.homeRegion.placesSuffix")}
+                  </p>
+                </div>
 
                 {!isFullMobile && 
                   <div className="homeRegionExampleList">
-                    <p className="homeRegionCount">
-                      {region.code === "ALL"
-                        ? rankingData.length
-                        : regionCounts[region.code] || 0}
-                      {t("homepage.homeRegion.placesSuffix")}
+                    <p className="homeRegionName">
+                      {region.label}
                     </p>
                     <div className="homeRegionListCover">
                       {randomList.map((item) => (
                         <span
                         key={item?.id}
-                        className="homeRegionAreaList subFont"
+                        className="homeRegionAreaList"
                         >
                           {item?.location?.name?.[lang]}
                         </span>
                       ))}
                     </div>
-                    <p className="homeRegionLearnMore subFont">
+                    <p className="homeRegionLearnMore">
                       {t("homepage.homeRegion.viewSpots")}
                     </p>
                   </div>

@@ -3,8 +3,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 // 번역 JSON 가져오기
-import ko from "./locales/ko/translation.json";
-import en from "./locales/en/translation.json";
+import ko from "./locales/ko/translation.js";
+import en from "./locales/en/translation.js";
 
 const savedLang = localStorage.getItem("lang"); // 이전에 선택한 언어 기억용
 

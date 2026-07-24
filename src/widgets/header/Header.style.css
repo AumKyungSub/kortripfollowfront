@@ -1,18 +1,18 @@
+/* Mobile First 모바일 퍼스트 */
+header {
+  width: 100%;
+  background: transparent;
+  transition: background-color .3s ease;
+  /* Position */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
 
-  header {
-    width: 100%;
-    background: transparent;
-    transition: background-color .3s ease;
-    /* Position */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-  }
-
-  header.scrolled {
-    background: #fff;
-  }
+header.scrolled {
+  background: #fafaf8;
+}
 
 .headerCover {
   width: 100%;
@@ -25,24 +25,12 @@
   align-items: center;
 }
 
-header .logo {
-  width: 121px;
-  cursor: pointer;
-  /* Flex */
-  display: flex;  
-}
-
-header .logo img {
-  height: 40px;
-  margin-right: 5px;
-}
-
 .headerList {
   /* Flex */
   display: flex;
 }
 
-.search {
+.utilityBar {
   cursor: pointer;
   /* Flex */
   display: flex;
@@ -51,42 +39,42 @@ header .logo img {
   gap: 10px;
 }
 
-.search img {
+.utilityBar img {
   width: 30px;
   height: 30px;
   margin-left: 5px;
 }
 
-.search .btn {
+.languageBtn {
   border: none;
   background: transparent;
+  cursor: pointer;
   /* Font */
   font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
   color: #fafaf8;
-  cursor: pointer;
 }
 
-.search .btnSc {
+.languageBtnSc {
   border: none;
   background: transparent;
+  cursor: pointer;
   /* Font */
   font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
   color: #1a1a1a;
-  cursor: pointer;
 }
 
-.search button.active {
+.utilityBar button.active {
   background: #fafaf8;
   padding: 5px 15px;
   border-radius: 50px;
   color: #1a1a1a;
 }
 
-.search button.activeSc {
+.utilityBar button.activeSc {
   background: #1a1a1a;
   padding: 5px 15px;
   border-radius: 50px;
@@ -95,70 +83,65 @@ header .logo img {
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
-
-@media only all and (min-width: 480px) and (max-width: 767px) {
-}
+@media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
   
   .headerCover {
-    max-width: 1023px;
+    max-width: 1440px;
   }
 
-  .gnbPc {
+  .gnb {
     /* Flex */
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .gnbPc ul {
+  .gnbContainer {
     height: 100%;
     /* Flex */
     display: flex;
     align-items: center;
   }
 
-  .gnbPc ul .gnbPcLi {
+  .gnbList {
     cursor: pointer;
     margin: 0 10px;
     /* Font */
     font-size: 1rem;
     font-weight: 500;
     color: #fafaf8;
+    /* Position */
     position: relative;
   }
-
-  .gnbPc ul .gnbPcLiSc {
+  
+  .gnbListSc {
     cursor: pointer;
     margin: 0 10px;
     /* Font */
     font-size: 1rem;
     font-weight: 500;
     color: #1a1a1a;
+    /* Position */
     position: relative;
   }
 
-  .gnbPc ul li.active::after {
+  .gnbContainer li.active::after {
     content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -8px;
-    transform: translateX(-50%);
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background: currentColor;
+    /* Position */
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
   }
 }
 
-@media only all and (min-width: 1024px) {
-  .headerCover {
-    max-width: 1440px;
-  }
-}
+@media only all and (min-width: 1024px) {}
 
 @media only all and (min-width: 1921px) {
   .headerCover {

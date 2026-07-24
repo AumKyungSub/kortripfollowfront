@@ -1,7 +1,12 @@
 import React from 'react'
 
-// i18n -> Transition Language
-import { useTranslation } from 'react-i18next'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Component
 import AboutValueBox from './component/AboutValueBox'
@@ -10,8 +15,8 @@ import AboutValueBox from './component/AboutValueBox'
 import './AboutValue.style.css'
 
 const AboutValue = () => {
-
-    const {t} = useTranslation();
+    // Language 사용
+    const {t} = useLanguage();
 
     return (
         <div className='aboutValueWrapper'>

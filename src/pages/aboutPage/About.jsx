@@ -1,10 +1,12 @@
 import React from 'react'
 
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
 
-// i18n -> Transition Language
-import { useTranslation } from 'react-i18next'
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Components
 import Header from '@/widgets/header/Header'
@@ -20,15 +22,8 @@ import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
 import './About.style.css'
 
 const About = () => {
-  const {
-    isFullMobile, /*maxWidth: 767*/
-    isDesktop
-  } = useResponsive();
-  
-  // Transition Language
-  const { i18n } = useTranslation();
-  const lang = i18n.language;
-  const {t} = useTranslation();
+  // Device Size 사용
+  const {isFullMobile} = useResponsive();
 
   const goToInstagram = () => {
         window.open("https://www.instagram.com/kayaum_photo/", "_blank", "noopener,noreferrer");
@@ -45,10 +40,10 @@ const About = () => {
   return (
     <article>
       <Header/>
-      <AboutBanner lang={lang} />
-      <AboutStory isFullMobile={isFullMobile} lang={lang} />
-      <AboutValue lang={lang} />
-      <AboutMe isFullMobile={isFullMobile} lang={lang} />
+      <AboutBanner />
+      <AboutStory />
+      <AboutValue />
+      <AboutMe />
       <Footer />
       {isFullMobile && <EmptyFooter />}
       {isFullMobile && <MobileNavigation />}

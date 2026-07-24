@@ -1,18 +1,23 @@
 import { useMemo, useCallback } from "react";
+import { useLanguage } from "@/shared/hooks/useLanguage";
 
-export const useRegionList = ({ data = [], lang = "ko" }) => {
+export const useRegionList = ({ data = []}) => {
+  
+  const { lang, isEn } = useLanguage();
+  const currentLang = isEn ? "en" : "ko";
+
     const regionMap = {
         ALL: { 
-            ko: "전체", 
-            en: "All" 
+            ko: "대한민국", 
+            en: "Republic of Korea" 
         },
         SEOUL: { 
             ko: "서울", 
             en: "Seoul" 
         },
         GGICN: { 
-            ko: "경기도", 
-            en: "Gyeonggi" 
+            ko: "경기도 / 인천", 
+            en: "Gyeonggi / Incheon" 
         },
         GANGWON: { 
             ko: "강원특별자치도", 
@@ -32,7 +37,7 @@ export const useRegionList = ({ data = [], lang = "ko" }) => {
         },
         JEJU: { 
             ko: "제주도", 
-            en: "Jeju" 
+            en: "Jeju Island" 
         },
     };
 
@@ -41,9 +46,10 @@ export const useRegionList = ({ data = [], lang = "ko" }) => {
     () =>
       Object.entries(regionMap).map(([code, labels]) => ({
         code,
-        label: labels[lang],
+        // labels["ko-KR"] 방지 -> currentLang("ko" 또는 "en") 사용 및 fallback
+        label: labels[currentLang] || labels.en || labels.ko,
       })),
-    [lang]
+    [regionMap, currentLang]
   );
 
   /* ---------------- 지역별 카운트 ---------------- */

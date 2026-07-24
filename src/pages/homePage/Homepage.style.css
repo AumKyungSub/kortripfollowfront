@@ -1,19 +1,9 @@
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
+@media only all and (min-width: 480px) {}
 
-@media only all and (min-width: 480px) and (max-width: 767px) {
-}
+@media only all and (min-width: 768px) {}
 
-@media only all and (min-width: 768px) {  
-}
+@media only all and (min-width: 1024px) {}
 
-@media only all and (min-width: 1024px) {
-}
-
-@media only all and (min-width: 1921px) {
-  .headerCover {
-    max-width: 1920px;
-  }
-}
+@media only all and (min-width: 1921px) {}
