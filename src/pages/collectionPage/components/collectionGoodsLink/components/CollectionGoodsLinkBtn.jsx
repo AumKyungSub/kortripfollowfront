@@ -1,21 +1,42 @@
 import React from 'react'
 
-import { useTranslation } from 'react-i18next'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './CollectionGoodsLinkBtn.style.css'
 
-const CollectionGoodsLinkBtn = ({ link, text }) => {
-    const { t } = useTranslation();
+const CollectionGoodsLinkBtn = ({ platform, link, text }) => {
+    const { t } = useLanguage();
     return (
-        <span
-            onClick={() => link()}
-            className="collectionGoodsLink"
-            style={{ cursor: "pointer" }}
-        >
-            <h4>
-                {text}
-            </h4>
+        <span className="collectionGoodsLink">
+            <div className="collectionGoodsLinkHeaderCover">
+                <div className="collectionGoodsLinkHeaderImg">
+                    <img src={`/images/collection/logo/${platform}.png`} alt={platform} />
+                </div>
+                <div className="collectionGoodsLinkHeaderTextCover">
+                    <p className="collectionGoodsLinkHeaderTextFst">
+                        {t(`collection.goodsLink.store.${platform}`)}
+                    </p>
+                    <p className="collectionGoodsLinkHeaderTextSnd">
+                        {t(`collection.goodsLink.preStore.${platform}`)}
+                    </p>
+                </div>
+            </div>
+            <p className="collectionGoodsLinkBodyCover">
+                {t(`collection.goodsLink.content.${platform}`)}
+            </p>
+            <div className="collectionGoodsLinkGoToCover" onClick={() => link()}>
+                <p>
+                    {t(`collection.goodsLink.goToLink.${platform}`)}
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            </div>
         </span>
     )
 }

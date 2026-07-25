@@ -8,7 +8,8 @@ export default {
     /*--------------- 버튼 ---------------*/
     button: {
         learnMore: "자세히 보기",
-        viewReview: "리뷰 보러가기"
+        viewReview: "리뷰 보러가기",
+        collection: "컬렉션 보러가기"
     },
     /*------------------------------------*/
     
@@ -17,7 +18,8 @@ export default {
         homeReview: "주인장의 리뷰",
         homeRegion: "BY REGION",
         homeSeason: "BY SEASON",
-        homeTheme: "BY THEME"
+        homeTheme: "BY THEME",
+        collectionBuy: "안내"
     },
     /*------------------------------------*/
     
@@ -28,7 +30,8 @@ export default {
         homeReviewType3: "맛집 리뷰",
         homeRegion: "지역별 여행지",
         homeSeason: "계절별 여행지",
-        homeTheme: "테마별 추천"
+        homeTheme: "테마별 추천",
+        collectionBuy: "구매 방법"
     },
     /*------------------------------------*/
 
@@ -274,11 +277,11 @@ export default {
   },
   collection: {
     banner: {
-      title: "컬렉션 보러가기",
+      main: "당신의 공간에\n풍경을 담다",
       sellTitle: "소장 하기",
       sellSubTitle: "(구매상품에는 워터마크(Kayaum)가 없습니다.)",
       textFst: "여행은 지나가지만,\n그날의 기록은 남습니다.",
-      textSnd: "국트따라의 순간들을 작품으로 만나보세요.",
+      textSnd: "국트따라 렌즈에 담긴 대한민국 곳곳을 당신의 공간에도 더해보세요.",
       collectionDetailPageLink: "이 장면을 간직하기",
       keepPuzzle: "퍼즐로 간직하기",
       keepFrame: "액자로 간직하기",
@@ -289,6 +292,29 @@ export default {
       zazzle: "제즐 - 퍼즐로 소장하기",
       mapple: "마플샵에서 다양하게 소장하기",
       redbubble: "레드버블에서 다양하게 소장하기"
+    },
+    goodsLink: {
+      infoShop: "국트따라의 풍경을 담은 다양한 상품을 아래의 샵에서 만나보세요.",
+      store: {
+        zazzle: "제즐",
+        mapple: "마플샵",
+        redbubble: "레드버블"
+      },
+      preStore: {
+        zazzle: "미국의 온라인 주문 제작 쇼핑몰",
+        mapple: "대한민국 크리에이터 커머스 플랫폼",
+        redbubble: "글로벌 주문 제작 온라인 마켓플레이스"
+      },
+      content: {
+        zazzle: "국트따라의 사진을 다양한 퍼즐로 만나보실 수 있으며, 다양한 퍼즐 사이즈도 직접 선택하실 수 있습니다.",
+        mapple: "국트따라의 사진을 엽서와 액자로 만나보실 수 있으며, 한국어/영어/일어로도 만나보실 수 있습니다.",
+        redbubble: "국트따라의 사진을 글로벌 POD에서 만나보실 수 있으며, 다양한 제품으로도 만나보실 수 있습니다."
+      },
+      goToLink: {
+        zazzle: "제즐 국트따라샵 바로가기",
+        mapple: "마플샵 국트따라샵 바로가기",
+        redbubble: "레드버블 국트따라샵 바로가기"
+      }
     }
   },
 

@@ -1,18 +1,21 @@
 import React from 'react'
 
+/*------------------------hooks-----------------------------------*/
 // (hook) Navigate
 import { useNavigate } from 'react-router-dom'
-//(hook) Translation
-import { useTranslation } from 'react-i18next'
-// (hook) Read DB
-import { useCollectionList } from '@/shared/hooks/useCollectionList'
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './CollectionList.style.css'
 
-const CollectionList = ({ collections, lang }) => {
+const CollectionList = ({ collections }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { lang, t } = useLanguage();
 
 
   const goToCollectionDetail = (id) => {
@@ -24,31 +27,39 @@ const CollectionList = ({ collections, lang }) => {
       {collections.map((item) => (
         <div className="collectionListCard" key={item.id}>
           <div className="collectionListCardImgCover">
-            {/* Blurred Background */}
-            <div
-              className="collectionListCardImgBlur"
-              style={{ backgroundImage: `url('${item.img}.jpg')` }}
-            />
-            {/* Main Foreground Image */}
-            <div
-              className="collectionListCardImgMain"
-              style={{ backgroundImage: `url('${item.img}.jpg')` }}
-            />
-          </div>
 
-          <div className="collectionListCardTextCover">
-            <h4 className="collectionTitleText">{item.title}</h4>
-            {/* Text description and camera are set to display:none in CSS */}
-            <p className="collectionListCardCamera subFont">{item.camera}</p>
+    {/* 이미지 */}
+    <div
+        className="collectionListCardImgMain"
+        style={{ backgroundImage: `url('${item.img}.jpg')` }}
+    />
 
-            <span
-              onClick={() => goToCollectionDetail(item.id)}
-              className="clickBtnCover collectionListCardLink"
-              style={{ cursor: "pointer" }}
-            >
-              {t("collection.banner.collectionDetailPageLink")}
-            </span>
-          </div>
+    {/* 태그 */}
+    <span className="collectionListCarImgTag">
+        {item?.tag?.[1]}
+    </span>
+
+    {/* 텍스트 */}
+    <div className="collectionListCardTextCover">
+        <h4 className="collectionTitleText">{item.title}</h4>
+
+        <p className="collectionListCardContent">
+            {item.content}
+        </p>
+
+        <p className="collectionListCardCamera">
+            {item.camera}
+        </p>
+
+        <span
+            onClick={() => goToCollectionDetail(item.id)}
+            className="collectionListCardLink"
+        >
+            {t("collection.banner.collectionDetailPageLink")}
+        </span>
+    </div>
+
+</div>
         </div>
       ))}
     </section>

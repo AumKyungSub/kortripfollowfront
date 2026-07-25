@@ -8,7 +8,8 @@ export default {
     /*--------------- 버튼 ---------------*/
     button: {
         learnMore: "Learn More",
-        viewReview: "View Review"
+        viewReview: "View Review",
+        collection: "View Collection"
     },
     /*------------------------------------*/
     
@@ -17,7 +18,8 @@ export default {
         homeReview: "Editor's Review",
         homeRegion: "EXPLORE",
         homeSeason: "BEST TIME",
-        homeTheme: "CURATED"
+        homeTheme: "CURATED",
+        collectionBuy: "GUIDE"
     },
     /*------------------------------------*/
     
@@ -28,7 +30,8 @@ export default {
         homeReviewType3: "Restaurant Reviews",
         homeRegion: "Regions",
         homeSeason: "Seasons",
-        homeTheme: "Themes"
+        homeTheme: "Themes",
+        collectionBuy: "HOW TO BUY"
     },
     /*------------------------------------*/
 
@@ -280,11 +283,11 @@ export default {
   },
   collection: {
     banner: {
-      title: "View Collection",
+      main: "Bring the Beauty\nInto Your Space",
       sellTitle: "Your Moment",
       sellSubTitle: "(The purchased product will not have a watermark (Kayaum).)",
       textFst: "Trips may pass,\nbut the memories stay.",
-      textSnd: "Discover KortripFollow's moments as timeless pieces.",
+      textSnd: "Bring the beauty of Korea, captured through the KORTRIP lens, into your space.",
       collectionDetailPageLink: "To keep this moment",
       keepPuzzle: "Keep as Puzzle",
       keepFrame: "Keep as Frame",
@@ -295,6 +298,29 @@ export default {
       zazzle: "Zazzle - Keep as Puzzle",
       mapple: "MappleShop - Keep as More",
       redbubble: "Redbubble - Keep as More"
+    },
+    goodsLink: {
+      infoShop: "Discover products inspired by KORTRIP's travel photography at the shops below.",
+      store: {
+        zazzle: "Zazzle",
+        mapple: "Mapple Shop",
+        redbubble: "Redbubble"
+      },
+      preStore: {
+        zazzle: "US-based print-on-demand marketplace",
+        mapple: "Korean creator merchandise platform",
+        redbubble: "Global print-on-demand marketplace"
+      },
+      content: {
+        zazzle: "Turn KORTRIP's photography into premium puzzles in your preferred size.",
+        mapple: "Enjoy KORTRIP's photography as postcards and framed prints in Korean, English, and Japanese.",
+        redbubble: "Discover KORTRIP's photography on a variety of print-on-demand products worldwide."
+      },
+      goToLink: {
+        zazzle: "Visit the KORTRIP Shop on Zazzle",
+        mapple: "Visit the KORTRIP Shop on Marpple",
+        redbubble: "Visit the KORTRIP Shop on Redbubble"
+      }
     }
   },
 

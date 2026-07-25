@@ -1,15 +1,21 @@
 import React from 'react'
 
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
-
-// (hook) Transition Language
-import { useTranslation } from 'react-i18next'
-
+/*------------------------API hooks-----------------------------------*/
 // (custom hook) Read DB
 import { useReadDB } from '@/shared/api/useReadDB';
+/*------------------------/API hooks-----------------------------------*/
+
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
 // (hook) Read DB
 import { useCollectionList } from '@/shared/hooks/useCollectionList'
+/*------------------------/custom hooks-----------------------------------*/
 
 //Function Component
 import Loading from '@/features/loading/Loading'
@@ -31,12 +37,9 @@ import './CollectionPage.style.css'
 const CollectionPage = () => {
     // Device Size
     const {
-            isMobile, /*maxWidth: 479*/
             isFullMobile, /*maxWidth: 767*/ 
-            isDesktop /*minWidth: 1024*/
     } = useResponsive();
-      const {i18n, t} = useTranslation();
-      const lang = i18n.language === "ko" ? "ko" : "en";
+      const {lang} = useLanguage();
 
   const { collections, loading } = useCollectionList({ lang });
 
@@ -45,9 +48,8 @@ const CollectionPage = () => {
     return (
         <section>
             <Header />
-            <EmptyHeader/>
             <CollectionBanner/>
-            <CollectionList collections ={collections} lang = {lang}/>
+            <CollectionList collections ={collections}/>
             <CollectionGoodsLink collections ={collections}/>
             <Footer/>
             {isFullMobile && <EmptyFooter/>}

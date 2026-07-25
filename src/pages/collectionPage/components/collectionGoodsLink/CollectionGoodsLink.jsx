@@ -1,15 +1,21 @@
 import React from 'react'
 
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
+
 // Components
 import CollectionGoodsLinkBtn from './components/CollectionGoodsLinkBtn'
-
-import { useTranslation } from 'react-i18next'
 
 // Page css
 import './CollectionGoodsLink.style.css'
 
 const CollectionGoodsLink = () => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   const goToPuzzleMorePuzzle = () => {
     window.open(
@@ -35,9 +41,22 @@ const CollectionGoodsLink = () => {
   return (
     <section className="collectoinGoodsLinkWrapper">
       <div className="collectionGoodsLinkCover">
-        <CollectionGoodsLinkBtn link={goToPuzzleMorePuzzle} text={t('collection.banner.morePuzzle')} />
-        <CollectionGoodsLinkBtn link={goToPuzzleMoreArt} text={t('collection.banner.moreMapple')} />
-        <CollectionGoodsLinkBtn link={goToPuzzleMoreRedbubble} text={t('collection.banner.moreRedbubble')} />
+          <p className="preTitle14px600b54a2f">
+              <span className="preTitle14px600b54a2fLine"></span>
+              {t('preTitle.collectionBuy')}
+              <span className="preTitle14px600b54a2fLine"></span>
+          </p>
+          <h2 className='title28px40px700'>
+            {t("title.collectionBuy")}
+          </h2>
+          <p className='collectionGoodsLinkInfoShop'>
+            {t('collection.goodsLink.infoShop')}
+          </p>
+          <div className="collectionGoodsLinkBtnCover">
+            <CollectionGoodsLinkBtn platform="zazzle" link={goToPuzzleMorePuzzle} />
+            <CollectionGoodsLinkBtn platform="mapple" link={goToPuzzleMoreArt} />
+            <CollectionGoodsLinkBtn platform="redbubble" link={goToPuzzleMoreRedbubble} />
+          </div>
       </div>
     </section>
   )

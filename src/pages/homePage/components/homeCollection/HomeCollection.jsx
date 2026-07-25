@@ -93,7 +93,7 @@ const HomeCollection = () => {
                         className="homeCollectionBtn"
                         onClick={goToCollection}
                         >
-                        {t("collection.banner.title")} →
+                        {t("button.collection")} →
                     </span>
                 </div>
             </div>
