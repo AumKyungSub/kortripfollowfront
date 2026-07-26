@@ -1,33 +1,109 @@
+.listBannerWrapper {
+    width: 100%;
+    height: 65vh;  
+    margin: 0 auto;
+    /* Background */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* Position R */
+    position: relative;
+}
 
-    .listBannerCover {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16/7;
-        margin: 0 auto;
-        /* Background */
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
+.listBannerWrapper::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), 60%, rgba(255, 255, 255, 0.1));
+    /* Position */
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;    
+}
+
+.listBannerTextWholeCover {
+    width: 100%;
+    padding-bottom: 20px;
+    /* Position */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.listBannerTextWholeCover::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.4), 60%, rgba(255, 255, 255, 0));
+    /* Position */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.listBannerTextCover {
+    max-width: 1232px;
+    margin: 0 auto;
+    padding: 0 16px;
+    /* Font */
+    color: #fafaf8;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    /* Position */
+    position: relative;
+    z-index: 2;
+}
+.listBannerTextTitle {
+    /* Font */
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 52px;
+}
+
+.listBannerTextCount {
+    /* Font */
+    font-size: 14px;
+}
+
+.listBannerTextContent {
+    /* Font */
+    font-size: 16px;
+}
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
 
 @media only all and (min-width: 768px) {
-    .listBannerCover {
-        aspect-ratio: 16/5;
+    .listBannerTextTitle {
+        /* Font */
+        font-size: 62px;
+        line-height: 62px;
+    }
+
+    .listBannerTextCount {
+        /* Font */
+        font-size: 16px;
+    }
+
+    .listBannerTextContent {
+        /* Font */
+        font-size: 18px;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .listBannerCover {
-        max-width: 1440px;
-    }
 }
 
 @media only all and (min-width: 1921px) {
-    .listBannerCover {
-        max-width: 1920px;
+    .listBannerTextCover {
+        max-width: 1440px;
     }
 }

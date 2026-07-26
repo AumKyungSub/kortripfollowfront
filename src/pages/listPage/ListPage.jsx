@@ -1,22 +1,30 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-// (hook) Get Navigate State
-import { useLocation } from 'react-router-dom';
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive';
-// (hook) Transition Language
-import { useTranslation } from 'react-i18next';
-// (custom hook) Read DB
+
+/*------------------------API hooks-----------------------------------*/
+// Read DB
 import { useReadDB } from '@/shared/api/useReadDB';
-// (custom hook) Region List
-import { useRegionList } from '@/shared/hooks/useRegionList';
-// (custom hook) Theme List
+/*------------------------/API hooks-----------------------------------*/
+
+/*------------------------hooks-----------------------------------*/
+// Location
+import { useLocation } from 'react-router-dom';
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+// Theme List
 import { useThemeList } from '@/shared/hooks/useThemeList';
+// Region List
+import { useRegionList } from '@/shared/hooks/useRegionList';
+/*------------------------/custom hooks-----------------------------------*/
 
 import Loading from '@/features/loading/Loading';
 
 // Components
 import Header from '@/widgets/header/Header';
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader';
 import ListBanner from '@/widgets/listBanner/ListBanner';
 import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
@@ -31,26 +39,9 @@ import Pagination from '@/widgets/pagination/Pagination';
 import './ListPage.style.css'
 
 
-// 영문 s/es 한국어 이/가 구분
-const getThemeNameWithParticle = (themeCode, text, lang) => {
-  if (lang === "en") {
-    return `${text}s`;
-  }
-
-  const particleMap = {
-    CAFE: "가",
-    RESTAURANT: "이",
-    LODGING: "가",
-    FOOD: "가",
-  };
-
-  return text + (particleMap[themeCode] || "");
-};
-
 const ListPage = ({ mode }) => {
   // Transition Language
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
+  const { lang, t, isEn, isKo } = useLanguage();
 
   // Device Size
   const { isMobile, isFullMobile, isDesktop } = useResponsive();
@@ -74,6 +65,14 @@ const ListPage = ({ mode }) => {
     lang,
   });
 
+  // 영문 s/es 한국어 이/가 구분
+  const getThemeNameWithParticle = (themeCode, text, lang) => {
+    if (isEn) {
+      return `${text}s`;
+    }  
+    return text;
+  };
+
   // mode === theme 변수 담기
   const isThemeMode = mode === "theme";
   // map mode로 각Map 선택
@@ -95,6 +94,7 @@ const ListPage = ({ mode }) => {
 
   // 페이지네이션
   const ITEMS_PER_PAGE = 8;
+  // const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
   const [currentPage, setCurrentPage] = useState(1);
 
   // Bottom Type 결정 
@@ -163,10 +163,14 @@ const ListPage = ({ mode }) => {
   ]);
 
   // 페이지네이션 계산 (모바일 ≤479px 제외)
-  const totalPages = isMobile ? 1 : Math.ceil(filteredList.length / ITEMS_PER_PAGE);
-  const pagedList = isMobile
-    ? filteredList
-    : filteredList.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(
+      filteredList.length / ITEMS_PER_PAGE
+  );
+
+  const pagedList = filteredList.slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
+  );
 
   const handlePageChange = useCallback((page) => {
     setCurrentPage(page);
@@ -178,10 +182,10 @@ const ListPage = ({ mode }) => {
 
   const title =
     isThemeMode
-      ? `${t("theme.titleSuffix")} ${selectedText} ${t("theme.list")}`
+      ? `${t("theme.titleSuffix")} ${selectedText}`
       : lang.startsWith("ko")
-        ? `${selectedText} ${t("regionPage.titleSuffix")}`
-        : `${t("regionPage.titleSuffix")} ${selectedText}`;
+        ? `${selectedText}`
+        : `${selectedText}`;
 
   const countText =
     isThemeMode
@@ -202,10 +206,11 @@ const ListPage = ({ mode }) => {
   return (
     <>
       <Header />
-      <EmptyHeader/>
-
       <ListBanner
+        title={title}
+        count={countText}
         type={mode}
+        selected = {selected}
         images={!isThemeMode ? filteredList : null}
       />
 
@@ -213,13 +218,6 @@ const ListPage = ({ mode }) => {
         options={categoryOptions}
         selected={selected}
         setSelected={setSelected}
-        isFullMobile={isFullMobile}
-      />
-
-      <ListCount
-        title={title}
-        count={countText}
-        countM={filteredList.length}
         isFullMobile={isFullMobile}
       />
 

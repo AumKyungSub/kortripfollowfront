@@ -1,39 +1,61 @@
 export default {
-    /*--------------- 언어 ---------------*/
-    language: {
-        shortWord: "Eng" // HomeRegion, ListBanner
-    },
-    /*------------------------------------*/
-    
-    /*--------------- 버튼 ---------------*/
-    button: {
-        learnMore: "Learn More",
-        viewReview: "View Review",
-        collection: "View Collection"
-    },
-    /*------------------------------------*/
-    
-    /*--------------- 프리타이틀 ---------------*/
-    preTitle: {
-        homeReview: "Editor's Review",
-        homeRegion: "EXPLORE",
-        homeSeason: "BEST TIME",
-        homeTheme: "CURATED",
-        collectionBuy: "GUIDE"
-    },
-    /*------------------------------------*/
-    
-    /*--------------- 프리타이틀 ---------------*/
-    title: {
-        homeReviewType1: "Attraction Reviews",
-        homeReviewType2: "Cafe Reviews",
-        homeReviewType3: "Restaurant Reviews",
-        homeRegion: "Regions",
-        homeSeason: "Seasons",
-        homeTheme: "Themes",
-        collectionBuy: "HOW TO BUY"
-    },
-    /*------------------------------------*/
+  /*--------------- 언어 ---------------*/
+  language: {
+      shortWord: "Eng" // HomeRegion, ListBanner
+  },
+  /*------------------------------------*/
+  
+  /*--------------- 버튼 ---------------*/
+  button: {
+      learnMore: "Learn More",
+      viewReview: "View Review",
+      collection: "View Collection"
+  },
+  /*------------------------------------*/
+  
+  /*--------------- 프리타이틀 ---------------*/
+  preTitle: {
+      homeReview: "Editor's Review",
+      homeRegion: "EXPLORE",
+      homeSeason: "BEST TIME",
+      homeTheme: "CURATED",
+      collectionBuy: "GUIDE"
+  },
+  /*------------------------------------*/
+  
+  /*--------------- 프리타이틀 ---------------*/
+  title: {
+      homeReviewType1: "Attraction Reviews",
+      homeReviewType2: "Cafe Reviews",
+      homeReviewType3: "Restaurant Reviews",
+      homeRegion: "Regions",
+      homeSeason: "Seasons",
+      homeTheme: "Themes",
+      collectionBuy: "HOW TO BUY"
+  },
+  /*------------------------------------*/
+  
+  /////////////// 페이지별 나눔 ///////////////
+  /*---------- 리스트 (ListPage) -----------*/
+  listPage: {
+    listBanner: {
+      content: {
+        ALL: "Discover the beauty of Korea through its diverse regions and four distinct seasons.",
+        SEOUL: "Explore the vibrant city life and iconic attractions of Seoul, the capital of Korea.",
+        GGICN: "Discover the best of Gyeonggi and Incheon, where cities, nature, and the sea come together.",
+        GANGWON: "Experience Gangwon's breathtaking mountains and the stunning coastline of the East Sea.",
+        CCDAEJEON: "Explore the peaceful landscapes, rich history, and natural beauty of the Chungcheong region.",
+        GSBUSANDAEGUULSAN: "Discover the charm of the Gyeongsang region, where mountains, coastlines, and history meet.",
+        JRGWANGJU: "Experience Jeolla's beautiful scenery, delicious local cuisine, and warm cultural atmosphere.",
+        JEJU: "Explore Jeju Island, home to volcanic landscapes, scenic coastlines, and unique natural wonders.",
+        CAFE: "Discover charming cafes and unique spaces that make every journey even more memorable.",
+        RESTAURANT: "Enjoy local flavors and discover restaurants loved by travelers and locals alike.",
+        LODGING: "Find comfortable accommodations for a relaxing and memorable stay in Korea.",
+        FOOD: "Taste Korea through regional specialties, local street food, and traditional treats."
+      }
+    }
+  },
+  /*---------------------------------------*/
 
   homepage: {
     homeRecommended: {
@@ -97,7 +119,7 @@ export default {
   },
   regionPage: {
     titleSuffix: "Travel in",
-    totalCount: "There are {{count}} destinations",
+    totalCount: "{{count}} destinations",
     noData: "No data available."
   },
   locationPage: {
@@ -147,7 +169,7 @@ export default {
   theme: {
     titleSuffix: "Recommended",
     list: "List",
-    totalCount: "Total {{count}} {{themeName}}",
+    totalCount: "{{count}} {{themeName}}",
     noData: "No data available."
   },
   themeDetail: {

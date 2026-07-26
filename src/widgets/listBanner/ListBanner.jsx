@@ -1,13 +1,19 @@
 import React from 'react'
 
-import { useTranslation } from 'react-i18next';
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+/*------------------------/custom hooks-----------------------------------*/
 
 //Page Css
 import './ListBanner.style.css'
 
-const ListBanner = ({type = "theme", images = []}) => {
+const ListBanner = ({title, count, type = "theme", selected, images = []}) => {
 
-  const {t} = useTranslation();
+  const {t} = useLanguage();
 
   // theme 배너 랜덤 이미지 선택
   const getRandomThemeImage = () => {
@@ -24,10 +30,25 @@ const ListBanner = ({type = "theme", images = []}) => {
 
   const imgSrc = type === "region" ? getRandomRegionImage() : getRandomThemeImage();
 
-  if (!imgSrc) return null;
 
   return (
-    <div className="listBannerCover" style={{ backgroundImage: `url(${imgSrc})` }}>
+    <div 
+      className="listBannerWrapper" 
+      style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : { backgroundImage: 'url(/images/emptyBanner.jpg)' }}
+    >
+      <div className="listBannerTextWholeCover">
+        <div className="listBannerTextCover">
+          <h1 className="listBannerTextTitle">
+            {title}
+          </h1>
+          <p className='listBannerTextCount'>
+            {count}
+          </p>
+          <p className="listBannerTextContent">
+            {t(`listPage.listBanner.content.${selected}`)}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

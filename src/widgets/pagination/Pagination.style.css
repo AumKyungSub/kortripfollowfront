@@ -1,8 +1,5 @@
 /* 페이지네이션 — 모바일(≤479px)에서는 숨김 */
 @media only all and (max-width: 479px) {
-    .paginationWrapper {
-        display: none;
-    }
 }
 
 .paginationWrapper {

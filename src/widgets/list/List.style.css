@@ -137,7 +137,7 @@
 
 @media only all and (min-width: 1024px) {
     .listWrapper {
-        max-width: 1480px;
+        max-width: 1240px;
         margin: 0 auto;
     }
 
@@ -163,7 +163,7 @@
 
 @media only all and (min-width: 1921px) {
     .listWrapper {
-        max-width: 1920px;
+        max-width: 1440px;
     }
 
     .listLocation {
