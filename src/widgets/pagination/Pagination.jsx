@@ -4,7 +4,26 @@ import './Pagination.style.css';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     if (totalPages <= 1) return null;
 
-    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    const MAX_VISIBLE = 5;
+    
+const startPage = Math.max(
+    Math.min(currentPage - 2, totalPages - 4),
+    1
+);
+
+const endPage = Math.min(startPage + 4, totalPages);
+
+if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, endPage - MAX_VISIBLE + 1);
+}
+
+
+const pages = [];
+
+for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+}
 
     return (
         <div className="paginationWrapper">

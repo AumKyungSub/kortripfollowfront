@@ -93,8 +93,8 @@ const ListPage = ({ mode }) => {
   const [selected, setSelected] = useState(initialSelected);
 
   // 페이지네이션
-  const ITEMS_PER_PAGE = 8;
-  // const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
+  // const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
   const [currentPage, setCurrentPage] = useState(1);
 
   // Bottom Type 결정 
@@ -174,7 +174,7 @@ const ListPage = ({ mode }) => {
 
   const handlePageChange = useCallback((page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // 텍스트
