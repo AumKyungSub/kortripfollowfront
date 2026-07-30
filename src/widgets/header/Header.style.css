@@ -81,6 +81,259 @@ header.scrolled {
   color: #fafaf8;
 }
 
+/* Mobile Utility Buttons */
+.mobileUtility {
+  display: flex;
+  align-items: center;
+}
+.profileBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+.hamburgerBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile Slide Menu */
+.mobileMenuWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  height: -webkit-fill-available; /* iOS Safari 대응 */
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.mobileMenuWrapper.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobileMenuOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.mobileMenuContent {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 400px;
+  height: 100%;
+  background: #fff;
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.mobileMenuWrapper.open .mobileMenuContent {
+  right: 0;
+}
+
+/* Menu Header */
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.mobileMenuHeader h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+.closeMenuBtn {
+  background: #f5f6f8;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Search */
+.mobileMenuSearch {
+  margin-bottom: 32px;
+}
+.searchInputWrapper {
+  display: flex;
+  align-items: center;
+  background: #f5f6f8;
+  border-radius: 25px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+}
+.searchInputWrapper .searchIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+.searchInputWrapper input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+.searchInputWrapper input::placeholder {
+  color: #a0a4b0;
+}
+
+.popularSearches p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+.popularTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.popularTags span {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #eaeaea;
+  font-size: 0.85rem;
+  color: #4a4a4a;
+}
+
+/* Categories */
+.mobileMenuCategories {
+  flex: 1;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* --- 스크롤바 감추기 설정 --- */
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.categoryTitle {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+.mobileMenuCategories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* 너비를 부모에 100% 맞춤 */
+  box-sizing: border-box;
+}
+.mobileMenuCategories li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 12px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+.mobileMenuCategories li.active {
+  background: #b54a2f; /* Changed from black to #b54a2f */
+  border-radius: 12px;
+  padding: 14px 16px;
+  width: 100%;
+}
+.mobileMenuCategories li.active span {
+  color: #fff;
+  font-weight: 600;
+}
+.mobileMenuCategories li.active svg {
+  stroke: #fff;
+}
+.menuItemLeft {
+  display: flex;
+  align-items: center;
+}
+.menuItemIcon {
+  width: 32px;
+  height: 32px;
+  background: #f5f6f8;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+}
+.mobileMenuCategories li.active .menuItemIcon {
+  background: rgba(255, 255, 255, 0.15);
+}
+.menuItemIcon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+.mobileMenuCategories span {
+  font-size: 1rem;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Footer Language Toggle */
+.mobileMenuFooter {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.mobileMenuFooter p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+.mobileLangToggle {
+  display: flex;
+  background: #f5f6f8;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.mobileLangToggle button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.mobileLangToggle button.active {
+  background: #b54a2f; /* Changed from black to #b54a2f */
+  color: #fff;
+  font-weight: 600;
+}
+
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (min-width: 480px) {}

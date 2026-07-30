@@ -9,6 +9,10 @@
     z-index: 999;
 }
 
+body.menu-open .mobileNavigationWrapper {
+    display: none !important;
+}
+
 .mobileNavigationLinks {
     height: 100%;
     /* Flex */

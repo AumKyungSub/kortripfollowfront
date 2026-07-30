@@ -34,6 +34,23 @@ export default {
       collectionBuy: "HOW TO BUY"
   },
   /*------------------------------------*/
+
+    /////////////// 공용 컴포넌트 나눔 ///////////////
+    /*------------ 헤더 (Header) -------------*/
+    header: {
+      menu: "Menu",
+      search: "Our Search Service is Coming Soon.",
+      // search: "여행지, 테마를 검색해보세요",
+      topSearchTitle:"Popular Searches",
+      topSearchList1:"Coming Soon",
+      // topSearchList2:"",
+      // topSearchList3:"",
+      // topSearchList4:"",
+      // topSearchList5:"",
+      category:"Category",
+      setLanguage:"Language"
+    },
+    /*---------------------------------------*/
   
   /////////////// 페이지별 나눔 ///////////////
   /*---------- 리스트 (ListPage) -----------*/

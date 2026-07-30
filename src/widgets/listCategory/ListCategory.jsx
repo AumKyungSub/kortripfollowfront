@@ -1,23 +1,21 @@
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 
 import { useStickyCategory } from '@/shared/hooks/useStickyCategory';
 
 import './ListCategory.style.css'
 
-const ListCategory = ({options, selected, setSelected, isFullMobile }) => {
+const ListCategory = ({ options, selected, setSelected, isFullMobile }) => {
   const categoryRef = useRef(null);
-  const fixed = useStickyCategory(isFullMobile);
-      
+
   return (
     <>
-      <div ref={categoryRef} className={`listCategoryCover ${fixed ? "fixed" : ""}`}>
+      <div ref={categoryRef} className='listCategoryCover'>
         <ul className="ListCategoryUl">
           {options.map((item) => (
             <li
               key={item.code}
-              className={`ListCategoryLi ${
-                selected === item.code ? 'active' : ''
-              }`}
+              className={`ListCategoryLi ${selected === item.code ? 'active' : ''
+                }`}
               onClick={() => setSelected(item.code)}
               style={
                 !isFullMobile
@@ -30,9 +28,9 @@ const ListCategory = ({options, selected, setSelected, isFullMobile }) => {
               </p>
             </li>
           ))}
-            </ul>
-        </div>
-        <div className="emptyLine1px"></div>
+        </ul>
+      </div>
+      <div className="emptyLine1px"></div>
     </>
   )
 }
