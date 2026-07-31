@@ -1,10 +1,17 @@
 import React from 'react'
+/*------------------------hooks-----------------------------------*/
+// Params
 import { useParams } from "react-router-dom";
-import { useCollectionList } from "@/shared/hooks/useCollectionList";
-import { useTranslation } from "react-i18next";
+/*------------------------/hooks-----------------------------------*/
 
-// (hook) Device Size
+/*------------------------custom hooks-----------------------------------*/
+// CollectionList
+import { useCollectionList } from "@/shared/hooks/useCollectionList";
+// Device Size
 import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language 
+import { useLanguage } from '@/shared/hooks/useLanguage'
+/*------------------------/custom hooks-----------------------------------*/
 
 // Components
 import Header from '@/widgets/header/Header'
@@ -21,14 +28,11 @@ import './CollectionDetailPage.style.css'
 
 const CollectionDetailPage = () => {
   const { id } = useParams();
-  const { i18n } = useTranslation();
-  const lang = i18n.language === "ko" ? "ko" : "en";
+  const {lang} = useLanguage();
 
   // Device Size
 const {
-        isMobile, /*maxWidth: 479*/
         isFullMobile, /*maxWidth: 767*/ 
-        isDesktop /*minWidth: 1024*/
 } = useResponsive();
 
   const { collections, loading } = useCollectionList({ lang });
@@ -46,7 +50,7 @@ const {
         <Header />
         <EmptyHeader/>
         <section className='collectionDetailPageWrapper'> 
-            <CollectionDetailPageMain collection={collection} isFullMobile={isFullMobile}/>
+            <CollectionDetailPageMain collection={collection}/>
             <CollectionDetailPageLink collection={collection}/>
         </section>
             <CollectionGoodsLink collection={collection}/>

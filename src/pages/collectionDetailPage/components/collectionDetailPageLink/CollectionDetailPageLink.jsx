@@ -64,12 +64,6 @@ const CollectionDetailPageLink = ({ collection }) => {
   return (
     <section className="collectionDetailPageLinkWrapper">
       <div className="collectionDetailPageLinkInner">
-        <h3 className='collectionDetailPageLinkTitle'>
-          {t("collection.banner.sellTitle")}
-        </h3>
-        <p className='subFont collectionDetailPageLinkSubTitle'>
-          {t("collection.banner.sellSubTitle")}
-        </p>
         <div className="collectionDetailPageCardCover">
           <PlatformRow platformName={t("collection.banner.zazzle")} platformLinks={collection.zazzle} collection={collection} shopName="zazzle" />
           <PlatformRow platformName={t("collection.banner.mapple")} platformLinks={collection.mapple} collection={collection} shopName="mapple" />

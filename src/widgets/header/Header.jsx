@@ -25,7 +25,21 @@ const Header = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  
+  // 1. 기본적으로 흰 배경(검은 글씨/로고)을 적용할 경로들의 시작 부분(prefix) 정의
+  const LIGHT_HEADER_PATHS = [
+    '/collection/',
+    '/season'
+  ];
+  
+  // 2. 현재 URL 경로가 LIGHT_HEADER_PATHS 중 하나로 시작하는지 체크
+  const isLightPage = LIGHT_HEADER_PATHS.some((path) =>
+    location.pathname.startsWith(path)
+  );
+  
+  // 3. 스크롤이 되었거나, 흰 배경 페이지일 때 검은색 로고/텍스트 상태로 전환
+  const showDarkHeader = isLightPage || isScrolled;
+  
   // Language Hook 사용
   const { lang, t, changeLanguage, isKo, isEn } = useLanguage();
 
@@ -42,9 +56,9 @@ const Header = () => {
   // 1. 로고 텍스트 이미지 경로
   const getLogoImage = () => {
     if (isKo) {
-      return isScrolled ? "/images/logo/logoTextSc.png" : "/images/logo/logoText.png";
+      return showDarkHeader ? "/images/logo/logoTextSc.png" : "/images/logo/logoText.png";
     }
-    return isScrolled ? "/images/logo/logoTextEnSc.png" : "/images/logo/logoTextEn.png";
+    return showDarkHeader ? "/images/logo/logoTextEnSc.png" : "/images/logo/logoTextEn.png";
   };
 
   // 2. li 리스트 설정
@@ -90,7 +104,7 @@ const Header = () => {
   }, [isMenuOpen]);
   
   return (
-    <header className={isScrolled ? "scrolled" : ""}>
+    <header className={showDarkHeader ? "scrolled" : ""}>
       <div className="headerCover">
         <div className="logo" onClick={goTo("/")}>
           <img src="/images/logo/logoIcon.png" alt="logoIcon" />
@@ -103,7 +117,7 @@ const Header = () => {
                 <li
                   key={key}
                   className={`
-                    ${isScrolled ? "gnbListSc" : "gnbList"}
+                    ${showDarkHeader ? "gnbListSc" : "gnbList"}
                     ${isActive(path, startsWith) ? "active" : ""}
                   `}
                   onClick={goTo(path)}
@@ -119,14 +133,14 @@ const Header = () => {
             <>
               <button
                 className={`
-                  ${isKo ? 'active' : 'languageBtn'}${isScrolled ? 'Sc' : ''}
+                  ${isKo ? 'active' : 'languageBtn'}${showDarkHeader ? 'Sc' : ''}
                 `} 
                 onClick={() => changeLanguage("ko")}>
                 한국어
               </button>
               <button
                 className={`
-                  ${isEn ? 'active' : 'languageBtn'}${isScrolled ? 'Sc' : ''}
+                  ${isEn ? 'active' : 'languageBtn'}${showDarkHeader ? 'Sc' : ''}
                 `} 
                 onClick={() => changeLanguage("en")}>
                 ENGLISH
@@ -137,13 +151,13 @@ const Header = () => {
           {isFullMobile && (
             <div className="mobileUtility">
                 <button className="profileBtn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isScrolled ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
                 </button>
                 <button className="hamburgerBtn" onClick={() => setIsMenuOpen(true)}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isScrolled ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>

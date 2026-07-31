@@ -73,6 +73,17 @@ export default {
     }
   },
   /*---------------------------------------*/
+  /*----- collection (CollectionPage) ------*/
+  collectionPage: {
+    detail: {
+      main:{
+        size: "Original Size",
+        sell: "Purchase Options",
+        price: "Price"
+      }
+    }
+  },
+  /*---------------------------------------*/
 
   homepage: {
     homeRecommended: {

@@ -72,6 +72,17 @@ export default {
       }
     },
     /*---------------------------------------*/
+    /*----- collection (CollectionPage) ------*/
+    collectionPage: {
+      detail: {
+        main:{
+          size: "원본 사이즈",
+          sell: "판매 방법",
+          price: "가격"
+        }
+      }
+    },
+    /*---------------------------------------*/
 
   homepage: {
     homeReview: {
