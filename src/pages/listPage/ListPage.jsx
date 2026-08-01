@@ -19,6 +19,8 @@ import { useLanguage } from '@/shared/hooks/useLanguage';
 import { useThemeList } from '@/shared/hooks/useThemeList';
 // Region List
 import { useRegionList } from '@/shared/hooks/useRegionList';
+// Pagination
+import { usePagination } from '@/shared/hooks/usePagination';
 /*------------------------/custom hooks-----------------------------------*/
 
 import Loading from '@/features/loading/Loading';
@@ -92,37 +94,6 @@ const ListPage = ({ mode }) => {
 
   const [selected, setSelected] = useState(initialSelected);
 
-  // 페이지네이션
-  // const ITEMS_PER_PAGE = 8;
-  const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Bottom Type 결정 
-  const bottomType = isThemeMode ? selected : "ALL";
-
-  // selected 값 검증 (존재하지 않으면 기본값으로 리셋)
-  useEffect(() => {
-    if (!Object.keys(map).includes(selected)) {
-      setSelected(defaultKey);
-      return;
-    }
-
-    // selected가 정상일 경우에만 저장
-    sessionStorage.setItem(`filter-${mode}`, selected);
-  }, [selected, map, mode, defaultKey]);
-
-  // 카테고리 변경 시 첫 페이지로 리셋
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selected]);
-
-  // region -> theme 이동 시 state 초기화
-  useEffect(() => {
-    if (navigateSelected) {
-      window.history.replaceState({}, ""); // state 제거
-    }
-  }, [navigateSelected]);
-
 
   // 필터링 
   const filteredList = useMemo(() => {
@@ -162,20 +133,38 @@ const ListPage = ({ mode }) => {
     filterByRegion,
   ]);
 
-  // 페이지네이션 계산 (모바일 ≤479px 제외)
-  const totalPages = Math.ceil(
-      filteredList.length / ITEMS_PER_PAGE
-  );
+  // 페이지네이션
+  // const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
+  
+  const {
+    currentPage,
+    totalPages,
+    pagedList,
+    handlePageChange,
+  } = usePagination(filteredList, ITEMS_PER_PAGE, selected);
 
-  const pagedList = filteredList.slice(
-      (currentPage - 1) * ITEMS_PER_PAGE,
-      currentPage * ITEMS_PER_PAGE
-  );
 
-  const handlePageChange = useCallback((page) => {
-    setCurrentPage(page);
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  // Bottom Type 결정 
+  const bottomType = isThemeMode ? selected : "ALL";
+
+  // selected 값 검증 (존재하지 않으면 기본값으로 리셋)
+  useEffect(() => {
+    if (!Object.keys(map).includes(selected)) {
+      setSelected(defaultKey);
+      return;
+    }
+
+    // selected가 정상일 경우에만 저장
+    sessionStorage.setItem(`filter-${mode}`, selected);
+  }, [selected, map, mode, defaultKey]);
+
+  // region -> theme 이동 시 state 초기화
+  useEffect(() => {
+    if (navigateSelected) {
+      window.history.replaceState({}, ""); // state 제거
+    }
+  }, [navigateSelected]);
 
   // 텍스트
   const selectedText = map[selected]?.[lang] || ""; // 안전 처리

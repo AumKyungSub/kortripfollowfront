@@ -19,11 +19,12 @@ export default {
       homeRegion: "EXPLORE",
       homeSeason: "BEST TIME",
       homeTheme: "CURATED",
-      collectionBuy: "GUIDE"
+      collectionBuy: "GUIDE",
+      collectionLink: "PRODUCT OPTIONS"
   },
   /*------------------------------------*/
   
-  /*--------------- 프리타이틀 ---------------*/
+  /*--------------- 타이틀 ---------------*/
   title: {
       homeReviewType1: "Attraction Reviews",
       homeReviewType2: "Cafe Reviews",

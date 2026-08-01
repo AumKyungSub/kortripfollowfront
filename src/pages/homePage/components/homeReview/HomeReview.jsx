@@ -11,7 +11,7 @@ import { useLanguage } from '@/shared/hooks/useLanguage'
 /*------------------------/custom hooks-----------------------------------*/
 
 // Components
-import HomeReviewNavBtn from './component/HomeReviewNavBtn';
+import PaginationMethodTwo from '@/widgets/paginationMethodTwo/PaginationMethodTwo';
 
 // Items per Page
 const itemsPerPage = 5; 
@@ -225,7 +225,7 @@ const HomeReview = ({
 
                         {/* 모바일 네비게이션 버튼 */}
                         {isFullMobile && (
-                            <HomeReviewNavBtn 
+                            <PaginationMethodTwo 
                                 prev={handleMobilePrev} 
                                 next={handleMobileNext} 
                                 prevDis={mobilePage === 1} 
@@ -365,7 +365,7 @@ const HomeReview = ({
                                     );
                                 })}
                             </ul>
-                            <HomeReviewNavBtn 
+                            <PaginationMethodTwo 
                                 prev={handlePrev} 
                                 next={handleNext} 
                                 prevDis={currentPage === 1} 

@@ -19,11 +19,12 @@ export default {
         homeRegion: "BY REGION",
         homeSeason: "BY SEASON",
         homeTheme: "BY THEME",
-        collectionBuy: "안내"
+        collectionBuy: "안내",
+        collectionLink: "구매 가능한 상품"
     },
     /*------------------------------------*/
     
-    /*--------------- 프리타이틀 ---------------*/
+    /*--------------- 타이틀 ---------------*/
     title: {
         homeReviewType1: "관광지 리뷰",
         homeReviewType2: "카페 리뷰",

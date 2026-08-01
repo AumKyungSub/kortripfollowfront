@@ -2,8 +2,17 @@
     width: 100%;
 }
 
+.collectionDetailPageLinkPreTitleCover {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .collectionDetailPageLinkInner {
     width: 100%;
+    margin-top: 20px;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -35,6 +44,17 @@
     gap: 16px;
 }
 
+.collectionDetailPagePlatformTitle {
+    /* Font */
+    font-size: 16px;
+    font-weight: 500;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {}
@@ -44,9 +64,14 @@
 @media only all and (min-width: 768px) {
     .collectionDetailPageLinkWrapper {
         width: 100%;
-        max-width: 1440px;
+        max-width: 1200px;
         margin: 0 auto;
         white-space: pre-wrap;
+    }
+
+    .collectionDetailPageLinkPreTitleCover {
+        /* Flex */
+        justify-content: start;
     }
 
 }
@@ -110,48 +135,11 @@
     width: 100%;
 }
 
-.scrollBtn {
-    display: none;
-    position: absolute;
-    top: calc(50% - 24px);
-    /* Center of the 1:1 image, subtracting half of the button's height */
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #333;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.scrollBtn:hover {
-    background-color: #fff;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.leftScroll {
-    left: -22px;
-}
-
-.rightScroll {
-    right: -22px;
-}
-
 @media only all and (min-width: 1024px) {
-    .scrollBtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 @media only all and (min-width: 1921px) {
     .collectionDetailPageLinkWrapper {
-        max-width: 1920px;
+        max-width: 1440px;
     }
 }

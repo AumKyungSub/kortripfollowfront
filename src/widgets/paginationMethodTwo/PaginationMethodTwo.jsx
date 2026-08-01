@@ -1,7 +1,10 @@
 import React from 'react'
 
-const HomeReviewNavBtn = (props) => {
-    return (
+// Page css
+import './PaginationMethodTwo.style.css'
+
+const PaginationMethodTwo = (props) => {
+  return (
     <div className="homeReviewNavBtnCover">
         <button
             className="homeReviewNavBtn prev"
@@ -24,7 +27,7 @@ const HomeReviewNavBtn = (props) => {
             </svg>
         </button>
     </div>
-    )
+  )
 }
 
-export default HomeReviewNavBtn
+export default PaginationMethodTwo

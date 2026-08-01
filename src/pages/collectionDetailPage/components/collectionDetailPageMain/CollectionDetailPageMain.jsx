@@ -55,9 +55,9 @@ const CollectionDetailPageMain = ({ collection }) => {
                             </span>
                             <span className="collectionDetailPageEtcInfoValue price">
                                 {isEn ?
-                                    `$${collection?.price} ~`
+                                    `$${collection?.minimumPrice} ~`
                                 :
-                                    `\u20A9${collection?.price} ~`
+                                    `\u20A9${collection?.minimumPrice} ~`
                                 }
                             </span>
                         </div>

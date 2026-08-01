@@ -11,50 +11,17 @@
     gap: 10px;
 }
 
-.homeReviewTitleCover{
-    /* Flex */
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.homeReviewNavBtnCover{
-    margin-left: 20px;
-    /* Flex */
-    display:flex;
-    justify-content:center;
-    gap:12px;
-}
-
-.homeReviewNavBtn{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    border:1px solid #ddd;
-    background:#fff;
-    color: #333;
-    cursor:pointer;
-    transition: all 0.3s;
-    /* Flex */
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.homeReviewNavBtn svg{
-    width:18px;
-    height:18px;
-}
-
-.homeReviewNavBtn:disabled{
-    opacity:.35;
-    cursor:default;
-}
-
 .homeReviewAuthorBy {
     font-size: 14px;
     color: #666;
     text-transform: uppercase;
+}
+
+.homeReviewTitleCover {
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .homeReviewHeaderRight {

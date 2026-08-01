@@ -26,15 +26,15 @@
 
 .paginationBtn:hover:not(.paginationDisabled) {
     background: #f0f4ff;
-    border-color: #a0b4e8;
-    color: #2a4a9e;
+    border-color: #9d3f27;
+    color: #b54a2f;
     transform: translateY(-1px);
 }
 
 .paginationActive {
-    background: #2a4a9e !important;
-    color: #fff !important;
-    border-color: #2a4a9e !important;
+    background: #b54a2f !important;
+    color: #fafaf8 !important;
+    border-color: #9d3f27 !important;
     font-weight: 700;
 }
 

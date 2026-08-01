@@ -33,24 +33,24 @@
 
 /* click box ui design */
 .clickBtnCover {
-  padding: 12px 24px;
-  background-color: #3b82f6;
+  padding: 5px 10px;
+  background-color: #b54a2f;
   color: white;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .clickBtnCover:hover {
-  background-color: #2563eb;
+  background-color: #9d3f27;
   transform: translateY(-1px);
 }
 
 .clickBtnCover:active {
-  background-color: #1d4ed8;
+  background-color: #9e3b22;
   transform: translateY(0);
 }
 
