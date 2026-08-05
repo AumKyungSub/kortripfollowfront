@@ -17,6 +17,12 @@
     /* Font */
     font-size: 24px;
     font-weight: 700;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
 }
 
 .collectionDetailPageTextCover {

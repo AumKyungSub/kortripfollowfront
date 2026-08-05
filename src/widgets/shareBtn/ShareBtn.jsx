@@ -1,0 +1,45 @@
+import React from 'react'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+// Share
+import { useShare } from '@/shared/hooks/useShare';
+/*------------------------/custom hooks-----------------------------------*/
+
+// Page Css
+import './ShareBtn.style.css'
+
+const ShareBtn = ({title, text, variant}) => {
+    const {lang, t} = useLanguage(); 
+    const {share} = useShare();
+
+    /*
+        공유 작업 window API
+        구버전
+        커스텀 훅 useShare 사용
+    */
+    const handleShare = () => {
+        share({
+            title,
+            text,
+            copiedMessage: lang === 'ko' ? '링크가 복사되었습니다.' : 'Link copied.',
+        });
+    };
+
+    return (
+        <button
+            type="button"
+            className={`shareBtn shareBtn--${variant}`}
+            aria-label={lang === 'ko' ? '이 페이지 공유하기' : 'Share this page'}
+            onClick={handleShare}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-share2-icon lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+            {t('detailPage.common.banner.share')}
+        </button>
+    )
+}
+
+export default ShareBtn

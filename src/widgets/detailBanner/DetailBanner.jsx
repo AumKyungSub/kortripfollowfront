@@ -3,11 +3,12 @@ import React from 'react'
 /*------------------------/hooks-----------------------------------*/
 
 /*------------------------custom hooks-----------------------------------*/
-// Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 /*------------------------/custom hooks-----------------------------------*/
+
+// Components
+import ShareBtn from '@/widgets/shareBtn/ShareBtn';
 
 // Page css
 import './DetailBanner.style.css'
@@ -17,7 +18,6 @@ const DetailBanner = ({
     subName,
 }) => {
 
-    const {isFullMobile} = useResponsive();
     const {lang, t} = useLanguage();
 
     /*
@@ -72,34 +72,6 @@ const DetailBanner = ({
         en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
     }  
     const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;
-
-    /*
-        공유 작업 window API
-        구버전
-    */
-    const handleShare = async () => {
-        const url = window.location.href;
-        const title = subName ? `${name} ${subName}` : name;
-        const shareData = {
-            title,
-            text: slogan,
-            url,
-        };
-
-        try {
-            if (navigator.share) {
-                await navigator.share(shareData);
-                return;
-            }
-
-            await navigator.clipboard.writeText(url);
-            window.alert(lang === 'ko' ? '링크가 복사되었습니다.' : 'Link copied.');
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.error('Failed to share:', error);
-            }
-        }
-    };
         
     return (
         <section
@@ -143,22 +115,7 @@ const DetailBanner = ({
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mouse-pointer2-icon lucide-mouse-pointer-2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>
                         {t('detailPage.common.banner.navigate')}
                     </a>
-                    <span
-                        className="detailBannerLinkShare"
-                        role="button"
-                        tabIndex={0}
-                        aria-label={lang === 'ko' ? '이 페이지 공유하기' : 'Share this page'}
-                        onClick={handleShare}
-                        onKeyDown={(event) => {
-                            if (event.key === 'Enter' || event.key === ' ') {
-                                event.preventDefault();
-                                handleShare();
-                            }
-                        }}
-                        >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-share2-icon lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-                        {t('detailPage.common.banner.share')}
-                    </span>
+                    <ShareBtn title={subName ? `${name} ${subName}` : name} text={slogan} variant="default"/>
                 </div>
             </div>
         </section>

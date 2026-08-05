@@ -1,0 +1,25 @@
+.shareBtn {
+    padding: 5px 15px;
+    border-radius: 50px;
+    background-color: rgb(204, 204, 204, 0.1);
+    cursor: pointer;
+    /* Font */
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fafaf8;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.shareBtn--default {
+    color: #fafaf8;
+    border: 1px solid #ccc;
+}
+
+.shareBtn--inverse {
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+}

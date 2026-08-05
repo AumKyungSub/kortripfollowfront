@@ -7,6 +7,8 @@ import React from 'react'
 import { useLanguage } from '@/shared/hooks/useLanguage'
 /*------------------------/custom hooks-----------------------------------*/
 
+// Components
+import ShareBtn from '@/widgets/shareBtn/ShareBtn'
 
 // Page css
 import './CollectionDetailPageMain.style.css'
@@ -28,7 +30,10 @@ const CollectionDetailPageMain = ({ collection }) => {
                             {collection?.tag?.join(' · ')}
                         </p>
                     </div>
-                    <h3 className='collectionDetailPageTitle'>{collection.title}</h3>
+                    <h3 className='collectionDetailPageTitle'>
+                        {collection.title}
+                        <ShareBtn title={collection.title} text={collection.content} variant="inverse"/>
+                    </h3>
                     <p className='collectionDetailPageContent'>{collection.content}</p>
                     <div className="collectionDetailPageEtcCover">
                         <div className="collectionDetailPageEtcInfoCover">

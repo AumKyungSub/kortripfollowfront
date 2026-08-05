@@ -103,7 +103,6 @@
     gap: 10px;
 }
 
-.detailBannerLinkCover>span,
 .detailBannerLinkCover>a {
     padding: 5px 15px;
     border-radius: 50px;
@@ -121,16 +120,6 @@
 .detailBannerLinkMap {
     border: 1px solid #1A73E8;
     background-color: #1A73E8;
-}
-
-.detailBannerLinkShare {
-    border: 1px solid #ccc;
-    background-color: rgb(204, 204, 204, 0.1);
-}
-
-.detailBannerLinkShare:focus-visible {
-    outline: 2px solid #fafaf8;
-    outline-offset: 2px;
 }
 
 /* ---------------------------------------------------- */
