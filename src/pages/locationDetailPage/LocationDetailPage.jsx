@@ -1,11 +1,22 @@
 import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
-// (hook) Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
-
-import { useTranslation } from 'react-i18next'
-
+/*------------------------API hooks-----------------------------------*/
+// Read One DB
 import { useReadOneDB } from '@/shared/api/useReadOneDB'
+/*------------------------/API hooks-----------------------------------*/
+
+/*------------------------hooks-----------------------------------*/
+// Params
+import { useParams } from 'react-router-dom'
+/*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+/*------------------------/custom hooks-----------------------------------*/
+
+
 
 //Function Component
 import Loading from '@/features/loading/Loading'
@@ -13,7 +24,6 @@ import FailedData from '@/features/failedData/FailedData'
 
 // Components
 import Header from '@/widgets/header/Header'
-import EmptyHeader from '@/widgets/emptyHeader/EmptyHeader'
 import Footer from '@/widgets/footer/Footer'
 import EmptyFooter from '@/widgets/emptyHeader/EmptyFooter'
 import MobileNavigation from '@/widgets/mobileNavigation/MobileNavigation'
@@ -31,8 +41,7 @@ import './LocationDetailPage.style.css'
 
 const LocationDetailPage = () => {
     const { id } = useParams();
-    const { t, i18n } = useTranslation();
-    const lang = i18n.language;
+    const { t, lang} = useLanguage();
     // minWidth: 1024
     const {isMobile, isTablet, isFullMobile, isDesktop} = useResponsive();
     
@@ -52,21 +61,10 @@ const LocationDetailPage = () => {
 
     return (
         <div>
-            {!isFullMobile && <Header/>}
-            {!isFullMobile && <EmptyHeader/>}
-            {data && <DetailBanner 
-                name={data.location?.name?.[lang]}
-                address={
-                    lang === "ko"
-                        ? data.location?.address?.ko?.[0]
-                        : data.location?.address?.en?.[1]
-                }
-                slogan={data.description?.short?.[lang]}
-                imgLink={data.img?.link}
-                isFullMobile={isFullMobile}
-                isDesktop={isDesktop}
+            <Header/>
+            <DetailBanner 
+                data={data}
                 />
-            }
             {!isFullMobile 
             ?
                 <div className='locationDetailWholeCover'>

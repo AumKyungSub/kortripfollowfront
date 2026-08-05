@@ -1,52 +1,165 @@
 import React from 'react'
+/*------------------------hooks-----------------------------------*/
+/*------------------------/hooks-----------------------------------*/
 
-// Components
-import HomeIcon from '@/features/homeIcon/HomeIcon'
+/*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive'
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page css
 import './DetailBanner.style.css'
 
 const DetailBanner = ({
-    name,
+    data,
     subName,
-    address,
-    slogan,
-    imgLink,
-    isFullMobile,
-    isDesktop
 }) => {
 
+    const {isFullMobile} = useResponsive();
+    const {lang, t} = useLanguage();
+
+    /*
+        베너 이미지 불러오기
+        화면 비율별 사진 따로
+    */
+    const imgLink = `${data?.img?.link}2.jpg`;
+    /* 디바이스 별 이미지 따로 작업하게 되면 사용
     const bgi = isDesktop
         ? `${imgLink}2.jpg`
         : isFullMobile
         ? `${imgLink}2.jpg`
-        : `${imgLink}2.jpg`
+        : `${imgLink}2.jpg`*/
+
+    /* 
+        언어별 주소 데이터 가져오기
+        언어 추가시 addressByLanguage에 한줄씩 추가
+    */
+    const addressByLanguage = {
+        ko: data?.location?.address?.ko?.[0],
+        en: data?.location?.address?.en?.[1]
+    }
+    const address = addressByLanguage[lang] ?? addressByLanguage.ko;
+    
+    const fullAddress = data?.location?.address?.[lang];
+
+    const slogan = data.description?.short?.[lang];
+
+    const name = data.location?.name?.[lang];
+
+    /*
+        길찾기 지도 링크 연결
+    */
+    const latLng = data?.location?.latLng; 
+
+    if (!latLng) return null
+
+    const [lat, lng] = latLng.split(',').map(Number) 
+
+    /*
+        각 언어별 지도 주소
+    */
+    const englishName = data?.location?.name?.en;
+    const englishAddress =
+        data?.location?.address?.en?.[1] ??
+        data?.location?.address?.en?.[0];
+    const googleMapQuery = [englishName, englishAddress]
+        .filter(Boolean)
+        .join(', ');
+    const mapLinkByLanguage = {
+        ko:`https://map.kakao.com/link/to/${name},${lat},${lng}`,
+        en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
+    }  
+    const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;
+
+    /*
+        공유 작업 window API
+        구버전
+    */
+    const handleShare = async () => {
+        const url = window.location.href;
+        const title = subName ? `${name} ${subName}` : name;
+        const shareData = {
+            title,
+            text: slogan,
+            url,
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+                return;
+            }
+
+            await navigator.clipboard.writeText(url);
+            window.alert(lang === 'ko' ? '링크가 복사되었습니다.' : 'Link copied.');
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                console.error('Failed to share:', error);
+            }
+        }
+    };
         
     return (
         <section
             className='detailBannerWrapper'
-            style={{ backgroundImage: `url(${bgi})` }}
+            style={{ backgroundImage: `url(${imgLink})` }}
         >
-            {isFullMobile && <HomeIcon />}
+            
 
             <div className='detailBannerTextCover'>
+                {address && (
+                    <div className="detailBannerTopCover">
+                        <p className="detailBannerTextAddress">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                            {address}
+                        </p>
+                        <p className="detailBannerTextAddress">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                            {t('detailPage.common.banner.visit')}
+                        </p>
+                    </div>
+                )}
                 <h1 className="detailBannerTextName">
                     {name}
                     {subName && ` ${subName}`}
                 </h1>
 
                 {address && (
-                    <p className="detailBannerTextAddress subFont">
-                        <img src="/images/icon/regionIconS.png" alt="regionIcon" />
-                        {address}
+                    <p className="detailBannerTextFullAddress">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                        {fullAddress}
                     </p>
-                )}
+                )} 
 
-                {slogan && (
-                    <p className="detailBannerTextSlogan">
-                        {slogan}
-                    </p>
-                )}
+                <div className="detailBannerLinkCover">
+                    <a 
+                        href={mapLink} 
+                        className="detailBannerLinkMap" 
+                        target='_blank'
+                        rel="noopener noreferrer"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mouse-pointer2-icon lucide-mouse-pointer-2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>
+                        {t('detailPage.common.banner.navigate')}
+                    </a>
+                    <span
+                        className="detailBannerLinkShare"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={lang === 'ko' ? '이 페이지 공유하기' : 'Share this page'}
+                        onClick={handleShare}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                handleShare();
+                            }
+                        }}
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafaf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-share2-icon lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+                        {t('detailPage.common.banner.share')}
+                    </span>
+                </div>
             </div>
         </section>
     )

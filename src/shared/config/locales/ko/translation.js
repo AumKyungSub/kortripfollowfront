@@ -53,7 +53,7 @@ export default {
     },
     /*---------------------------------------*/
     /////////////// 페이지별 나눔 ///////////////
-    /*---------- 리스트 (ListPage) -----------*/
+    /*---------- 리스트 영역 (ListPage) -----------*/
     listPage: {
       listBanner: {
         content: {
@@ -73,7 +73,23 @@ export default {
       }
     },
     /*---------------------------------------*/
-    /*----- collection (CollectionPage) ------*/
+    /*----- 디테일 영역 (detailBanner) ------*/
+    detailPage: {
+      common: {
+        banner:{
+          visit: "직접 방문",
+          navigate: "길찾기",
+          share: "공유"
+        }
+      },
+      location: {
+      },
+      theme: {
+
+      }
+    },
+    /*---------------------------------------*/
+    /*----- 컬렉션 영역 (CollectionPage) ------*/
     collectionPage: {
       detail: {
         main:{

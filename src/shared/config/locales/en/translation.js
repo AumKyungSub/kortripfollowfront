@@ -74,6 +74,22 @@ export default {
     }
   },
   /*---------------------------------------*/
+  /*----- 디테일 영역 (detailBanner) ------*/
+  detailPage: {
+    common: {
+      banner:{
+        visit: "Visited",
+          navigate: "Open Map",
+          share: "Share"
+      }
+    },
+    location: {
+    },
+    theme: {
+      
+    }
+  },
+  /*---------------------------------------*/
   /*----- collection (CollectionPage) ------*/
   collectionPage: {
     detail: {
