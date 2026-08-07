@@ -1,20 +1,25 @@
 .locationDetailWholeCover {
     width: 100%;
-    max-width: 1480px;
+    max-width: 1232px;
     margin: 0 auto;
     padding: 16px;
     /* Flex */
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    /* (48/1200)*100 = 4 */
+    gap: 4%;
 }
 
 .locationDetailLeftWholeCover {
-    width: calc((100% - 20px) * 0.6);
+    /* (784/1200)*100 = 65.33333333333333 */
+    width: 65.33333333333333%;
+    /* width: calc((100% - 20px) * 0.6); */
 }
 
 .locationDetailRightWholeCover {
-    width: calc((100% - 20px) * 0.4);
+    /* (368/1200)*100 = 30.666666666666664 */
+    width: 30.66666666666666%;
+    /* width: calc((100% - 20px) * 0.4); */
 
 }
 
@@ -36,6 +41,6 @@
 
 @media only all and (min-width: 1921px) {
     .locationDetailWholeCover {
-        max-width: 1960px;
+        max-width: 1440px;
     }
 }

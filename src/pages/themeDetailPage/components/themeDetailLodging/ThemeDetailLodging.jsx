@@ -24,10 +24,11 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
     <>
         {/* 숙소 기본 정보 */}
         <section className="themeDetailLodgingInfoWrapper">
-            <h4 className='detailTitleMin768'>
-                {data?.description?.type?.[lang]} {t("themeDetail.tDCI.tDCIHInfo")}
-            </h4>
-            {!isFullMobile && <div className='emptyLine1px'></div>}
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Hotel
+          </p>
+          <p className="title18px20px700">{data?.description?.type?.[lang]} {t("themeDetail.tDCI.tDCIHInfo")}</p>
             <div className="themeDetailBasicInfoCover">
                 <div className="themeDetailBasicInfoSubCover">
                     <img src="/images/icon/clockIcon.png" alt="checkIn" />
@@ -88,10 +89,11 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
         {isFullMobile && <div className='emptyLine'></div>}
         {/* 숙소 객실 정보 */}
         <section className="themeDetailLodgingInfoWrapper">
-            <h4 className='detailTitleMin768'>
-                {t("themeDetail.tDL.tDLRooms.tDLRoomsRoom")} {t("themeDetail.tDL.tDLCheckPrice")}
-            </h4>
-            {!isFullMobile && <div className='emptyLine1px'></div>}
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Room
+          </p>
+          <p className="title18px20px700">{t("themeDetail.tDL.tDLRooms.tDLRoomsRoom")} {t("themeDetail.tDL.tDLCheckPrice")}</p>
             <div className="themeDetailRoomInfoCover">
                 <div className="themeDetailRoomInfoSubCover">
                     <div 
@@ -145,10 +147,13 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
         {isFullMobile && <div className='emptyLine'></div>}
         {/* 숙소 식당 및 카페 정보 */}
         <section className="themeDetailLodgingInfoWrapper">
-            <h4 className='detailTitleMin768'>
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Restaurant
+          </p>
+          <p className="title18px20px700">
                 {data?.description?.type?.[lang]} {t("themeDetail.tDL.tDLRestaurant.tDLRestaurantRes")}
-            </h4>
-            {!isFullMobile && <div className='emptyLine1px'></div>}
+          </p>
             <div className="themeDetailBasicInfoCover">
                     <div 
                         className="themeDetailRestaurantsInfoList"
@@ -185,10 +190,13 @@ const ThemeDetailLodging = ({data, isFullMobile, lang}) => {
         {isFullMobile && <div className='emptyLine'></div>}
         {/* 숙소 부대시설 정보 */}
         <section className="themeDetailLodgingInfoWrapper">
-            <h4 className='detailTitleMin768'>
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Facilities
+          </p>
+          <p className="title18px20px700">
                 {t("themeDetail.tDL.tDLFacility.tDLFacilityFac")}
-            </h4>
-            {!isFullMobile && <div className='emptyLine1px'></div>}
+          </p>
             <div className="themeDetailBasicInfoCover">
                     <div 
                         className="themeDetailRestaurantsInfoList"

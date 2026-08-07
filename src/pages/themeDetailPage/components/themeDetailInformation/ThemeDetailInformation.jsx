@@ -1,151 +1,195 @@
-import React from 'react'
-
 import { useTranslation } from 'react-i18next'
 
 // Page css
 import './ThemeDetailInformation.style.css'
 
-const ThemeDetailInformation = ({data, isFullMobile, themeName, lang}) => {
+const TIME_RANGE_PATTERN = /(\d{1,2}:\d{2})\s*[~\-–—]\s*(\d{1,2}:\d{2})/
 
-    const {t} = useTranslation();
+const parseOperatingData = (operatingItems = []) => {
+  const rows = []
+  const notes = []
 
-    const goToMenu = () => {
-        window.open(data?.description?.menuLink, "_blank", "noopener,noreferrer");
+  operatingItems.forEach((item) => {
+    if (item?.type === 'note') {
+      if (item.text) notes.push(item.text)
+      return
     }
 
-    return (
+    if (item?.type !== 'time') return
+
+    const label = item.label?.toString().trim() ?? ''
+    const value = item.value?.toString().trim() ?? ''
+    const labelTime = label.match(TIME_RANGE_PATTERN)
+    const valueTime = value.match(TIME_RANGE_PATTERN)
+    const timeRange = valueTime ?? labelTime
+
+    if (!timeRange) {
+      const text = [label, value].filter(Boolean).join(' ')
+      if (text) notes.push(text)
+      return
+    }
+
+    const categorySource = valueTime ? label : ''
+    const category = categorySource
+      .replace(TIME_RANGE_PATTERN, '')
+      .replace(/^[-–—~|·\s]+|[-–—~|·\s]+$/g, '')
+      .trim()
+
+    rows.push({
+      category: category || '-',
+      opens: timeRange[1],
+      closes: timeRange[2],
+    })
+
+    const extraText = (valueTime ? value.replace(TIME_RANGE_PATTERN, '') : value)
+      .replace(/^[-–—~|·\s]+|[-–—~|·\s]+$/g, '')
+      .trim()
+
+    if (extraText) notes.push(extraText)
+  })
+
+  return {rows, notes}
+}
+
+const ThemeDetailInformation = ({data, isFullMobile, lang}) => {
+  const {t} = useTranslation()
+  const {rows: operatingRows, notes: operatingNotes} = parseOperatingData(
+    data?.operating?.[lang],
+  )
+  const menu = data?.description?.menu?.[lang] ?? []
+  const menuRows = menu.filter((item) => item?.name?.trim() && item?.price?.toString().trim())
+  const menuNotes = menu.filter((item) => item?.name?.trim() && !item?.price?.toString().trim())
+
+  const goToMenu = () => {
+    window.open(data?.description?.menuLink, '_blank', 'noopener,noreferrer')
+  }
+
+  return (
     <>
       <section className="themeDetailCafeInfoWholeCover">
-        {!isFullMobile && (
-          <>
-            <h4 className="detailTitleMin768">
-              {themeName} {t("themeDetail.tDCI.tDCIHInfo")}
-            </h4>
-            <div className="emptyLine1px"></div>
-          </>
-        )}
 
         {isFullMobile && <div className="emptyLine"></div>}
 
-        {/* 운영시간 */}
-        <div className="themeDetailInformationCover">
-          <h4 className="themeDetailInformationTitle">
-            {t("themeDetail.tDCI.tDCIHOperating")}
-          </h4>
+        <section className="themeDetailInformationCover">
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Menu
+          </p>
+          <p className="title18px20px700">{t('themeDetail.tDCI.tDCIHOperating')}</p>
 
-          <div className="themeDetailInformationTextCover">
-            {data?.operating?.[lang]?.map((item, idx) => {
-              if (item.type === "time") {
-                return (
-                  <div key={idx} className="row">
-                    <p className='themeDetailInformationTextLabel'>{item.label}</p>
-                    <p>{item.value}</p>
-                  </div>
-                );
-              }
+          {operatingRows.length > 0 && (
+            <div className="themeDetailOperatingList">
+              {operatingRows.map((item, index) => (
+                <p key={`${item.category}-${item.opens}-${index}`} className="themeDetailOperatingItem">
+                  {item.category !== '-' && (
+                    <span className="themeDetailOperatingLabel">{item.category}</span>
+                  )}
+                  <span className="themeDetailOperatingTime">
+                    {item.opens} ~ {item.closes}
+                  </span>
+                </p>
+              ))}
+            </div>
+          )}
 
-              if (item.type === "note") {
-                return (
-                  <p key={idx} className="themeDetailInformationNote">
-                    {item.text}
-                  </p>
-                );
-              }
-
-              return null;
-            })}
-          </div>
-        </div>
+          {operatingNotes.map((note, index) => (
+            <p key={`${note}-${index}`} className="themeDetailInformationNote">
+              {note.trim().startsWith('*') ? note : `*${note}`}
+            </p>
+          ))}
+        </section>
 
         {isFullMobile && <div className="emptyLine"></div>}
 
-        {/* 메뉴 */}
-<div className="themeDetailInformationCover">
-  <h4 className="themeDetailInformationTitle">
-    {t("themeDetail.tDCI.tDCIHMenu")}
-  </h4>
+        <section className="themeDetailInformationCover">
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Menu
+          </p>
+          <p className="title18px20px700">{t('themeDetail.tDCI.tDCIHMenu')}</p>
 
-  <div className="themeDetailInformationTextCover">
-    {data?.description?.menu?.[lang]?.map((item, idx) => {
-      const hasName = item?.name?.trim();
-      const hasPrice = item?.price?.toString().trim();
+          {menuRows.length > 0 && (
+            <div className="themeDetailInformationTableCover">
+              <table className="themeDetailInformationTable themeDetailMenuTable">
+                <colgroup>
+                  <col />
+                  <col className="themeDetailMenuPriceColumn" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">{t('themeDetail.tDCI.tDCIHProduct')}</th>
+                    <th scope="col">{t('themeDetail.tDCI.tDCIHPrice')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {menuRows.map((item, index) => (
+                    <tr key={`${item.name}-${index}`}>
+                      <td>{item.name.trim()}</td>
+                      <td>{item.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
-      if (!hasName && !hasPrice) return null;
-
-      return (
-        <div key={idx} className="themeDetailInfoMenuCover">
-          {hasName && (
-            <p className="themeDetailInformationText">
+          {menuNotes.map((item, index) => (
+            <p key={`${item.name}-${index}`} className="themeDetailInformationNote">
               {item.name}
             </p>
-          )}
+          ))}
 
-          {hasName && hasPrice && (
-            <span className="dotLine" />
+          {data?.description?.menuLink && (
+            <button type="button" className="themeDetailInfoBtn" onClick={goToMenu}>
+              {t('themeDetail.tDCI.tDCIHAllMenu')}
+            </button>
           )}
-
-          {hasPrice && (
-            <p className="themeDetailInformationText">
-              {item.price}
-            </p>
-          )}
-        </div>
-      );
-    })}
-  </div>
-
-  {data?.description?.menuLink && (
-    <button className="themeDetailInfoBtn" onClick={goToMenu}>
-      <p className="subFont">
-        {t("themeDetail.tDCI.tDCIHAllMenu")}
-      </p>
-    </button>
-  )}
-</div>
+        </section>
 
         {isFullMobile && <div className="emptyLine"></div>}
 
-        {/* 편의시설 */}
-        <div className="themeDetailInformationCover">
-          <h4 className="themeDetailInformationTitle">
-            {t("themeDetail.tDCI.tDCIHAmenities")}
-          </h4>
-
-          <div className="themeDetailInformationTextCover">
+        <section className="themeDetailInformationCover">
+          <p className="preTitle14px600b54a2f">
+            <span className="preTitle14px600b54a2fLine"></span>
+            Menu
+          </p>
+          <p className="title18px20px700">{t('themeDetail.tDCI.tDCIHAmenities')}</p>
+          
+          <div className="themeDetailAmenitiesList">
             {data?.info?.parking && (
               <span className="themeDetailInfoOthersSpan">
-                <img src="/images/icon/parkingsIcon.png" alt="parking" />
-                <p>{t("themeDetail.tDCI.tDCIParking")}</p>
+                <img src="/images/icon/parkingsIcon.png" alt="" />
+                <p>{t('themeDetail.tDCI.tDCIParking')}</p>
               </span>
             )}
 
             {data?.info?.takeOut && (
               <span className="themeDetailInfoOthersSpan">
-                <img src="/images/icon/takeawayIcon.png" alt="takeaway" />
-                <p>{t("themeDetail.tDCI.tDCITake")}</p>
+                <img src="/images/icon/takeawayIcon.png" alt="" />
+                <p>{t('themeDetail.tDCI.tDCITake')}</p>
               </span>
             )}
 
             {data?.info?.pet && (
               <span className="themeDetailInfoOthersSpan">
-                <img src="/images/icon/petIcon.png" alt="pet" />
-                <p>{t("themeDetail.tDCI.tDCIPet")}</p>
+                <img src="/images/icon/petIcon.png" alt="" />
+                <p>{t('themeDetail.tDCI.tDCIPet')}</p>
               </span>
             )}
 
             {data?.info?.reserve && (
               <span className="themeDetailInfoOthersSpan">
-                <img src="/images/icon/bookingIcon.png" alt="reserve" />
-                <p>{t("themeDetail.tDCI.tDCIReserve")}</p>
+                <img src="/images/icon/bookingIcon.png" alt="" />
+                <p>{t('themeDetail.tDCI.tDCIReserve')}</p>
               </span>
             )}
           </div>
-        </div>
+        </section>
       </section>
 
       {isFullMobile && <div className="emptyLine"></div>}
     </>
-    )
+  )
 }
 
 export default ThemeDetailInformation

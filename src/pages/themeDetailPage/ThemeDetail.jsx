@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
 // (hook) Device Size
 import { useResponsive } from '@/shared/hooks/useResponsive'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
@@ -35,7 +34,7 @@ const ThemeDetail = () => {
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
     // maxWidth: 479, maxWidth: 767, minWidth: 1024
-    const {isMobile, isFullMobile, isDesktop} = useResponsive();
+    const {isFullMobile, isDesktop} = useResponsive();
     const { category, id } = useParams();
     // const location = useLocation();
     // const { type } = location.state || {};
@@ -88,6 +87,7 @@ const themeCode = getThemeCode(category.toUpperCase());
                 isDesktop={isDesktop}
             />}
             {!isFullMobile ? 
+            <>
                 <div className='themeDetailWholeCover'>
                     <div className="themeDetailLeftWholeCover">
                         {isLodging?
@@ -95,7 +95,12 @@ const themeCode = getThemeCode(category.toUpperCase());
                         :
                             <ThemeDetailInformation data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
-                        <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
+                        <DetailVideo
+                            video={data.video}
+                            data={data}
+                            isFullMobile={isFullMobile}
+                            variant="feature"
+                        />
                     </div>
                     <div className="themeDetailRightWholeCover">
                         <DetailMap 
@@ -105,13 +110,14 @@ const themeCode = getThemeCode(category.toUpperCase());
                             showParkingInfo={false} 
                         />
                         <DetailLink data={data} isFullMobile={isFullMobile} />
-                        <DetailReview data={data} isFullMobile={isFullMobile} />
-                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                        <DetailReview data={data} typeTable={`${category}s`} isFullMobile={isFullMobile} />
                     </div>
                 </div>
+                        <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
+                        </>
             : 
-            <div className='themeDetailWholeCover'>
-                    <div className="themeDetailLeftWholeCover">
+            <div>
+                    <div>
                         <DetailMap 
                             data={data}
                             isFullMobile={isFullMobile}
@@ -119,15 +125,20 @@ const themeCode = getThemeCode(category.toUpperCase());
                             showParkingInfo={false}
                         />
                     </div>
-                    <div className="themeDetailRightWholeCover">
+                    <div>
                         {isLodging?
                             <ThemeDetailLodging data={data} isFullMobile={isFullMobile} lang={lang}/>
                         :
                             <ThemeDetailInformation data={data} isFullMobile={isFullMobile} lang={lang} themeName={themeName}/>
                         }
                         <DetailLink data={data} isFullMobile={isFullMobile}/>
-                        <DetailReview data={data} isFullMobile={isFullMobile}/>
-                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                        <DetailVideo
+                            video={data.video}
+                            data={data}
+                            isFullMobile={isFullMobile}
+                            variant="feature"
+                        />
+                        <DetailReview data={data} typeTable={`${category}s`} isFullMobile={isFullMobile}/>
                         <DetailGallery data={data} isFullMobile={isFullMobile} theme={themeCode}/>
                     </div>
                 </div>

@@ -1,28 +1,29 @@
+.themeDetailWholeCover {
+    width: 100%;
+    max-width: 1232px;
+    margin: 0 auto;
+    padding: 16px;
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    /* (48/1200)*100 = 4 */
+    gap: 4%;
+}
 
+.themeDetailLeftWholeCover {
+/* (784/1200)*100 = 65.33333333333333 */
+width: 65.33333333333333%;
+}
+.themeDetailRightWholeCover {
+/* (368/1200)*100 = 30.666666666666664 */
+width: 30.66666666666666%;
+}
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
 }
 
 @media only all and (min-width: 768px) {
-    .themeDetailWholeCover {
-        width: 100%;
-        padding: 20px 20px 40px;
-        max-width: 1480px;
-        margin: 0 auto;
-        /* Flex */
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .themeDetailLeftWholeCover {
-        width: 60%;
-    }
-
-    .themeDetailRightWholeCover {
-        width: 29%;
-    }
 
 }
 
@@ -31,6 +32,6 @@
 
 @media only all and (min-width: 1921px) {
     .themeDetailWholeCover {
-        max-width: 1960px;
+        max-width: 1440px;
     }
 }

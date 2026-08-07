@@ -76,15 +76,16 @@
     background-color: #b54a2f;
 }
 
+/*----------Text Font Design----------*/
 .preTitle14px600b54a2f {
-    font-size: 14px;
-    font-weight: 600;
-    color: #b54a2f;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #b54a2f;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
 .title28px40px700 {
@@ -92,18 +93,32 @@
   /* Font */
   font-size: 28px;
   font-weight: 700;
-  color: #111;
+  color: #1a1a1a;
 }
+
+.title18px20px700 {
+  /* Font */
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+/*-----------------------------------*/
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
+  /*----------Text Font Design----------*/
   .title28px40px700 {
     /* Font */
     font-size: 40px;
   }
+  .title16px18px700 {
+    /* Font */
+    font-size: 20px;
+  }
+  /*-----------------------------------*/
 }
 
 @media only all and (min-width: 1024px) {}

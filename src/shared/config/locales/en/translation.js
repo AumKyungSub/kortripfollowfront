@@ -79,11 +79,42 @@ export default {
     common: {
       banner:{
         visit: "Visited",
-          navigate: "Open Map",
+          navigate: "Direction",
           share: "Share"
+      },
+      map: {
+        map: "Map",
+        navigate: "Direction",
+        navigateParking: "Car Park"
+      },
+      table: {
+        category: "Category",
+        opens: "Opens",
+        closes: "Closes"
+      },
+      link: {
+        title: "Official Links",
+          noLink: "No Official Links"
       }
     },
     location: {
+      explain: {
+        title: "Introduction",
+        showMore: "Show more",
+        showLess: "Show less"
+      },
+      info: {
+        title: "Information",
+        operating: "Operating hours",
+        allday: "24 hours a day",
+        closedDay: "Closed day",
+        openAll: "24/7",
+        address: "Address",
+        parking: "Parking",
+        category: "Category",
+        opens: "Opens",
+        closes: "Closes"
+      }
     },
     theme: {
       
@@ -168,11 +199,9 @@ export default {
     noData: "No data available."
   },
   locationPage: {
-    explain: {
-      title: "Introduction"
-    },
     info: {
       title: "Information",
+      fees: "Fees",
       operating: "Operating hours",
       closedDay: "Closed day",
       entrance: "Entrance Fee",
@@ -200,7 +229,15 @@ export default {
     },
     recommend: {
       title: "Gallery",
-      empty: "The gallery is empty."
+      empty: "The gallery is empty.",
+      viewAll: "View all",
+      more: "View more",
+      photoCount: "Photo {{current}} / {{total}}",
+      imageAlt: "Gallery photo {{number}}",
+      modalLabel: "Original photo gallery",
+      previous: "Previous photo",
+      next: "Next photo",
+      close: "Close gallery"
     }
   },
   listCount: {
@@ -222,6 +259,8 @@ export default {
       tDCIHInfo: "Info",
       tDCIHOperating: "Ops Hrs",
       tDCIHMenu: "Menu",
+      tDCIHProduct: "Item",
+      tDCIHPrice: "Price",
       tDCIHWON: "KRW",
       tDCIHAllMenu: "Browse Full Menu",
       tDCIHAmenities: "Amenities",
@@ -265,7 +304,23 @@ export default {
     }
   },
   detailVideo: {
-    title: "Video"
+    title: "Video",
+    featureTitle: "Shorts on Location",
+    youtubeShorts: "YouTube Shorts",
+    videoTitle: "{{name}} on Location",
+    description: "This video was filmed during our visit. Experience the atmosphere and details of this place more vividly through video.",
+    play: "Play video",
+    viewOnYoutube: "Watch on YouTube",
+    pending: "Coming soon",
+    pendingTitle: "A location video is on the way",
+    pendingDescription: "A new video capturing this place is currently being prepared and will be updated soon."
+  },
+  detailReview: {
+    title: "Editor's Review",
+    pending: "A review is coming soon",
+    writeReview: "Coming Soon",
+    description: "Read our honest review based on a firsthand visit to this place.",
+    readReview: "Read on Naver Blog"
   },
   footer: {
     slogan: "Not sure where to travel in Korea?\nDiscover destinations by region and theme with KORTRIP.",

@@ -3,6 +3,7 @@
 }
 
 .detailLinkCover {
+    padding: 16px 0;
     cursor: pointer;
     /* Flex */
     display: flex;
@@ -18,6 +19,11 @@
     width: 100%;
 }
 
+.detailLinkNoLink {
+    margin-top: 8px;
+    text-align: center;
+}
+
 /*---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (max-width: 479px) {
@@ -29,11 +35,14 @@
 
 @media only all and (min-width: 768px) {
     .detailLinkWrapper {
-        padding: 0;
+        margin-top: 18px;
+        padding: 18px 30px;
+        border: 1px solid #EFECE7;
+        border-radius: 10px;
+        background-color: #FDFDFD;
     }
 
     .detailLinkCover {
-        padding: 16px;
         padding-left: 0;
     }
 }

@@ -5,6 +5,27 @@
     /* Position */
     position: relative;
 }
+    
+.locationDetailExplainTextImgCover {
+    width: 100%;
+    padding: 16px 0 0 0;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+    
+.locationDetailExplainImgCover {
+    width: 100%;
+    aspect-ratio: 16/10;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Background */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 
 .locationDetailExplainTitle {
     width: 100%;
@@ -15,16 +36,61 @@
 }
 
 .locationDetailExplain {
+    white-space: pre-wrap;
     width: 100%;
-    margin-bottom: 16px;
     /* Font */
     font-weight: 400;
-    white-space: pre-wrap;
+    /* 이하생략 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;      /* 최대 3줄 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.locationDetailExplain--expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.locationDetailExplainMoreBtn {
+    margin: 5px auto 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    /* Font */
+    color: #b54a2f;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.locationDetailExplainMoreBtn:hover {
+    text-decoration: underline;
+}
+
+.locationDetailExplainMoreBtn:focus-visible {
+    outline: 2px solid #b54a2f;
+    outline-offset: 3px;
+}
+
+.locationDetailExplainMoreIcon {
+    transition: transform 0.2s ease;
+}
+
+.locationDetailExplainMoreBtn[aria-expanded="true"]
+.locationDetailExplainMoreIcon {
+    transform: rotate(180deg);
 }
 
 .locationDetailExplainLast {
     width: 100%;
-    margin-bottom: 16px;
     text-align: center;
     /* Font */
     color: #525252;
@@ -54,25 +120,8 @@
         align-items: start;
     }
     
-    .locationDetailExplainTextImgCover {
-        width: 100%;
-        padding: 16px 0;
-        /* Flex */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
     .locationDetailExplainImgCover {
-        width: 100%;
-        aspect-ratio: 16/6;
-        border-radius: 5px;
-        overflow: hidden;
-        /* Background */
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
+        aspect-ratio: 16/7;
     }
 
     .locationDetailExplainTextCover {
@@ -95,6 +144,10 @@
         margin-bottom: 0;
         /* Font */
         text-align: left;
+    }
+
+    .locationDetailExplainMoreBtn {
+        margin: 5px 5px 16px auto;
     }
 }
 

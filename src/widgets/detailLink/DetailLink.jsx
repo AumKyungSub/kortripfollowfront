@@ -23,16 +23,12 @@ const DetailLink = ({data, isFullMobile}) => {
                 {data?.location?.homepage
                 ?
                     <>
-                        {!isFullMobile ? 
-                            <>
-                                <h4 className="detailTitleMin768">{t("locationPage.info.sns")}</h4>
-                                <div className='emptyLine1px'></div>
-                            </>
-                        :
-                            <>
-                                <h4 className="detailTitleMax768">{t("locationPage.info.sns")}</h4>
-                            </>
-                        }
+                        <p className="preTitle14px600b54a2f">
+                            <span className="preTitle14px600b54a2fLine"></span>
+                            Links
+                        </p>
+                        <p className="title18px20px700">{t("detailPage.common.link.title")}</p>
+
                         <div className="detailLinkCover">
                             {data?.location?.homepage &&
                                 <span className='detailLinkIcon' onClick={goToHomepage}>
@@ -48,7 +44,12 @@ const DetailLink = ({data, isFullMobile}) => {
                     </>
                 : 
                     <>
-                        {isFullMobile && <p>{t("locationPage.info.noLink")}</p>}
+                        <p className="preTitle14px600b54a2f">
+                            <span className="preTitle14px600b54a2fLine"></span>
+                            Links
+                        </p>
+                        <p className="title18px20px700">{t("detailPage.common.link.title")}</p>
+                        <p className='detailLinkNoLink'>{t("detailPage.common.link.noLink")}</p>
                     </>
                 }
             </section>

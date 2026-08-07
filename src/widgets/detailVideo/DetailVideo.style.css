@@ -1,61 +1,317 @@
+/* Default video */
 .detailVideo {
   width: 100%;
-    padding: 16px;
-}
-
-.detailVideoTitle {
-    margin-bottom: 20px;
-    /* Font */
-    font-size: 1.25rem;
-    font-weight: 600;
+  padding: 16px;
 }
 
 .detailVideoFrame {
-  position: relative;
   width: 100%;
-  padding-top: 177.77%; /* 9:16 쇼츠 비율 */
-  border-radius: 12px;
+  padding-top: 177.77%;
   overflow: hidden;
-  background: #000;
+  border-radius: 12px;
+  background-color: #000;
+  position: relative;
 }
 
 .detailVideoFrame iframe {
+  width: 100%;
+  height: 100%;
   position: absolute;
   inset: 0;
+}
+
+/* Featured location video */
+.detailVideoFeature {
+  --detail-video-primary: #b54a2f;
+  --detail-video-dark: #9d3f27;
+  --detail-video-soft: rgba(181, 74, 47, 0.12);
+
+  width: 100%;
+  padding: 16px;
+}
+
+.detailVideoFeatureHeading {
+  margin-bottom: 14px;
+}
+
+.detailVideoFeatureCard {
+  overflow: hidden;
+  border: 1px solid var(--detail-video-dark);
+  border-radius: 14px;
+  background-color: #fffdfa;
+}
+
+.detailVideoFeatureMedia {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background-color: #111;
+  position: relative;
+}
+
+.detailVideoFeatureMedia iframe,
+.detailVideoFeatureThumbnail,
+.detailVideoFeatureThumbnail img,
+.detailVideoFeaturePlaceholder {
   width: 100%;
   height: 100%;
 }
 
-/*---------------------------------------------------- */
-/* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
+.detailVideoFeatureMedia iframe {
+  display: block;
+  border: 0;
 }
 
-@media only all and (min-width: 480px) and (max-width: 767px) {
+.detailVideoFeatureThumbnail {
+  padding: 0;
+  border: 0;
+  background-color: #111;
+  cursor: pointer;
+  position: relative;
+}
 
+.detailVideoFeatureThumbnail img {
+  display: block;
+  object-fit: cover;
+}
+
+.detailVideoFeatureThumbnail::after {
+  content: "";
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.28), transparent 55%);
+  position: absolute;
+  inset: 0;
+}
+
+.detailVideoFeaturePlayIcon,
+.detailVideoFeaturePlaceholder,
+.detailVideoFeaturePlaceholderIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailVideoFeaturePlayIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  color: var(--detail-video-primary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.detailVideoFeaturePlaceholder {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent),
+    #252525;
+  color: #777;
+}
+
+.detailVideoFeaturePlaceholderIcon {
+  width: 62px;
+  height: 62px;
+  border: 1px solid #555;
+  border-radius: 50%;
+}
+
+.detailVideoFeatureContent {
+  padding: 24px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detailVideoFeatureBadge {
+  padding: 5px 11px;
+  border-radius: 50px;
+  background-color: var(--detail-video-soft);
+  color: var(--detail-video-dark);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.detailVideoFeatureBadge--pending {
+  background-color: #f0eeeb;
+  color: #706a64;
+}
+
+.detailVideoFeatureContent h3 {
+  margin-top: 14px;
+  color: #171717;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.detailVideoFeatureContent > p {
+  margin-top: 10px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.detailVideoFeatureActions {
+  width: 100%;
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detailVideoFeatureActions button,
+.detailVideoFeatureActions a {
+  min-height: 40px;
+  padding: 9px 16px;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.detailVideoFeatureActions button {
+  border: 1px solid var(--detail-video-dark);
+  background-color: var(--detail-video-primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.detailVideoFeatureActions button:hover {
+  background-color: var(--detail-video-dark);
+}
+
+.detailVideoFeatureActions a {
+  border: 1px solid rgba(157, 63, 39, 0.3);
+  background-color: #fff;
+  color: var(--detail-video-dark);
+}
+
+.detailVideoFeatureActions button:focus-visible,
+.detailVideoFeatureActions a:focus-visible,
+.detailVideoFeatureThumbnail:focus-visible {
+  outline: 2px solid var(--detail-video-primary);
+  outline-offset: 3px;
+}
+
+@media only all and (min-width: 480px) {
+  .detailVideoFeatureHeading {
+    margin-bottom: 16px;
+  }
+
+  .detailVideoFeatureMedia {
+    aspect-ratio: 16/9;
+  }
+
+  .detailVideoFeaturePlayIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .detailVideoFeaturePlaceholderIcon {
+    width: 66px;
+    height: 66px;
+  }
+
+  .detailVideoFeatureContent {
+    padding: 28px 24px 24px;
+  }
+
+  .detailVideoFeatureBadge {
+    padding-inline: 12px;
+    font-size: 11px;
+  }
+
+  .detailVideoFeatureContent h3 {
+    margin-top: 16px;
+    font-size: 22px;
+  }
+
+  .detailVideoFeatureContent > p {
+    font-size: 14px;
+  }
+
+  .detailVideoFeatureActions {
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .detailVideoFeatureActions button,
+  .detailVideoFeatureActions a {
+    padding-inline: 18px;
+    font-size: 13px;
+    gap: 7px;
+  }
 }
 
 @media only all and (min-width: 768px) {
-    .detailVideo {
-        padding: 0;
-        white-space: pre-wrap;
-    }
+  .detailVideo {
+    padding: 0;
+    white-space: pre-wrap;
+  }
 
-    .locationInfoTextCover {
-        padding: 16px;
-        padding-left: 0;
-        background-color: #fff;
-        border-radius: 10px;
-    }
+  .detailVideoFrameWrap {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 16px;
+  }
 
-    .detailVideoFrameWrap {
-      width: 80%;
-      padding-top: 16px;
-      margin: 0 auto;
-    }
+  .detailVideoFeature {
+    margin-top: 28px;
+    padding: 0;
+  }
 
-}
+  .detailVideoFeatureHeading {
+    margin-bottom: 18px;
+  }
 
-@media only all and (min-width: 1024px) {
+  .detailVideoFeatureCard {
+    min-height: 380px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 46% 54%;
+  }
 
+  .detailVideoFeatureMedia {
+    min-width: 0;
+    min-height: 380px;
+    aspect-ratio: auto;
+  }
+
+  .detailVideoFeaturePlayIcon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .detailVideoFeaturePlaceholderIcon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .detailVideoFeatureContent {
+    min-width: 0;
+    padding: 38px 34px 32px;
+  }
+
+  .detailVideoFeatureContent h3 {
+    margin-top: 18px;
+    font-size: 23px;
+    line-height: 1.35;
+  }
+
+  .detailVideoFeatureContent > p {
+    margin-top: 12px;
+    line-height: 1.75;
+  }
+
+  .detailVideoFeatureActions {
+    width: auto;
+    margin-top: auto;
+  }
 }

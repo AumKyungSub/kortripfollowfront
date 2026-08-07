@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 /*------------------------API hooks-----------------------------------*/
 // Read One DB
 import { useReadOneDB } from '@/shared/api/useReadOneDB'
@@ -31,6 +31,7 @@ import DetailBanner from '@/widgets/detailBanner/DetailBanner'
 import LocationDetailExplain from '@/pages/locationDetailPage/components/locationDetailExplain/LocationDetailExplain'
 import DetailMap from '@/widgets/detailMap/DetailMap'
 import LocationDetailInformation from '@/pages/locationDetailPage/components/locationDetailInformation/LocationDetailInformation'
+import LocationDetailFees from '@/pages/locationDetailPage/components/locationDetailFees/LocationDetailFees'
 import DetailLink from '@/widgets/detailLink/DetailLink'
 import DetailReview from '@/widgets/detailReview/DetailReview'
 import DetailGallery from '@/widgets/detailGallery/DetailGallery'
@@ -43,7 +44,7 @@ const LocationDetailPage = () => {
     const { id } = useParams();
     const { t, lang} = useLanguage();
     // minWidth: 1024
-    const {isMobile, isTablet, isFullMobile, isDesktop} = useResponsive();
+    const {isFullMobile} = useResponsive();
     
     const { data, loading, error } = useReadOneDB("rankings", id);
 
@@ -67,43 +68,46 @@ const LocationDetailPage = () => {
                 />
             {!isFullMobile 
             ?
+            <>
                 <div className='locationDetailWholeCover'>
                     <div className="locationDetailLeftWholeCover">
-                        <LocationDetailExplain 
-                            rankingData={data} 
-                            isFullMobile={isFullMobile} 
-                            isDesktop={isDesktop} 
-                            isTablet={isTablet} 
-                            lang={lang}
-                        />
-                        <DetailMap 
+                        <LocationDetailExplain rankingData={data} />
+                        <DetailLink data={data} isFullMobile={isFullMobile} />
+                        <DetailVideo
+                            video={data.video}
                             data={data}
-                            isFullMobile={isFullMobile}
-                            lang={lang}
-                            showParkingInfo={true}
+                            variant="feature"
                         />
-                        <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
+                        <DetailReview data={data} typeTable="rankings" isFullMobile={isFullMobile} />
                     </div>
                     <div className="locationDetailRightWholeCover">
-                        <LocationDetailInformation rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                        <DetailLink data={data} isFullMobile={isFullMobile} />
-                        <DetailReview data={data} isFullMobile={isFullMobile} />
-                        <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                        <DetailMap 
+                            data={data}
+                            showParkingInfo={true}
+                        />
+                        <LocationDetailInformation rankingData={data}/>
+                        <LocationDetailFees rankingData={data}/>
                     </div>
                 </div>
+                        <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
+                        </>
             :
                 <div>
-                    <LocationDetailExplain rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                    <LocationDetailInformation rankingData={data} isFullMobile={isFullMobile} lang={lang}/>
-                    <DetailLink data={data} isFullMobile={isFullMobile} />
-                    <DetailReview data={data} isFullMobile={isFullMobile} />
+                    <LocationDetailExplain rankingData={data}/>
                     <DetailMap 
                         data={data}
-                        isFullMobile={isFullMobile}
-                        lang={lang}
                         showParkingInfo={true}
                     />
-                    <DetailVideo video={data.video} isFullMobile={isFullMobile} />
+                    <LocationDetailInformation rankingData={data}/>
+                    <LocationDetailFees rankingData={data}/>
+                    <DetailLink data={data} isFullMobile={isFullMobile} />
+                    <DetailVideo
+                        video={data.video}
+                        data={data}
+                        isFullMobile={isFullMobile}
+                        variant="feature"
+                    />
+                    <DetailReview data={data} typeTable="rankings" isFullMobile={isFullMobile} />
                     <DetailGallery data={data} isFullMobile={isFullMobile} lang={lang}/>
                 </div>
             }

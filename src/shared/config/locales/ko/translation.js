@@ -80,9 +80,37 @@ export default {
           visit: "직접 방문",
           navigate: "길찾기",
           share: "공유"
+        },
+        map: {
+          map: "지도",
+          navigate: "길찾기",
+          navigateParking: "주차장"
+        },
+        table: {
+          category: "구분",
+          opens: "시작",
+          closes: "종료"
+        },
+        link: {
+          title: "공식 채널",
+          noLink: "공식 채널이 없습니다."
         }
       },
       location: {
+        explain: {
+          title: "소개",
+          showMore: "더보기",
+          showLess: "접기"
+        },
+        info: {
+          title: "이용 정보",
+          operating: "운영시간",
+          allday: "24시 운영",
+          closedDay: "휴무일",
+          openAll: "연중무휴",
+          address: "주소",
+          parking: "주차",
+        }
       },
       theme: {
 
@@ -161,11 +189,9 @@ export default {
     noData: "데이터가 없습니다."
   },
   locationPage: {
-    explain: {
-      title: "소개"
-    },
     info: {
       title: "이용 정보",
+      fees: "이용요금",
       operating: "운영시간",
       closedDay: "휴무일",
       entrance: "입장료",
@@ -193,7 +219,15 @@ export default {
     },
     recommend: {
       title: "갤러리",
-      empty: "갤러리가 비어있습니다."
+      empty: "갤러리가 비어있습니다.",
+      viewAll: "전체 보기",
+      more: "더보기",
+      photoCount: "사진 {{current}} / {{total}}",
+      imageAlt: "갤러리 사진 {{number}}",
+      modalLabel: "원본 사진 갤러리",
+      previous: "이전 사진",
+      next: "다음 사진",
+      close: "갤러리 닫기"
     }
   },
   listCount: {
@@ -215,6 +249,8 @@ export default {
       tDCIHInfo: "정보",
       tDCIHOperating: "영업 시간",
       tDCIHMenu: "메뉴",
+      tDCIHProduct: "상품",
+      tDCIHPrice: "가격",
       tDCIHWON: "원",
       tDCIHAllMenu: "전체 메뉴 보기",
       tDCIHAmenities: "편의 시설",
@@ -258,7 +294,23 @@ export default {
     }
   },
   detailVideo: {
-    title: "영상"
+    title: "영상",
+    featureTitle: "현장 쇼츠",
+    youtubeShorts: "유튜브 쇼츠",
+    videoTitle: "{{name}} 현장 쇼츠",
+    description: "이 장소를 직접 방문해 촬영한 영상입니다. 현장의 분위기와 세부적인 모습을 영상으로 더 생생하게 만나보세요.",
+    play: "영상 재생",
+    viewOnYoutube: "유튜브에서 보기",
+    pending: "준비중",
+    pendingTitle: "현장 영상을 준비하고 있어요",
+    pendingDescription: "이 장소의 생생한 모습을 담은 영상이 곧 업데이트될 예정입니다. 조금만 기다려 주세요."
+  },
+  detailReview: {
+    title: "주인장의 리뷰",
+    pending: "리뷰가 준비중입니다",
+    writeReview: "리뷰 준비중",
+    description: "직접 방문하고 기록한 주인장의 솔직한 리뷰를 확인해 보세요.",
+    readReview: "네이버 블로그에서 보기"
   },
   footer: {
     slogan: "국내여행 어디로 갈지 고민된다면 국트따라.\n지역별·테마별 국내여행 명소를 소개합니다.",

@@ -1,48 +1,116 @@
 .detailReviewWrapper {
+    --detail-review-primary: #b54a2f;
+    --detail-review-dark: #9d3f27;
+    --detail-review-soft: rgba(181, 74, 47, 0.12);
+
     padding: 16px;
 }
 
-.detailReview,
-.detailReviewYet {
+.detailReviewCard {
     width: 100%;
-    display: block;
-    padding: 20px;
+    padding: 24px;
+    border: 1px solid #eee7e1;
+    border-radius: 16px;
+    background-color: #fffdfa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    border-radius: 10px;
-    background-color: #4285F4;
-    cursor: pointer;
-    /* Font */
+}
+
+.detailReviewIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--detail-review-soft);
+    color: var(--detail-review-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailReviewIcon img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.detailReviewCard h3 {
+    margin-top: 14px;
+    color: #1a1a1a;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.detailReviewCard > p {
+    margin-top: 6px;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.detailReviewMeta {
+    margin-top: 8px;
+    color: #7a6e68;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.detailReviewRating {
+    color: var(--detail-review-dark);
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.detailReviewAction {
+    width: 100%;
+    min-height: 42px;
+    margin-top: 16px;
+    padding: 10px 16px;
+    border: 1px solid var(--detail-review-dark);
+    border-radius: 50px;
+    background-color: var(--detail-review-primary);
     color: #fff;
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.detailReviewYet {
-    background-color: #525252;
+.detailReviewAction img {
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+    border-radius: 4px;
+    background-color: #fff;
+    object-fit: contain;
 }
 
-
-/*---------------------------------------------------- */
-/* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
+a.detailReviewAction:hover {
+    background-color: var(--detail-review-dark);
 }
 
-@media only all and (min-width: 480px) and (max-width: 767px) {
+.detailReviewAction:focus-visible {
+    outline: 2px solid var(--detail-review-primary);
+    outline-offset: 3px;
+}
 
+.detailReviewAction:disabled {
+    opacity: 1;
+    cursor: default;
 }
 
 @media only all and (min-width: 768px) {
     .detailReviewWrapper {
+        margin-top: 28px;
         padding: 0 0 16px;
     }
-
-    .detailReview,
-    .detailReviewYet {
-        margin-top: 16px;
-    }
-
-}
-
-@media only all and (min-width: 1024px) {
-
 }
