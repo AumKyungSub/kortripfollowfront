@@ -183,6 +183,7 @@ const ListPage = ({ mode }) => {
   const countText =
     isThemeMode
       ? t("theme.totalCount", {
+        count: filteredList.length,
         themeName: getThemeNameWithParticle(selected, selectedText, lang),
       })
       : t("regionPage.totalCount", { count: filteredList.length });
