@@ -87,6 +87,10 @@
     gap: 5px;
 }
 
+.listCover:hover {
+    border: 1px solid #9d3f27;
+}
+
 .listCover:hover .listImg {
     transform: scale(1.2);
 }
@@ -94,6 +98,7 @@
 .listCover:hover .listGoTo {
     color: #9d3f27;
 }
+
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */

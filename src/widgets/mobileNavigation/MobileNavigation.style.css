@@ -9,7 +9,8 @@
     z-index: 999;
 }
 
-body.menu-open .mobileNavigationWrapper {
+body.menu-open .mobileNavigationWrapper,
+body.search-modal-open .mobileNavigationWrapper {
     display: none !important;
 }
 

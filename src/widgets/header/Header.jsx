@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 /*------------------------hooks-----------------------------------*/
 // Navigate, Location
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -11,6 +11,9 @@ import { useResponsive } from '@/shared/hooks/useResponsive'
 import { useLanguage } from '@/shared/hooks/useLanguage'
 /*------------------------/custom hooks-----------------------------------*/
 
+// Components
+import SearchModal from '@/widgets/searchModal/SearchModal'
+
 // Page css
 import './Header.style.css'
 
@@ -18,6 +21,9 @@ const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const languageMenuRef = useRef(null);
 
   const {
           isFullMobile /* maxWidth: 767 */
@@ -102,6 +108,28 @@ const Header = () => {
       document.body.classList.remove('menu-open');
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isLanguageOpen) return;
+
+    const closeLanguageMenu = (event) => {
+      if (event.type === 'keydown' && event.key !== 'Escape') return;
+      if (event.type === 'mousedown' && languageMenuRef.current?.contains(event.target)) return;
+      setIsLanguageOpen(false);
+    };
+
+    document.addEventListener('mousedown', closeLanguageMenu);
+    document.addEventListener('keydown', closeLanguageMenu);
+    return () => {
+      document.removeEventListener('mousedown', closeLanguageMenu);
+      document.removeEventListener('keydown', closeLanguageMenu);
+    };
+  }, [isLanguageOpen]);
+
+  const selectLanguage = (language) => {
+    changeLanguage(language);
+    setIsLanguageOpen(false);
+  };
   
   return (
     <header className={showDarkHeader ? "scrolled" : ""}>
@@ -131,20 +159,28 @@ const Header = () => {
         <div className='utilityBar'>
           {!isFullMobile && (
             <>
-              <button
-                className={`
-                  ${isKo ? 'active' : 'languageBtn'}${showDarkHeader ? 'Sc' : ''}
-                `} 
-                onClick={() => changeLanguage("ko")}>
-                한국어
+              <button className={`desktopSearchBtn ${showDarkHeader ? 'dark' : ''}`} onClick={() => setIsSearchOpen(true)} aria-label={isKo ? '여행지 검색' : 'Search destinations'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search headerSearch"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
               </button>
-              <button
-                className={`
-                  ${isEn ? 'active' : 'languageBtn'}${showDarkHeader ? 'Sc' : ''}
-                `} 
-                onClick={() => changeLanguage("en")}>
-                ENGLISH
-              </button>
+              <div className={`desktopLanguage ${showDarkHeader ? 'dark' : ''}`} ref={languageMenuRef}>
+                <button
+                  type="button"
+                  className="desktopLanguageTrigger"
+                  aria-haspopup="listbox"
+                  aria-expanded={isLanguageOpen}
+                  onClick={() => setIsLanguageOpen((isOpen) => !isOpen)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-languages-icon lucide-languages"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+                  <span>{isKo ? '한국어' : 'ENG'}</span>
+                  <svg className={isLanguageOpen ? 'open' : ''} width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <div className={`desktopLanguageMenu ${isLanguageOpen ? 'open' : ''}`} role="listbox" aria-label={t('header.setLanguage')}>
+                  <button type="button" role="option" aria-selected={isKo} className={isKo ? 'selected' : ''} onClick={() => selectLanguage('ko')}>한국어</button>
+                  <button type="button" role="option" aria-selected={isEn} className={isEn ? 'selected' : ''} onClick={() => selectLanguage('en')}>ENGLISH</button>
+                </div>
+              </div>
             </>
           )}
 
@@ -185,23 +221,23 @@ const Header = () => {
           </div>
           
           <div className="mobileMenuSearch">
-            <div className="searchInputWrapper">
+            <button type="button" className="searchInputWrapper" onClick={() => { setIsMenuOpen(false); setIsSearchOpen(true); }}>
               <img src="/images/icon/searchIcon.png" alt="search" className="searchIcon" />
-              <input type="text" placeholder={t("header.search")} />
-            </div>
-            <div className="popularSearches">
+              <span>{isKo ? '여행지 이름이나 키워드를 검색하세요' : 'Search destinations or keywords'}</span>
+            </button>
+            {/* <div className="popularSearches">
               <p>
                 {t("header.topSearchTitle")}
               </p>
               <div className="popularTags">
                 {t("header.topSearchList1")}
-                {/* <span>제주도</span>
+                <span>제주도</span>
                 <span>부산 야경</span>
                 <span>가을 단풍</span>
                 <span>설악산</span>
-                <span>경주 벚꽃</span> */}
+                <span>경주 벚꽃</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="mobileMenuCategories">
@@ -243,6 +279,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {isSearchOpen && <SearchModal onClose={() => setIsSearchOpen(false)} />}
     </header>
   )
 }

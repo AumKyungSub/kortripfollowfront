@@ -135,6 +135,28 @@ export default {
     }
   },
   /*---------------------------------------*/
+  /////////////// 모달 페이지 나눔 ///////////////
+  /*---------- 검색창 (SearchModal) -----------*/
+  searchModal: {
+    placeholder: "Search destinations or keywords...",
+    initialTitle: "Search for a destination",
+    initialText: 'Search by region, destination name, or keyword',
+    noTitle: 'No results found',
+    noText: 'Try searching with another keyword',
+    count_one: "{{count}} destination found",
+    count_other: "{{count}} destinations found",
+    loading: 'Loading destinations...',
+    error: 'Unable to load search data',
+    categories: { 
+      attraction: 'Attraction', 
+      cafe: 'Cafe', 
+      restaurant: 'Restaurant', 
+      lodging: 'Lodging', 
+      food: 'Food' 
+    },
+    close: 'Close search', clear: 'Clear search', search: 'Search destinations',
+  },
+  /*---------------------------------------*/
 
   homepage: {
     homeRecommended: {

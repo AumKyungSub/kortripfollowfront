@@ -131,6 +131,29 @@ export default {
       }
     },
     /*---------------------------------------*/
+    /////////////// 모달 페이지 나눔 ///////////////
+    /*---------- 검색창 (SearchModal) -----------*/
+    searchModal: {
+      placeholder: "여행지 이름이나 키워드를 입력하세요...",
+      initialTitle: "찾고 싶은 여행지를 검색해보세요",
+      initialText: '지역명, 여행지 이름, 키워드로 검색할 수 있어요',
+      noTitle: '검색 결과가 없어요',
+      noText: '다른 키워드로 다시 검색해보세요',
+      count: "{{count}}개의 여행지를 찾았어요",
+      loading: '여행지를 불러오고 있어요...',
+      error: '검색 정보를 불러오지 못했어요',
+      categories: { 
+        attraction: '명소', 
+        cafe: '카페', 
+        restaurant: '맛집', 
+        lodging: '숙소', 
+        food: '먹거리' 
+      },
+      close: '검색 닫기', 
+      clear: '검색어 지우기', 
+      search: '여행지 검색',
+    },
+    /*---------------------------------------*/
 
   homepage: {
     homeReview: {
