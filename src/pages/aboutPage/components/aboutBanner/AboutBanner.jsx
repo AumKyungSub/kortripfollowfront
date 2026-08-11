@@ -17,7 +17,7 @@ const AboutBanner = () => {
 
     return (
         <div className="homeBannerBackground">
-            <div className="aboutBannerWrapper">
+            <div className="aboutBannerWrapper bannerImg">
               {/* 텍스트 영역 */}
                 <div className="aboutBannerTextCover">
                     <p className='aboutBannerLocation'>

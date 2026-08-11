@@ -108,7 +108,7 @@ const HomeBanner = ({
   /* ========================================================= */
 
   return (
-    <div className="homeBannerBackground" style={{ backgroundImage }}>
+    <div className="homeBannerBackground bannerImg" style={{ backgroundImage }}>
       {/* 메인 배너 이미지 */}
 
     <div className="homeBannerWrapper">

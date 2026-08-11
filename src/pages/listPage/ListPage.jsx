@@ -135,7 +135,7 @@ const ListPage = ({ mode }) => {
 
   // 페이지네이션
   // const ITEMS_PER_PAGE = 8;
-  const ITEMS_PER_PAGE = isFullMobile ? 4 : 8;
+  const ITEMS_PER_PAGE = isFullMobile ? 4 : 6;
   
   const {
     currentPage,
@@ -171,15 +171,18 @@ const ListPage = ({ mode }) => {
 
   const title =
     isThemeMode
-      ? `${t("theme.titleSuffix")} ${selectedText}`
+      ? `${selectedText}`
       : lang.startsWith("ko")
         ? `${selectedText}`
         : `${selectedText}`;
 
+  const preTitle = isThemeMode ? "RECOMMENDED" : "DESTINATIONS IN";
+
+  const count = filteredList.length;
+
   const countText =
     isThemeMode
       ? t("theme.totalCount", {
-        count: filteredList.length,
         themeName: getThemeNameWithParticle(selected, selectedText, lang),
       })
       : t("regionPage.totalCount", { count: filteredList.length });
@@ -197,7 +200,7 @@ const ListPage = ({ mode }) => {
       <Header />
       <ListBanner
         title={title}
-        count={countText}
+        count={count}
         type={mode}
         selected = {selected}
         images={!isThemeMode ? filteredList : null}
@@ -212,6 +215,11 @@ const ListPage = ({ mode }) => {
 
       {filteredList.length > 0 ? (
         <>
+          <ListCount 
+            preTitle = {preTitle}
+            title = {title}
+            countText = {countText}
+          />
           <List
             filteredList={pagedList}
             link={isThemeMode ? "theme" : "location"}
@@ -225,7 +233,6 @@ const ListPage = ({ mode }) => {
         </>
       ) : (
         <EmptyState
-          buttonText={isThemeMode ? "다른 테마 둘러보기" : "다른 지역 둘러보기"}
           onButtonClick={isThemeMode ? () => setSelected(defaultKey) : () => setSelected("ALL")}
         />
       )}

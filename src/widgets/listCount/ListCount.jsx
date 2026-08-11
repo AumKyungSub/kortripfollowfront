@@ -5,16 +5,20 @@ import { useTranslation } from 'react-i18next'
 //Page Css
 import './ListCount.style.css'
 
-const ListCount = ({title, count,countM, isFullMobile}) => {
+const ListCount = ({preTitle, title, countText, isFullMobile}) => {
   const {t} = useTranslation();
   return (
     <div className="listTitleCover">
-      <h3>{title}</h3>
-      {!isFullMobile ? (
-        <p>{count}{t("listCount.listCountPc")}</p>
-      ) : (
-        <p className='subFont'>{t("listCount.listContTotal")} {countM}{t("listCount.listCountMobile")}</p>
-      )}
+      <div className="listCountTitleCover">
+        <p className="preTitle14px600b54a2f">
+          <span className="preTitle14px600b54a2fLine"></span>
+          {preTitle}
+        </p>
+        <h2 className="title28px40px700 marginBottomZero">
+          {title}
+        </h2>
+      </div>
+        <p className='subFont'>{t("listCount.listContTotal")} {countText}</p>
     </div>
   )
 }

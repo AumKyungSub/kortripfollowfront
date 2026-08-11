@@ -1,10 +1,14 @@
 import React from 'react'
+
 /*------------------------hooks-----------------------------------*/
 // Navigate
 import { useNavigate } from 'react-router-dom'
-// Transition Language
-import { useTranslation } from 'react-i18next'
 /*------------------------/hooks-----------------------------------*/
+
+/*------------------------custom hooks-----------------------------------*/
+// Language
+import { useLanguage } from '@/shared/hooks/useLanguage';
+/*------------------------/custom hooks-----------------------------------*/
 
 // Page CSS
 import './List.style.css'
@@ -18,8 +22,7 @@ const themeType = {
 
 const List = ({ filteredList, link, selectedTheme }) => {
     // Transition Language
-    const { t, i18n } = useTranslation();
-    const lang = i18n.language;
+    const { t, lang, isEn } = useLanguage();
 
     // Navigate
     const navigate = useNavigate();
@@ -38,19 +41,24 @@ const List = ({ filteredList, link, selectedTheme }) => {
     return (
         <section className='listWrapper'>
             {filteredList.map((data) => (
-                <div key={data.id} className='listCover' onClick={() => handleClick(data)}>
-                    <div className="listImgCover" style={{ backgroundImage: `url(${`${data?.img?.link}3R.jpg`})` }}>
+                <div key={data.id} className='listCover'>
+                    <div className="listImgCover">
+                        <img className='listImg' src={`${data?.img?.link}3R.jpg`} alt={data?.location?.name?.[lang]} />
                     </div>
                     <div className="listTextCover">
                         <p className="listName subFont">
-                            <img src="/images/icon/regionIcon.png" alt="region" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b54a2f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
                             {data?.location?.region?.[lang]}
                         </p>
                         <h3 className="listLocation">
                             {data?.location?.name?.[lang]}
                             {data?.description?.star && ` ${data?.description?.star}${t("common.starUnit")}`}
                         </h3>
-                        <p className="listText">{data?.description?.title?.[lang]}</p>
+                        <p className="listText">{data?.description?.slide?.[lang]}</p>
+                        <div className="listGoTo" onClick={() => handleClick(data)}>
+                            <p>{isEn ? t('button.readMore') : t('button.learnMore')}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>
+                        </div>
                     </div>
                 </div>
             ))}

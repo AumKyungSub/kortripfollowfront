@@ -7,9 +7,11 @@ export default {
   
   /*--------------- 버튼 ---------------*/
   button: {
+      readMore: "Read More",
       learnMore: "Learn More",
       viewReview: "View Review",
-      collection: "View Collection"
+      collection: "View Collection",
+      otherPlaceBtn: "Explore Other Place"
   },
   /*------------------------------------*/
   
@@ -57,6 +59,7 @@ export default {
   /*---------- 리스트 (ListPage) -----------*/
   listPage: {
     listBanner: {
+      count: "PLACES",
       content: {
         ALL: "Discover the beauty of Korea through its diverse regions and four distinct seasons.",
         SEOUL: "Explore the vibrant city life and iconic attractions of Seoul, the capital of Korea.",

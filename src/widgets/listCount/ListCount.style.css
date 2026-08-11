@@ -1,10 +1,11 @@
 .listTitleCover {
+    max-width: 1236px;
     margin: 0 auto;
-    padding: 20px 16px 0;
+    padding: 40px 16px 0;
     /* Flex */
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
 }
 
 .listTitleCover h3 {
@@ -22,22 +23,13 @@
 }
 
 @media only all and (min-width: 768px) {
-    .listTitleCover {
-        padding: 20px 20px 0;
-        display: block;
-    }
 }
 
 @media only all and (min-width: 1024px) {
-    .listTitleCover {
-        max-width: 1480px;
-        margin: 0 auto;
-    }
 }
 
 @media only all and (min-width: 1921px) {
     .listTitleCover {
-        max-width: 1920px;
-        margin: 0 auto;
+        max-width: 1440px;
     }
 }

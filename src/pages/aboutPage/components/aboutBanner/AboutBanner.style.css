@@ -9,7 +9,6 @@
 }
 .aboutBannerWrapper {
     width: 100%;
-    height: 75vh;   
     margin: 0 auto;
     /* Flex */
     display: flex;

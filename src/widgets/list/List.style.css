@@ -4,19 +4,13 @@
 
 .listCover {
     width: 100%;
-    aspect-ratio: 1 / 1;
     border: solid 1px #e5e7eb;
     border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
+    margin-bottom: 20px;
     /* Flex */
     display: flex;
     flex-direction: column;
-    gap: 5%;
-}
-
-.listCover {
-    margin-bottom: 20px;
 }
 
 .listCover:last-of-type {
@@ -24,27 +18,65 @@
 }
 
 .listImgCover {
-    /* Background */
     width: 100%;
-    height: 50%;
-    background-size: cover;     /* 꽉 채우기 */
-    background-position: center center;/* 가운데 정렬 */
-    background-repeat: no-repeat;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.listImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: scale(1);
+    transition: transform 1s ease;
 }
 
 .listTextCover {
     width: 100%;
-    height: 45%;
     padding: 16px;
     /* Flex */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 8px;
+}
+
+.listText,
+.listLocation {
+    /* 이하생략 */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
 .listText {
     /* Font */
     color: #757575;
+    /* 이하생략 */
+    -webkit-line-clamp: 2;      /* 최대 2줄 */
+}
+
+.listLocation {
+    /* 이하생략 */
+    -webkit-line-clamp: 1;      /* 최대 1줄 */
+}
+
+.listGoTo {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: #b54a2f;
+    /* Flex */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
 }
 
 .listName {
@@ -55,16 +87,12 @@
     gap: 5px;
 }
 
-.listName img {
-    width: 14px;
-    height: 14px;
+.listCover:hover .listImg {
+    transform: scale(1.2);
 }
 
-.listLocation,
-.listText {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.listCover:hover .listGoTo {
+    color: #9d3f27;
 }
 
 /* ---------------------------------------------------- */
@@ -74,100 +102,28 @@
 
 @media only all and (min-width: 480px) {
     .listWrapper {
-        padding: 20px 20px;
+        max-width: 1232px;
+        margin: 0 auto;
     }
-
-    .listWrapper {
-    /* Flex */
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    gap: 20px;
-    }
-}
-
-@media only all and (min-width: 480px) and (max-width: 669px) {
     .listCover {
-        width: calc((100% - 20px) / 2); 
-        margin: 0;
+        /* Flex */
+        flex-direction: row;
+    }
+
+    .listImgCover {
+        max-width: 320px;
     }
 
     .listTextCover {
-        padding: 10px;
-    }
-
-    .listLocation {
-        font-size: 1.25rem;
-        line-height: 30px;
-    }
-}
-
-@media only all and (min-width: 670px) and (max-width: 925px) {
-    .listCover {
-        width: calc((100% - 40px) / 3); 
-        margin: 0;
-    }
-
-    .listTextCover {
-        padding: 10px 10px;
-    }
-
-    .listLocation {
-        font-size: 1.25rem;
-        line-height: 30px;
-    }
-
-}
-
-@media only all and (min-width: 926px) and (max-width: 1023px) {
-    .listCover {
-        width: calc((100% - 60px) / 4); 
-        margin: 0;
-    }
-
-    .listTextCover {
-        padding: 10px 10px;
-    }
-
-    .listLocation {
-        font-size: 1.25rem;
-        line-height: 30px;
+        padding: 20px 16px;
     }
 }
 
 @media only all and (min-width: 1024px) {
-    .listWrapper {
-        max-width: 1240px;
-        margin: 0 auto;
-    }
-
-    .listCover {
-        width: calc((100% - 60px) / 4); 
-        margin: 0;
-    }
-
-    .listTextCover {
-        padding: 10px 10px;
-    }
-
-    .listText {
-        /* Font */
-        font-size: 1rem;
-    }
-
-    .listLocation {
-        font-size: 1.5rem;
-        line-height: 36px;
-    }
 }
 
 @media only all and (min-width: 1921px) {
     .listWrapper {
         max-width: 1440px;
-    }
-
-    .listLocation {
-        font-size: 2.375rem; 
-        line-height: 57px;
     }
 }

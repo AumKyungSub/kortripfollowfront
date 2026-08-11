@@ -7,9 +7,11 @@ export default {
     
     /*--------------- 버튼 ---------------*/
     button: {
-        learnMore: "자세히 보기",
-        viewReview: "리뷰 보러가기",
-        collection: "컬렉션 보러가기"
+      readMore: "더보기",
+      learnMore: "자세히 보기",
+      viewReview: "리뷰 보러가기",
+      collection: "컬렉션 보러가기",
+      otherPlaceBtn: "다른 지역 둘러보기"
     },
     /*------------------------------------*/
     
@@ -56,6 +58,7 @@ export default {
     /*---------- 리스트 영역 (ListPage) -----------*/
     listPage: {
       listBanner: {
+        count: "곳",
         content: {
           ALL: "사계절의 아름다움과 지역마다 다른 매력을 품은 대한민국의 여행지를 소개합니다.",
           SEOUL: "대한민국의 수도 서울에서 도심의 매력과 다양한 여행 명소를 소개합니다.",
@@ -185,7 +188,7 @@ export default {
   },
   regionPage: {
     titleSuffix: "여행지",
-    totalCount: "{{count}}개의 여행지",
+    totalCount: "여행지 {{count}}곳",
     noData: "데이터가 없습니다."
   },
   locationPage: {
@@ -241,7 +244,7 @@ export default {
   theme: {
     titleSuffix: "추천",
     list: "리스트",
-    totalCount: "{{count}}개의 {{themeName}} ",
+    totalCount: "{{themeName}} {{count}}곳",
     noData: "데이터가 없습니다."
   },
   themeDetail: {

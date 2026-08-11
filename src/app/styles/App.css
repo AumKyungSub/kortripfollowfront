@@ -54,6 +54,21 @@
   transform: translateY(0);
 }
 
+/*----------Margin 0----------*/
+.marginTopZero {
+  margin-top: 0 !important;
+}
+.marginBottomZero {
+  margin-bottom: 0 !important;
+}
+.marginLeftZero {
+  margin-left: 0 !important;
+}
+.marginRightZero {
+  margin-right: 0 !important;
+}
+/*-----------------------------------*/
+
 /* Logo */
 /* 사용처: Header, Footer */
 .logo {
@@ -104,6 +119,16 @@
 }
 /*-----------------------------------*/
 
+/*----------Banner Image Ratio Design----------*/
+.bannerImg {
+  /* Mobile ~ 767px */
+  /* 3:4 */
+  aspect-ratio: 750 / 1000;
+}
+/*-----------------------------------*/
+
+
+
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
 @media only all and (min-width: 480px) {}
@@ -119,8 +144,34 @@
     font-size: 20px;
   }
   /*-----------------------------------*/
+
+  /*----------Banner Image Ratio Design----------*/
+  .bannerImg {
+    /* Tablet 768px ~ 1023px */
+    /* 1:1 */
+    aspect-ratio: 1563 / 1563;
+  }
+  /*-----------------------------------*/
 }
 
-@media only all and (min-width: 1024px) {}
+@media only all and (min-width: 1024px) {
+  /*----------Banner Image Ratio Design----------*/
+  .bannerImg {
+    /* Small Pc 1024px ~ 1279px */
+    /* 3:2 */
+    aspect-ratio: 1152 / 768;
+  }
+  /*-----------------------------------*/
+}
+
+@media only all and (min-width: 1280px) {
+  /*----------Banner Image Ratio Design----------*/
+  .bannerImg {
+    /* Pc 1280px ~ */
+    /* 3:1 */
+    aspect-ratio: 1920 / 640;
+  }
+  /*-----------------------------------*/
+}
 
 @media only all and (min-width: 1921px) {}

@@ -26,7 +26,7 @@ const EmptyState = ({ message, subMessage, buttonText, onButtonClick }) => {
                 <h2 className="emptyStateTitle">{message || t('emptyState.emptyStateTitle')}</h2>
                 <p className="emptyStateSub">{subMessage || t('emptyState.emptyStateSub')}</p>
                 <button className="clickBtnCover" onClick={handleButtonClick}>
-                    {buttonText || "홈으로 가기"}
+                    {t('button.otherPlaceBtn')}
                 </button>
             </div>
         </div>
