@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/shared/hooks/useLanguage';
 /*------------------------/custom hooks-----------------------------------*/
 
+// Components
+import Loading from '@/features/loading/Loading';
+
 // Page Css
 import './SearchModal.style.css';
 
@@ -31,6 +34,10 @@ const SearchModal = ({ onClose }) => {
   const [query, setQuery] = useState('');
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState('loading');
+  const previewStatus = import.meta.env.DEV && new URLSearchParams(window.location.search).get('searchStatus') === 'loading'
+    ? 'loading'
+    : null;
+  const visibleStatus = previewStatus ?? status;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -102,12 +109,49 @@ const SearchModal = ({ onClose }) => {
   };
 
   const renderState = () => {
-    if (status === 'loading') return <div className="searchModalState"><span className="searchModalSpinner" /><p>{t('searchModal.loading')}</p></div>;
-    if (status === 'error') return <div className="searchModalState searchModalError"><span>!</span><p>{t('searchModal.error')}</p></div>;
-    if (!query.trim()) return <div className="searchModalState">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>  
-    <strong>{t('searchModal.initialTitle')}</strong><p>{t('searchModal.initialText')}</p></div>;
-    if (!results.length) return <div className="searchModalState searchModalNoResult"><span className="searchSadIcon">☹</span><strong>{t('searchModal.noTitle')}</strong><p>{t('searchModal.noText')}</p></div>;
+    /* 검색 목록 로딩 UI */
+    if (visibleStatus === 'loading') 
+      return (
+        <Loading
+          variant="inline"
+          text={t('searchModal.loading')}
+        />
+      );
+
+    /* 검색 목록 에러 UI */
+    if (visibleStatus === 'error') 
+      return (
+        <div className="searchModalState searchModalError">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-alert-icon lucide-circle-alert"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          </span>
+          <p>
+            {t('searchModal.error')}
+          </p>
+        </div>
+      );
+
+    /* 검색 목록 기본 UI*/
+    if (!query.trim()) 
+      return (
+        <div className="searchModalState searchModalBasic">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>  
+          <strong>{t('searchModal.initialTitle')}</strong>
+          <p>{t('searchModal.initialText')}</p>
+        </div>
+      );
+      
+    /* 검색 목록 결과 (결과물 없을때) UI*/
+    if (!results.length) 
+      return (
+        <div className="searchModalState searchModalNoResult">
+          <span className="searchSadIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-face-slightly-frowning-icon lucide-face-slightly-frowning"><path d="M15 10V9"/><path d="M9 10V9"/><path d="M9 16a5 5 0 016 0"/><circle cx="12" cy="12" r="10"/></svg>
+          </span>
+          <strong>{t('searchModal.noTitle')}</strong>
+          <p>{t('searchModal.noText')}</p>
+        </div>
+      );
 
     return (
       <div className="searchResults">
@@ -139,12 +183,23 @@ const SearchModal = ({ onClose }) => {
     <div className="searchModalOverlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <section className="searchModal" role="dialog" aria-modal="true" aria-label={t('searchModal.search')}>
         <div className="searchModalInputRow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg> 
-          <input ref={inputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('searchModal.placeholder')} aria-label={t('searchModal.search')} />
-          {query && <button type="button" className="searchClearBtn" onClick={() => { setQuery(''); inputRef.current?.focus(); }} aria-label={t('searchModal.clear')}>×</button>}
-          <button type="button" className="searchCloseBtn" onClick={onClose} aria-label={t('searchModal.close')}>×</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg> 
+          <input 
+            ref={inputRef} 
+            value={query} 
+            onChange={(event) => setQuery(event.target.value)} 
+            placeholder={t('searchModal.placeholder')} 
+            aria-label={t('searchModal.search')} 
+          />
+          {query && 
+          <button type="button" className="searchClearBtn" onClick={() => { setQuery(''); inputRef.current?.focus(); }} aria-label={t('searchModal.clear')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafafa" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>}
+          <button type="button" className="searchCloseBtn" onClick={onClose} aria-label={t('searchModal.close')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#918a84" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
         </div>
-        <div className="searchModalBody">{renderState()}</div>
+        <div className={!query.trim() ? 'searchModalBodyBasic' : 'searchModalBody'}>{renderState()}</div>
       </section>
     </div>
   );
