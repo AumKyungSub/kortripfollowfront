@@ -67,7 +67,7 @@ export default {
       loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다.",
       deleteAccount: "회원 탈퇴",
       deleteAccountTitle: "정말 탈퇴하시겠어요?",
-      deleteAccountDescription: "회원 정보와 모든 로그인 세션이 영구 삭제되며 복구할 수 없습니다. Google 계정은 삭제되지 않습니다.",
+      deleteAccountDescription: "회원 정보와 모든 로그인 세션이 영구 삭제되며 복구할 수 없습니다. {{provider}} 계정은 삭제되지 않습니다.",
       cancel: "취소",
       confirmDeleteAccount: "탈퇴하기",
       deletingAccount: "삭제 중...",

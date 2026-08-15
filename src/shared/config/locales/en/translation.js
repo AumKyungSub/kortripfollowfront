@@ -67,7 +67,7 @@ export default {
       loginNotice: "Log in to use member features on KORTRIP.",
       deleteAccount: "Delete account",
       deleteAccountTitle: "Delete your account?",
-      deleteAccountDescription: "Your member data and all login sessions will be permanently deleted. Your Google account will not be deleted.",
+      deleteAccountDescription: "Your member data and all login sessions will be permanently deleted. Your {{provider}} account will not be deleted.",
       cancel: "Cancel",
       confirmDeleteAccount: "Delete account",
       deletingAccount: "Deleting...",

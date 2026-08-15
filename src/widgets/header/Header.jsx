@@ -184,6 +184,10 @@ const Header = () => {
     window.location.assign(`${apiUrl}/auth/naver`);
   };
 
+  const loginWithKakao = () => {
+    window.location.assign(`${apiUrl}/auth/kakao`);
+  };
+
   const logout = async () => {
     try {
       await fetch(`${apiUrl}/auth/logout`, {
@@ -234,6 +238,15 @@ const Header = () => {
     closeAuthModal();
     navigate(path);
   };
+
+  const accountProvider = authUser?.providers?.[0];
+  const accountProviderLabel = accountProvider === 'google'
+    ? 'Google'
+    : accountProvider === 'naver'
+      ? (isKo ? '네이버' : 'Naver')
+      : accountProvider === 'kakao'
+        ? (isKo ? '카카오' : 'Kakao')
+        : (isKo ? '소셜' : 'social');
   
   return (
     <header className={showDarkHeader ? "scrolled" : ""}>
@@ -342,14 +355,14 @@ const Header = () => {
               <div className="authAccount">
                 <div className="authAccountAvatar" aria-hidden="true">{authUser.displayName?.charAt(0) || 'K'}</div>
                 <strong>{authUser.displayName}</strong>
-                <span>{authUser.providers.map((provider) => provider === 'naver' ? 'Naver' : provider === 'google' ? 'Google' : provider).join(' · ')}</span>
+                <span>{authUser.providers.map((provider) => provider === 'naver' ? 'Naver' : provider === 'google' ? 'Google' : provider === 'kakao' ? 'Kakao' : provider).join(' · ')}</span>
                 <button type="button" onClick={logout}>{t('header.logout')}</button>
                 {!isDeleteConfirmOpen ? (
                   <button type="button" className="deleteAccountTrigger" onClick={() => setIsDeleteConfirmOpen(true)}>{t('header.deleteAccount')}</button>
                 ) : (
                   <div className="deleteAccountConfirm">
                     <strong>{t('header.deleteAccountTitle')}</strong>
-                    <p>{t('header.deleteAccountDescription')}</p>
+                    <p>{t('header.deleteAccountDescription', { provider: accountProviderLabel })}</p>
                     {deleteAccountError && <p className="deleteAccountError" role="alert">{deleteAccountError}</p>}
                     <div>
                       <button type="button" onClick={() => { setIsDeleteConfirmOpen(false); setDeleteAccountError(''); }} disabled={isDeletingAccount}>{t('header.cancel')}</button>
@@ -370,10 +383,9 @@ const Header = () => {
                   <span className="socialLoginIcon naverIcon" aria-hidden="true">N</span>
                   <span>{t('header.naverLogin')}</span>
                 </button>
-                <button type="button" className="socialLogin kakao" disabled>
+                <button type="button" className="socialLogin kakao" onClick={loginWithKakao}>
                   <span className="socialLoginIcon kakaoIcon" aria-hidden="true">K</span>
                   <span>{t('header.kakaoLogin')}</span>
-                  <small>{t('header.comingSoon')}</small>
                 </button>
               </div>
             )}
