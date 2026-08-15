@@ -64,7 +64,14 @@ export default {
       comingSoon: "Coming soon",
       checkingLogin: "Checking your session...",
       closeLogin: "Close login dialog",
-      loginNotice: "Log in to use member features on KORTRIP."
+      loginNotice: "Log in to use member features on KORTRIP.",
+      deleteAccount: "Delete account",
+      deleteAccountTitle: "Delete your account?",
+      deleteAccountDescription: "Your member data and all login sessions will be permanently deleted. Your Google account will not be deleted.",
+      cancel: "Cancel",
+      confirmDeleteAccount: "Delete account",
+      deletingAccount: "Deleting...",
+      deleteAccountError: "We could not delete your account. Please try again later."
     },
     /*---------------------------------------*/
   

@@ -64,7 +64,14 @@ export default {
       comingSoon: "준비 중",
       checkingLogin: "로그인 상태를 확인하고 있어요...",
       closeLogin: "로그인 창 닫기",
-      loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다."
+      loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다.",
+      deleteAccount: "회원 탈퇴",
+      deleteAccountTitle: "정말 탈퇴하시겠어요?",
+      deleteAccountDescription: "회원 정보와 모든 로그인 세션이 영구 삭제되며 복구할 수 없습니다. Google 계정은 삭제되지 않습니다.",
+      cancel: "취소",
+      confirmDeleteAccount: "탈퇴하기",
+      deletingAccount: "삭제 중...",
+      deleteAccountError: "회원 탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요."
     },
     /*---------------------------------------*/
     /////////////// 페이지별 나눔 ///////////////

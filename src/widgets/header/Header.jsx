@@ -26,6 +26,9 @@ const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authUser, setAuthUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+  const [deleteAccountError, setDeleteAccountError] = useState('');
   const languageMenuRef = useRef(null);
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -188,6 +191,34 @@ const Header = () => {
     }
   };
 
+  const closeAuthModal = () => {
+    if (isDeletingAccount) return;
+    setIsAuthModalOpen(false);
+    setIsDeleteConfirmOpen(false);
+    setDeleteAccountError('');
+  };
+
+  const deleteAccount = async () => {
+    setIsDeletingAccount(true);
+    setDeleteAccountError('');
+
+    try {
+      const response = await fetch(`${apiUrl}/auth/account`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (!response.ok) throw new Error('Unable to delete account');
+
+      setAuthUser(null);
+      setIsDeleteConfirmOpen(false);
+      setIsAuthModalOpen(false);
+    } catch {
+      setDeleteAccountError(t('header.deleteAccountError'));
+    } finally {
+      setIsDeletingAccount(false);
+    }
+  };
+
   const selectLanguage = (language) => {
     changeLanguage(language);
     setIsLanguageOpen(false);
@@ -280,14 +311,14 @@ const Header = () => {
 
       {isAuthModalOpen && (
         <div className="authModalWrapper" role="presentation">
-          <button className="authModalOverlay" type="button" onClick={() => setIsAuthModalOpen(false)} aria-label={t('header.closeLogin')} />
+          <button className="authModalOverlay" type="button" onClick={closeAuthModal} aria-label={t('header.closeLogin')} />
           <section className="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
             <div className="authModalHeader">
               <div>
                 <span>{t('header.welcome')}</span>
                 <h2 id="authModalTitle">{authUser ? t('header.account') : t('header.loginTitle')}</h2>
               </div>
-              <button type="button" className="authModalClose" onClick={() => setIsAuthModalOpen(false)} aria-label={t('header.closeLogin')}>
+              <button type="button" className="authModalClose" onClick={closeAuthModal} disabled={isDeletingAccount} aria-label={t('header.closeLogin')}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M18 6 6 18M6 6l12 12" />
                 </svg>
@@ -302,6 +333,21 @@ const Header = () => {
                 <strong>{authUser.displayName}</strong>
                 <span>Google</span>
                 <button type="button" onClick={logout}>{t('header.logout')}</button>
+                {!isDeleteConfirmOpen ? (
+                  <button type="button" className="deleteAccountTrigger" onClick={() => setIsDeleteConfirmOpen(true)}>{t('header.deleteAccount')}</button>
+                ) : (
+                  <div className="deleteAccountConfirm">
+                    <strong>{t('header.deleteAccountTitle')}</strong>
+                    <p>{t('header.deleteAccountDescription')}</p>
+                    {deleteAccountError && <p className="deleteAccountError" role="alert">{deleteAccountError}</p>}
+                    <div>
+                      <button type="button" onClick={() => { setIsDeleteConfirmOpen(false); setDeleteAccountError(''); }} disabled={isDeletingAccount}>{t('header.cancel')}</button>
+                      <button type="button" className="deleteAccountDanger" onClick={deleteAccount} disabled={isDeletingAccount}>
+                        {isDeletingAccount ? t('header.deletingAccount') : t('header.confirmDeleteAccount')}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="socialLoginList">
