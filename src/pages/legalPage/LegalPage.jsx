@@ -11,10 +11,10 @@ const koContent = {
     eyebrow: 'PRIVACY', title: '개인정보처리방침',
     intro: '국트따라(Kortrip, 이하 “서비스”)는 이용자의 개인정보를 중요하게 생각하며, 필요한 범위에서 최소한의 정보만 처리합니다.',
     sections: [
-      ['1. 처리하는 개인정보', ['Google 소셜 로그인: Google 계정의 고유 식별값, 표시 이름', '로그인 세션: 무작위 세션 토큰의 해시값, 사용자 식별값, 생성 시각, 만료 시각', '서비스는 현재 이메일, 비밀번호 및 IP 주소를 회원 데이터베이스에 직접 저장하지 않습니다.', '다만 Netlify, Cloudtype 등 호스팅·네트워크 사업자의 접속 로그에는 보안과 서비스 운영을 위해 IP 주소, 접속 시각, 브라우저 정보 등이 자동 기록될 수 있습니다.']],
+      ['1. 처리하는 개인정보', ['Google 로그인: Google 계정의 고유 식별값, 표시 이름', '네이버 로그인: 네이버 계정의 고유 식별값, 별명', '로그인 세션: 무작위 세션 토큰의 해시값, 사용자 식별값, 생성 시각, 만료 시각', '서비스는 현재 이메일, 비밀번호 및 IP 주소를 회원 데이터베이스에 직접 저장하지 않습니다.', '다만 Netlify, Cloudtype 등 호스팅·네트워크 사업자의 접속 로그에는 보안과 서비스 운영을 위해 IP 주소, 접속 시각, 브라우저 정보 등이 자동 기록될 수 있습니다.']],
       ['2. 처리 목적', ['소셜 로그인 이용자 식별 및 계정 관리', '로그인 상태 유지와 부정 이용 방지', '서비스 안정성 확보 및 오류 대응', '회원 탈퇴 요청 처리']],
       ['3. 보유 및 이용 기간', ['회원 정보: 회원 탈퇴 시까지 보관하며, 탈퇴 시 지체 없이 삭제합니다.', '로그인 세션: 생성일로부터 최대 14일 동안 보관하며, 로그아웃 또는 회원 탈퇴 시 해당 세션을 삭제합니다.', '법령에 별도의 보관 의무가 있는 경우에는 해당 기간 동안 보관할 수 있습니다.', '호스팅 사업자의 접속 로그 보관기간은 각 사업자의 운영 및 개인정보 정책에 따를 수 있습니다.']],
-      ['4. 제3자 서비스 및 처리 기반', ['Google OAuth: Google 계정 인증', 'MongoDB Atlas: 회원 및 세션 데이터 저장', 'Cloudtype: 백엔드 서버 운영', 'Netlify: 프론트엔드 배포, DNS 및 네트워크 제공', '각 서비스 이용 과정에서 해당 사업자의 개인정보처리방침이 함께 적용될 수 있습니다.']],
+      ['4. 제3자 서비스 및 처리 기반', ['Google OAuth: Google 계정 인증', '네이버 로그인 API: 네이버 계정 인증', 'MongoDB Atlas: 회원 및 세션 데이터 저장', 'Cloudtype: 백엔드 서버 운영', 'Netlify: 프론트엔드 배포, DNS 및 네트워크 제공', '각 서비스 이용 과정에서 해당 사업자의 개인정보처리방침이 함께 적용될 수 있습니다.']],
       ['5. 이용자의 권리', ['이용자는 로그인 후 계정 화면에서 회원 탈퇴를 요청할 수 있습니다.', '회원 탈퇴 시 회원 정보와 해당 회원의 모든 로그인 세션이 삭제됩니다.', 'Google 계정 자체의 삭제나 Google과 Kortrip 사이의 연결 해제는 Google 계정 설정에서 별도로 처리할 수 있습니다.', `개인정보 관련 문의는 ${CONTACT_EMAIL}로 접수할 수 있습니다.`]],
       ['6. 개인정보의 안전성 확보 조치', ['비밀번호를 직접 수집하거나 저장하지 않습니다.', '세션 쿠키에 HttpOnly, Secure, SameSite 속성을 적용합니다.', '세션 토큰 원문 대신 해시값을 데이터베이스에 저장합니다.', '환경변수를 통해 데이터베이스와 OAuth 비밀정보를 관리합니다.']],
       ['7. 방침 변경', ['본 방침의 내용이 변경되면 시행 전에 서비스 내에서 알립니다.', '시행일: 2026년 8월 16일']]
@@ -40,10 +40,10 @@ const enContent = {
   privacy: {
     eyebrow: 'PRIVACY', title: 'Privacy Policy', intro: 'KORTRIP processes only the minimum personal information needed to provide account and login features.',
     sections: [
-      ['1. Information we process', ['Google unique account identifier and display name', 'Hashed session token, user identifier, creation time, and expiry time', 'KORTRIP does not currently store member email addresses, passwords, or IP addresses in its application database.', 'Hosting and network providers such as Netlify and Cloudtype may automatically record IP addresses, access times, and browser information in their operational logs.']],
+      ['1. Information we process', ['Google unique account identifier and display name', 'Naver unique account identifier and nickname', 'Hashed session token, user identifier, creation time, and expiry time', 'KORTRIP does not currently store member email addresses, passwords, or IP addresses in its application database.', 'Hosting and network providers such as Netlify and Cloudtype may automatically record IP addresses, access times, and browser information in their operational logs.']],
       ['2. Purposes', ['Identify social-login users and manage accounts', 'Maintain login sessions and prevent misuse', 'Maintain service security and respond to errors', 'Process account deletion requests']],
       ['3. Retention', ['Member data is retained until account deletion and is then deleted without undue delay.', 'Login sessions are retained for up to 14 days and are deleted on logout or account deletion.', 'Data may be retained when required by applicable law.', 'Infrastructure log retention may follow each provider’s operational and privacy policies.']],
-      ['4. Services used', ['Google OAuth for authentication', 'MongoDB Atlas for member and session storage', 'Cloudtype for backend hosting', 'Netlify for frontend hosting, DNS, and network delivery', 'The privacy policies of these providers may also apply when their services are used.']],
+      ['4. Services used', ['Google OAuth for authentication', 'Naver Login API for authentication', 'MongoDB Atlas for member and session storage', 'Cloudtype for backend hosting', 'Netlify for frontend hosting, DNS, and network delivery', 'The privacy policies of these providers may also apply when their services are used.']],
       ['5. Your choices and rights', ['You can delete your account from the account dialog after logging in.', 'Account deletion removes your member data and all associated KORTRIP sessions.', 'Deleting KORTRIP membership does not delete your Google account.', `Privacy inquiries: ${CONTACT_EMAIL}`]],
       ['6. Security measures', ['We do not collect or store passwords.', 'Session cookies use HttpOnly, Secure, and SameSite attributes.', 'We store a hash of the session token instead of the raw token.', 'Database and OAuth secrets are managed through environment variables.']],
       ['7. Changes', ['Material changes will be announced through the service before taking effect.', 'Effective date: August 16, 2026']]

@@ -180,6 +180,10 @@ const Header = () => {
     window.location.assign(`${apiUrl}/auth/google`);
   };
 
+  const loginWithNaver = () => {
+    window.location.assign(`${apiUrl}/auth/naver`);
+  };
+
   const logout = async () => {
     try {
       await fetch(`${apiUrl}/auth/logout`, {
@@ -338,7 +342,7 @@ const Header = () => {
               <div className="authAccount">
                 <div className="authAccountAvatar" aria-hidden="true">{authUser.displayName?.charAt(0) || 'K'}</div>
                 <strong>{authUser.displayName}</strong>
-                <span>Google</span>
+                <span>{authUser.providers.map((provider) => provider === 'naver' ? 'Naver' : provider === 'google' ? 'Google' : provider).join(' · ')}</span>
                 <button type="button" onClick={logout}>{t('header.logout')}</button>
                 {!isDeleteConfirmOpen ? (
                   <button type="button" className="deleteAccountTrigger" onClick={() => setIsDeleteConfirmOpen(true)}>{t('header.deleteAccount')}</button>
@@ -362,10 +366,9 @@ const Header = () => {
                   <span className="socialLoginIcon googleIcon" aria-hidden="true">G</span>
                   <span>{t('header.googleLogin')}</span>
                 </button>
-                <button type="button" className="socialLogin naver" disabled>
+                <button type="button" className="socialLogin naver" onClick={loginWithNaver}>
                   <span className="socialLoginIcon naverIcon" aria-hidden="true">N</span>
                   <span>{t('header.naverLogin')}</span>
-                  <small>{t('header.comingSoon')}</small>
                 </button>
                 <button type="button" className="socialLogin kakao" disabled>
                   <span className="socialLoginIcon kakaoIcon" aria-hidden="true">K</span>
