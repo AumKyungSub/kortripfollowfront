@@ -2,6 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 
+// Gallery image manifest generated from public/images/detailLocation/*/gallery
+import galleryManifest from '@/shared/data/gallery-manifest.json'
+
 // Swiper API
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Pagination } from 'swiper/modules'
@@ -16,9 +19,18 @@ const DetailGallery = ({data, isFullMobile}) => {
     const {t} = useTranslation()
     const [activeImageIndex, setActiveImageIndex] = useState(null)
 
-    const gallery = data?.img?.gallery ?? []
     const imageBaseUrl = data?.img?.link ?? ''
-    const images = gallery.map((item) => `${imageBaseUrl}${item}.jpg`)
+    const derivedGalleryLink = imageBaseUrl
+        ? `${imageBaseUrl.slice(0, imageBaseUrl.lastIndexOf('/') + 1)}gallery/`
+        : ''
+    const galleryLink = data?.img?.galleryLink ?? derivedGalleryLink
+    const galleryPath = galleryLink
+        ? new URL(galleryLink, window.location.origin).pathname
+        : ''
+    const normalizedGalleryPath = galleryPath
+        ? `${galleryPath.replace(/\/+$/, '')}/`
+        : ''
+    const images = galleryManifest[normalizedGalleryPath] ?? []
     const visibleDesktopImages = images.slice(0, 4)
     const remainingImageCount = Math.max(images.length - visibleDesktopImages.length, 0)
     const isModalOpen = activeImageIndex !== null

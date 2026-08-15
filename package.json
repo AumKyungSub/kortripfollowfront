@@ -4,8 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "gallery:manifest": "node scripts/createGalleryManifest.js",
+    "prestart": "npm run gallery:manifest",
     "start": "vite --host",
+    "predev": "npm run gallery:manifest",
     "dev": "vite",
+    "prebuild": "npm run gallery:manifest",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
