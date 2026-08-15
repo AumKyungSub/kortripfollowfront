@@ -51,7 +51,20 @@ export default {
       // topSearchList4:"",
       // topSearchList5:"",
       category:"Category",
-      setLanguage:"Language"
+      setLanguage:"Language",
+      login: "Log in",
+      googleLogin: "Google login",
+      logout: "Log out",
+      loggedIn: "Signed in as",
+      loginTitle: "Choose a login method",
+      account: "My account",
+      welcome: "KORTRIP",
+      naverLogin: "Continue with Naver",
+      kakaoLogin: "Continue with Kakao",
+      comingSoon: "Coming soon",
+      checkingLogin: "Checking your session...",
+      closeLogin: "Close login dialog",
+      loginNotice: "Log in to use member features on KORTRIP."
     },
     /*---------------------------------------*/
   

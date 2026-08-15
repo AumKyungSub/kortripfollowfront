@@ -23,7 +23,11 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const languageMenuRef = useRef(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const {
           isFullMobile /* maxWidth: 767 */
@@ -96,7 +100,7 @@ const Header = () => {
 
   // 메뉴 열림 시 스크롤 방지 및 모바일 내비게이션 숨김
   useEffect(() => {
-    if (isMenuOpen) {
+    if (isMenuOpen || isAuthModalOpen) {
       document.body.style.overflow = 'hidden';
       document.body.classList.add('menu-open');
     } else {
@@ -107,7 +111,18 @@ const Header = () => {
       document.body.style.overflow = 'unset';
       document.body.classList.remove('menu-open');
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isAuthModalOpen]);
+
+  useEffect(() => {
+    if (!isAuthModalOpen) return;
+
+    const closeAuthModal = (event) => {
+      if (event.key === 'Escape') setIsAuthModalOpen(false);
+    };
+
+    document.addEventListener('keydown', closeAuthModal);
+    return () => document.removeEventListener('keydown', closeAuthModal);
+  }, [isAuthModalOpen]);
 
   useEffect(() => {
     if (!isLanguageOpen) return;
@@ -125,6 +140,53 @@ const Header = () => {
       document.removeEventListener('keydown', closeLanguageMenu);
     };
   }, [isLanguageOpen]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadSession = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/auth/session`, {
+          credentials: 'include',
+        });
+        if (!response.ok) throw new Error('Unable to load session');
+        const data = await response.json();
+        if (isMounted) setAuthUser(data.authenticated ? data.user : null);
+      } catch {
+        if (isMounted) setAuthUser(null);
+      } finally {
+        if (isMounted) setIsAuthLoading(false);
+      }
+    };
+
+    loadSession();
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('login')) {
+      params.delete('login');
+      const query = params.toString();
+      window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`);
+    }
+
+    return () => { isMounted = false; };
+  }, [apiUrl]);
+
+  const loginWithGoogle = () => {
+    window.location.assign(`${apiUrl}/auth/google`);
+  };
+
+  const logout = async () => {
+    try {
+      await fetch(`${apiUrl}/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } finally {
+      setAuthUser(null);
+      setIsMenuOpen(false);
+      setIsAuthModalOpen(false);
+    }
+  };
 
   const selectLanguage = (language) => {
     changeLanguage(language);
@@ -162,6 +224,18 @@ const Header = () => {
               <button className={`desktopSearchBtn ${showDarkHeader ? 'dark' : ''}`} onClick={() => setIsSearchOpen(true)} aria-label={isKo ? '여행지 검색' : 'Search destinations'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search headerSearch"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
               </button>
+              <button
+                type="button"
+                className={`desktopProfileBtn ${showDarkHeader ? 'dark' : ''} ${authUser ? 'authenticated' : ''}`}
+                onClick={() => setIsAuthModalOpen(true)}
+                aria-label={authUser ? authUser.displayName : t('header.login')}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                {authUser && <span className="profileStatusDot" aria-hidden="true" />}
+              </button>
               <div className={`desktopLanguage ${showDarkHeader ? 'dark' : ''}`} ref={languageMenuRef}>
                 <button
                   type="button"
@@ -186,7 +260,7 @@ const Header = () => {
 
           {isFullMobile && (
             <div className="mobileUtility">
-                <button className="profileBtn">
+                <button className="profileBtn" onClick={() => setIsAuthModalOpen(true)} aria-label={authUser ? authUser.displayName : t('header.login')}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
@@ -203,6 +277,54 @@ const Header = () => {
           )}
         </div>
       </div>
+
+      {isAuthModalOpen && (
+        <div className="authModalWrapper" role="presentation">
+          <button className="authModalOverlay" type="button" onClick={() => setIsAuthModalOpen(false)} aria-label={t('header.closeLogin')} />
+          <section className="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <div className="authModalHeader">
+              <div>
+                <span>{t('header.welcome')}</span>
+                <h2 id="authModalTitle">{authUser ? t('header.account') : t('header.loginTitle')}</h2>
+              </div>
+              <button type="button" className="authModalClose" onClick={() => setIsAuthModalOpen(false)} aria-label={t('header.closeLogin')}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {isAuthLoading ? (
+              <p className="authModalLoading">{t('header.checkingLogin')}</p>
+            ) : authUser ? (
+              <div className="authAccount">
+                <div className="authAccountAvatar" aria-hidden="true">{authUser.displayName?.charAt(0) || 'K'}</div>
+                <strong>{authUser.displayName}</strong>
+                <span>Google</span>
+                <button type="button" onClick={logout}>{t('header.logout')}</button>
+              </div>
+            ) : (
+              <div className="socialLoginList">
+                <button type="button" className="socialLogin google" onClick={loginWithGoogle}>
+                  <span className="socialLoginIcon googleIcon" aria-hidden="true">G</span>
+                  <span>{t('header.googleLogin')}</span>
+                </button>
+                <button type="button" className="socialLogin naver" disabled>
+                  <span className="socialLoginIcon naverIcon" aria-hidden="true">N</span>
+                  <span>{t('header.naverLogin')}</span>
+                  <small>{t('header.comingSoon')}</small>
+                </button>
+                <button type="button" className="socialLogin kakao" disabled>
+                  <span className="socialLoginIcon kakaoIcon" aria-hidden="true">K</span>
+                  <span>{t('header.kakaoLogin')}</span>
+                  <small>{t('header.comingSoon')}</small>
+                </button>
+              </div>
+            )}
+            <p className="authModalNotice">{t('header.loginNotice')}</p>
+          </section>
+        </div>
+      )}
 
       {/* Mobile Slide Menu */}
       <div className={`mobileMenuWrapper ${isMenuOpen ? 'open' : ''}`}>

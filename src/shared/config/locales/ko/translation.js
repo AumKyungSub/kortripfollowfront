@@ -51,7 +51,20 @@ export default {
       // topSearchList4:"",
       // topSearchList5:"",
       category:"카테고리",
-      setLanguage:"언어"
+      setLanguage:"언어",
+      login: "로그인",
+      googleLogin: "Google 로그인",
+      logout: "로그아웃",
+      loggedIn: "로그인 계정",
+      loginTitle: "로그인 방법을 선택하세요",
+      account: "내 계정",
+      welcome: "국트따라",
+      naverLogin: "네이버 로그인",
+      kakaoLogin: "카카오 로그인",
+      comingSoon: "준비 중",
+      checkingLogin: "로그인 상태를 확인하고 있어요...",
+      closeLogin: "로그인 창 닫기",
+      loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다."
     },
     /*---------------------------------------*/
     /////////////// 페이지별 나눔 ///////////////
