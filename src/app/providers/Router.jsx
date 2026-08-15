@@ -9,6 +9,7 @@ import ThemeDetail from '@/pages/themeDetailPage/ThemeDetail';
 import CollectionPage from '@/pages/collectionPage/CollectionPage';
 import CollectionDetailPage from '@/pages/collectionDetailPage/CollectionDetailPage';
 import About from '@/pages/aboutPage/About';
+import LegalPage from '@/pages/legalPage/LegalPage';
 
 const Router = () => {
     return (
@@ -23,6 +24,8 @@ const Router = () => {
                 <Route path='/collection' element={<CollectionPage />}/>
                 <Route path='/collection/:id' element={<CollectionDetailPage />}/>
                 <Route path='/about' element={<About />} />
+                <Route path='/privacy' element={<LegalPage type="privacy" />} />
+                <Route path='/terms' element={<LegalPage type="terms" />} />
             </Routes>        
         </BrowserRouter>
     );

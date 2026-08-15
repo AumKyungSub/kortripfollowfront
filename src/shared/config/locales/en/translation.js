@@ -71,7 +71,9 @@ export default {
       cancel: "Cancel",
       confirmDeleteAccount: "Delete account",
       deletingAccount: "Deleting...",
-      deleteAccountError: "We could not delete your account. Please try again later."
+      deleteAccountError: "We could not delete your account. Please try again later.",
+      terms: "Terms",
+      privacy: "Privacy Policy"
     },
     /*---------------------------------------*/
   
@@ -375,7 +377,9 @@ export default {
     season: "Season",
     theme: "Theme",
     collection: "Collection",
-    about: "About"
+    about: "About",
+    terms: "Terms",
+    privacy: "Privacy Policy"
   },
   about: {
     aboutBanner: {

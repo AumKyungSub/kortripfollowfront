@@ -71,7 +71,9 @@ export default {
       cancel: "취소",
       confirmDeleteAccount: "탈퇴하기",
       deletingAccount: "삭제 중...",
-      deleteAccountError: "회원 탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요."
+      deleteAccountError: "회원 탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      terms: "이용약관",
+      privacy: "개인정보처리방침"
     },
     /*---------------------------------------*/
     /////////////// 페이지별 나눔 ///////////////
@@ -366,7 +368,9 @@ export default {
     season: "계절별 여행지",
     theme: "테마별 추천",
     collection: "컬렉션",
-    about: "소개"
+    about: "소개",
+    terms: "이용약관",
+    privacy: "개인정보처리방침"
   },
   about: {
     aboutBanner: {

@@ -42,7 +42,9 @@ const Header = () => {
   // 1. 기본적으로 흰 배경(검은 글씨/로고)을 적용할 경로들의 시작 부분(prefix) 정의
   const LIGHT_HEADER_PATHS = [
     '/collection/',
-    '/season'
+    '/season',
+    '/privacy',
+    '/terms'
   ];
   
   // 2. 현재 URL 경로가 LIGHT_HEADER_PATHS 중 하나로 시작하는지 체크
@@ -223,6 +225,11 @@ const Header = () => {
     changeLanguage(language);
     setIsLanguageOpen(false);
   };
+
+  const openLegalPage = (path) => {
+    closeAuthModal();
+    navigate(path);
+  };
   
   return (
     <header className={showDarkHeader ? "scrolled" : ""}>
@@ -367,7 +374,13 @@ const Header = () => {
                 </button>
               </div>
             )}
-            <p className="authModalNotice">{t('header.loginNotice')}</p>
+            <p className="authModalNotice">
+              {t('header.loginNotice')}
+              <span className="authPolicyLinks">
+                <button type="button" onClick={() => openLegalPage('/terms')}>{t('header.terms')}</button>
+                <button type="button" onClick={() => openLegalPage('/privacy')}>{t('header.privacy')}</button>
+              </span>
+            </p>
           </section>
         </div>
       )}

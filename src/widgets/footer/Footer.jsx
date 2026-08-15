@@ -134,9 +134,13 @@ const Footer = () => {
             </div>
         </div>
         <div className='footerCopyrightTextCover'>
-          <p className='warnings subFont'>
-            {t("footer.warning")}
-          </p>
+          <div>
+            <p className='warnings subFont'>{t("footer.warning")}</p>
+            <div className="footerPolicyLinks">
+              <button type="button" onClick={goTo('/terms')}>{t('footer.terms')}</button>
+              <button type="button" onClick={goTo('/privacy')}>{t('footer.privacy')}</button>
+            </div>
+          </div>
           <p className='footerCopyRight subFont'>
             COPYRIGHT&copy; 2025 By Aum Kyung Sub. All RIGHT's RESERVED
           </p>

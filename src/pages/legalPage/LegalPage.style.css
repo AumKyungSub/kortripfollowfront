@@ -1,0 +1,13 @@
+.legalPage { background: #f7f6f3; color: #24211f; }
+.legalPage header { background: #fafaf8; }
+.legalMain { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 120px 0 80px; }
+.legalHeading { padding-bottom: 34px; border-bottom: 1px solid #dcd8d2; }
+.legalHeading > span { color: #b54a2f; font-size: .82rem; font-weight: 700; letter-spacing: .14em; }
+.legalHeading h1 { margin: 10px 0 18px; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; }
+.legalHeading p { max-width: 760px; color: #67615d; line-height: 1.75; }
+.legalContent { padding-top: 12px; }
+.legalContent section { padding: 28px 0; border-bottom: 1px solid #e2ded8; }
+.legalContent h2 { margin: 0 0 16px; font-size: 1.15rem; }
+.legalContent ul { margin: 0; padding-left: 20px; }
+.legalContent li { margin: 8px 0; color: #5d5753; line-height: 1.7; }
+@media (min-width: 768px) { .legalMain { padding-top: 150px; padding-bottom: 110px; } .legalContent section { padding: 34px 12px; } }
