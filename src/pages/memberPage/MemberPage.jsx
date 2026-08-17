@@ -61,7 +61,7 @@ function FavoriteCard({ favorite, lang, labels, onRemove }) {
   return (
     <article className="placeCard">
       <div className="placeCardImage">
-        <img src={`${favorite.place?.img?.link}1.jpg`} alt={name} />
+        <img src={`${favorite.place?.img?.link}3.jpg`} alt={name} />
         <span className="placeCardRegion">{regionOf(favorite, lang, labels.unknownRegion)}</span>
       </div>
       <div className="placeCardBody">
