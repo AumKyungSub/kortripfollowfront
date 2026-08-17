@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 /*------------------------custom hooks-----------------------------------*/
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
+import { API_URL } from '@/shared/config/apiUrl';
 /*------------------------/custom hooks-----------------------------------*/
 
 // Components
@@ -41,7 +42,7 @@ const SearchModal = ({ onClose }) => {
 
   useEffect(() => {
     const controller = new AbortController();
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = API_URL;
 
     Promise.all(SEARCH_GROUPS.map(async (group) => {
       const response = await fetch(`${apiUrl}/${group.endpoint}`, { signal: controller.signal });

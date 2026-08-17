@@ -1,0 +1,529 @@
+.authModalWrapper {
+    /* Flex */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* Position */
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+}
+
+.authModalOverlay {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(12, 15, 20, .85);
+    cursor: default;
+    /* Position */
+    position: absolute;
+    inset: 0;
+}
+
+.authModal {
+    width: 100%;
+    padding: 24px 16px;
+    border-radius: 24px 24px 0 0;
+    background: #fff;
+    color: #1a1a1a;
+    animation: authModalUp .25s ease-out;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    /* Position */
+    position: relative;
+}
+
+@keyframes authModalUp {
+    from { transform: translateY(24px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.authModalHeader {
+    /* Flex */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.authModalHeader h2 {
+    margin: 5px 0 0;
+    /* Font */
+    font-size: 1.375rem;
+    line-height: 1.375;
+}
+
+.authModalClose {
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #343434;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialLoginList {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.socialLogin {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    /* Font */
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Position */
+    position: relative;
+}
+
+.socialLoginIcon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: .75rem;
+    font-weight: 800;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.googleIcon { 
+    color: #4285f4; 
+    background: #f4f7fe; 
+}
+.naverIcon { 
+    color: #fff; 
+    background: #03c75a; 
+}
+.kakaoIcon { 
+    color: #241f1f; 
+    background: #fee500; 
+}
+
+.socialLogin small {
+  color: #8c8c8c;
+  font-size: .7rem;
+  font-weight: 500;
+}
+
+.socialLogin:disabled {
+  cursor: not-allowed;
+  opacity: .62;
+}
+
+.authModalLoading {
+  margin: 18px 4px 0;
+  color: #898989;
+  font-size: .76rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.authModalNotice {
+    /* Font */
+    font-size: .75rem;
+    color: #333;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.authPolicyLinks { 
+    width: 100%;
+    /* Flex */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 12px; 
+}
+
+.authPolicyLinks button { 
+    background: transparent; 
+    color: #9d3f27; 
+    cursor: pointer; 
+    /* Font */
+    font: inherit; 
+    font-weight: 650; 
+    text-decoration: underline; 
+    text-underline-offset: 2px; 
+}
+
+.authAccount {
+    padding: 20px;
+    border: 1px solid #ece8e3;
+    border-radius: 10px;
+    background: #F9FAFB;
+    text-align: center;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.authAccountAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #b54a2f;
+    /* Font */
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #fafafa;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.authAccountName {
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+.authAccountProvider {
+    margin-bottom: 16px;
+    /* Font */
+    font-size: .75rem;
+    color: #666;
+}
+
+.authAccountBtnCover {
+    width: 100%;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.authAccountBtnCover button {
+    padding: 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #eeeae5;
+    cursor: pointer;
+    /* Font */
+    font: inherit;
+    font-size: .875rem;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.authAccountBtnCover button:first-child {
+    background: #b54a2f;
+    color: #fafaf8;
+}
+
+.authAccountBtnCover button:first-child:hover {
+    background: #8c3620;
+}
+
+.authAccountBtnCover button:last-child {
+    background: #fff;
+    color: #1a1a1a;
+}
+
+.authAccountBtnCover button:last-child:hover {
+    background: #f0f0f0;
+}
+
+.authAccountBtnCover button svg:last-child {
+    margin-left: auto;
+}
+
+.authAccount .deleteAccountTrigger {
+    background: transparent;
+    cursor: pointer;
+    /* Font */
+    color: #a04a3a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.deleteAccountModalLayer {
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Position */
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+}
+
+.deleteAccountModalOverlay {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(12, 15, 20, .62);
+    /* Position */
+    position: absolute;
+    inset: 0;
+}
+
+.deleteAccountModal {
+    max-width: 576px;
+    max-height: calc(100dvh - 32px);
+    padding: 28px 20px 20px;
+    overflow-y: auto;
+    border-radius: 24px 24px 0 0;
+    background: #fff;
+    color: #1a1a1a;
+    text-align: center;
+    animation: deleteAccountModalIn .2s ease-out;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;    
+    /* Position */
+    position: relative;
+}
+
+@keyframes deleteAccountModalIn {
+    from { transform: translateY(10px) scale(.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.deleteAccountTopCover {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.deleteAccountAlertIcon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #fff1f2;
+    color: #DC3545;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteAccountModal h2 {
+    margin: 0;
+    font-size: 1.625rem;
+    line-height: 1.3;
+}
+
+.deleteAccountLead {
+    color: #667085;
+    font-size: 0.75rem;
+    line-height: 0.75;
+}
+
+.deleteAccountItems {
+    padding: 16px;
+    border: 1px solid #ffd5d8;
+    border-radius: 12px;
+    background: #fff8f8;
+    list-style: none;
+    text-align: left;
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.deleteAccountItems li {
+    font-size: 0.938rem;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.deleteAccountItems li > span {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ffd5d8;
+    border-radius: 50%;
+    background: #fff;
+    color: #DC3545;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteAccountProviderNotice {
+    padding: 14px 16px;
+    border: 1px solid #cfe1ff;
+    border-radius: 10px;
+    background: #eff6ff;
+    /* Font */
+    font-size: .75rem;
+    line-height: 1.5;
+    color: #175cd3;
+    text-align: left;
+    /* Flex */
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.deleteAccountProviderNoticeIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.deleteAccountProviderNotice > span {
+    flex: 0 0 auto;
+    font-size: 1.1rem;
+}
+
+.deleteAccountAgreement {
+    padding: 6px 0;
+    cursor: pointer;
+    text-align: left;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deleteAccountAgreement input {
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0 2px;
+    accent-color: #c7492f;
+}
+
+.deleteAccountAgreement span {
+    font-size: .938rem;
+    line-height: 1.5;
+}
+
+.deleteAccountError {
+    margin: -10px 0 16px;
+    /* Font */
+    font-size: .85rem;
+    font-weight: 600;
+    color: #b42318;
+}
+
+.deleteAccountActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.deleteAccountActions button {
+    min-height: 52px;
+    border: 1px solid #d0d5dd;
+    border-radius: 12px;
+    background: #fff;
+    color: #101828;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.deleteAccountActions .deleteAccountDanger {
+    border-color: #c7492f;
+    background: #c7492f;
+    color: #fff;
+}
+
+.deleteAccountActions button:disabled {
+    border-color: #d0d5dd;
+    background: #d0d5dd;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+@media only all and (min-width: 768px) {
+    .authModalWrapper {
+        /* Flex */
+        align-items: center;
+    }
+    .authModal {
+        max-width: 450px;
+        padding: 28px;
+        border-radius: 20px;
+        animation-name: authModalFade;
+    }
+
+    .deleteAccountModalLayer {
+        /* Flex */
+        align-items: center;
+    }
+
+    .deleteAccountModal {
+        padding: 36px;
+        border-radius: 24px;
+    }
+
+    .deleteAccountLead {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    .deleteAccountItems {
+        padding: 24px;
+    }
+
+    @keyframes authModalFade {
+        from { transform: translateY(10px) scale(.98); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .deleteAccountProviderNotice {
+        /* Font */
+        font-size: .875rem;
+        /* Flex */
+        align-items: center;
+    }
+
+    .deleteAccountProviderNotice > span {
+        /* Flex */
+        display: flex;
+        align-items: center;
+    }
+
+    .deleteAccountProviderNoticeIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media only all and (min-width: 1024px) {}
+
+@media only all and (min-width: 1921px) {}

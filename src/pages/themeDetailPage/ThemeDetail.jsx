@@ -66,6 +66,7 @@ const themeCode = getThemeCode(category.toUpperCase());
             <Header/>
             {data && <DetailBanner 
             data={data}
+                placeType={category}
                 name={
                     `${data.location?.name?.[lang]}`
                 }

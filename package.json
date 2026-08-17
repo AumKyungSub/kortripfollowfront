@@ -8,7 +8,7 @@
     "prestart": "npm run gallery:manifest",
     "start": "vite --host",
     "predev": "npm run gallery:manifest",
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "prebuild": "npm run gallery:manifest",
     "build": "vite build",
     "lint": "eslint .",

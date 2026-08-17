@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
+import { API_URL } from '@/shared/config/apiUrl';
 
 // Page css
 import './DetailReview.style.css'
@@ -13,7 +14,7 @@ const DetailReview = ({data, typeTable, isFullMobile}) => {
     const hasReview = Boolean(data?.review?.existence && data?.review?.link);
     const reviewKey = typeTable && data?.id ? `${typeTable}:${data.id}` : null;
     const blog = blogState.key === reviewKey ? blogState.data : null;
-    const dbURL = import.meta.env.VITE_API_URL;
+    const dbURL = API_URL;
 
     useEffect(() => {
         if (!hasReview || !reviewKey) return undefined;

@@ -132,3 +132,14 @@
         max-width: 1440px;
     }
 }
+
+.listTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.listTitleRow .listLocation {
+    min-width: 0;
+}

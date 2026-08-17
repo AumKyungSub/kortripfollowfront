@@ -10,6 +10,7 @@ import CollectionPage from '@/pages/collectionPage/CollectionPage';
 import CollectionDetailPage from '@/pages/collectionDetailPage/CollectionDetailPage';
 import About from '@/pages/aboutPage/About';
 import LegalPage from '@/pages/legalPage/LegalPage';
+import MemberPage from '@/pages/memberPage/MemberPage';
 
 const Router = () => {
     return (
@@ -26,6 +27,8 @@ const Router = () => {
                 <Route path='/about' element={<About />} />
                 <Route path='/privacy' element={<LegalPage type="privacy" />} />
                 <Route path='/terms' element={<LegalPage type="terms" />} />
+                <Route path='/myTravel' element={<MemberPage />} />
+                <Route path='/itineraries/:id' element={<MemberPage shared />} />
             </Routes>        
         </BrowserRouter>
     );

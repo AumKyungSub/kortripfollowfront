@@ -9,6 +9,8 @@ import { useLanguage } from '@/shared/hooks/useLanguage';
 
 // Components
 import ShareBtn from '@/widgets/shareBtn/ShareBtn';
+import FavoriteButton from '@/features/favoriteButton/FavoriteButton';
+import PlaceRating from '@/features/placeRating/PlaceRating';
 
 // Page css
 import './DetailBanner.style.css'
@@ -16,6 +18,7 @@ import './DetailBanner.style.css'
 const DetailBanner = ({
     data,
     subName,
+    placeType,
 }) => {
 
     const {lang, t} = useLanguage();
@@ -93,10 +96,13 @@ const DetailBanner = ({
                         </p>
                     </div>
                 )}
-                <h1 className="detailBannerTextName">
-                    {name}
-                    {subName && ` ${subName}`}
-                </h1>
+                <div className="detailBannerTitleRow">
+                    <h1 className="detailBannerTextName">
+                        {name}
+                        {subName && ` ${subName}`}
+                    </h1>
+                    <PlaceRating summary={data.ratingSummary} variant="banner" />
+                </div>
 
                 {address && (
                     <p className="detailBannerTextFullAddress">
@@ -106,6 +112,9 @@ const DetailBanner = ({
                 )} 
 
                 <div className="detailBannerLinkCover">
+                    {placeType && data?.id && (
+                        <FavoriteButton placeType={placeType} placeId={data.id} />
+                    )}
                     <a 
                         href={mapLink} 
                         className="detailBannerLinkMap" 

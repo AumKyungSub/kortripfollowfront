@@ -9,10 +9,12 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useResponsive } from '@/shared/hooks/useResponsive'
 // Language 
 import { useLanguage } from '@/shared/hooks/useLanguage'
+import { API_URL } from '@/shared/config/apiUrl'
 /*------------------------/custom hooks-----------------------------------*/
 
 // Components
 import SearchModal from '@/widgets/searchModal/SearchModal'
+import LoginPage from '@/widgets/modalPage/loginPage/LoginPage'
 
 // Page css
 import './Header.style.css'
@@ -26,11 +28,8 @@ const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authUser, setAuthUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
-  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
-  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
-  const [deleteAccountError, setDeleteAccountError] = useState('');
   const languageMenuRef = useRef(null);
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = API_URL;
 
   const {
           isFullMobile /* maxWidth: 767 */
@@ -44,7 +43,9 @@ const Header = () => {
     '/collection/',
     '/season',
     '/privacy',
-    '/terms'
+    '/terms',
+    '/myTravel',
+    '/itineraries/'
   ];
   
   // 2. 현재 URL 경로가 LIGHT_HEADER_PATHS 중 하나로 시작하는지 체크
@@ -56,7 +57,7 @@ const Header = () => {
   const showDarkHeader = isLightPage || isScrolled;
   
   // Language Hook 사용
-  const { lang, t, changeLanguage, isKo, isEn } = useLanguage();
+  const { t, changeLanguage, isKo, isEn } = useLanguage();
 
   // path로 경로 설정
   const goTo = (path) => () => navigate(path)
@@ -119,17 +120,6 @@ const Header = () => {
   }, [isMenuOpen, isAuthModalOpen]);
 
   useEffect(() => {
-    if (!isAuthModalOpen) return;
-
-    const closeAuthModal = (event) => {
-      if (event.key === 'Escape') setIsAuthModalOpen(false);
-    };
-
-    document.addEventListener('keydown', closeAuthModal);
-    return () => document.removeEventListener('keydown', closeAuthModal);
-  }, [isAuthModalOpen]);
-
-  useEffect(() => {
     if (!isLanguageOpen) return;
 
     const closeLanguageMenu = (event) => {
@@ -176,78 +166,11 @@ const Header = () => {
     return () => { isMounted = false; };
   }, [apiUrl]);
 
-  const loginWithGoogle = () => {
-    window.location.assign(`${apiUrl}/auth/google`);
-  };
-
-  const loginWithNaver = () => {
-    window.location.assign(`${apiUrl}/auth/naver`);
-  };
-
-  const loginWithKakao = () => {
-    window.location.assign(`${apiUrl}/auth/kakao`);
-  };
-
-  const logout = async () => {
-    try {
-      await fetch(`${apiUrl}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-    } finally {
-      setAuthUser(null);
-      setIsMenuOpen(false);
-      setIsAuthModalOpen(false);
-    }
-  };
-
-  const closeAuthModal = () => {
-    if (isDeletingAccount) return;
-    setIsAuthModalOpen(false);
-    setIsDeleteConfirmOpen(false);
-    setDeleteAccountError('');
-  };
-
-  const deleteAccount = async () => {
-    setIsDeletingAccount(true);
-    setDeleteAccountError('');
-
-    try {
-      const response = await fetch(`${apiUrl}/auth/account`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-      if (!response.ok) throw new Error('Unable to delete account');
-
-      setAuthUser(null);
-      setIsDeleteConfirmOpen(false);
-      setIsAuthModalOpen(false);
-    } catch {
-      setDeleteAccountError(t('header.deleteAccountError'));
-    } finally {
-      setIsDeletingAccount(false);
-    }
-  };
-
   const selectLanguage = (language) => {
     changeLanguage(language);
     setIsLanguageOpen(false);
   };
 
-  const openLegalPage = (path) => {
-    closeAuthModal();
-    navigate(path);
-  };
-
-  const accountProvider = authUser?.providers?.[0];
-  const accountProviderLabel = accountProvider === 'google'
-    ? 'Google'
-    : accountProvider === 'naver'
-      ? (isKo ? '네이버' : 'Naver')
-      : accountProvider === 'kakao'
-        ? (isKo ? '카카오' : 'Kakao')
-        : (isKo ? '소셜' : 'social');
-  
   return (
     <header className={showDarkHeader ? "scrolled" : ""}>
       <div className="headerCover">
@@ -334,70 +257,15 @@ const Header = () => {
       </div>
 
       {isAuthModalOpen && (
-        <div className="authModalWrapper" role="presentation">
-          <button className="authModalOverlay" type="button" onClick={closeAuthModal} aria-label={t('header.closeLogin')} />
-          <section className="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
-            <div className="authModalHeader">
-              <div>
-                <span>{t('header.welcome')}</span>
-                <h2 id="authModalTitle">{authUser ? t('header.account') : t('header.loginTitle')}</h2>
-              </div>
-              <button type="button" className="authModalClose" onClick={closeAuthModal} disabled={isDeletingAccount} aria-label={t('header.closeLogin')}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {isAuthLoading ? (
-              <p className="authModalLoading">{t('header.checkingLogin')}</p>
-            ) : authUser ? (
-              <div className="authAccount">
-                <div className="authAccountAvatar" aria-hidden="true">{authUser.displayName?.charAt(0) || 'K'}</div>
-                <strong>{authUser.displayName}</strong>
-                <span>{authUser.providers.map((provider) => provider === 'naver' ? 'Naver' : provider === 'google' ? 'Google' : provider === 'kakao' ? 'Kakao' : provider).join(' · ')}</span>
-                <button type="button" onClick={logout}>{t('header.logout')}</button>
-                {!isDeleteConfirmOpen ? (
-                  <button type="button" className="deleteAccountTrigger" onClick={() => setIsDeleteConfirmOpen(true)}>{t('header.deleteAccount')}</button>
-                ) : (
-                  <div className="deleteAccountConfirm">
-                    <strong>{t('header.deleteAccountTitle')}</strong>
-                    <p>{t('header.deleteAccountDescription', { provider: accountProviderLabel })}</p>
-                    {deleteAccountError && <p className="deleteAccountError" role="alert">{deleteAccountError}</p>}
-                    <div>
-                      <button type="button" onClick={() => { setIsDeleteConfirmOpen(false); setDeleteAccountError(''); }} disabled={isDeletingAccount}>{t('header.cancel')}</button>
-                      <button type="button" className="deleteAccountDanger" onClick={deleteAccount} disabled={isDeletingAccount}>
-                        {isDeletingAccount ? t('header.deletingAccount') : t('header.confirmDeleteAccount')}
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="socialLoginList">
-                <button type="button" className="socialLogin google" onClick={loginWithGoogle}>
-                  <span className="socialLoginIcon googleIcon" aria-hidden="true">G</span>
-                  <span>{t('header.googleLogin')}</span>
-                </button>
-                <button type="button" className="socialLogin naver" onClick={loginWithNaver}>
-                  <span className="socialLoginIcon naverIcon" aria-hidden="true">N</span>
-                  <span>{t('header.naverLogin')}</span>
-                </button>
-                <button type="button" className="socialLogin kakao" onClick={loginWithKakao}>
-                  <span className="socialLoginIcon kakaoIcon" aria-hidden="true">K</span>
-                  <span>{t('header.kakaoLogin')}</span>
-                </button>
-              </div>
-            )}
-            <p className="authModalNotice">
-              {t('header.loginNotice')}
-              <span className="authPolicyLinks">
-                <button type="button" onClick={() => openLegalPage('/terms')}>{t('header.terms')}</button>
-                <button type="button" onClick={() => openLegalPage('/privacy')}>{t('header.privacy')}</button>
-              </span>
-            </p>
-          </section>
-        </div>
+        <LoginPage
+          authUser={authUser}
+          isAuthLoading={isAuthLoading}
+          onClose={() => setIsAuthModalOpen(false)}
+          onAuthUserChange={(user) => {
+            setAuthUser(user)
+            if (!user) setIsMenuOpen(false)
+          }}
+        />
       )}
 
       {/* Mobile Slide Menu */}

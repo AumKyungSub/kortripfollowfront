@@ -11,7 +11,8 @@ export default {
       learnMore: "자세히 보기",
       viewReview: "리뷰 보러가기",
       collection: "컬렉션 보러가기",
-      otherPlaceBtn: "다른 지역 둘러보기"
+      otherPlaceBtn: "다른 지역 둘러보기",
+      cancel: "취소"
     },
     /*------------------------------------*/
     
@@ -37,6 +38,12 @@ export default {
         collectionBuy: "구매 방법"
     },
     /*-------------------------------------*/
+    /*--------------- 법적 고지 ---------------*/
+    legalNotice: {
+      terms: "이용약관",
+      privacy: "개인정보처리방침"      
+    },
+    /*-------------------------------------*/
 
     /////////////// 공용 컴포넌트 나눔 ///////////////
     /*------------ 헤더 (Header) -------------*/
@@ -53,27 +60,11 @@ export default {
       category:"카테고리",
       setLanguage:"언어",
       login: "로그인",
-      googleLogin: "Google 로그인",
-      logout: "로그아웃",
       loggedIn: "로그인 계정",
-      loginTitle: "로그인 방법을 선택하세요",
-      account: "내 계정",
-      welcome: "국트따라",
-      naverLogin: "네이버 로그인",
-      kakaoLogin: "카카오 로그인",
       comingSoon: "준비 중",
-      checkingLogin: "로그인 상태를 확인하고 있어요...",
-      closeLogin: "로그인 창 닫기",
-      loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다.",
-      deleteAccount: "회원 탈퇴",
       deleteAccountTitle: "정말 탈퇴하시겠어요?",
-      deleteAccountDescription: "회원 정보와 모든 로그인 세션이 영구 삭제되며 복구할 수 없습니다. {{provider}} 계정은 삭제되지 않습니다.",
-      cancel: "취소",
-      confirmDeleteAccount: "탈퇴하기",
-      deletingAccount: "삭제 중...",
-      deleteAccountError: "회원 탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.",
-      terms: "이용약관",
-      privacy: "개인정보처리방침"
+      deleteAccountDescription: "회원 정보, 로그인 세션, 찜, 여행 코스와 방문 기록이 영구 삭제되며 복구할 수 없습니다. {{provider}} 계정은 삭제되지 않습니다.",
+      deleteAccountError: "회원 탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요."
     },
     /*---------------------------------------*/
     /////////////// 페이지별 나눔 ///////////////
@@ -174,6 +165,33 @@ export default {
       close: '검색 닫기', 
       clear: '검색어 지우기', 
       search: '여행지 검색',
+    },
+    /*---------------------------------------*/
+    /*---------- 로그인창 (LoginModal) -----------*/
+    loginModal: {
+      preTitle: "국트따라",
+      closeModal: "모달 창 닫기",
+      loginTitle: "로그인 방법을 선택하세요",
+      account: "내 계정",
+      checkingLogin: "로그인 상태를 확인하고 있어요...",
+      loginNotice: "로그인하면 국트따라의 회원 기능을 이용할 수 있습니다.",
+      logout: "로그아웃",
+      myTrip: "내 여행",
+      googleLogin: "Google 로그인",
+      naverLogin: "네이버 로그인",
+      kakaoLogin: "카카오 로그인",
+      deleteAccount: "회원 탈퇴",
+      deleteAccountLead: "아래 데이터가 영구적으로 삭제되며 복구할 수 없습니다.",
+      deleteItems: {
+        profile: "회원 정보 및 프로필",
+        session: "로그인 세션",
+        favorites: "찜한 여행지",
+        travelRecords: "여행 코스 및 방문 기록"
+      },
+      providerNotice: "{{provider}} 계정은 삭제되지 않습니다. 국트따라 서비스 연동만 해제됩니다.",
+      deleteAgreement: "위 내용을 확인했으며, 데이터가 영구 삭제됨에 동의합니다.",
+      confirmDeleteAccount: "탈퇴하기",
+      deletingAccount: "삭제 중..."
     },
     /*---------------------------------------*/
 

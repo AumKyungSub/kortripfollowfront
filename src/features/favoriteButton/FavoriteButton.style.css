@@ -1,0 +1,21 @@
+.favoriteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, .65);
+  border-radius: 999px;
+  background: rgba(18, 18, 18, .28);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.favoriteButton span { font-size: 18px; line-height: 1; }
+.favoriteButton.active { background: #b54a2f; border-color: #b54a2f; }
+.favoriteButton:disabled { cursor: wait; opacity: .7; }

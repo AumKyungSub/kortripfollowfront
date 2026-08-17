@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { API_URL } from '@/shared/config/apiUrl';
 
 export const useReadDB = () => {
   const { t } = useTranslation(); // i18n 불러오기
@@ -17,7 +18,7 @@ export const useReadDB = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const dbURL = import.meta.env.VITE_API_URL;
+    const dbURL = API_URL;
 
     const fetchAll = useCallback(async () => {
         try {

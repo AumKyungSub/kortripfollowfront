@@ -1,0 +1,355 @@
+.memberPage { 
+    background: #f7f5f1; 
+    color: #202020; 
+    padding: 120px 20px 80px; 
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+.memberLayout {
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.memberHero, 
+.memberLayout, 
+.memberState { 
+    width: min(1120px, 100%); 
+    margin-inline: auto; 
+}
+.memberHeroSubtitle, 
+.recordCard p { 
+    color: #676767; 
+    line-height: 1.65; 
+}
+.memberState{
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.memberState, 
+.memberEmpty { 
+    padding: 48px 24px; 
+    background: #fff; 
+    border-radius: 10px; 
+    text-align: center; 
+}
+.memberState p {
+    font-size: 0.75rem;
+    color: #676767; 
+}
+.memberTabs { 
+    width: 100%;
+    overflow-x: auto;
+    /* Flex */
+    display: flex; 
+    gap: 8px; 
+} 
+.cardActions button, 
+.cardActions a, 
+.formActions button { 
+    border: 1px solid #ddd7cf; 
+    background: transparent; 
+    color:#292929; 
+    border-radius: 999px; 
+    padding: 10px 36px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    font: inherit; 
+    font-weight: 700; 
+    white-space: nowrap; 
+}
+.memberTabs button {
+    width: calc((100% / 3));
+    padding: 10px 0;
+    border: 1px solid #ddd7cf; 
+    background: transparent; 
+    color: #9a8872;
+    border-radius: 999px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    /* Font */
+    font: inherit; 
+    font-size: 0.875rem;
+    font-weight: 700; 
+    white-space: nowrap; 
+    /* Flex */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+.memberTabs button svg {
+    flex: 0 0 auto;
+}
+.memberTabs button.active, .formActions .primary { background: #b54a2f; border-color: #b54a2f; color: #fff; }
+.memberSection { 
+    /* Flex */
+    display: flex;
+    flex-direction: column; 
+    gap: 22px; 
+}
+.memberSectionTitle { 
+    /* Flex */
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+.memberSectionMainTitle {
+    /* Font */
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.memberSectionTitle span {
+    width: 30px;
+    aspect-ratio: 1/1;
+    background: #FFE0D2; 
+    border-radius: 999px;
+    /* Font */
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #720500; 
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.memberSectionFavoritesMap {
+    border: 1px solid #EFE7D9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.memberSectionFavoritesMapTitle {
+    padding: 16px;
+    /* Font */
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.favoriteMap { 
+    width: 100%; 
+    aspect-ratio: 1/1;
+    overflow: hidden; 
+}
+.favoriteMapLabel { display: block; padding: 7px 10px; border-radius: 8px; background: #fff; box-shadow: 0 3px 14px rgba(0,0,0,.18); color: #222; text-decoration: none; font-size: 12px; white-space: nowrap; }
+.mapEmpty { min-height: 220px; display: grid; place-items: center; }
+.favoriteCollection, 
+.favoriteRegionGroup { 
+    /* Flex */
+    display: flex;
+    flex-direction: column; 
+    gap: 18px; 
+}
+
+.favoriteViewControl { 
+    position: relative;
+    width: 170px;
+    margin-left: auto;
+}
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.favoriteViewTrigger { 
+    width: 100%; height: 40px; padding: 0 11px; border: 1px solid #d9cbb8; border-radius: 8px; background: #fff; color: #3b332c; cursor: pointer; font: inherit; font-size: .875rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+.favoriteViewTrigger:hover { border-color: #b89b84; background: #f8f4ef; }
+.favoriteViewTrigger svg:last-child { margin-left: auto; transition: transform .2s ease; }
+.favoriteViewTrigger svg:last-child.open { transform: rotate(180deg); }
+.favoriteViewMenu { position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; width: 100%; padding: 6px; border: 1px solid #e6e1db; border-radius: 9px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.16); visibility: hidden; opacity: 0; transform: translateY(-5px); transition: opacity .18s ease, transform .18s ease, visibility .18s ease; }
+.favoriteViewMenu.open { visibility: visible; opacity: 1; transform: translateY(0); }
+.favoriteViewMenu button { width: 100%; padding: 9px 10px; border: 0; border-radius: 6px; background: transparent; color: #39332e; cursor: pointer; font: inherit; font-size: .875rem; text-align: left; }
+.favoriteViewMenu button:hover { background: #f5f2ee; }
+.favoriteViewMenu button.selected { background: #eee9e3; color: #9d3f29; font-weight: 600; }
+.favoriteRegionGroup > h3 { 
+    display: flex; align-items: center; gap: 8px; font-size: 20px; }
+.favoriteRegionGroup > h3 span { display: inline-grid; min-width: 26px; height: 26px; place-items: center; border-radius: 999px; background: #f2dfd6; color: #8b2f20; font-size: 12px; }
+.placeGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.placeCard, .recordCard, .memberForm { background: #fff; border: 1px solid #ece8e2; border-radius: 20px; overflow: hidden; box-shadow: 0 7px 24px rgba(56,43,32,.05); }
+.placeCard { transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.placeCard:hover { border-color: #9a633f; box-shadow: 0 10px 28px rgba(91,58,35,.14); transform: translateY(-2px); }
+.placeCardImage { position: relative; overflow: hidden; aspect-ratio: 16/10; }
+.placeCardImage img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.placeCard:hover .placeCardImage img { transform: scale(1.2); }
+.placeCardRegion { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.94); box-shadow: 0 2px 8px rgba(0,0,0,.14); color: #b12d1e; font-size: 13px; font-weight: 800; }
+.placeCardBody { padding: 18px; }
+.placeCard h3 { margin: 0; font-size: 19px; }
+.placeCardActions { display: grid; grid-template-columns: 1fr auto; gap: 9px; margin-top: 18px; }
+.placeCardActions a, .placeCardActions button { min-height: 42px; border: 1px solid transparent; border-radius: 10px; background: #faf6f0; color: #4d4036; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 7px; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+.placeCardActions a:hover { border-color: #b98a68; background: #fff; color: #7c4028; }
+.placeCardActions button { width: 42px; background: #fff9f5; color: #a88f7c; }
+.placeCardActions button:hover { border-color: #b54a2f; color: #b54a2f; }
+.placeCardActions svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.recordCard h2 { margin-bottom: 12px; }
+.cardActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.cardActions button, .cardActions a { padding: 7px 12px; font-size: 13px; }
+.memberForm { padding: clamp(20px, 4vw, 34px); display: grid; gap: 16px; }
+.memberForm label { display: grid; gap: 7px; font-size: 14px; font-weight: 700; }
+.memberForm input, .memberForm textarea, .memberForm select { width: 100%; border: 1px solid #d9d4cd; border-radius: 10px; background: #fff; padding: 12px; font: inherit; }
+.memberForm textarea { min-height: 90px; resize: vertical; }
+.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.memberForm fieldset { border: 1px solid #e1ddd6; border-radius: 12px; padding: 16px; display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.memberForm legend { padding: 0 6px; font-weight: 700; }
+.memberForm .checkPlace { display: flex; grid-template-columns: auto 1fr; align-items: center; }
+.memberForm .checkPlace input { width: auto; }
+.visitPlacePicker { display: grid; gap: 10px; }
+.selectedPlace { padding: 10px 12px; border-radius: 10px; background: #f7f5f1; color: #555; font-size: 14px; }
+.visitPlaceResults { max-height: 260px; overflow-y: auto; display: grid; gap: 6px; padding: 6px; border: 1px solid #e1ddd6; border-radius: 12px; }
+.visitPlaceResults > p { padding: 18px; color: #777; text-align: center; }
+.visitPlaceResults button { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; border: 1px solid transparent; border-radius: 9px; padding: 11px 12px; background: #fff; color: #282828; text-align: left; cursor: pointer; }
+.visitPlaceResults button:hover, .visitPlaceResults button.selected { border-color: #b54a2f; background: #fff7f4; }
+.visitPlaceResults button span { color: #777; font-size: 12px; }
+.formActions { display: flex; gap: 8px; }
+.recordList { display: grid; gap: 16px; }
+.recordCard { padding: clamp(20px, 4vw, 30px); }
+.visibility { display: inline-block; margin-bottom: 10px; padding: 4px 9px; border-radius: 999px; background: #eee; font-size: 12px; font-weight: 800; }
+.visibility.public { background: #dff4e5; color: #21743a; }
+.visibility.unlisted { background: #fff0cc; color: #7a5800; }
+.courseDay { margin-top: 14px; padding: 14px; border-radius: 12px; background: #f7f5f1; }
+.courseDay ol { margin: 8px 0 0 20px; }
+.courseSection { gap: 30px; }
+.courseFormCard { padding: 0; border-radius: 14px; box-shadow: none; }
+.courseFormHeader { min-height: 58px; padding: 14px 20px; border-bottom: 1px solid #ece3d8; display: flex; align-items: center; gap: 10px; }
+.courseFormHeader > span { width: 30px; height: 30px; border-radius: 8px; background: #ffe9df; color: #a83e28; display: grid; place-items: center; }
+.courseFormHeader svg, .courseFormActions svg, .courseDelete svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.courseFormHeader h2 { font-size: 17px; }
+.courseFormBody { padding: 22px 20px; display: grid; gap: 20px; }
+.courseFormBody label { position: relative; }
+.courseFormBody input, .courseFormBody textarea, .courseFormBody select { border-color: #ded3c5; border-radius: 9px; background: #fffdf9; }
+.courseFormBody input:focus, .courseFormBody textarea:focus, .courseFormBody select:focus { outline: 2px solid rgba(181,74,47,.18); border-color: #b8755e; }
+.courseFormBody textarea { min-height: 92px; padding-bottom: 28px; }
+.courseCharCount { position: absolute; right: 10px; bottom: 8px; color: #8a8178; font-size: 11px; font-weight: 400; }
+.memberForm .coursePlacePicker { padding: 16px 18px; border-color: #ded3c5; border-radius: 10px; background: #fffdf9; display: grid; gap: 4px; }
+.coursePlacePicker legend { font-size: 14px; }
+.memberForm .coursePlacePicker .checkPlace { width: 100%; min-height: 48px; padding: 7px 2px; justify-content: space-between; gap: 16px; cursor: pointer; }
+.coursePlaceIdentity { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.coursePlaceIdentity input { accent-color: #b54a2f; }
+.coursePlaceIdentity > span { display: grid; gap: 3px; }
+.coursePlaceIdentity strong { font-size: 14px; }
+.coursePlaceIdentity small { color: #8b8177; font-size: 11px; font-weight: 400; }
+.coursePlacePicker em { flex: 0 0 auto; padding: 4px 8px; border-radius: 999px; background: #f4ecdf; color: #806b51; font-size: 11px; font-style: normal; font-weight: 600; }
+.courseFormActions { align-items: center; }
+.courseFormActions .primary { display: inline-flex; align-items: center; gap: 7px; border-radius: 9px; padding: 10px 16px; }
+.savedCourseHeading { display: flex; align-items: center; gap: 9px; }
+.savedCourseHeading h2 { font-size: 22px; }
+.savedCourseHeading span { min-width: 27px; height: 27px; padding: 0 7px; border-radius: 999px; background: #f2dfd6; color: #8b2f20; font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+.courseCardGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.savedCourseCard { overflow: hidden; border: 1px solid #e6ddd1; border-radius: 14px; background: #fff; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.savedCourseCard:hover { border-color: #9a633f; box-shadow: 0 10px 28px rgba(91,58,35,.12); transform: translateY(-2px); }
+.savedCourseImage { position: relative; aspect-ratio: 16/8.5; overflow: hidden; background: #e9e4dc; }
+.savedCourseImage img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.savedCourseCard:hover .savedCourseImage img { transform: scale(1.08); }
+.savedCourseImage .visibility { position: absolute; top: 12px; left: 12px; margin: 0; background: rgba(255,255,255,.92); color: #5d5146; }
+.savedCourseImage .visibility.public { background: rgba(222,246,227,.94); color: #21743a; }
+.savedCourseImage .visibility.unlisted { background: rgba(255,240,204,.94); color: #7a5800; }
+.courseDelete { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(255,255,255,.92); color: #8c7666; cursor: pointer; display: grid; place-items: center; }
+.courseDelete:hover { color: #b54a2f; background: #fff; }
+.savedCourseBody { padding: 17px; display: grid; gap: 8px; }
+.savedCourseBody h3 { font-size: 18px; }
+.savedCourseBody > p { min-height: 40px; color: #6f675f; font-size: 13px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.savedCourseBody time { color: #8a7c70; font-size: 12px; }
+.courseTags { min-height: 25px; display: flex; flex-wrap: wrap; gap: 5px; }
+.courseTags span { padding: 4px 7px; border-radius: 5px; background: #f3eee7; color: #66584c; font-size: 11px; }
+.courseCardActions { display: flex; gap: 7px; margin-top: 4px; }
+.courseCardActions button { border: 1px solid #ddd1c3; border-radius: 7px; padding: 6px 10px; background: #fff; color: #594a3f; font: inherit; font-size: 12px; cursor: pointer; }
+.courseCardActions button:hover { border-color: #9a633f; color: #8a432b; }
+.visitSection { gap: 28px; }
+.visitFormCard { padding: 0; overflow: visible; border-radius: 14px; box-shadow: none; }
+.visitFormHeader { min-height: 64px; padding: 15px 20px; border-bottom: 1px solid #ece3d8; display: flex; align-items: center; gap: 10px; }
+.visitFormHeader > span { width: 32px; height: 32px; border-radius: 8px; background: #ddf4e8; color: #168363; display: grid; place-items: center; }
+.visitFormHeader h2 { font-size: 18px; }
+.visitFormBody { padding: 26px 20px 22px; display: grid; gap: 22px; }
+.visitPlacePicker { position: relative; display: block; }
+.visitSearchInput { position: relative; display: block; }
+.visitSearchInput svg { position: absolute; z-index: 1; top: 50%; left: 14px; width: 18px; height: 18px; transform: translateY(-50%); fill: none; stroke: #9b8c7d; stroke-width: 1.8; stroke-linecap: round; }
+.visitFormBody .visitSearchInput input { padding-left: 43px; border-color: #ded3c5; background: #fffdf9; }
+.visitPlacePicker.open .visitSearchInput input { border-color: #e06c3d; box-shadow: 0 0 0 2px rgba(224,108,61,.22); }
+.visitFormBody .visitPlaceResults { position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; width: 100%; max-height: 260px; padding: 5px; border-color: #ded3c5; background: #fffdf9; box-shadow: 0 10px 24px rgba(64,43,27,.16); display: block; }
+.visitFormBody .visitPlaceResults button { min-height: 57px; padding: 9px 12px; background: transparent; }
+.visitFormBody .visitPlaceResults button:hover, .visitFormBody .visitPlaceResults button.selected { border-color: transparent; background: #f6f0e7; }
+.visitFormBody .visitPlaceResults button > span { color: inherit; display: grid; gap: 4px; }
+.visitFormBody .visitPlaceResults button strong { font-size: 14px; }
+.visitFormBody .visitPlaceResults button small { color: #9a7962; font-size: 11px; }
+.visitFormBody .visitPlaceResults button em { padding: 4px 8px; border-radius: 999px; background: #f4ecdf; color: #92714d; font-size: 11px; font-style: normal; }
+.visitMetaRow { align-items: end; }
+.memberForm .ratingPicker { padding: 0; border: 0; display: grid; gap: 7px; }
+.ratingPicker legend { padding: 0; font-size: 14px; }
+.ratingPicker > div { min-height: 44px; display: flex; align-items: center; gap: 7px; }
+.ratingPicker button { width: 34px; height: 38px; padding: 0; border: 0; background: transparent; color: #ddd3c5; cursor: pointer; }
+.ratingPicker button:hover, .ratingPicker button.selected { color: #f5b800; }
+.ratingPicker button svg { width: 25px; height: 25px; fill: currentColor; stroke: currentColor; stroke-width: 1.2; }
+.ratingPicker > div > span { margin-left: 8px; color: #74675c; font-size: 13px; }
+.visitMemo { position: relative; }
+.visitMemo textarea { min-height: 100px; padding-bottom: 28px; border-color: #ded3c5; background: #fffdf9; }
+.visitMemo small { position: absolute; right: 10px; bottom: 8px; color: #9a8171; font-size: 11px; font-weight: 400; }
+.visitFormActions .primary { border-radius: 10px; display: inline-flex; align-items: center; gap: 7px; }
+.visitFormActions svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.visitFormActions .primary:disabled { border-color: #dfd4c4; background: #dfd4c4; color: #ae9d8b; cursor: not-allowed; }
+.visitRecordList { display: grid; gap: 16px; }
+.visitRecordCard { position: relative; min-height: 145px; padding: 16px; border: 1px solid #e4d8c9; border-radius: 16px; background: #fffdf9; display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 17px; transition: border-color .2s ease, box-shadow .2s ease; }
+.visitRecordCard:hover { border-color: #df6d43; box-shadow: 0 8px 24px rgba(91,58,35,.08); }
+.visitRecordCard > img { width: 160px; height: 112px; border-radius: 12px; object-fit: cover; }
+.visitRecordBody { min-width: 0; display: grid; align-content: center; gap: 7px; padding-right: 72px; }
+.visitRecordBody h3 { padding-right: 40px; font-size: 18px; }
+.visitRecordMeta { display: flex; flex-wrap: wrap; gap: 12px; color: #9a7962; font-size: 12px; }
+.visitRecordRating { color: #f5b800; letter-spacing: 2px; }
+.visitRecordRating span { color: #ded5c8; }
+.visitRecordBody > p { color: #665b52; font-size: 14px; line-height: 1.55; }
+.visitRecordActions { position: absolute; top: 18px; right: 18px; display: flex; align-items: center; gap: 7px; }
+.visitDelete { width: 30px; height: 30px; border: 0; background: transparent; color: #b39a87; cursor: pointer; display: grid; place-items: center; }
+.visitDelete:hover { color: #b54a2f; }
+.visitDelete svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.visitEdit { border: 1px solid #ddd1c3; border-radius: 7px; padding: 5px 10px; background: #fff; color: #6b594c; font: inherit; font-size: 11px; cursor: pointer; }
+.memberError { padding: 12px; border-radius: 10px; background: #fff0ed; color: #a1321e; }
+@media (max-width: 767px) { 
+    .memberPage { padding: 92px 14px 56px; } 
+    .formRow { grid-template-columns: 1fr; } 
+    .courseFormBody { padding: 18px 14px; }
+    .courseCardGrid { grid-template-columns: 1fr; }
+    .visitFormBody { padding: 20px 14px; }
+    .visitRecordCard { 
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas: "visitImage visitImage" "visitBody visitActions";
+        align-items: start;
+        padding: 16px;
+        gap: 14px 8px;
+    }
+    .visitRecordCard > img { 
+        grid-area: visitImage;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2.35 / 1;
+        border-radius: 12px;
+    }
+    .visitRecordBody { grid-area: visitBody; padding-right: 0; gap: 8px; }
+    .visitRecordBody h3 { padding-right: 0; font-size: 18px; }
+    .visitRecordMeta { gap: 10px; }
+    .visitRecordBody > p { font-size: 14px; line-height: 1.65; }
+    .visitRecordActions { grid-area: visitActions; position: static; align-self: start; margin-top: -4px; }
+}
+
+@media (min-width: 768px) {
+    .memberTabs button { 
+        width: auto;
+        padding: 10px 36px; 
+        /* Font */
+        font-size: 1rem;
+    }
+    .memberSectionMainTitle {
+        /* Font */
+        font-size: 2.25rem;
+    }
+    .memberSectionTitle span {
+        width: 40px;
+        /* Font */
+        font-size: 0.875rem;
+    }
+    .favoriteMap { 
+        height: min(52vh, 520px); 
+    }
+}

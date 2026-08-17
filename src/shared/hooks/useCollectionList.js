@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
+import { API_URL } from '@/shared/config/apiUrl';
 
 export const useCollectionList = ({ lang = "ko" }) => {
   const [data, setData] = useState([]);
@@ -8,7 +9,7 @@ export const useCollectionList = ({ lang = "ko" }) => {
     const fetchCollections = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/collections`
+          `${API_URL}/collections`
         );
         const result = await res.json();
         setData(result);

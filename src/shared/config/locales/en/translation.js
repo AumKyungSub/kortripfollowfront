@@ -11,7 +11,8 @@ export default {
       learnMore: "Learn More",
       viewReview: "View Review",
       collection: "View Collection",
-      otherPlaceBtn: "Explore Other Place"
+      otherPlaceBtn: "Explore Other Place",
+      cancel: "Cancel"
   },
   /*------------------------------------*/
   
@@ -37,6 +38,12 @@ export default {
       collectionBuy: "HOW TO BUY"
   },
   /*------------------------------------*/
+  /*--------------- 법적 고지 ---------------*/
+  legalNotice: {
+      terms: "Terms",
+      privacy: "Privacy Policy"
+  },
+  /*-------------------------------------*/
 
     /////////////// 공용 컴포넌트 나눔 ///////////////
     /*------------ 헤더 (Header) -------------*/
@@ -53,27 +60,11 @@ export default {
       category:"Category",
       setLanguage:"Language",
       login: "Log in",
-      googleLogin: "Google login",
-      logout: "Log out",
       loggedIn: "Signed in as",
-      loginTitle: "Choose a login method",
-      account: "My account",
-      welcome: "KORTRIP",
-      naverLogin: "Continue with Naver",
-      kakaoLogin: "Continue with Kakao",
       comingSoon: "Coming soon",
-      checkingLogin: "Checking your session...",
-      closeLogin: "Close login dialog",
-      loginNotice: "Log in to use member features on KORTRIP.",
-      deleteAccount: "Delete account",
       deleteAccountTitle: "Delete your account?",
-      deleteAccountDescription: "Your member data and all login sessions will be permanently deleted. Your {{provider}} account will not be deleted.",
-      cancel: "Cancel",
-      confirmDeleteAccount: "Delete account",
-      deletingAccount: "Deleting...",
-      deleteAccountError: "We could not delete your account. Please try again later.",
-      terms: "Terms",
-      privacy: "Privacy Policy"
+      deleteAccountDescription: "Your member data, sessions, saved places, itineraries, and visits will be permanently deleted. Your {{provider}} account will not be deleted.",
+      deleteAccountError: "We could not delete your account. Please try again later."
     },
     /*---------------------------------------*/
   
@@ -177,6 +168,33 @@ export default {
       food: 'Food' 
     },
     close: 'Close search', clear: 'Clear search', search: 'Search destinations',
+  },
+  /*---------------------------------------*/
+  /*---------- 로그인창 (LoginModal) -----------*/
+  loginModal: {
+    preTitle: "KORTRIP",
+    closeModal: "Close modal",
+    loginTitle: "Choose a login method",
+    account: "My account",
+    checkingLogin: "Checking your session...",
+    loginNotice: "Log in to use member features on KORTRIP.",
+    logout: "Logout",
+    myTrip: "My Trip",
+    googleLogin: "Sign in with Google",
+    naverLogin: "Sign in with Naver",
+    kakaoLogin: "Sign in with Kakao",
+    deleteAccount: "Delete account",
+    deleteAccountLead: "The data below will be permanently deleted and cannot be recovered.",
+    deleteItems: {
+      profile: "Member information and profile",
+      session: "Login sessions",
+      favorites: "Saved destinations",
+      travelRecords: "Itineraries and visit history"
+    },
+    providerNotice: "Your {{provider}} account will not be deleted. Only its connection to KORTRIP will be removed.",
+    deleteAgreement: "I understand and agree that this data will be permanently deleted.",
+    confirmDeleteAccount: "Delete account",
+    deletingAccount: "Deleting...",
   },
   /*---------------------------------------*/
 

@@ -1,0 +1,26 @@
+.placeRating {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fff3cf;
+  color: #8a5a00;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.placeRating span { color: #f2a900; }
+
+.placeRating.banner {
+  border: 1px solid rgba(255, 255, 255, .7);
+  background: rgba(18, 18, 18, .38);
+  color: #fff;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+}
+
+.placeRating.banner span { color: #ffd65a; }

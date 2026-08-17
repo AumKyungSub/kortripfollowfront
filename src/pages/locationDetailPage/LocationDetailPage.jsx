@@ -65,6 +65,7 @@ const LocationDetailPage = () => {
             <Header/>
             <DetailBanner 
                 data={data}
+                placeType="attraction"
                 />
             {!isFullMobile 
             ?

@@ -93,6 +93,13 @@
     font-weight: 600;
 }
 
+.detailBannerTitleRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .detailBannerLinkCover {
     margin-top: 18px;
     /* Flex */

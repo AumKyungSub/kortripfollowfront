@@ -8,17 +8,11 @@ import { useNavigate } from 'react-router-dom'
 /*------------------------custom hooks-----------------------------------*/
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
+import PlaceRating from '@/features/placeRating/PlaceRating';
 /*------------------------/custom hooks-----------------------------------*/
 
 // Page CSS
 import './List.style.css'
-
-const themeType = {
-    CAFE: 'cafes',
-    RESTAURANT: 'restaurants',
-    LODGING: 'lodgings',
-    FOOD: 'foods',
-};
 
 const List = ({ filteredList, link, selectedTheme }) => {
     // Transition Language
@@ -50,10 +44,13 @@ const List = ({ filteredList, link, selectedTheme }) => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b54a2f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
                             {data?.location?.region?.[lang]}
                         </p>
-                        <h3 className="listLocation">
-                            {data?.location?.name?.[lang]}
-                            {data?.description?.star && ` ${data?.description?.star}${t("common.starUnit")}`}
-                        </h3>
+                        <div className="listTitleRow">
+                            <h3 className="listLocation">
+                                {data?.location?.name?.[lang]}
+                                {data?.description?.star && ` ${data?.description?.star}${t("common.starUnit")}`}
+                            </h3>
+                            <PlaceRating summary={data.ratingSummary} />
+                        </div>
                         <p className="listText">{data?.description?.slide?.[lang]}</p>
                         <div className="listGoTo" onClick={() => handleClick(data)}>
                             <p>{isEn ? t('button.readMore') : t('button.learnMore')}</p>

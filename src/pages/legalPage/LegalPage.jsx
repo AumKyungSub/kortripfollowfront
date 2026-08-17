@@ -15,7 +15,7 @@ const koContent = {
       ['2. 처리 목적', ['소셜 로그인 이용자 식별 및 계정 관리', '로그인 상태 유지와 부정 이용 방지', '서비스 안정성 확보 및 오류 대응', '회원 탈퇴 요청 처리']],
       ['3. 보유 및 이용 기간', ['회원 정보: 회원 탈퇴 시까지 보관하며, 탈퇴 시 지체 없이 삭제합니다.', '로그인 세션: 생성일로부터 최대 14일 동안 보관하며, 로그아웃 또는 회원 탈퇴 시 해당 세션을 삭제합니다.', '법령에 별도의 보관 의무가 있는 경우에는 해당 기간 동안 보관할 수 있습니다.', '호스팅 사업자의 접속 로그 보관기간은 각 사업자의 운영 및 개인정보 정책에 따를 수 있습니다.']],
       ['4. 제3자 서비스 및 처리 기반', ['Google OAuth: Google 계정 인증', '네이버 로그인 API: 네이버 계정 인증', '카카오 로그인 API: 카카오계정 인증', 'MongoDB Atlas: 회원 및 세션 데이터 저장', 'Cloudtype: 백엔드 서버 운영', 'Netlify: 프론트엔드 배포, DNS 및 네트워크 제공', '각 서비스 이용 과정에서 해당 사업자의 개인정보처리방침이 함께 적용될 수 있습니다.']],
-      ['5. 이용자의 권리', ['이용자는 로그인 후 계정 화면에서 회원 탈퇴를 요청할 수 있습니다.', '회원 탈퇴 시 회원 정보와 해당 회원의 모든 로그인 세션이 삭제됩니다.', '소셜 계정 자체의 삭제나 소셜 로그인 연결 해제는 Google·네이버·카카오 등 해당 서비스의 계정 설정에서 별도로 처리할 수 있습니다.', `개인정보 관련 문의는 ${CONTACT_EMAIL}로 접수할 수 있습니다.`]],
+      ['5. 이용자의 권리', ['이용자는 로그인 후 계정 화면에서 회원 탈퇴를 요청할 수 있습니다.', '회원 탈퇴 시 회원 정보, 모든 로그인 세션, 찜, 여행 코스와 방문 기록이 삭제됩니다.', '소셜 계정 자체의 삭제나 소셜 로그인 연결 해제는 Google·네이버·카카오 등 해당 서비스의 계정 설정에서 별도로 처리할 수 있습니다.', `개인정보 관련 문의는 ${CONTACT_EMAIL}로 접수할 수 있습니다.`]],
       ['6. 개인정보의 안전성 확보 조치', ['비밀번호를 직접 수집하거나 저장하지 않습니다.', '세션 쿠키에 HttpOnly, Secure, SameSite 속성을 적용합니다.', '세션 토큰 원문 대신 해시값을 데이터베이스에 저장합니다.', '환경변수를 통해 데이터베이스와 OAuth 비밀정보를 관리합니다.']],
       ['7. 방침 변경', ['본 방침의 내용이 변경되면 시행 전에 서비스 내에서 알립니다.', '시행일: 2026년 8월 16일']]
     ]
@@ -30,7 +30,7 @@ const koContent = {
       ['4. 콘텐츠와 저작권', ['서비스의 사진, 글, 디자인 등 콘텐츠의 저작권은 별도 표시가 없는 한 운영자에게 있습니다.', '사전 허락 없이 콘텐츠를 복제, 배포, 판매하거나 상업적으로 이용할 수 없습니다.', '외부 사이트로 연결되는 콘텐츠에는 해당 사이트의 이용 조건이 적용됩니다.']],
       ['5. 여행 정보 및 외부 링크', ['운영시간, 요금, 위치 등 여행 정보는 변경될 수 있으므로 방문 전에 공식 채널을 통해 다시 확인해야 합니다.', '서비스가 연결하는 외부 웹사이트의 내용, 거래 및 운영에 대해서는 해당 사업자가 책임을 집니다.']],
       ['6. 서비스 이용 제한', ['약관이나 관계 법령을 위반하거나 서비스의 안전한 운영을 방해한 경우 이용을 제한하거나 계정을 삭제할 수 있습니다.', '긴급한 보안 문제가 있는 경우 사전 안내 없이 필요한 보호 조치를 할 수 있습니다.']],
-      ['7. 회원 탈퇴', ['회원은 계정 화면에서 언제든지 탈퇴할 수 있습니다.', '탈퇴하면 회원 정보와 모든 로그인 세션이 삭제되며 복구할 수 없습니다.', '탈퇴는 Google 등 소셜 로그인 제공자의 계정 자체를 삭제하지 않습니다.']],
+      ['7. 회원 탈퇴', ['회원은 계정 화면에서 언제든지 탈퇴할 수 있습니다.', '탈퇴하면 회원 정보, 모든 로그인 세션, 찜, 여행 코스와 방문 기록이 삭제되며 복구할 수 없습니다.', '탈퇴는 Google 등 소셜 로그인 제공자의 계정 자체를 삭제하지 않습니다.']],
       ['8. 책임 및 문의', ['천재지변, 통신 장애, 외부 서비스 장애 등 합리적으로 통제하기 어려운 사유로 발생한 서비스 중단에 대해서는 관련 법령이 허용하는 범위에서 책임이 제한될 수 있습니다.', `서비스 및 약관 관련 문의: ${CONTACT_EMAIL}`, '시행일: 2026년 8월 16일']]
     ]
   }
@@ -44,7 +44,7 @@ const enContent = {
       ['2. Purposes', ['Identify social-login users and manage accounts', 'Maintain login sessions and prevent misuse', 'Maintain service security and respond to errors', 'Process account deletion requests']],
       ['3. Retention', ['Member data is retained until account deletion and is then deleted without undue delay.', 'Login sessions are retained for up to 14 days and are deleted on logout or account deletion.', 'Data may be retained when required by applicable law.', 'Infrastructure log retention may follow each provider’s operational and privacy policies.']],
       ['4. Services used', ['Google OAuth for authentication', 'Naver Login API for authentication', 'Kakao Login API for authentication', 'MongoDB Atlas for member and session storage', 'Cloudtype for backend hosting', 'Netlify for frontend hosting, DNS, and network delivery', 'The privacy policies of these providers may also apply when their services are used.']],
-      ['5. Your choices and rights', ['You can delete your account from the account dialog after logging in.', 'Account deletion removes your member data and all associated KORTRIP sessions.', 'Deleting KORTRIP membership does not delete an account held by Google, Naver, or another social login provider.', `Privacy inquiries: ${CONTACT_EMAIL}`]],
+      ['5. Your choices and rights', ['You can delete your account from the account dialog after logging in.', 'Account deletion removes your member data, sessions, saved places, itineraries, and visits.', 'Deleting KORTRIP membership does not delete an account held by Google, Naver, or another social login provider.', `Privacy inquiries: ${CONTACT_EMAIL}`]],
       ['6. Security measures', ['We do not collect or store passwords.', 'Session cookies use HttpOnly, Secure, and SameSite attributes.', 'We store a hash of the session token instead of the raw token.', 'Database and OAuth secrets are managed through environment variables.']],
       ['7. Changes', ['Material changes will be announced through the service before taking effect.', 'Effective date: August 16, 2026']]
     ]
@@ -58,7 +58,7 @@ const enContent = {
       ['4. Content and copyright', ['Unless otherwise stated, photos, text, and design are owned by the operator.', 'Content may not be copied, distributed, sold, or commercially used without prior permission.', 'Third-party destinations are governed by their respective terms.']],
       ['5. Travel information and links', ['Hours, prices, and location information may change. Confirm important details through official sources before visiting.', 'Third-party operators are responsible for external websites and transactions.']],
       ['6. Restrictions', ['Accounts may be restricted or removed for violations of these Terms, applicable law, or service security.', 'Urgent protective action may be taken without prior notice when necessary for security.']],
-      ['7. Account deletion', ['You may delete your account at any time from the account dialog.', 'Deletion permanently removes member data and all associated sessions.', 'It does not delete an account held by Google or another social provider.']],
+      ['7. Account deletion', ['You may delete your account at any time from the account dialog.', 'Deletion permanently removes member data, sessions, saved places, itineraries, and visits.', 'It does not delete an account held by Google or another social provider.']],
       ['8. Contact', ['Liability may be limited to the extent permitted by law for events outside reasonable control, including network and third-party service failures.', `Contact: ${CONTACT_EMAIL}`, 'Effective date: August 16, 2026']]
     ]
   }
@@ -72,9 +72,25 @@ const LegalPage = ({ type }) => {
     <article className="legalPage">
       <Header />
       <main className="legalMain">
-        <div className="legalHeading"><span>{content.eyebrow}</span><h1>{content.title}</h1><p>{content.intro}</p></div>
+        <div className="legalHeading">
+          <p className="preTitle14px600b54a2f">
+              <span className="preTitle14px600b54a2fLine"></span>
+              {content.eyebrow}
+          </p>
+          <h2 className="title28px40px700">
+              {content.title}
+          </h2>
+          <p className="legalIntro">{content.intro}</p>
+        </div>
         <div className="legalContent">
-          {content.sections.map(([title, paragraphs]) => <section key={title}><h2>{title}</h2><ul>{paragraphs.map((paragraph) => <li key={paragraph}>{paragraph}</li>)}</ul></section>)}
+          {content.sections.map(([title, paragraphs]) => 
+          <section key={title}>
+            <h2>{title}</h2>
+            <ul>{paragraphs.map((paragraph) => 
+              <li key={paragraph}>{paragraph}</li>)}
+            </ul>
+          </section>
+        )}
         </div>
       </main>
       <Footer />
