@@ -1,8 +1,4 @@
 
-.homeThemeBackground{
-    background-color: #f2f2f7;
-}
-
 .homeThemeWrapper {
     max-width: 1200px;
     padding: 10px 16px;
@@ -69,6 +65,10 @@
 }
 
 @media only all and (min-width: 768px) {
+    .homeThemeBackground{
+        background-color: #f2f2f7;
+    }
+
     .homeThemeWrapper {
         padding: 40px 16px 120px;
     }

@@ -1,10 +1,14 @@
-.homeRegionWrapper {
-    padding: 10px 16px;
+.homeRegionBackground {
+    background-color: #f2f2f7;
+}
+
+.homeRegionContent {
+    padding: 16px 0;
     overflow: hidden;
 }
 
 .homeRegionCover {
-    margin-top: 16px;
+    padding-top: 16px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -55,7 +59,7 @@
 .homeRegionName {
     width: 100%;
     /* Font */
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     color: #fafaf8;
     text-align: center;
@@ -66,7 +70,7 @@
 
     .homeRegionCount {
         /* Font */
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 700;
         color: #fafaf8;
         text-align: center;
@@ -81,10 +85,6 @@
 }
 
 @media only all and (min-width: 768px) {
-    .homeRegionBackground{
-        background-color: #f2f2f7;
-    }
-
     .homeRegionWrapper {
         padding: 24px 16px;
         margin-left: auto;
@@ -94,18 +94,21 @@
         flex-direction: column;
     }
 
+    .homeRegionContent {
+        padding: 30px 0;
+    }
+
     .homeRegionCover {
         /* Flex */
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 16px;
-
+        gap: 16px 0;
     }
 
     .homeRegionList {
-        width: calc((100% - 48px) / 4);
+        width: 21.88vw;
         aspect-ratio: 4/5;
         border-radius: 10px;
         overflow: hidden;
@@ -132,6 +135,7 @@
         width: 100%;
         height: 100%;
         border-radius: 0;
+        padding-top: 0;
     }
 
     .homeRegionExampleList {
@@ -142,35 +146,40 @@
         gap: 5px;
         /* Position */
         position: absolute;
-        bottom: 15px;
-        left: 15px;
+        bottom: 5px;
+        left: 10px;
         z-index: 99;
     }
 
     .homeRegionName {
         /* Font */
-        font-size: 20px;
+        font-size: 1rem;
         text-align: left;
     }
 
     .homeRegionCount {
+        width: 55px;
+        height: 25px;
         background-color: #fafaf8;
-        padding: 2px 12px;
         border-radius: 50px;
         /* Font */
-        font-size: 12px;
+        font-size: 0.5rem;
         font-weight: 700;
         color: #1a1a1a;
+        /* Flex */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         /* Position */
         position: absolute;
-        top: 15px;
-        right: 20px;
+        top: 10px;
+        right: 10px;
         z-index: 99;
     }
 
     .homeRegionLearnMore {
         /* Font */
-        font-size: 12px;
+        font-size: 0.5rem;
         color: #fff;
         letter-spacing: 0.2em;
     }
@@ -189,7 +198,7 @@
         border: 1px solid #fafaf8;
         background-color: rgba(255, 255, 255, 0.1);
         /* Font */
-        font-size: 10px;
+        font-size: 0.625rem;
         color: #fff;
         letter-spacing: 0.1em;
         /* Position */
@@ -210,15 +219,6 @@
     .homeRegionList:hover::before {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), 100%, rgba(255, 255, 255, 0.2));
     }
-
-    /* hover 시 li 등장 */
-    .homeRegionList:hover .homeRegionAreaList {
-        /* Position */
-        position: static;
-        /* Show */
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 @media only all and (min-width: 1024px) {
@@ -226,10 +226,32 @@
         max-width: 1200px;
         padding: 40px 16px 40px;
     }
-    
+
     .homeRegionCover {
         /* Flex */
-        gap: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px 0;
+    }
+
+    .homeRegionName {
+        /* Font */
+        font-size: 1.25rem;
+        text-align: left;
+    }
+
+    .homeRegionCount {
+        width: 65px;
+        height: 30px;
+        /* Font */
+        font-size: 0.625rem;
+    }
+
+    .homeRegionLearnMore {
+        /* Font */
+        font-size: 0.75rem;
     }
 
     .homeRegionList {
@@ -243,6 +265,15 @@
         position: absolute;
         bottom: 20px;
         left: 20px;
+    }
+
+    /* hover 시 li 등장 */
+    .homeRegionList:hover .homeRegionAreaList {
+        /* Position */
+        position: static;
+        /* Show */
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

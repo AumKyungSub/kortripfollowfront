@@ -1,17 +1,18 @@
 .homeCategoryWrapper {
     width: 100%;
     height: auto;
-    padding: 40px 16px 10px;
 }
 
 .homeCategoryCardCover {
+    padding-top: 16px;
     /* Flex */
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .homeCategoryWrapper .homeCategoryCard {
-    width: calc((100% - 15px) / 3);
+    width: 20.06vw;
     aspect-ratio: 1/1;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -22,12 +23,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .homeCategoryImgCover{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     /* Flex */
     display: flex;
     justify-content: center;
@@ -56,9 +57,6 @@
 }
 
 @media only all and (min-width: 480px) and (max-width: 767px) {
-    .homeCategoryWrapper {
-        padding: 70px 16px 20px;
-    }
 }
 
 @media only all and (min-width: 768px) and (max-width: 1023px) {

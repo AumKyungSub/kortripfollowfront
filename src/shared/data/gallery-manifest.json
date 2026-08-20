@@ -211,5 +211,129 @@
     "/images/detailLocation/yeonsangun/gallery/yeonsangun8.jpg",
     "/images/detailLocation/yeonsangun/gallery/yeonsangun9.jpg",
     "/images/detailLocation/yeonsangun/gallery/yeonsangun10.jpg"
+  ],
+  "/images/detailTheme/cafemur/gallery/": [
+    "/images/detailTheme/cafemur/cafemur5.jpg",
+    "/images/detailTheme/cafemur/cafemur6.jpg",
+    "/images/detailTheme/cafemur/cafemur7.jpg",
+    "/images/detailTheme/cafemur/cafemur8.jpg",
+    "/images/detailTheme/cafemur/cafemur9.jpg",
+    "/images/detailTheme/cafemur/cafemur10.jpg"
+  ],
+  "/images/detailTheme/cafesan/gallery/": [
+    "/images/detailTheme/cafesan/cafesan5.jpg",
+    "/images/detailTheme/cafesan/cafesan6.jpg",
+    "/images/detailTheme/cafesan/cafesan7.jpg",
+    "/images/detailTheme/cafesan/cafesan8.jpg",
+    "/images/detailTheme/cafesan/cafesan9.jpg",
+    "/images/detailTheme/cafesan/cafesan10.jpg",
+    "/images/detailTheme/cafesan/cafesan11.jpg",
+    "/images/detailTheme/cafesan/cafesan12.jpg"
+  ],
+  "/images/detailTheme/firewoodGomtang/gallery/": [
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang5.jpg",
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang6.jpg",
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang7.jpg",
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang8.jpg",
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang9.jpg",
+    "/images/detailTheme/firewoodGomtang/firewoodGomtang10.jpg"
+  ],
+  "/images/detailTheme/forest/gallery/": [
+    "/images/detailTheme/forest/forest5.jpg",
+    "/images/detailTheme/forest/forest6.jpg",
+    "/images/detailTheme/forest/forest7.jpg",
+    "/images/detailTheme/forest/forest8.jpg",
+    "/images/detailTheme/forest/forest9.jpg",
+    "/images/detailTheme/forest/forest10.jpg"
+  ],
+  "/images/detailTheme/gomori/gallery/": [
+    "/images/detailTheme/gomori/gomori5.jpg",
+    "/images/detailTheme/gomori/gomori6.jpg",
+    "/images/detailTheme/gomori/gomori7.jpg",
+    "/images/detailTheme/gomori/gomori8.jpg",
+    "/images/detailTheme/gomori/gomori9.jpg",
+    "/images/detailTheme/gomori/gomori10.jpg"
+  ],
+  "/images/detailTheme/hangangChickenSoup/gallery/": [
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup5.jpg",
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup6.jpg",
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup7.jpg",
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup8.jpg",
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup9.jpg",
+    "/images/detailTheme/hangangChickenSoup/hangangChickenSoup10.jpg"
+  ],
+  "/images/detailTheme/holzGarten/gallery/": [
+    "/images/detailTheme/holzGarten/holzGarten5.jpg",
+    "/images/detailTheme/holzGarten/holzGarten6.jpg",
+    "/images/detailTheme/holzGarten/holzGarten7.jpg",
+    "/images/detailTheme/holzGarten/holzGarten8.jpg",
+    "/images/detailTheme/holzGarten/holzGarten9.jpg",
+    "/images/detailTheme/holzGarten/holzGarten10.jpg",
+    "/images/detailTheme/holzGarten/holzGarten11.jpg"
+  ],
+  "/images/detailTheme/jungamriTofu/gallery/": [
+    "/images/detailTheme/jungamriTofu/jungamriTofu5.jpg",
+    "/images/detailTheme/jungamriTofu/jungamriTofu6.jpg",
+    "/images/detailTheme/jungamriTofu/jungamriTofu7.jpg",
+    "/images/detailTheme/jungamriTofu/jungamriTofu8.jpg",
+    "/images/detailTheme/jungamriTofu/jungamriTofu9.jpg",
+    "/images/detailTheme/jungamriTofu/jungamriTofu10.jpg"
+  ],
+  "/images/detailTheme/lahanJeonju/gallery/": [
+    "/images/detailTheme/lahanJeonju/lahanJeonju5.jpg",
+    "/images/detailTheme/lahanJeonju/lahanJeonju6.jpg",
+    "/images/detailTheme/lahanJeonju/lahanJeonju7.jpg",
+    "/images/detailTheme/lahanJeonju/lahanJeonju8.jpg",
+    "/images/detailTheme/lahanJeonju/lahanJeonju9.jpg",
+    "/images/detailTheme/lahanJeonju/lahanJeonju10.jpg"
+  ],
+  "/images/detailTheme/obune/gallery/": [
+    "/images/detailTheme/obune/obune5.jpg",
+    "/images/detailTheme/obune/obune6.jpg",
+    "/images/detailTheme/obune/obune7.jpg",
+    "/images/detailTheme/obune/obune8.jpg",
+    "/images/detailTheme/obune/obune9.jpg",
+    "/images/detailTheme/obune/obune10.jpg"
+  ],
+  "/images/detailTheme/oldCountryTable/gallery/": [
+    "/images/detailTheme/oldCountryTable/oldCountryTable5.jpg",
+    "/images/detailTheme/oldCountryTable/oldCountryTable6.jpg",
+    "/images/detailTheme/oldCountryTable/oldCountryTable7.jpg",
+    "/images/detailTheme/oldCountryTable/oldCountryTable8.jpg",
+    "/images/detailTheme/oldCountryTable/oldCountryTable9.jpg",
+    "/images/detailTheme/oldCountryTable/oldCountryTable10.jpg"
+  ],
+  "/images/detailTheme/ppijuki/gallery/": [
+    "/images/detailTheme/ppijuki/ppijuki5.jpg",
+    "/images/detailTheme/ppijuki/ppijuki6.jpg",
+    "/images/detailTheme/ppijuki/ppijuki7.jpg",
+    "/images/detailTheme/ppijuki/ppijuki8.jpg",
+    "/images/detailTheme/ppijuki/ppijuki9.jpg",
+    "/images/detailTheme/ppijuki/ppijuki10.jpg"
+  ],
+  "/images/detailTheme/walnutcakesCheonan/gallery/": [
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan5.jpg",
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan6.jpg",
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan7.jpg",
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan8.jpg",
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan9.jpg",
+    "/images/detailTheme/walnutcakesCheonan/walnutcakesCheonan10.jpg"
+  ],
+  "/images/detailTheme/westernSky/gallery/": [
+    "/images/detailTheme/westernSky/westernSky5.jpg",
+    "/images/detailTheme/westernSky/westernSky6.jpg",
+    "/images/detailTheme/westernSky/westernSky7.jpg",
+    "/images/detailTheme/westernSky/westernSky8.jpg",
+    "/images/detailTheme/westernSky/westernSky9.jpg",
+    "/images/detailTheme/westernSky/westernSky10.jpg",
+    "/images/detailTheme/westernSky/westernSky11.jpg"
+  ],
+  "/images/detailTheme/yeonsalang/gallery/": [
+    "/images/detailTheme/yeonsalang/yeonsalang5.jpg",
+    "/images/detailTheme/yeonsalang/yeonsalang6.jpg",
+    "/images/detailTheme/yeonsalang/yeonsalang7.jpg",
+    "/images/detailTheme/yeonsalang/yeonsalang8.jpg",
+    "/images/detailTheme/yeonsalang/yeonsalang9.jpg",
+    "/images/detailTheme/yeonsalang/yeonsalang10.jpg"
   ]
 }

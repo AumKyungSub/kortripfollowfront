@@ -86,11 +86,11 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
         <section className="detailVideo">
           {!isFullMobile ? (
             <>
-              <h4 className="detailTitleMin768">{t('detailVideo.title')}</h4>
+              <h4>{t('detailVideo.title')}</h4>
               <div className="emptyLine1px"></div>
             </>
           ) : (
-            <h4 className="detailTitleMax768">{t('detailVideo.title')}</h4>
+            <h4>{t('detailVideo.title')}</h4>
           )}
           <div className="detailVideoFrameWrap">
             <div className="detailVideoFrame">

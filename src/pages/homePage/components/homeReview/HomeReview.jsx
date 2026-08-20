@@ -210,7 +210,7 @@ const HomeReview = ({
     // ----------------------------------------------
 
     return (
-        <section className="homeReviewWrapper">
+        <section className="homeReviewWrapper contentWidth">
             {/* 헤더 영역 */}
             <div className="homeReviewHeaderCover">
                 <div className="homeReviewHeaderLeft">
@@ -230,6 +230,7 @@ const HomeReview = ({
                                 next={handleMobileNext} 
                                 prevDis={mobilePage === 1} 
                                 nextDis={mobilePage === 3}
+                                extraClassName="homeReviewMobilePagination"
                             />
                         )}
                     </div>
@@ -264,7 +265,7 @@ const HomeReview = ({
                                         className="homeReviewImg"
                                         style={{ backgroundImage: `url(${cardBg})` }}
                                     >
-                                        <span className="homeReviewStars">★{menu?.stars}</span>
+                                        <span className="homeReviewStars">★ {Number(menu?.stars).toFixed(1)}</span>
                                         <button
                                             className="homeReviewGoToBtn"
                                             onClick={(e) => goToReview(e, menu)}
@@ -278,7 +279,7 @@ const HomeReview = ({
                                         <p>{t('homepage.homeReview.author')}</p>
                                         <p>nBlog</p>
                                     </div>
-                                    <p className="homeReviewRegionName">
+                                    <p className="homeReviewRegionName lineClamp1">
                                         {menu?.location?.name?.[lang] || menu?.location?.name?.ko}
                                     </p>
                                     <p className="homeReviewAddress subFont">
@@ -296,15 +297,15 @@ const HomeReview = ({
                                 className="homeReviewImg"
                                 style={{ backgroundImage: `url(${bgcImg})` }}
                             >
-                                <span className="homeReviewStars">★{selectedAll?.stars}</span>
+                                <span className="homeReviewStars">★ {Number(selectedAll?.stars).toFixed(1)}</span>
                             </div>
 
                             <div className="homeReviewBodyTopText">
                                 <p className="homeReviewBlogName">nBlog</p>
-                                <h3 className="homeReviewRegionName">
+                                <h3 className="homeReviewRegionName lineClamp1">
                                     {selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}
                                 </h3>
-                                <p className="homeReviewBodyTopDesc">
+                                <p className="homeReviewBodyTopDesc lineClamp2">
                                     {selectedAll?.typeTable === 'rankings'
                                         ? selectedAll?.description?.main?.[lang] || selectedAll?.description?.main?.ko
                                         : `${selectedAll?.description?.slide?.[lang] || selectedAll?.description?.slide?.ko}\n${selectedAll?.description?.title?.[lang] || selectedAll?.description?.title?.ko}`}
@@ -312,12 +313,7 @@ const HomeReview = ({
 
                                 <div className="homeReviewBodyTopInfoCover">
                                     <div className="homeReviewBodyTopInfo">
-                                        <svg className="homeReviewBodyTopInfoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                            <line x1="16" y1="2" x2="16" y2="6" />
-                                            <line x1="8" y1="2" x2="8" y2="6" />
-                                            <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
                                         <div className="homeReviewBodyTopInfoDetail">
                                             <span className="homeReviewBodyTopInfoDetailDate">
                                                 {selectedAll?.date?.[lang] || selectedAll?.date?.ko}
@@ -325,11 +321,8 @@ const HomeReview = ({
                                         </div>
                                     </div>
                                     <div className="homeReviewBodyTopInfo">
-                                        <svg className="homeReviewBodyTopInfoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                            <circle cx="12" cy="10" r="3" />
-                                        </svg>
-                                        <div className="homeReviewBodyTopInfoDetail">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                                        <div className="homeReviewBodyTopInfoDetail lineClamp1">
                                             <span>
                                                 {getLocationAddress(selectedAll)}
                                             </span>
@@ -358,7 +351,7 @@ const HomeReview = ({
                                             <div>
                                                 {String(startIndex + index + 1).padStart(2, '0')}
                                             </div>
-                                            <div>
+                                            <div className="lineClamp1">
                                                 {menu.location?.name?.[lang] || menu.location?.name?.ko}
                                             </div>
                                         </li>

@@ -111,7 +111,7 @@ const HomeBanner = ({
     <div className="homeBannerBackground bannerImg" style={{ backgroundImage }}>
       {/* 메인 배너 이미지 */}
 
-    <div className="homeBannerWrapper">
+    <div className="homeBannerWrapper contentWidth">
       {/* 텍스트 영역 */}
       <div className="homeBannerTextCover">
         <p className='homeBannerLocation'>
@@ -122,7 +122,7 @@ const HomeBanner = ({
           {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
         </h1>
 
-        <p className="homeBannerDetail">
+        <p className="homeBannerDetail lineClamp3">
           {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
         </p>
 

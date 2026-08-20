@@ -5,7 +5,7 @@ import './PaginationMethodTwo.style.css'
 
 const PaginationMethodTwo = (props) => {
   return (
-    <div className="homeReviewNavBtnCover">
+    <div className={`homeReviewNavBtnCover ${props.extraClassName}`}>
         <button
             className="homeReviewNavBtn prev"
             onClick={props.prev}

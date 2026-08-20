@@ -32,7 +32,8 @@ const Header = () => {
   const apiUrl = API_URL;
 
   const {
-          isFullMobile /* maxWidth: 767 */
+          isFullMobile, /* maxWidth: 767 */
+          isTablet, /* minWidth: 768, maxWidth: 1023 */
   } = useResponsive();
 
   const location = useLocation();
@@ -82,7 +83,7 @@ const Header = () => {
     { key: 'home', path: '/', label: t('menu.home'), icon: 'homeIcon' },
     { key: 'region', path: '/region', startsWith: '/location', label: t('menu.region'), icon: 'regionIcon' },
     { key: 'season', path: '/season', label: t('menu.season'), icon: 'seasonsIcon' },
-    { key: 'theme', path: '/theme', startsWith: '/themeDetail', label: t('menu.theme'), icon: 'travelIcon' },
+    { key: 'theme', path: '/theme', startsWith: '/theme/', label: t('menu.theme'), icon: 'travelIcon' },
     { key: 'collection', path: '/collection', startsWith: '/collection', label: t('menu.collection'), icon: 'collectionIcon' },
     { key: 'about', path: '/about', label: t('menu.about'), icon: 'infoIcon' },
   ]
@@ -173,12 +174,12 @@ const Header = () => {
 
   return (
     <header className={showDarkHeader ? "scrolled" : ""}>
-      <div className="headerCover">
+      <div className="headerCover contentWidthException">
         <div className="logo" onClick={goTo("/")}>
           <img src="/images/logo/logoIcon.png" alt="logoIcon" />
           <img src={getLogoImage()} alt="logoText" />
         </div>
-        {!isFullMobile &&
+        {!isFullMobile && !isTablet &&
           <nav className="gnb">
             <ul className='gnbContainer'>
               {gnbList.map(({ key, path, startsWith, label }) => (
@@ -230,7 +231,7 @@ const Header = () => {
                 </button>
                 <div className={`desktopLanguageMenu ${isLanguageOpen ? 'open' : ''}`} role="listbox" aria-label={t('header.setLanguage')}>
                   <button type="button" role="option" aria-selected={isKo} className={isKo ? 'selected' : ''} onClick={() => selectLanguage('ko')}>한국어</button>
-                  <button type="button" role="option" aria-selected={isEn} className={isEn ? 'selected' : ''} onClick={() => selectLanguage('en')}>ENGLISH</button>
+                  <button type="button" role="option" aria-selected={isEn} className={isEn ? 'selected' : ''} onClick={() => selectLanguage('en')}>ENG</button>
                 </div>
               </div>
             </>
@@ -239,7 +240,7 @@ const Header = () => {
           {isFullMobile && (
             <div className="mobileUtility">
                 <button className="profileBtn" onClick={() => setIsAuthModalOpen(true)} aria-label={authUser ? authUser.displayName : t('header.login')}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
@@ -255,6 +256,24 @@ const Header = () => {
           )}
         </div>
       </div>
+      {isTablet &&
+        <nav className="gnb">
+          <ul className='gnbContainer'>
+            {gnbList.map(({ key, path, startsWith, label }) => (
+              <li
+                key={key}
+                className={`
+                  ${showDarkHeader ? "gnbListSc" : "gnbList"}
+                  ${isActive(path, startsWith) ? "active" : ""}
+                `}
+                onClick={goTo(path)}
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      }
 
       {isAuthModalOpen && (
         <LoginPage

@@ -17,68 +17,35 @@ header.scrolled {
 .headerCover {
   width: 100%;
   height: 72px;
-  padding: 16px;
-  margin: 0 auto;
   /* Flex */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.headerList {
-  /* Flex */
-  display: flex;
-}
-
 .utilityBar {
+  width: 77px;
+  cursor: pointer;
+}
+
+.mobileUtility {
+  width: 100%;
+  /* Flex */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobileUtility > button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
   cursor: pointer;
   /* Flex */
   display: flex;
-  justify-content: end;
-  align-items: center;
-  gap: 10px;
-}
-
-.utilityBar img {
-  width: 30px;
-  height: 30px;
-  margin-left: 5px;
-}
-
-.desktopSearchBtn {
-  width: 24px;
-  height: 24px;
-  border: 0;
-  color: #fafaf8;
-  cursor: pointer;
-  /* Flex */
-  display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.desktopSearchBtn.dark {
-  color: #1a1a1a;
-}
-
-.desktopProfileBtn {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(255, 255, 255, .65);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, .12);
-  color: #fafaf8;
-  cursor: pointer;
-  display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.desktopProfileBtn.dark {
-  border-color: #ddd9d3;
-  background: #fff;
-  color: #1a1a1a;
 }
 
 .profileStatusDot {
@@ -154,99 +121,6 @@ header.scrolled {
   cursor: pointer;
   font: inherit;
   font-size: .8rem;
-}
-
-.desktopLanguage {
-  position: relative;
-  color: #fafaf8;
-}
-
-.desktopLanguage.dark {
-  color: #1a1a1a;
-}
-
-.desktopLanguageTrigger {
-  width: 110px;
-  height: 35px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, .12);
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  font-size: .92rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: background-color .2s ease, border-color .2s ease;
-}
-
-.desktopLanguage.dark .desktopLanguageTrigger {
-  border-color: #ddd9d3;
-  background: #fff;
-}
-
-.desktopLanguageTrigger:hover {
-  background: rgba(255, 255, 255, .14);
-}
-
-.desktopLanguage.dark .desktopLanguageTrigger:hover {
-  background: #f3f1ed;
-}
-
-.desktopLanguageTrigger svg {
-  transition: transform .2s ease;
-}
-
-.desktopLanguageTrigger svg.open {
-  transform: rotate(180deg);
-}
-
-.desktopLanguageMenu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  width: 100%;
-  padding: 6px;
-  border: 1px solid #e6e1db;
-  border-radius: 9px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .16);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
-}
-
-.desktopLanguageMenu.open {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.desktopLanguageMenu button {
-  width: 100%;
-  padding: 9px 10px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #39332e;
-  cursor: pointer;
-  font: inherit;
-  font-size: .88rem;
-  text-align: left;
-}
-
-.desktopLanguageMenu button:hover {
-  background: #f5f2ee;
-}
-
-.desktopLanguageMenu button.selected {
-  background: #eee9e3;
-  color: #9d3f29;
-  font-weight: 600;
 }
 
 .languageBtn {
@@ -555,15 +429,172 @@ header.scrolled {
 @media only all and (min-width: 480px) {}
 
 @media only all and (min-width: 768px) {
-  .headerCover {
-    max-width: 1440px;
+  header {
+    height: 104px;
+    /* Flex */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
   }
 
-  .gnb {
+  .headerCover {
+    height: 36px;
+  }
+
+  .utilityBar {
+    width: 184px;
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .desktopSearchBtn {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    color: #fafaf8;
+    cursor: pointer;
     /* Flex */
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .desktopSearchBtn.dark {
+    color: #1a1a1a;
+  }
+
+  .desktopProfileBtn {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, .65);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .12);
+    color: #fafaf8;
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .desktopProfileBtn.dark {
+    border-color: #ddd9d3;
+    background: #fff;
+    color: #1a1a1a;
+  }
+
+  .desktopLanguage {
+    width: 92px;
+    height: 35px;  
+    /* Font */
+    color: #fafaf8;
+    /* Position */
+    position: relative;
+  }
+
+  .desktopLanguage.dark {
+    color: #1a1a1a;
+  }
+
+  .desktopLanguageTrigger {
+    width: 100%;
+    height: 100%;
+    padding: 0 2px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .12);
+    cursor: pointer;
+    /* Font */
+    font: inherit;
+    font-size: .875rem;
+    font-weight: 500;
+    color: inherit;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+
+  .desktopLanguage.dark .desktopLanguageTrigger {
+    border-color: #ddd9d3;
+    background: #fff;
+  }
+
+  .desktopLanguageTrigger:hover {
+    background: rgba(255, 255, 255, .14);
+  }
+
+  .desktopLanguage.dark .desktopLanguageTrigger:hover {
+    background: #f3f1ed;
+  }
+
+  .desktopLanguageTrigger svg {
+    transition: transform .2s ease;
+  }
+
+  .desktopLanguageTrigger svg.open {
+    transform: rotate(180deg);
+  }
+
+  .desktopLanguageMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #e6e1db;
+    border-radius: 9px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .16);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  }
+
+  .desktopLanguageMenu.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .desktopLanguageMenu button {
+    width: 100%;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #39332e;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.75rem;
+    text-align: left;
+  }
+
+  .desktopLanguageMenu button:hover {
+    background: #f5f2ee;
+  }
+
+  .desktopLanguageMenu button.selected {
+    background: #eee9e3;
+    color: #9d3f29;
+    font-weight: 600;
+  }
+
+  .gnb {
+    height: 32px;
+    padding: 0 24px;
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
   
   .gnbContainer {
@@ -609,11 +640,40 @@ header.scrolled {
   }
 }
 
-@media only all and (min-width: 1024px) {}
+@media only all and (min-width: 1024px) {
+  header {
+    height: auto;
+    /* Flex */
+    display: block !important;
+  }
 
-@media only all and (min-width: 1921px) {
   .headerCover {
-    max-width: 1920px;
+    height: 72px;
+  }
+
+  .utilityBar {
+    width: 162px;
+    cursor: pointer;
+    /* Flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .desktopSearchBtn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .desktopProfileBtn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .desktopLanguage {
+    width: 95px;
   }
 }
+
+@media only all and (min-width: 1921px) {}
 

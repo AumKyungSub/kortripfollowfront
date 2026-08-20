@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url))
 const clientRoot = path.resolve(scriptDirectory, '..')
 const detailLocationRoot = path.join(clientRoot, 'public', 'images', 'detailLocation')
+const detailThemeRoot = path.join(clientRoot, 'public', 'images', 'detailTheme')
 const manifestPath = path.join(clientRoot, 'src', 'shared', 'data', 'gallery-manifest.json')
 const supportedExtensions = new Set(['.avif', '.jpeg', '.jpg', '.png', '.webp'])
 const manifest = {}
@@ -42,6 +43,44 @@ for (const locationDirectory of locationDirectories) {
     if (galleryImages.length === 0) continue
 
     manifest[`/images/detailLocation/${locationDirectory.name}/gallery/`] = galleryImages
+}
+
+// Theme detail images are stored directly in each place directory instead of
+// a nested gallery directory. Expose them under the same virtual `gallery/`
+// key that DetailGallery derives from the place's main image URL.
+const themeDirectories = await readdir(detailThemeRoot, {withFileTypes: true})
+
+for (const themeDirectory of themeDirectories) {
+    if (!themeDirectory.isDirectory()) continue
+
+    const themeEntries = await readdir(
+        path.join(detailThemeRoot, themeDirectory.name),
+        {withFileTypes: true},
+    )
+    const escapedDirectoryName = themeDirectory.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const galleryFilePattern = new RegExp(`^${escapedDirectoryName}(\\d+)\\.[^.]+$`, 'i')
+
+    const galleryImages = themeEntries
+        .filter((entry) => {
+            if (!entry.isFile()) return false
+            if (!supportedExtensions.has(path.extname(entry.name).toLowerCase())) return false
+
+            const match = entry.name.match(galleryFilePattern)
+            return match && Number(match[1]) >= 5
+        })
+        .map((entry) => entry.name)
+        .sort((firstName, secondName) => firstName.localeCompare(
+            secondName,
+            undefined,
+            {numeric: true, sensitivity: 'base'},
+        ))
+        .map((fileName) => (
+            `/images/detailTheme/${themeDirectory.name}/${fileName}`
+        ))
+
+    if (galleryImages.length === 0) continue
+
+    manifest[`/images/detailTheme/${themeDirectory.name}/gallery/`] = galleryImages
 }
 
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')

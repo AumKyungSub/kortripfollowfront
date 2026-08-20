@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 
-// Gallery image manifest generated from public/images/detailLocation/*/gallery
+// Gallery image manifest generated from location and theme detail images
 import galleryManifest from '@/shared/data/gallery-manifest.json'
 
 // Swiper API
