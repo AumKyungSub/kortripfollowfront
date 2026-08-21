@@ -3,7 +3,6 @@ footer {
     height: auto;
     background: #161310;
     color: #fff;
-    /* margin-top: 40px; */
     letter-spacing: 0.02em;
     /* Position */
     position: relative;
@@ -11,9 +10,6 @@ footer {
 
 .footerWrapper {
     width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 40px 16px;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -111,7 +107,6 @@ footer {
 }
 
 .footerCopyrightTextCover {
-    padding: 20px 16px;
     border-top: 1px solid #2E2B28;
     /* Flex */
     display: flex;
@@ -121,14 +116,37 @@ footer {
 }
 
 .warnings {
-    width: 100%;
+    width: auto;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
     
 .footerCopyRight {
-    width: 100%;
+    width: auto;
     /* Font */
     font-weight: 500;
+}
+
+.footerPolicyLinks {
+    /* Flex */
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 14px; 
+}
+.footerPolicyLinks button {
+    margin-top: 10px;  
+    padding: 0; 
+    border: 0; 
+    background: transparent; 
+    color: #bab9b8; 
+    cursor: pointer; 
+    font: inherit; 
+    font-size: 13px; 
+}
+.footerPolicyLinks button:hover { 
+    color: #fff; 
+    text-decoration: underline; 
+    text-underline-offset: 3px; 
 }
 
 /* ---------------------------------------------------- */
@@ -143,24 +161,31 @@ footer {
 @media only all and (min-width: 768px) {
 
     .footerWrapper {
-        padding: 70px 0 40px;
         /* Flex */
         flex-direction: row;
-        gap: 5px;
     }
 
-    .footerWrapper > div {
-        width: calc((100% - 10px)/3);
+    .footerLeftCover {
+        width: 33.59vw;
+    }
+
+    .footerBrowse {
+        width: 15.1vw;
+    }
+
+    .footerLinkCover {
+        width: 33.85vw;
     }
 
     .footerEmailCover {
         margin-bottom: 15px;
     }
 
+    .warnings {
+        margin-top: 20px;
+    }
+
     .footerCopyrightTextCover {
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 20px 0 40px;
         /* Flex */
         flex-direction: row;
         justify-content: space-between;
@@ -168,6 +193,7 @@ footer {
     }
     
     .footerCopyRight {
+        margin-top: 20px;
         text-align: right;
     }
 }
@@ -181,7 +207,3 @@ footer {
         max-width: 1920px;
     }
 }
-
-.footerPolicyLinks { display: flex; flex-wrap: wrap; gap: 14px; }
-.footerPolicyLinks button { padding: 0; border: 0; background: transparent; color: #bab9b8; cursor: pointer; font: inherit; font-size: 13px; }
-.footerPolicyLinks button:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }

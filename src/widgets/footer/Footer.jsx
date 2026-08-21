@@ -68,8 +68,8 @@ const Footer = () => {
   ]
 
   return (
-    <footer>
-      <div className="footerWrapper">
+    <footer className='contentTopBottomSpacing'>
+      <div className="footerWrapper contentWidthException">
               <div className='footerLeftCover'>
                 <div className="logo" onClick={goTo("/")}>
                   <img src="/images/logo/logoIcon.png" alt="logoIcon" />
@@ -133,17 +133,17 @@ const Footer = () => {
               }
             </div>
         </div>
-        <div className='footerCopyrightTextCover'>
+        <div className='footerCopyrightTextCover contentWidthException'>
           <div>
             <p className='warnings subFont'>{t("footer.warning")}</p>
-            <div className="footerPolicyLinks">
-              <button type="button" onClick={goTo('/terms')}>{t('footer.terms')}</button>
-              <button type="button" onClick={goTo('/privacy')}>{t('footer.privacy')}</button>
-            </div>
           </div>
           <p className='footerCopyRight subFont'>
             COPYRIGHT&copy; 2025 By Aum Kyung Sub. All RIGHT's RESERVED
           </p>
+        </div>
+        <div className="footerPolicyLinks contentWidthException">
+          <button type="button" onClick={goTo('/terms')}>{t('footer.terms')}</button>
+          <button type="button" onClick={goTo('/privacy')}>{t('footer.privacy')}</button>
         </div>
     </footer> 
   )

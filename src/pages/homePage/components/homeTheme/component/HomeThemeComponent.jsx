@@ -35,12 +35,12 @@ const HomeThemeComponent = ({homeThemeP, homeThemePSnd, img, themeCode}) => {
             style={{backgroundImage: `url(images/theme/${img}.jpg)`}}
         >
             {!isFullMobile ?
-            <>
-                <h3 className='homeThemeTextTitle'>{homeThemeP}</h3>
+            <div className='homeThemeTextCover'>
+                <p className='homeThemeTextTitle'>{homeThemeP}</p>
                 <span className='homeThemeLinkCover'>
-                    <h3 className='homeThemeTextGoTo'>
+                    <p className='homeThemeTextGoTo'>
                         {actionText}
-                    </h3>
+                    </p>
                     <button
                         className="homeThemeBtn"
                     >
@@ -50,12 +50,12 @@ const HomeThemeComponent = ({homeThemeP, homeThemePSnd, img, themeCode}) => {
                         </svg>
                     </button>
                 </span>    
-            </> 
+            </div> 
             :
-            <>
+            <div className='homeThemeTextCover'>
                 <h3 className='homeThemeTextTitle'>#{homeThemePSnd}</h3>
                 <p className='homeThemeTextGoTo'>{homeThemeP}</p>
-            </>
+            </div>
             }
         </div>
     )
