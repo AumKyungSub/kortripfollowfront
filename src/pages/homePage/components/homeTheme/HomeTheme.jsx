@@ -20,8 +20,8 @@ const HomeTheme = () => {
   const {t} = useLanguage();
 
   return (
-    <div className='homeThemeBackground'>
-        <section className="homeThemeWrapper">
+    <section className='homeThemeBackground contentTopBottomSpacing'>
+        <div className="homeThemeWrapper contentWidth">
           <div className="titleCover">
           <p className="preTitle14px600b54a2f">
               <span className="preTitle14px600b54a2fLine"></span>
@@ -35,8 +35,8 @@ const HomeTheme = () => {
           <HomeThemeComponent img={"restaurant"} homeThemeP={t("homepage.homeTheme.restP")} homeThemePSnd={t("homepage.homeTheme.restName")} themeCode={"RESTAURANT"} />
           <HomeThemeComponent img={"lodging"} homeThemeP={t("homepage.homeTheme.lodgingP")} homeThemePSnd={t("homepage.homeTheme.lodgingName")} themeCode={"LODGING"} />
           <HomeThemeComponent img={"food"} homeThemeP={t("homepage.homeTheme.foodP")} homeThemePSnd={t("homepage.homeTheme.foodName")} themeCode={"FOOD"} />
-        </section>
-    </div>
+        </div>
+    </section>
   )
 }
 

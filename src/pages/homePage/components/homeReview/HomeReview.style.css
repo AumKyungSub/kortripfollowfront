@@ -4,7 +4,6 @@
 }
 
 .homeReviewHeaderCover {
-    padding-top: 32px;
     /* Flex */
     display: flex;
     flex-direction: column;
@@ -55,7 +54,6 @@
     scrollbar-width: none; 
     -ms-overflow-style: none; 
     margin-top: 16px;
-    padding-bottom: 16px;
     /* Flex */
     display: flex;
     flex-direction: row;
@@ -162,7 +160,6 @@
 
 @media only all and (min-width: 768px) {
     .homeReviewHeaderCover {
-        padding-top: 60px;
         border-bottom: 1px solid #eee;
         /* Flex */
         flex-direction: row;
@@ -175,7 +172,6 @@
         scroll-snap-type: none;
         display: block; 
         margin-top: 30px;
-        padding-bottom: 30px;
     }
 
     .homeReviewBodyCover {

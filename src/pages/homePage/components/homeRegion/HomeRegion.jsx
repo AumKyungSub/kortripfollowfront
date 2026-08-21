@@ -46,7 +46,7 @@ const HomeRegion = ({ rankingData = [] }) => {
   };
 
   return (
-    <section className="homeRegionBackground">
+    <section className="homeRegionBackground contentTopBottomSpacing">
       <div className="homeRegionWrapper contentWidth">
         <div className="homeRegionContent">
             <p className="preTitle14px600b54a2f">

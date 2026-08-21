@@ -101,7 +101,7 @@
 /* 썸네일 – 항상 최상단 */
 .homeBannerThumbCover {
   width: 100%;
-  padding: 16px;
+  padding: 0 16px;
   margin: 0 auto;
   /* Flex */
   display: flex;
@@ -151,7 +151,7 @@
 
   /* 썸네일 – 항상 최상단 */
   .homeBannerThumbCover {
-    padding: 20px 24px;
+    padding: 0 24px;
     /* Flex */
     justify-content: flex-end;
     gap: 25px;
@@ -166,7 +166,7 @@
 @media only all and (min-width: 1024px) {
   /* 썸네일 – 항상 최상단 */
   .homeBannerThumbCover {
-    padding: 20px 40px;
+    padding: 0 40px;
   }
 }
 

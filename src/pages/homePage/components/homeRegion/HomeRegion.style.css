@@ -3,7 +3,6 @@
 }
 
 .homeRegionContent {
-    padding: 16px 0;
     overflow: hidden;
 }
 
@@ -92,10 +91,6 @@
         /* Flex */
         display: flex;
         flex-direction: column;
-    }
-
-    .homeRegionContent {
-        padding: 30px 0;
     }
 
     .homeRegionCover {

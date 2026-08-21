@@ -108,47 +108,46 @@ const HomeBanner = ({
   /* ========================================================= */
 
   return (
-    <div className="homeBannerBackground bannerImg" style={{ backgroundImage }}>
+    <section className="homeBannerBackground bannerImg contentTopBottomSpacing" style={{ backgroundImage }}>
       {/* 메인 배너 이미지 */}
-
-    <div className="homeBannerWrapper contentWidth">
-      {/* 텍스트 영역 */}
-      <div className="homeBannerTextCover">
-        <p className='homeBannerLocation'>
-          {getLocationTitle(mainItem?.location)}
-        </p>
-        <hr className='homeBannerTextLine' />
-        <h1 className="homeBannerName">
-          {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
-        </h1>
-
-        <p className="homeBannerDetail lineClamp3">
-          {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
-        </p>
-
-        <span className='homeBannerLearnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
-          {t("button.learnMore")}
-        </span>
-      </div>
-
-      {/* 썸네일 그룹 */}
-      <div className="homeBannerThumbCover">
-        {thumbs.map((item, idx) => (
-          <div
-            key={item.id}
-            className="homeBannerThumbItem"
-            ref={(el) => (thumbRefs.current[idx] = el)}
-            onClick={() => handleThumbSelect(idx)}
-          >
-            <img
-              src={getImageSrc(item.img.link)}
-              alt={item.location?.name?.[lang]}
-            />
+      <div className="homeBannerWrapper contentWidth">
+          {/* 텍스트 영역 */}
+          <div className="homeBannerTextCover">
+            <p className='homeBannerLocation'>
+              {getLocationTitle(mainItem?.location)}
+            </p>
+            <hr className='homeBannerTextLine' />
+            <h1 className="homeBannerName">
+              {mainItem?.location?.name?.[lang] || mainItem?.location?.name?.ko}
+            </h1>
+    
+            <p className="homeBannerDetail lineClamp3">
+              {mainItem?.description?.slide?.[lang] || mainItem?.description?.slide?.ko}
+            </p>
+    
+            <span className='homeBannerLearnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
+              {t("button.learnMore")}
+            </span>
           </div>
-        ))}
+    
+          {/* 썸네일 그룹 */}
+          <div className="homeBannerThumbCover">
+            {thumbs.map((item, idx) => (
+              <div
+              key={item.id}
+              className="homeBannerThumbItem"
+              ref={(el) => (thumbRefs.current[idx] = el)}
+              onClick={() => handleThumbSelect(idx)}
+              >
+                <img
+                  src={getImageSrc(item.img.link)}
+                  alt={item.location?.name?.[lang]}
+                  />
+              </div>
+            ))}
+          </div>
       </div>
-    </div>
-    </div>
+    </section>
   );
 };
 

@@ -66,7 +66,8 @@ const Homepage = () => {
         rankingData={rankings} 
       />
       {/* 5. By Seasons (Only '768px ~') */}
-      {!isFullMobile && <HomeSeason rankingData={rankings} />}
+      {/* 나중에 데이터 정리되면 재 오픈 */}
+      {/* {!isFullMobile && <HomeSeason rankingData={rankings} />} */}
       {/* 6. By Themes */}
       <HomeTheme />
       {/* 7. Collections */}

@@ -1,10 +1,4 @@
 
-.homeThemeWrapper {
-    max-width: 1200px;
-    padding: 10px 16px;
-    margin: 0 auto;
-}
-
 .homeThemeCover {
     width: 100%;
     aspect-ratio: 16/6;
@@ -65,10 +59,6 @@
 }
 
 @media only all and (min-width: 768px) {
-    .homeThemeBackground{
-        background-color: #f2f2f7;
-    }
-
     .homeThemeWrapper {
         padding: 40px 16px 120px;
     }

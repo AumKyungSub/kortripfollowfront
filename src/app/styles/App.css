@@ -130,6 +130,13 @@
   padding: 0 16px;
 }
 /*-----------------------------------*/
+/*----------Content Top Bottom Spacing Design----------*/
+.contentTopBottomSpacing {
+  /* Mobile ~ 767px Spacing 16px */
+  padding: 16px 0;
+}
+/*-----------------------------------*/
+/*----------Text Line Clamp Design----------*/
 .lineClamp1,
 .lineClamp2,
 .lineClamp3 {
@@ -147,6 +154,7 @@
 .lineClamp3 {
   -webkit-line-clamp: 3;      /* 최대 3줄 */
 }
+/*-----------------------------------*/
 
 
 /* ---------------------------------------------------- */
@@ -181,6 +189,13 @@
   .contentWidthException {
     /* 1440px */
     padding: 0 24px;
+  }
+  /*-----------------------------------*/
+
+  /*----------Content Top Bottom Spacing Design----------*/
+  .contentTopBottomSpacing {
+    /* Tablet 768px ~ 1023px and PC 1024px ~ Spacing 30px */
+    padding: 30px 0;
   }
   /*-----------------------------------*/
 }

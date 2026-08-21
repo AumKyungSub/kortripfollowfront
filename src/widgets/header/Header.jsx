@@ -82,7 +82,7 @@ const Header = () => {
   const gnbList = [
     { key: 'home', path: '/', label: t('menu.home'), icon: 'homeIcon' },
     { key: 'region', path: '/region', startsWith: '/location', label: t('menu.region'), icon: 'regionIcon' },
-    { key: 'season', path: '/season', label: t('menu.season'), icon: 'seasonsIcon' },
+    // { key: 'season', path: '/season', label: t('menu.season'), icon: 'seasonsIcon' },
     { key: 'theme', path: '/theme', startsWith: '/theme/', label: t('menu.theme'), icon: 'travelIcon' },
     { key: 'collection', path: '/collection', startsWith: '/collection', label: t('menu.collection'), icon: 'collectionIcon' },
     { key: 'about', path: '/about', label: t('menu.about'), icon: 'infoIcon' },

@@ -19,7 +19,7 @@ const Router = () => {
                 <Route path='/' element={<Homepage />} />
                 <Route path="/theme" element={<ListPage mode="theme" />} />
                 <Route path="/region" element={<ListPage mode="region" />} />
-                <Route path='/season' element={<SeasonPage />} />
+                {/* <Route path='/season' element={<SeasonPage />} /> */}
                 <Route path='/theme/:category/:id' element={<ThemeDetail />} />
                 <Route path='/location/:id' element={<LocationDetailPage />} />
                 <Route path='/collection' element={<CollectionPage />}/>

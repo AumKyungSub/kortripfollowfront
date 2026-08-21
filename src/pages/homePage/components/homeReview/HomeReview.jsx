@@ -210,163 +210,165 @@ const HomeReview = ({
     // ----------------------------------------------
 
     return (
-        <section className="homeReviewWrapper contentWidth">
-            {/* 헤더 영역 */}
-            <div className="homeReviewHeaderCover">
-                <div className="homeReviewHeaderLeft">
-                    <p className="preTitle14px600b54a2f">
-                        <span className="preTitle14px600b54a2fLine"></span>
-                        {t('preTitle.homeReview')}
-                    </p>
-                    <div className="homeReviewTitleCover">
-                        <h2 className="title28px40px700">
-                            {getHeaderTitle()}
-                        </h2>
-
-                        {/* 모바일 네비게이션 버튼 */}
-                        {isFullMobile && (
-                            <PaginationMethodTwo 
-                                prev={handleMobilePrev} 
-                                next={handleMobileNext} 
-                                prevDis={mobilePage === 1} 
-                                nextDis={mobilePage === 3}
-                                extraClassName="homeReviewMobilePagination"
-                            />
-                        )}
+        <section className="homeReviewBackground contentTopBottomSpacing">
+            <div className="homeReviewWrapper contentWidth">
+                {/* 헤더 영역 */}
+                <div className="homeReviewHeaderCover">
+                    <div className="homeReviewHeaderLeft">
+                        <p className="preTitle14px600b54a2f">
+                            <span className="preTitle14px600b54a2fLine"></span>
+                            {t('preTitle.homeReview')}
+                        </p>
+                        <div className="homeReviewTitleCover">
+                            <h2 className="title28px40px700">
+                                {getHeaderTitle()}
+                            </h2>
+        
+                            {/* 모바일 네비게이션 버튼 */}
+                            {isFullMobile && (
+                                <PaginationMethodTwo 
+                                    prev={handleMobilePrev} 
+                                    next={handleMobileNext} 
+                                    prevDis={mobilePage === 1} 
+                                    nextDis={mobilePage === 3}
+                                    extraClassName="homeReviewMobilePagination"
+                                />
+                            )}
+                        </div>
+                        <p className="homeReviewAuthorBy">
+                            {!isFullMobile && t('homepage.homeReview.author')}
+                        </p>
                     </div>
-                    <p className="homeReviewAuthorBy">
-                        {!isFullMobile && t('homepage.homeReview.author')}
-                    </p>
+                        
+                    {/* 데스크탑 인덱스 표시 */}
+                    {!isFullMobile && (
+                        <div className="homeReviewHeaderRight">
+                            <span className="homeReviewCurrentIDX">{displayIndex}</span>
+                            <span className="homeReviewTotalIDX"> / {displayTotal}</span>
+                        </div>
+                    )}
                 </div>
-
-                {/* 데스크탑 인덱스 표시 */}
-                {!isFullMobile && (
-                    <div className="homeReviewHeaderRight">
-                        <span className="homeReviewCurrentIDX">{displayIndex}</span>
-                        <span className="homeReviewTotalIDX"> / {displayTotal}</span>
-                    </div>
-                )}
-            </div>
-
-            {/* 카드 / 컨텐츠 영역 */}
-            <div className="homeReviewCardCover">
-                {isFullMobile ? (
-                    /* 모바일 뷰: 카드 리스트 출력 */
-                    mobileItems.map((menu) => {
-                        const cardBg = menu?.img?.link ? `${menu.img.link}Review.jpg` : '';
-                        return (
-                            <div
-                                key={menu.blogId || menu.id}
-                                className="homeReviewCard"
-                                onClick={(e) => goToReview(e, menu)}
-                            >
-                                <div className="homeReviewCardImgCover">
-                                    <div
-                                        className="homeReviewImg"
-                                        style={{ backgroundImage: `url(${cardBg})` }}
-                                    >
-                                        <span className="homeReviewStars">★ {Number(menu?.stars).toFixed(1)}</span>
-                                        <button
-                                            className="homeReviewGoToBtn"
-                                            onClick={(e) => goToReview(e, menu)}
+                
+                {/* 카드 / 컨텐츠 영역 */}
+                <div className="homeReviewCardCover">
+                    {isFullMobile ? (
+                        /* 모바일 뷰: 카드 리스트 출력 */
+                        mobileItems.map((menu) => {
+                            const cardBg = menu?.img?.link ? `${menu.img.link}Review.jpg` : '';
+                            return (
+                                <div
+                                    key={menu.blogId || menu.id}
+                                    className="homeReviewCard"
+                                    onClick={(e) => goToReview(e, menu)}
+                                >
+                                    <div className="homeReviewCardImgCover">
+                                        <div
+                                            className="homeReviewImg"
+                                            style={{ backgroundImage: `url(${cardBg})` }}
                                         >
+                                            <span className="homeReviewStars">★ {Number(menu?.stars).toFixed(1)}</span>
+                                            <button
+                                                className="homeReviewGoToBtn"
+                                                onClick={(e) => goToReview(e, menu)}
+                                            >
+                                                {t('button.viewReview')}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="homeReviewCardTextCover">
+                                        <div className="homeReviewAuthorCover">
+                                            <p>{t('homepage.homeReview.author')}</p>
+                                            <p>nBlog</p>
+                                        </div>
+                                        <p className="homeReviewRegionName lineClamp1">
+                                            {menu?.location?.name?.[lang] || menu?.location?.name?.ko}
+                                        </p>
+                                        <p className="homeReviewAddress subFont">
+                                            {getLocationAddress(menu, true)}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                    })
+                    ) : (
+                        /* 데스크탑 뷰: 메인 상세 영역 + 썸네일 리스트 */
+                        <div className="homeReviewBodyCover">
+                            <div className="homeReviewBodyTopCover">
+                                <div
+                                    className="homeReviewImg"
+                                    style={{ backgroundImage: `url(${bgcImg})` }}
+                                >
+                                    <span className="homeReviewStars">★ {Number(selectedAll?.stars).toFixed(1)}</span>
+                                </div>
+                    
+                                <div className="homeReviewBodyTopText">
+                                    <p className="homeReviewBlogName">nBlog</p>
+                                    <h3 className="homeReviewRegionName lineClamp1">
+                                        {selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}
+                                    </h3>
+                                    <p className="homeReviewBodyTopDesc lineClamp2">
+                                        {selectedAll?.typeTable === 'rankings'
+                                            ? selectedAll?.description?.main?.[lang] || selectedAll?.description?.main?.ko
+                                            : `${selectedAll?.description?.slide?.[lang] || selectedAll?.description?.slide?.ko}\n${selectedAll?.description?.title?.[lang] || selectedAll?.description?.title?.ko}`}
+                                    </p>
+                                        
+                                    <div className="homeReviewBodyTopInfoCover">
+                                        <div className="homeReviewBodyTopInfo">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+                                            <div className="homeReviewBodyTopInfoDetail">
+                                                <span className="homeReviewBodyTopInfoDetailDate">
+                                                    {selectedAll?.date?.[lang] || selectedAll?.date?.ko}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="homeReviewBodyTopInfo">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                                            <div className="homeReviewBodyTopInfoDetail lineClamp1">
+                                                <span>
+                                                    {getLocationAddress(selectedAll)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                    <div className="homeReviewGoToBtnCover">
+                                        <button className="homeReviewGoToBtn" onClick={(e) => goToReview(e, selectedAll)}>
                                             {t('button.viewReview')}
                                         </button>
                                     </div>
                                 </div>
-                                <div className="homeReviewCardTextCover">
-                                    <div className="homeReviewAuthorCover">
-                                        <p>{t('homepage.homeReview.author')}</p>
-                                        <p>nBlog</p>
-                                    </div>
-                                    <p className="homeReviewRegionName lineClamp1">
-                                        {menu?.location?.name?.[lang] || menu?.location?.name?.ko}
-                                    </p>
-                                    <p className="homeReviewAddress subFont">
-                                        {getLocationAddress(menu, true)}
-                                    </p>
-                                </div>
                             </div>
-                        );
-                })
-                ) : (
-                    /* 데스크탑 뷰: 메인 상세 영역 + 썸네일 리스트 */
-                    <div className="homeReviewBodyCover">
-                        <div className="homeReviewBodyTopCover">
-                            <div
-                                className="homeReviewImg"
-                                style={{ backgroundImage: `url(${bgcImg})` }}
-                            >
-                                <span className="homeReviewStars">★ {Number(selectedAll?.stars).toFixed(1)}</span>
-                            </div>
-
-                            <div className="homeReviewBodyTopText">
-                                <p className="homeReviewBlogName">nBlog</p>
-                                <h3 className="homeReviewRegionName lineClamp1">
-                                    {selectedAll?.location?.name?.[lang] || selectedAll?.location?.name?.ko}
-                                </h3>
-                                <p className="homeReviewBodyTopDesc lineClamp2">
-                                    {selectedAll?.typeTable === 'rankings'
-                                        ? selectedAll?.description?.main?.[lang] || selectedAll?.description?.main?.ko
-                                        : `${selectedAll?.description?.slide?.[lang] || selectedAll?.description?.slide?.ko}\n${selectedAll?.description?.title?.[lang] || selectedAll?.description?.title?.ko}`}
-                                </p>
-
-                                <div className="homeReviewBodyTopInfoCover">
-                                    <div className="homeReviewBodyTopInfo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-                                        <div className="homeReviewBodyTopInfoDetail">
-                                            <span className="homeReviewBodyTopInfoDetailDate">
-                                                {selectedAll?.date?.[lang] || selectedAll?.date?.ko}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="homeReviewBodyTopInfo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                                        <div className="homeReviewBodyTopInfoDetail lineClamp1">
-                                            <span>
-                                                {getLocationAddress(selectedAll)}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="homeReviewGoToBtnCover">
-                                    <button className="homeReviewGoToBtn" onClick={(e) => goToReview(e, selectedAll)}>
-                                        {t('button.viewReview')}
-                                    </button>
-                                </div>
+                            {/* 하단 썸네일 바 & 데스크탑 이전/다음 버튼 */}
+                            <div className="homeReviewBodyBottomCover">
+                                <ul className="homeReviewBodyBottomList">
+                                    {currentItems.map((menu, index) => {
+                                        const isSelected = menu.blogId === selectedAll?.blogId;
+                                        return (
+                                            <li
+                                                key={menu.blogId || menu.id}
+                                                className={`homeReviewBodyBottomListItem ${isSelected ? 'active' : ''}`}
+                                                onClick={() => handleSelect(menu)}
+                                            >
+                                                <div>
+                                                    {String(startIndex + index + 1).padStart(2, '0')}
+                                                </div>
+                                                <div className="lineClamp1">
+                                                    {menu.location?.name?.[lang] || menu.location?.name?.ko}
+                                                </div>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                                <PaginationMethodTwo 
+                                    prev={handlePrev} 
+                                    next={handleNext} 
+                                    prevDis={currentPage === 1} 
+                                    nextDis={currentPage === totalPages}
+                                />
                             </div>
                         </div>
-                        {/* 하단 썸네일 바 & 데스크탑 이전/다음 버튼 */}
-                        <div className="homeReviewBodyBottomCover">
-                            <ul className="homeReviewBodyBottomList">
-                                {currentItems.map((menu, index) => {
-                                    const isSelected = menu.blogId === selectedAll?.blogId;
-                                    return (
-                                        <li
-                                            key={menu.blogId || menu.id}
-                                            className={`homeReviewBodyBottomListItem ${isSelected ? 'active' : ''}`}
-                                            onClick={() => handleSelect(menu)}
-                                        >
-                                            <div>
-                                                {String(startIndex + index + 1).padStart(2, '0')}
-                                            </div>
-                                            <div className="lineClamp1">
-                                                {menu.location?.name?.[lang] || menu.location?.name?.ko}
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                            <PaginationMethodTwo 
-                                prev={handlePrev} 
-                                next={handleNext} 
-                                prevDis={currentPage === 1} 
-                                nextDis={currentPage === totalPages}
-                            />
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </section>
     )   
