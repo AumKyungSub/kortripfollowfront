@@ -377,7 +377,7 @@
   stroke-width: 1.5;
 }
 .placeCardBody {
-  padding: 16px;
+  padding: 16px 10px 10px;
   /* Flex */
   display: flex;
   flex-direction: column;
@@ -1268,7 +1268,7 @@
     width: calc((100% - 36px) / 3);
   }
   .placeCardBody {
-    padding: 10px 16px 16px;
+    padding: 16px 10px 10px;
     /* Flex */
     gap: 5px;
   }
