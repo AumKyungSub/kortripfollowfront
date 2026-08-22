@@ -27,8 +27,12 @@
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .clickBtnCover:hover {
@@ -62,7 +66,7 @@
   width: 121px;
   cursor: pointer;
   /* Flex */
-  display: flex;  
+  display: flex;
 }
 
 .logo img {
@@ -72,10 +76,10 @@
 
 /* Titles */
 .preTitle14px600b54a2fLine {
-    display: inline-block;
-    width: 30px;
-    height: 1px;
-    background-color: #b54a2f;
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background-color: #b54a2f;
 }
 
 /*----------Text Font Design----------*/
@@ -146,20 +150,20 @@
   text-overflow: ellipsis;
 }
 .lineClamp1 {
-  -webkit-line-clamp: 1;      /* 최대 1줄 */
+  -webkit-line-clamp: 1; /* 최대 1줄 */
 }
 .lineClamp2 {
-  -webkit-line-clamp: 2;      /* 최대 2줄 */
+  -webkit-line-clamp: 2; /* 최대 2줄 */
 }
 .lineClamp3 {
-  -webkit-line-clamp: 3;      /* 최대 3줄 */
+  -webkit-line-clamp: 3; /* 최대 3줄 */
 }
 /*-----------------------------------*/
 
-
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (min-width: 480px) {}
+@media only all and (min-width: 480px) {
+}
 
 @media only all and (min-width: 768px) {
   /*----------Text Font Design----------*/
@@ -208,6 +212,17 @@
     aspect-ratio: 1152 / 768;
   }
   /*-----------------------------------*/
+
+  /*----------Content Width Design----------*/
+  .contentWidth {
+    /* 1440px */
+    padding: 0 40px;
+  }
+  .contentWidthException {
+    /* 1920px */
+    padding: 0 40px;
+  }
+  /*-----------------------------------*/
 }
 
 @media only all and (min-width: 1280px) {
@@ -221,17 +236,14 @@
 }
 
 @media only all and (min-width: 1921px) {
-
   /*----------Content Width Design----------*/
   .contentWidth {
     /* 1440px */
     max-width: 1440px;
-    padding: 0 40px;
   }
   .contentWidthException {
     /* 1920px */
     max-width: 1920px;
-    padding: 0 40px;
   }
   /*-----------------------------------*/
 }

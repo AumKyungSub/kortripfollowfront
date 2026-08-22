@@ -24,6 +24,10 @@ export const usePagination = (items = [], itemsPerPage = 8, dependency = null) =
         setCurrentPage(1);
     }, [dependency]);
 
+    useEffect(() => {
+        setCurrentPage((page) => Math.min(page, totalPages));
+    }, [totalPages]);
+
     return {
         currentPage,
         totalPages,

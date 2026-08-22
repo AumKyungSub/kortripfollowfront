@@ -11,6 +11,10 @@ const LoginPage = ({ authUser, isAuthLoading, onClose, onAuthUserChange }) => {
   const [isDeleteAgreed, setIsDeleteAgreed] = useState(false)
   const [isDeletingAccount, setIsDeletingAccount] = useState(false)
   const [deleteAccountError, setDeleteAccountError] = useState('')
+  const [devCredentials, setDevCredentials] = useState({ id: '', password: '' })
+  const [devLoginError, setDevLoginError] = useState('')
+  const [isDevLoggingIn, setIsDevLoggingIn] = useState(false)
+  const isDevLoginEnabled = import.meta.env.DEV && import.meta.env.VITE_ENABLE_DEV_LOGIN === 'true'
   const apiUrl = API_URL
   const navigate = useNavigate()
   const { t, isKo } = useLanguage()
@@ -34,6 +38,28 @@ const LoginPage = ({ authUser, isAuthLoading, onClose, onAuthUserChange }) => {
 
   const loginWith = (provider) => {
     window.location.assign(`${apiUrl}/auth/${provider}`)
+  }
+
+  const loginAsDeveloper = async (event) => {
+    event.preventDefault()
+    setIsDevLoggingIn(true)
+    setDevLoginError('')
+    try {
+      const response = await fetch(`${apiUrl}/auth/dev-login`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(devCredentials),
+      })
+      const data = await response.json().catch(() => null)
+      if (!response.ok || !data?.authenticated) throw new Error('Development login failed')
+      onAuthUserChange(data.user)
+      closeModal()
+    } catch {
+      setDevLoginError(isKo ? '개발자 아이디 또는 비밀번호를 확인해 주세요.' : 'Check the developer ID and password.')
+    } finally {
+      setIsDevLoggingIn(false)
+    }
   }
 
   const logout = async () => {
@@ -146,6 +172,31 @@ const LoginPage = ({ authUser, isAuthLoading, onClose, onAuthUserChange }) => {
               <span className="socialLoginIcon kakaoIcon" aria-hidden="true">K</span>
               <span>{t('loginModal.kakaoLogin')}</span>
             </button>
+            {isDevLoginEnabled && <form className="devLoginForm" onSubmit={loginAsDeveloper}>
+              <div className="devLoginDivider"><span>{isKo ? '개발 환경' : 'Development'}</span></div>
+              <input
+                type="text"
+                autoComplete="username"
+                placeholder={isKo ? '개발자 아이디' : 'Developer ID'}
+                value={devCredentials.id}
+                onChange={(event) => setDevCredentials({ ...devCredentials, id: event.target.value })}
+                disabled={isDevLoggingIn}
+                required
+              />
+              <input
+                type="password"
+                autoComplete="current-password"
+                placeholder={isKo ? '비밀번호' : 'Password'}
+                value={devCredentials.password}
+                onChange={(event) => setDevCredentials({ ...devCredentials, password: event.target.value })}
+                disabled={isDevLoggingIn}
+                required
+              />
+              {devLoginError && <p className="devLoginError" role="alert">{devLoginError}</p>}
+              <button type="submit" className="devLoginButton" disabled={isDevLoggingIn}>
+                {isDevLoggingIn ? (isKo ? '로그인 중...' : 'Signing in...') : (isKo ? '개발자로 로그인' : 'Developer login')}
+              </button>
+            </form>}
           </div>
         )}
         <p className="authModalNotice">

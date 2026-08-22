@@ -6,12 +6,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
     const MAX_VISIBLE = 5;
     
-const startPage = Math.max(
+let startPage = Math.max(
     Math.min(currentPage - 2, totalPages - 4),
     1
 );
 
-const endPage = Math.min(startPage + 4, totalPages);
+let endPage = Math.min(startPage + 4, totalPages);
 
 if (endPage > totalPages) {
     endPage = totalPages;
