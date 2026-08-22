@@ -244,6 +244,7 @@ export default {
     season: "계절별",
     theme: "테마별",
     collection: "컬렉션",
+    myTrip: "내 여행",
     about: "소개",
     blog: "블로그",
     insta: "인스타",

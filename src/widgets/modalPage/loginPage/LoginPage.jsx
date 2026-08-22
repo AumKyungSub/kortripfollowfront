@@ -71,6 +71,7 @@ const LoginPage = ({ authUser, isAuthLoading, onClose, onAuthUserChange }) => {
     } finally {
       onAuthUserChange(null)
       closeModal()
+      navigate('/', { replace: true })
     }
   }
 

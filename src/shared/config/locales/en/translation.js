@@ -253,6 +253,7 @@ export default {
     season: "Season",
     theme: "Theme",
     collection: "Collection",
+    myTrip: "My Trip",
     about: "About",
     blog: "Blog",
     insta: "Insta",

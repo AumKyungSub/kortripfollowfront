@@ -85,6 +85,7 @@ const Header = () => {
     // { key: 'season', path: '/season', label: t('menu.season'), icon: 'seasonsIcon' },
     { key: 'theme', path: '/theme', startsWith: '/theme/', label: t('menu.theme'), icon: 'travelIcon' },
     { key: 'collection', path: '/collection', startsWith: '/collection', label: t('menu.collection'), icon: 'collectionIcon' },
+    ...(authUser ? [{ key: 'myTravel', path: '/myTravel', startsWith: '/itineraries/', label: t('menu.myTrip'), icon: 'travelIcon' }] : []),
     { key: 'about', path: '/about', label: t('menu.about'), icon: 'infoIcon' },
   ]
   // ----------------------------------------------
@@ -239,11 +240,17 @@ const Header = () => {
 
           {isFullMobile && (
             <div className="mobileUtility">
-                <button className="profileBtn" onClick={() => setIsAuthModalOpen(true)} aria-label={authUser ? authUser.displayName : t('header.login')}>
+                <button
+                  type="button"
+                  className={`profileBtn ${showDarkHeader ? 'dark' : ''} ${authUser ? 'authenticated' : ''}`}
+                  onClick={() => setIsAuthModalOpen(true)}
+                  aria-label={authUser ? authUser.displayName : t('header.login')}
+                >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
+                  {authUser && <span className="profileStatusDot" aria-hidden="true" />}
                 </button>
                 <button className="hamburgerBtn" onClick={() => setIsMenuOpen(true)}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={showDarkHeader ? "#1a1a1a" : "#fafaf8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -165,14 +165,26 @@ header.scrolled {
   align-items: center;
 }
 .profileBtn {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, .65);
+  background: rgba(0, 0, 0, .12);
   cursor: pointer;
+}
+
+.mobileUtility > .profileBtn {
+  border: 1px solid rgba(255, 255, 255, .65);
+  background: rgba(0, 0, 0, .12);
+}
+
+.mobileUtility > .profileBtn.dark {
+  border-color: #ddd9d3;
+  background: #fff;
 }
 .hamburgerBtn {
   width: 40px;
