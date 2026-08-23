@@ -1,0 +1,133 @@
+.publicCourseCardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.publicCourseActions {
+  padding: 0 20px 20px;
+}
+
+.publicCourseActions button {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #b54a2f;
+  border-radius: 10px;
+  background: #fff;
+  color: #a64029;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.publicCourseActions button:hover:not(:disabled) {
+  background: #b54a2f;
+  color: #fff;
+}
+
+.publicCourseActions button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.publicCourseActions button.imported,
+.publicCourseActions button.imported:disabled {
+  border-color: #d8d9d5;
+  background: #eef0ed;
+  color: #747b76;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.publicCourseCopyError {
+  margin: 0 0 20px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  background: #fff0ec;
+  color: #9d3925;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.publicCourseLayout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.publicCourseResults {
+  min-width: 0;
+}
+
+.publicCourseCategories {
+  position: sticky;
+  top: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.publicCourseCategories button {
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: #677183;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.publicCourseCategories button.active {
+  background: #fff0ea;
+  color: #a64029;
+  box-shadow: inset 3px 0 #b54a2f;
+}
+
+.publicImportCount {
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(181, 74, 47, 0.94);
+  color: #fff;
+  font-size: 12px;
+}
+
+@media (max-width: 767px) {
+  .publicCourseLayout {
+    display: block;
+  }
+
+  .publicCourseCategories {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0;
+    margin: -32px -18px 28px;
+    padding: 0 18px;
+    border-bottom: 1px solid #e5e2dc;
+    background: #fff;
+    scrollbar-width: none;
+  }
+
+  .publicCourseCategories button {
+    flex: 1 0 auto;
+    min-width: 110px;
+    padding: 17px 14px;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .publicCourseCategories button.active {
+    box-shadow: inset 0 -3px #b54a2f;
+  }
+}

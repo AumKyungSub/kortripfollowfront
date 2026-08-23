@@ -50,7 +50,8 @@
   /* Flex */
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  row-gap: 12px;
 }
 .cardActions button,
 .cardActions a,
@@ -67,7 +68,8 @@
   white-space: nowrap;
 }
 .memberTabs button {
-  width: calc((100% / 3));
+  width: calc((100% / 4));
+  min-width: 110px;
   padding: 10px 0;
   border: 1px solid #ddd7cf;
   background: transparent;
@@ -599,27 +601,17 @@
 }
 .courseFormCard {
   padding: 0;
-  border-radius: 14px;
-  box-shadow: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(56, 43, 32, 0.07);
 }
 .courseFormHeader {
-  min-height: 58px;
-  padding: 14px 20px;
+  padding: 10px 20px;
   border-bottom: 1px solid #ece3d8;
+  /* Flex */
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.courseFormHeader > span {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: #ffe9df;
-  color: #a83e28;
-  display: grid;
-  place-items: center;
-}
-.courseFormHeader svg,
 .courseFormActions svg,
 .courseDelete svg {
   width: 16px;
@@ -631,12 +623,12 @@
   stroke-linejoin: round;
 }
 .courseFormHeader h2 {
-  font-size: 17px;
+  font-size: 1.125rem;
 }
 .courseFormBody {
-  padding: 22px 20px;
+  padding: 28px 26px;
   display: grid;
-  gap: 20px;
+  gap: 26px;
 }
 .courseFormBody label {
   position: relative;
@@ -655,8 +647,78 @@
   border-color: #b8755e;
 }
 .courseFormBody textarea {
-  min-height: 92px;
+  min-height: 112px;
   padding-bottom: 28px;
+}
+.memberForm .courseVisibilityPicker {
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 9px;
+}
+.courseVisibilityPicker legend {
+  margin-bottom: 9px;
+  padding: 0;
+  font-size: 14px;
+}
+.memberForm .courseVisibilityOption {
+  min-height: 64px;
+  padding: 12px 14px;
+  border: 1px solid #e2d9cf;
+  border-radius: 11px;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.memberForm .courseVisibilityOption:hover {
+  border-color: #c99885;
+  background: #fffaf7;
+}
+.memberForm .courseVisibilityOption.selected {
+  border-color: #b54a2f;
+  background: #fff9f7;
+  box-shadow: 0 0 0 1px rgba(181, 74, 47, 0.12);
+}
+.memberForm .courseVisibilityOption input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: #b54a2f;
+}
+.courseVisibilityCopy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+.courseVisibilityCopy strong {
+  color: #463a32;
+  font-size: 14px;
+}
+.courseVisibilityCopy small {
+  color: #91877e;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.courseVisibilityOption > svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: #b8b1aa;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.courseVisibilityOption.selected > svg {
+  stroke: #b54a2f;
 }
 .courseCharCount {
   position: absolute;
@@ -668,42 +730,59 @@
 }
 .memberForm .coursePlacePicker {
   position: relative;
-  padding: 52px 18px 16px;
-  border-color: #ded3c5;
-  border-radius: 10px;
-  background: #fffdf9;
+  padding: 56px 18px 16px;
+  border: 1px dashed #ded3c5;
+  border-radius: 12px;
+  background: #fcfaf7;
   display: grid;
-  gap: 4px;
+  gap: 8px;
 }
 .coursePlacePicker legend {
+  width: 100%;
+  padding: 0;
   font-size: 14px;
+  text-align: center;
 }
 .courseFormBody .coursePlaceRegionSelect {
   position: absolute;
-  top: 8px;
+  top: 10px;
+  left: 18px;
   right: 18px;
-  width: 150px;
-  height: 36px;
-  padding: 0 34px 0 12px;
+  width: calc(100% - 36px);
+  height: 40px;
+  padding: 0 12px 0 12px;
+  appearance: none;
+  -webkit-appearance: none;
   border: 1px solid #d8c9b8;
   border-radius: 9px;
   background-color: #fff;
+  appearance: none;
   color: #594a3f;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
+}
+.coursePlaceRegionChevron {
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  right: 28px;
+  color: #8d8177;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 .courseFormBody .coursePlaceRegionSelect:hover {
   border-color: #b98a68;
   background-color: #fffaf5;
 }
 .coursePlaceEmpty {
-  min-height: 58px;
+  width: 100%;
+  padding: 12px 0;
   margin: 0;
+  /* Font */
+  font-size: 0.75rem;
   color: #8b8177;
-  font-size: 13px;
-  display: grid;
-  place-items: center;
+  text-align: center;
 }
 .memberForm .coursePlacePicker .checkPlace {
   width: 100%;
@@ -723,11 +802,9 @@
   accent-color: #b54a2f;
 }
 .coursePlaceIdentity > span {
+  font-size: 0.875rem;
   display: grid;
   gap: 3px;
-}
-.coursePlaceIdentity strong {
-  font-size: 14px;
 }
 .coursePlaceIdentity small {
   color: #8b8177;
@@ -744,23 +821,85 @@
   font-style: normal;
   font-weight: 600;
 }
+.coursePlacePagination {
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid #eee5da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.coursePlacePagination button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #776b61;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+.coursePlacePagination button:hover:not(:disabled):not(.active) {
+  border-color: #dcc7b8;
+  background: #fff;
+  color: #b54a2f;
+}
+.coursePlacePagination .coursePlacePageNumber.active {
+  border-color: #b54a2f;
+  background: #b54a2f;
+  color: #fff;
+  box-shadow: 0 4px 9px rgba(181, 74, 47, 0.22);
+}
+.coursePlacePagination .coursePlacePageArrow {
+  color: #a7634f;
+  font-size: 20px;
+  font-weight: 400;
+}
+.coursePlacePagination button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
 .courseFormActions {
   align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 .courseFormActions .primary {
+  width: 100%;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
-  border-radius: 9px;
+  border-radius: 10px;
   padding: 10px 16px;
+  box-shadow: 0 7px 14px rgba(181, 74, 47, 0.2);
 }
 .savedCourseHeading {
+  display: flex;
+  align-items: center;
+}
+.courseListHeading {
+  justify-content: space-between;
+}
+.savedCourseTitle {
   display: flex;
   align-items: center;
   gap: 9px;
 }
 .savedCourseHeading h2 {
-  font-size: 22px;
+  font-size: 1.25rem;
 }
 .savedCourseHeading span {
   min-width: 27px;
@@ -773,6 +912,39 @@
   font-weight: 700;
   display: grid;
   place-items: center;
+}
+.courseSortControl {
+  position: relative;
+  flex: 0 0 auto;
+}
+.courseSortControl select {
+  width: 100px;
+  height: 36px;
+  padding: 0 28px 0 8px;
+  border: 1px solid #ded3c5;
+  border-radius: 5px;
+  background: #fffdf9;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  /* Font */
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #594a3f;
+}
+.courseSortChevron {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  color: #8d8177;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.courseSortControl select:hover,
+.courseSortControl select:focus {
+  border-color: #b8755e;
+  outline: 2px solid rgba(181, 74, 47, 0.12);
 }
 .courseCardGrid {
   display: grid;
@@ -796,7 +968,7 @@
 }
 .savedCourseImage {
   position: relative;
-  aspect-ratio: 16/8.5;
+  aspect-ratio: 3/2;
   overflow: hidden;
   background: #e9e4dc;
 }
@@ -825,6 +997,30 @@
   background: rgba(255, 240, 204, 0.94);
   color: #7a5800;
 }
+.sharedCourseBadges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.savedCourseImage .sharedCourseBadges .visibility {
+  position: static;
+}
+.shareRole {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(181, 74, 47, 0.94);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.shareRole.sharedWithMe {
+  background: rgba(49, 83, 128, 0.94);
+}
 .courseDelete {
   position: absolute;
   top: 10px;
@@ -844,22 +1040,26 @@
   background: #fff;
 }
 .savedCourseBody {
-  padding: 17px;
-  display: grid;
-  gap: 8px;
+  padding: 16px;
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
 }
-.savedCourseBody h3 {
+.savedCourseTitleCover {
+  /* Flex */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.savedCourseTitleCover h3 {
   font-size: 18px;
 }
 .savedCourseBody > p {
   min-height: 40px;
   color: #6f675f;
-  font-size: 13px;
-  line-height: 1.55;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 0.75rem;
 }
 .savedCourseBody time {
   color: #8a7c70;
@@ -879,19 +1079,44 @@
   font-size: 11px;
 }
 .courseCardActions {
+  margin-top: 8px;
+  /* Flex */
   display: flex;
-  gap: 7px;
-  margin-top: 4px;
+  justify-content: flex-end;
+  gap: 8px;
 }
 .courseCardActions button {
+  height: 46px;
+  flex: 1 1 auto;
+  min-width: 0;
   border: 1px solid #ddd1c3;
-  border-radius: 7px;
+  border-radius: 12px;
   padding: 6px 10px;
   background: #fff;
   color: #594a3f;
   font: inherit;
   font-size: 12px;
   cursor: pointer;
+}
+.courseCardActions .courseShareButton {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 12px;
+  background: #faf7f3;
+  color: #312d29;
+  display: grid;
+  place-items: center;
+}
+.courseShareButton svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .courseCardActions button:hover {
   border-color: #9a633f;
@@ -1197,7 +1422,27 @@
     grid-template-columns: 1fr;
   }
   .courseFormBody {
-    padding: 18px 14px;
+    padding: 22px 16px;
+    gap: 22px;
+  }
+  .courseDateRow {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+  .courseDateRow input {
+    min-width: 0;
+    padding: 10px 7px;
+    font-size: 12px;
+  }
+  .memberForm .courseVisibilityOption {
+    padding: 11px 12px;
+    gap: 10px;
+  }
+  .courseVisibilityCopy strong {
+    font-size: 13px;
+  }
+  .courseListHeading {
+    align-items: center;
   }
   .courseCardGrid {
     grid-template-columns: 1fr;

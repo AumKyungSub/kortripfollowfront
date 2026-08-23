@@ -211,7 +211,8 @@ export default {
       region: "Region",
       season: "Season",
       theme: "Theme",
-      collection: "Collection"
+      collection: "Collection",
+      course: "Course"
     },
     homeRegion: {
       title: "Regions",
@@ -253,6 +254,7 @@ export default {
     season: "Season",
     theme: "Theme",
     collection: "Collection",
+    courses: "Courses",
     myTrip: "My Trip",
     about: "About",
     blog: "Blog",

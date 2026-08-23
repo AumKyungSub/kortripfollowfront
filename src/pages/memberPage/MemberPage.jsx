@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Map as KakaoMap,
   MapMarker,
@@ -35,6 +35,7 @@ const emptyCourse = {
   visibility: "private",
   date: "",
   endDate: "",
+  editPassword: "",
   selected: [],
 };
 const emptyVisit = {
@@ -51,6 +52,11 @@ const copy = {
     subtitle: "찜한 장소를 지도에서 보고 여행 코스와 방문 기록을 관리하세요.",
     favorites: "내 찜",
     courses: "여행 코스",
+    joinedCourses: "공유 코스",
+    joinedCoursesTitle: "공유 코스",
+    emptyJoinedCourse: "공유하거나 공유받은 코스가 없습니다.",
+    sharedByMe: "내가 공유",
+    sharedWithMe: "공유 받음",
     visits: "방문 기록",
     login: "로그인이 필요한 페이지입니다.",
     loginHint: "오른쪽 위 프로필 버튼에서 소셜 로그인을 진행해 주세요.",
@@ -79,6 +85,14 @@ const copy = {
     private: "비공개",
     unlisted: "링크 공개",
     public: "전체 공개",
+    publicVisibilityTitle: "Public (공개)",
+    publicVisibilityDescription:
+      "모든 사용자가 이 코스를 검색하고 볼 수 있습니다.",
+    unlistedVisibilityTitle: "Link-only (링크 공개)",
+    unlistedVisibilityDescription:
+      "링크를 가진 사람만 이 코스를 볼 수 있습니다.",
+    privateVisibilityTitle: "Private (비공개)",
+    privateVisibilityDescription: "나만 이 코스를 볼 수 있습니다.",
     map: "찜 지도",
     noMap: "지도에 표시할 장소가 없습니다.",
     loadError: "데이터를 불러오지 못했습니다.",
@@ -96,9 +110,16 @@ const copy = {
     emptyRegion: "이 지역에는 추가된 장소가 없어요",
     courseNamePlaceholder: "예: 서울 역사 문화 투어",
     descriptionPlaceholder: "코스에 대한 간단한 설명을 입력하세요",
+    editPassword: "함께 편집 비밀번호",
+    editPasswordPlaceholder: "4~32자 비밀번호",
+    editPasswordHint:
+      "해당 비밀번호를 아는 사람들과 함께 계획 수정이 가능합니다.",
     startDate: "여행 시작일",
     endDate: "여행 종료일",
     savedCourses: "저장된 코스",
+    courseSortLabel: "코스 정렬 기준",
+    sortByTravelDate: "날짜순",
+    sortByTitle: "이름순",
     noDescription: "코스 설명이 없습니다.",
     visitMemoPlaceholder: "방문 소감이나 팁을 남겨보세요",
     chooseRating: "선택",
@@ -111,6 +132,11 @@ const copy = {
       "See saved places on the map and manage itineraries and visit history.",
     favorites: "Saved",
     courses: "Itineraries",
+    joinedCourses: "Shared courses",
+    joinedCoursesTitle: "Shared courses",
+    emptyJoinedCourse: "No courses shared by or with you yet.",
+    sharedByMe: "Shared by me",
+    sharedWithMe: "Shared with me",
     visits: "Visits",
     login: "Please sign in to use this page.",
     loginHint:
@@ -140,6 +166,13 @@ const copy = {
     private: "Private",
     unlisted: "Unlisted",
     public: "Public",
+    publicVisibilityTitle: "Public",
+    publicVisibilityDescription: "Anyone can find and view this itinerary.",
+    unlistedVisibilityTitle: "Link-only",
+    unlistedVisibilityDescription:
+      "Only people with the link can view this itinerary.",
+    privateVisibilityTitle: "Private",
+    privateVisibilityDescription: "Only you can view this itinerary.",
     map: "Saved places map",
     noMap: "There are no places to show.",
     loadError: "Could not load your data.",
@@ -157,9 +190,16 @@ const copy = {
     emptyRegion: "There are no saved places in this region.",
     courseNamePlaceholder: "e.g. Seoul history and culture tour",
     descriptionPlaceholder: "Add a short description of your itinerary",
+    editPassword: "Shared editing password",
+    editPasswordPlaceholder: "4–32 characters",
+    editPasswordHint:
+      "People who know this password can edit the plan with you.",
     startDate: "Start date",
     endDate: "End date",
     savedCourses: "Saved itineraries",
+    courseSortLabel: "Sort itineraries",
+    sortByTravelDate: "Date",
+    sortByTitle: "Name",
     noDescription: "No description provided.",
     visitMemoPlaceholder: "Leave a memory or useful tip",
     chooseRating: "Select",
@@ -330,6 +370,18 @@ function MemberTabIcon({ type }) {
     );
   }
 
+  if (type === "joinedCourses") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+      </svg>
+    );
+  }
+
   return (
     <svg {...commonProps}>
       <path d="M13 5h8" />
@@ -384,6 +436,7 @@ const MemberPage = ({ shared = false }) => {
   const { lang } = useLanguage();
   const labels = copy[lang === "ko" ? "ko" : "en"];
   const { id } = useParams();
+  const navigate = useNavigate();
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -394,6 +447,8 @@ const MemberPage = ({ shared = false }) => {
   const [isFavoriteViewOpen, setIsFavoriteViewOpen] = useState(false);
   const favoriteViewRef = useRef(null);
   const [courses, setCourses] = useState([]);
+  const [joinedCourses, setJoinedCourses] = useState([]);
+  const [courseSort, setCourseSort] = useState("travelDate");
   const [visits, setVisits] = useState([]);
   const [courseForm, setCourseForm] = useState(emptyCourse);
   const [coursePlaceRegion, setCoursePlaceRegion] = useState("ALL");
@@ -426,7 +481,57 @@ const MemberPage = ({ shared = false }) => {
     ITEMS_PER_PAGE,
     `${tab}:${favoriteView}:${selectedFavoriteRegion}`,
   );
-  const coursePagination = usePagination(courses, ITEMS_PER_PAGE, tab);
+  const sortedCourses = useMemo(() => {
+    const startTimeOf = (course) => {
+      const timestamps = (course.days || [])
+        .map((day) => Date.parse(day.date || ""))
+        .filter((timestamp) => !Number.isNaN(timestamp));
+      return timestamps.length
+        ? Math.min(...timestamps)
+        : Number.POSITIVE_INFINITY;
+    };
+    const titleGroupOf = (title = "") => {
+      const firstCharacter = title.trim().charAt(0);
+      if (/[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(firstCharacter)) return 0;
+      if (/[A-Za-z]/.test(firstCharacter)) return 1;
+      return 2;
+    };
+    const compareTitles = (a, b) => {
+      const aTitle = a.title?.trim() || "";
+      const bTitle = b.title?.trim() || "";
+      const aGroup = titleGroupOf(aTitle);
+      const bGroup = titleGroupOf(bTitle);
+
+      if (aGroup !== bGroup) return aGroup - bGroup;
+      if (aGroup === 0) return aTitle.localeCompare(bTitle, "ko");
+      if (aGroup === 1) {
+        return aTitle.localeCompare(bTitle, "en", { sensitivity: "base" });
+      }
+      return aTitle.localeCompare(bTitle, lang === "ko" ? "ko" : "en", {
+        numeric: true,
+        sensitivity: "base",
+      });
+    };
+
+    return [...courses].sort((a, b) => {
+      if (courseSort === "title") {
+        return compareTitles(a, b);
+      }
+
+      const dateDifference = startTimeOf(a) - startTimeOf(b);
+      return dateDifference || compareTitles(a, b);
+    });
+  }, [courseSort, courses, lang]);
+  const coursePagination = usePagination(
+    sortedCourses,
+    ITEMS_PER_PAGE,
+    `${tab}:${courseSort}`,
+  );
+  const joinedCoursePagination = usePagination(
+    joinedCourses,
+    ITEMS_PER_PAGE,
+    tab,
+  );
   const visitPagination = usePagination(visits, ITEMS_PER_PAGE, tab);
 
   const load = useCallback(async () => {
@@ -440,13 +545,16 @@ const MemberPage = ({ shared = false }) => {
         setCourses([course]);
         setTab("courses");
       } else if (auth.authenticated) {
-        const [favoriteData, courseData, visitData] = await Promise.all([
-          memberApi("/favorites"),
-          memberApi("/itineraries/mine"),
-          memberApi("/visits"),
-        ]);
+        const [favoriteData, courseData, joinedCourseData, visitData] =
+          await Promise.all([
+            memberApi("/favorites"),
+            memberApi("/itineraries/mine"),
+            memberApi("/itineraries/joined"),
+            memberApi("/visits"),
+          ]);
         setFavorites(favoriteData);
         setCourses(courseData);
+        setJoinedCourses(joinedCourseData);
         setVisits(visitData);
       }
     } catch (requestError) {
@@ -522,10 +630,6 @@ const MemberPage = ({ shared = false }) => {
     };
   }, [session?.authenticated, shared, tab, visitSearch]);
 
-  const favoriteMap = useMemo(
-    () => new Map(favorites.map((item) => [keyOf(item), item])),
-    [favorites],
-  );
   const favoriteCategoryOptions = useMemo(
     () =>
       FAVORITE_CATEGORY_ORDER.map((code) => ({
@@ -541,6 +645,30 @@ const MemberPage = ({ shared = false }) => {
         favorite?.place?.location?.region?.code === coursePlaceRegion,
     );
   }, [coursePlaceRegion, favorites]);
+  const coursePlacePagination = usePagination(
+    coursePlaceFavorites,
+    7,
+    coursePlaceRegion,
+  );
+  const coursePlacePageNumbers = useMemo(() => {
+    const visiblePageCount = 5;
+    const startPage = Math.max(
+      1,
+      Math.min(
+        coursePlacePagination.currentPage - Math.floor(visiblePageCount / 2),
+        coursePlacePagination.totalPages - visiblePageCount + 1,
+      ),
+    );
+    const endPage = Math.min(
+      coursePlacePagination.totalPages,
+      startPage + visiblePageCount - 1,
+    );
+
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, index) => startPage + index,
+    );
+  }, [coursePlacePagination.currentPage, coursePlacePagination.totalPages]);
 
   const removeFavorite = async (favorite) => {
     await memberApi(`/favorites/${favorite.placeType}/${favorite.placeId}`, {
@@ -558,6 +686,9 @@ const MemberPage = ({ shared = false }) => {
       title: courseForm.title,
       description: courseForm.description,
       visibility: courseForm.visibility,
+      ...(!editingCourse && courseForm.editPassword
+        ? { editPassword: courseForm.editPassword }
+        : {}),
       days: [
         {
           date: courseForm.date || null,
@@ -579,6 +710,12 @@ const MemberPage = ({ shared = false }) => {
           body,
         });
       else await memberApi("/itineraries", { method: "POST", body });
+      if (editingCourse && courseForm.editPassword) {
+        await memberApi(`/itineraries/${editingCourse}/edit-password`, {
+          method: "PUT",
+          body: { password: courseForm.editPassword },
+        });
+      }
       setCourseForm(emptyCourse);
       setCoursePlaceRegion("ALL");
       setEditingCourse(null);
@@ -597,6 +734,7 @@ const MemberPage = ({ shared = false }) => {
       visibility: course.visibility,
       date: day?.date ? day.date.slice(0, 10) : "",
       endDate: course.days?.[1]?.date ? course.days[1].date.slice(0, 10) : "",
+      editPassword: "",
       selected: (course.days || [])
         .flatMap((courseDay) => courseDay.places || [])
         .map(keyOf),
@@ -676,16 +814,6 @@ const MemberPage = ({ shared = false }) => {
     }
   };
 
-  const coursePlaceName = (place) => {
-    const favorite = favoriteMap.get(keyOf(place));
-    return (
-      nameOf(favorite, lang) ||
-      place.place?.location?.name?.[lang] ||
-      place.place?.location?.name?.ko ||
-      keyOf(place)
-    );
-  };
-
   return (
     <>
       <Header />
@@ -715,6 +843,7 @@ const MemberPage = ({ shared = false }) => {
                   {[
                     ["favorites", labels.favorites],
                     ["courses", labels.courses],
+                    ["joinedCourses", labels.joinedCourses],
                     ["visits", labels.visits],
                   ].map(([value, label]) => (
                     <button
@@ -891,11 +1020,25 @@ const MemberPage = ({ shared = false }) => {
                       onSubmit={submitCourse}
                     >
                       <div className="courseFormHeader">
-                        <span>
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M8 2v3m8-3v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z" />
-                          </svg>
-                        </span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-calendar-plus-icon lucide-calendar-plus"
+                        >
+                          <path d="M16 18h6" />
+                          <path d="M16 2v3" />
+                          <path d="M19 15v6" />
+                          <path d="M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3" />
+                          <path d="M3 9h18" />
+                          <path d="M8 2v3" />
+                        </svg>
                         <h2>
                           {editingCourse
                             ? labels.updateCourse
@@ -903,41 +1046,89 @@ const MemberPage = ({ shared = false }) => {
                         </h2>
                       </div>
                       <div className="courseFormBody">
-                        <div className="formRow">
-                          <label>
-                            {labels.titleLabel}
-                            <input
-                              required
-                              maxLength="100"
-                              placeholder={labels.courseNamePlaceholder}
-                              value={courseForm.title}
-                              onChange={(e) =>
-                                setCourseForm({
-                                  ...courseForm,
-                                  title: e.target.value,
-                                })
-                              }
-                            />
-                          </label>
-                          <label>
-                            {labels.visibility}
-                            <select
-                              value={courseForm.visibility}
-                              onChange={(e) =>
-                                setCourseForm({
-                                  ...courseForm,
-                                  visibility: e.target.value,
-                                })
-                              }
+                        <label>
+                          {labels.titleLabel}
+                          <input
+                            required
+                            maxLength="100"
+                            placeholder={labels.courseNamePlaceholder}
+                            value={courseForm.title}
+                            onChange={(e) =>
+                              setCourseForm({
+                                ...courseForm,
+                                title: e.target.value,
+                              })
+                            }
+                          />
+                        </label>
+                        <fieldset className="courseVisibilityPicker">
+                          <legend>{labels.visibility}</legend>
+                          {[
+                            {
+                              value: "public",
+                              title: labels.publicVisibilityTitle,
+                              description: labels.publicVisibilityDescription,
+                              icon: "globe",
+                            },
+                            {
+                              value: "unlisted",
+                              title: labels.unlistedVisibilityTitle,
+                              description: labels.unlistedVisibilityDescription,
+                              icon: "link",
+                            },
+                            {
+                              value: "private",
+                              title: labels.privateVisibilityTitle,
+                              description: labels.privateVisibilityDescription,
+                              icon: "lock",
+                            },
+                          ].map((option) => (
+                            <label
+                              className={`courseVisibilityOption ${courseForm.visibility === option.value ? "selected" : ""}`}
+                              key={option.value}
                             >
-                              <option value="private">{labels.private}</option>
-                              <option value="unlisted">
-                                {labels.unlisted}
-                              </option>
-                              <option value="public">{labels.public}</option>
-                            </select>
-                          </label>
-                        </div>
+                              <input
+                                type="radio"
+                                name="courseVisibility"
+                                value={option.value}
+                                checked={courseForm.visibility === option.value}
+                                onChange={(event) =>
+                                  setCourseForm({
+                                    ...courseForm,
+                                    visibility: event.target.value,
+                                  })
+                                }
+                              />
+                              <span className="courseVisibilityCopy">
+                                <strong>{option.title}</strong>
+                                <small>{option.description}</small>
+                              </span>
+                              {option.icon === "globe" && (
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                  <circle cx="12" cy="12" r="9" />
+                                  <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+                                </svg>
+                              )}
+                              {option.icon === "link" && (
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                  <path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1" />
+                                </svg>
+                              )}
+                              {option.icon === "lock" && (
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                  <rect
+                                    x="5"
+                                    y="10"
+                                    width="14"
+                                    height="11"
+                                    rx="2"
+                                  />
+                                  <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                                </svg>
+                              )}
+                            </label>
+                          ))}
+                        </fieldset>
                         <label>
                           {labels.description}
                           <textarea
@@ -955,7 +1146,7 @@ const MemberPage = ({ shared = false }) => {
                             {courseForm.description.length}/200
                           </small>
                         </label>
-                        <div className="formRow">
+                        <div className="formRow courseDateRow">
                           <label>
                             {labels.startDate}
                             <input
@@ -984,6 +1175,26 @@ const MemberPage = ({ shared = false }) => {
                             />
                           </label>
                         </div>
+                        <label>
+                          {labels.editPassword}
+                          <input
+                            type="password"
+                            minLength="4"
+                            maxLength="32"
+                            autoComplete="new-password"
+                            placeholder={labels.editPasswordPlaceholder}
+                            value={courseForm.editPassword}
+                            onChange={(e) =>
+                              setCourseForm({
+                                ...courseForm,
+                                editPassword: e.target.value,
+                              })
+                            }
+                          />
+                          <small className="courseCharCount">
+                            {labels.editPasswordHint}
+                          </small>
+                        </label>
                         <fieldset className="coursePlacePicker">
                           <legend>{labels.places}</legend>
                           <select
@@ -1001,8 +1212,23 @@ const MemberPage = ({ shared = false }) => {
                               </option>
                             ))}
                           </select>
+                          <svg
+                            className="coursePlaceRegionChevron"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
                           {coursePlaceFavorites.length ? (
-                            coursePlaceFavorites.map((favorite) => (
+                            coursePlacePagination.pagedList.map((favorite) => (
                               <label className="checkPlace" key={favorite._id}>
                                 <span className="coursePlaceIdentity">
                                   <input
@@ -1024,16 +1250,7 @@ const MemberPage = ({ shared = false }) => {
                                       })
                                     }
                                   />
-                                  <span>
-                                    <strong>{nameOf(favorite, lang)}</strong>
-                                    <small>
-                                      {regionOf(
-                                        favorite,
-                                        lang,
-                                        labels.unknownRegion,
-                                      )}
-                                    </small>
-                                  </span>
+                                  <span>{nameOf(favorite, lang)}</span>
                                 </span>
                                 <em>
                                   {regionOf(
@@ -1050,6 +1267,71 @@ const MemberPage = ({ shared = false }) => {
                                 ? labels.emptyFavorite
                                 : labels.emptyCourseRegion}
                             </p>
+                          )}
+                          {coursePlacePagination.totalPages > 1 && (
+                            <nav
+                              className="coursePlacePagination"
+                              aria-label={
+                                lang === "ko"
+                                  ? "찜 장소 페이지"
+                                  : "Saved places pages"
+                              }
+                            >
+                              <button
+                                type="button"
+                                className="coursePlacePageArrow"
+                                onClick={() =>
+                                  coursePlacePagination.handlePageChange(
+                                    coursePlacePagination.currentPage - 1,
+                                  )
+                                }
+                                disabled={
+                                  coursePlacePagination.currentPage === 1
+                                }
+                                aria-label={
+                                  lang === "ko"
+                                    ? "이전 페이지"
+                                    : "Previous page"
+                                }
+                              >
+                                ‹
+                              </button>
+                              {coursePlacePageNumbers.map((page) => (
+                                <button
+                                  type="button"
+                                  key={page}
+                                  className={`coursePlacePageNumber ${coursePlacePagination.currentPage === page ? "active" : ""}`}
+                                  onClick={() =>
+                                    coursePlacePagination.handlePageChange(page)
+                                  }
+                                  aria-current={
+                                    coursePlacePagination.currentPage === page
+                                      ? "page"
+                                      : undefined
+                                  }
+                                >
+                                  {page}
+                                </button>
+                              ))}
+                              <button
+                                type="button"
+                                className="coursePlacePageArrow"
+                                onClick={() =>
+                                  coursePlacePagination.handlePageChange(
+                                    coursePlacePagination.currentPage + 1,
+                                  )
+                                }
+                                disabled={
+                                  coursePlacePagination.currentPage ===
+                                  coursePlacePagination.totalPages
+                                }
+                                aria-label={
+                                  lang === "ko" ? "다음 페이지" : "Next page"
+                                }
+                              >
+                                ›
+                              </button>
+                            </nav>
                           )}
                         </fieldset>
                         <div className="formActions courseFormActions">
@@ -1076,9 +1358,42 @@ const MemberPage = ({ shared = false }) => {
                       </div>
                     </form>
                   )}
-                  <div className="savedCourseHeading">
-                    <h2>{labels.savedCourses}</h2>
-                    <span>{courses.length}</span>
+                  <div className="savedCourseHeading courseListHeading">
+                    <div className="savedCourseTitle">
+                      <h2>{labels.savedCourses}</h2>
+                      <span>{courses.length}</span>
+                    </div>
+                    {!shared && courses.length > 0 && (
+                      <label className="courseSortControl">
+                        <select
+                          value={courseSort}
+                          onChange={(event) =>
+                            setCourseSort(event.target.value)
+                          }
+                          aria-label={labels.courseSortLabel}
+                        >
+                          <option value="travelDate">
+                            {labels.sortByTravelDate}
+                          </option>
+                          <option value="title">{labels.sortByTitle}</option>
+                        </select>
+                        <svg
+                          className="courseSortChevron"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </label>
+                    )}
                   </div>
                   {!courses.length ? (
                     <div className="memberEmpty">{labels.emptyCourse}</div>
@@ -1099,6 +1414,16 @@ const MemberPage = ({ shared = false }) => {
                             <article
                               key={course._id}
                               className="savedCourseCard"
+                              role="link"
+                              tabIndex={0}
+                              onClick={(event) => {
+                                if (!event.target.closest("button, a"))
+                                  navigate(`/itineraries/${course._id}`);
+                              }}
+                              onKeyDown={(event) => {
+                                if (event.key === "Enter")
+                                  navigate(`/itineraries/${course._id}`);
+                              }}
                             >
                               <div className="savedCourseImage">
                                 {cover ? (
@@ -1114,7 +1439,7 @@ const MemberPage = ({ shared = false }) => {
                                 >
                                   {labels[course.visibility]}
                                 </span>
-                                {!shared && (
+                                {!shared && course.isOwner !== false && (
                                   <button
                                     type="button"
                                     className="courseDelete"
@@ -1122,15 +1447,39 @@ const MemberPage = ({ shared = false }) => {
                                     aria-label={labels.remove}
                                     title={labels.remove}
                                   >
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                      <path d="M3 6h18M8 6V4h8v2m-9 0 1 14h8l1-14M10 10v6m4-6v6" />
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      className="lucide lucide-trash2-icon lucide-trash-2"
+                                    >
+                                      <path d="M10 11v6" />
+                                      <path d="M14 11v6" />
+                                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                                      <path d="M3 6h18" />
+                                      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                                     </svg>
                                   </button>
                                 )}
                               </div>
                               <div className="savedCourseBody">
-                                <h3>{course.title}</h3>
-                                <p>
+                                <div className="savedCourseTitleCover">
+                                  <h3>{course.title}</h3>
+                                  <div className="courseTags">
+                                    <span>
+                                      {lang === "ko"
+                                        ? `장소 ${allPlaces.length}개`
+                                        : `${allPlaces.length} ${allPlaces.length === 1 ? "place" : "places"}`}
+                                    </span>
+                                  </div>
+                                </div>
+                                <p className="lineClamp2">
                                   {course.description || labels.noDescription}
                                 </p>
                                 {datedDays.length > 0 && (
@@ -1144,15 +1493,8 @@ const MemberPage = ({ shared = false }) => {
                                       .join(" ~ ")}
                                   </time>
                                 )}
-                                <div className="courseTags">
-                                  <span>
-                                    {lang === "ko"
-                                      ? `장소 ${allPlaces.length}개`
-                                      : `${allPlaces.length} ${allPlaces.length === 1 ? "place" : "places"}`}
-                                  </span>
-                                </div>
                                 <div className="courseCardActions">
-                                  {!shared && (
+                                  {!shared && course.canEdit !== false && (
                                     <button
                                       type="button"
                                       onClick={() => editCourse(course)}
@@ -1163,11 +1505,33 @@ const MemberPage = ({ shared = false }) => {
                                   {course.visibility !== "private" && (
                                     <button
                                       type="button"
+                                      className="courseShareButton"
                                       onClick={() => shareCourse(course._id)}
+                                      aria-label={
+                                        copied === course._id
+                                          ? labels.copied
+                                          : labels.share
+                                      }
+                                      title={labels.share}
                                     >
-                                      {copied === course._id
-                                        ? labels.copied
-                                        : labels.share}
+                                      {copied === course._id ? (
+                                        <svg
+                                          viewBox="0 0 24 24"
+                                          aria-hidden="true"
+                                        >
+                                          <path d="m5 12 4 4L19 6" />
+                                        </svg>
+                                      ) : (
+                                        <svg
+                                          viewBox="0 0 24 24"
+                                          aria-hidden="true"
+                                        >
+                                          <circle cx="18" cy="5" r="3" />
+                                          <circle cx="6" cy="12" r="3" />
+                                          <circle cx="18" cy="19" r="3" />
+                                          <path d="m8.59 13.51 6.83 3.98M15.41 6.51 8.59 10.49" />
+                                        </svg>
+                                      )}
                                     </button>
                                   )}
                                 </div>
@@ -1180,6 +1544,110 @@ const MemberPage = ({ shared = false }) => {
                         currentPage={coursePagination.currentPage}
                         totalPages={coursePagination.totalPages}
                         onPageChange={coursePagination.handlePageChange}
+                      />
+                    </>
+                  )}
+                </section>
+              )}
+
+              {tab === "joinedCourses" && (
+                <section className="memberSection courseSection">
+                  <div className="savedCourseHeading courseListHeading">
+                    <div className="savedCourseTitle">
+                      <h2>{labels.joinedCoursesTitle}</h2>
+                      <span>{joinedCourses.length}</span>
+                    </div>
+                  </div>
+                  {!joinedCourses.length ? (
+                    <div className="memberEmpty">
+                      {labels.emptyJoinedCourse}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="courseCardGrid">
+                        {joinedCoursePagination.pagedList.map((course) => {
+                          const allPlaces = (course.days || []).flatMap(
+                            (day) => day.places || [],
+                          );
+                          const cover = allPlaces.find(
+                            (place) => place.place?.img?.link,
+                          );
+                          const datedDays = (course.days || []).filter(
+                            (day) => day.date,
+                          );
+                          return (
+                            <article
+                              key={course._id}
+                              className="savedCourseCard"
+                              role="link"
+                              tabIndex={0}
+                              onClick={() =>
+                                navigate(`/itineraries/${course._id}`)
+                              }
+                              onKeyDown={(event) => {
+                                if (event.key === "Enter")
+                                  navigate(`/itineraries/${course._id}`);
+                              }}
+                            >
+                              <div className="savedCourseImage">
+                                {cover ? (
+                                  <img
+                                    src={`${cover.place.img.link}3R.jpg`}
+                                    alt=""
+                                  />
+                                ) : (
+                                  <div className="courseImageFallback" />
+                                )}
+                                <div className="sharedCourseBadges">
+                                  <span
+                                    className={`visibility ${course.visibility}`}
+                                  >
+                                    {labels[course.visibility]}
+                                  </span>
+                                  <span
+                                    className={`shareRole ${course.shareRole}`}
+                                  >
+                                    {labels[course.shareRole]}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="savedCourseBody">
+                                <div className="savedCourseTitleCover">
+                                  <h3>{course.title}</h3>
+                                  <div className="courseTags">
+                                    <span>
+                                      {lang === "ko"
+                                        ? `장소 ${allPlaces.length}개`
+                                        : `${allPlaces.length} ${allPlaces.length === 1 ? "place" : "places"}`}
+                                    </span>
+                                  </div>
+                                </div>
+                                <p className="lineClamp2">
+                                  {course.description || labels.noDescription}
+                                </p>
+                                {datedDays.length > 0 && (
+                                  <time>
+                                    {datedDays
+                                      .map((day) =>
+                                        new Date(day.date).toLocaleDateString(
+                                          lang,
+                                        ),
+                                      )
+                                      .join(" ~ ")}
+                                  </time>
+                                )}
+                                <div className="courseCardActions">
+                                  <span>{labels.open}</span>
+                                </div>
+                              </div>
+                            </article>
+                          );
+                        })}
+                      </div>
+                      <Pagination
+                        currentPage={joinedCoursePagination.currentPage}
+                        totalPages={joinedCoursePagination.totalPages}
+                        onPageChange={joinedCoursePagination.handlePageChange}
                       />
                     </>
                   )}
@@ -1420,8 +1888,23 @@ const MemberPage = ({ shared = false }) => {
                                 aria-label={labels.remove}
                                 title={labels.remove}
                               >
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                  <path d="M3 6h18M8 6V4h8v2m-9 0 1 14h8l1-14M10 10v6m4-6v6" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="lucide lucide-trash2-icon lucide-trash-2"
+                                >
+                                  <path d="M10 11v6" />
+                                  <path d="M14 11v6" />
+                                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                                  <path d="M3 6h18" />
+                                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                                 </svg>
                               </button>
                             </div>

@@ -203,7 +203,8 @@ export default {
       region: "지역별",
       season: "계절별",
       theme: "테마",
-      collection: "컬렉션"
+      collection: "컬렉션",
+      course: "코스별"
     },
     homeRegion: {
       viewSpots: "여행지 둘러보기",
@@ -244,6 +245,7 @@ export default {
     season: "계절별",
     theme: "테마별",
     collection: "컬렉션",
+    courses: "코스별",
     myTrip: "내 여행",
     about: "소개",
     blog: "블로그",
