@@ -116,6 +116,7 @@ footer {
 }
 
 .warnings {
+  white-space: pre-line;
   width: auto;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -187,7 +188,7 @@ footer {
     /* Flex */
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .footerCopyRight {

@@ -392,7 +392,7 @@ export default {
   },
   footer: {
     slogan: "Not sure where to travel in Korea?\nDiscover destinations by region and theme with KORTRIP.",
-    warning: "All photos are my own, and I hold the copyright.",
+    warning: "All photos from places visited by KORTRIP are original and copyrighted by KORTRIP.\nPhotos of places not yet visited are provided by the Korea Tourism Organization..",
     browse: "Browse",
     region: "Region",
     season: "Season",
