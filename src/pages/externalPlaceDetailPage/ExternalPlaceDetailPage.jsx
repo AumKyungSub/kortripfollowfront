@@ -80,6 +80,7 @@ const ExternalPlaceDetailPage = () => {
   const shortDescription =
     place.description?.short?.[lang] || place.description?.short?.ko;
   const image = placeImageUrl(place);
+  const hasTourApiImage = Boolean(place.img?.originalUrl || place.img?.link);
   const homepage = place.officialLinks?.homepage;
   const instagram = place.officialLinks?.instagram;
   const hasLinks = Boolean(homepage || instagram);
@@ -231,17 +232,17 @@ const ExternalPlaceDetailPage = () => {
             </aside>
           </div>
 
-          {place.attribution && <aside className="externalPlaceCredit">
+          {place.source === "tourApi" && <aside className="externalPlaceCredit">
             <strong>
-              {isEn ? "Image and travel information" : "사진 및 관광정보 출처"}
+              {hasTourApiImage
+                ? (isEn ? "Image and travel information source" : "사진 및 관광정보 출처")
+                : (isEn ? "Travel information source" : "관광정보 출처")}
             </strong>
-            <span>{place.attribution?.provider}</span>
-            <span>
-              {isEn
-                ? "KOGL Type 1 · Attribution"
-                : "공공누리 제1유형 · 출처표시"}{" "}
-              ({place.attribution?.license})
-            </span>
+            <span>{place.attribution?.provider || "한국관광공사 TourAPI"}</span>
+            {hasTourApiImage && <span>
+              {isEn ? "KOGL Type 1 · Attribution" : "공공누리 제1유형 · 출처표시"}{" "}
+              ({place.attribution?.license || "KOGL-1"})
+            </span>}
           </aside>}
         </div>
       </main>
