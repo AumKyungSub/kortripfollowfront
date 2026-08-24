@@ -14,7 +14,12 @@ import {
   useKakaoLoader,
 } from "react-kakao-maps-sdk";
 import { useLanguage } from "@/shared/hooks/useLanguage";
-import { ApiError, memberApi, placeImageUrl, placePath } from "@/shared/api/memberApi";
+import {
+  ApiError,
+  memberApi,
+  placeImageUrl,
+  placePath,
+} from "@/shared/api/memberApi";
 // Device Size
 import { useResponsive } from "@/shared/hooks/useResponsive";
 // Pagination
@@ -304,9 +309,15 @@ function FavoriteCard({ favorite, lang, labels, onRemove }) {
         </button>
       </div>
       <div className="placeCardBody">
-        <h3>{name}</h3>
+        <h3 className="lineClamp1">{name}</h3>
         <div className="placeCardActions">
-          <Link to={placePath(favorite.placeType, favorite.placeId, favorite.place?.source)}>
+          <Link
+            to={placePath(
+              favorite.placeType,
+              favorite.placeId,
+              favorite.place?.source,
+            )}
+          >
             {labels.open}
           </Link>
           <button
@@ -421,7 +432,11 @@ function FavoriteMap({ favorites, lang, labels }) {
           <CustomOverlayMap position={{ lat, lng }} yAnchor={2.5}>
             <Link
               className="favoriteMapLabel"
-              to={placePath(favorite.placeType, favorite.placeId, favorite.place?.source)}
+              to={placePath(
+                favorite.placeType,
+                favorite.placeId,
+                favorite.place?.source,
+              )}
             >
               {nameOf(favorite, lang)}
             </Link>
@@ -1470,7 +1485,7 @@ const MemberPage = ({ shared = false }) => {
                               </div>
                               <div className="savedCourseBody">
                                 <div className="savedCourseTitleCover">
-                                  <h3>{course.title}</h3>
+                                  <h3 className="lineClamp1">{course.title}</h3>
                                   <div className="courseTags">
                                     <span>
                                       {lang === "ko"
@@ -1837,10 +1852,7 @@ const MemberPage = ({ shared = false }) => {
                       <div className="visitRecordList">
                         {visitPagination.pagedList.map((visit) => (
                           <article className="visitRecordCard" key={visit._id}>
-                            <img
-                              src={placeImageUrl(visit.place)}
-                              alt=""
-                            />
+                            <img src={placeImageUrl(visit.place)} alt="" />
                             <div className="visitRecordBody">
                               <h3>{nameOf(visit, lang)}</h3>
                               <div className="visitRecordMeta">
