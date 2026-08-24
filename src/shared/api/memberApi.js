@@ -28,8 +28,21 @@ export async function memberApi(path, options = {}) {
   return response.json();
 }
 
-export function placePath(placeType, placeId) {
+export function placePath(placeType, placeId, source) {
+  if (source === 'tourApi' || Number(placeId) >= 1_000_000_000) {
+    return `/external-place/${placeId}`;
+  }
   return placeType === 'attraction'
     ? `/location/${placeId}`
     : `/theme/${placeType}/${placeId}`;
+}
+
+export function placeImageUrl(place) {
+  const fallback = '/images/emptyBanner.jpg';
+  const image = place?.img;
+  if (!image) return fallback;
+  if (place.source === 'tourApi' || image.direct || image.originalUrl) {
+    return image.originalUrl || image.link || fallback;
+  }
+  return image.link ? `${image.link}3R.jpg` : fallback;
 }

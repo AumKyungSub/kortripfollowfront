@@ -18,9 +18,35 @@
 }
 
 .listImgCover {
+    position: relative;
     width: 100%;
     aspect-ratio: 3 / 2;
     overflow: hidden;
+}
+
+.listVisitBadge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+.listVisitBadge.visited {
+    background: rgba(181, 74, 47, 0.92);
+}
+
+.listVisitBadge.beforeVisit {
+    background: rgba(19, 43, 80, 0.9);
 }
 
 .listImg {

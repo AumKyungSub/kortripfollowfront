@@ -23,9 +23,15 @@ const ListBanner = ({title, count, type = "theme", selected, images = []}) => {
 
   // region 배너 랜덤 이미지 선택
   const getRandomRegionImage = () => {
-    if (!images || images.length === 0) return null;
-    const rand = Math.floor(Math.random() * images.length);
-    return images[rand].img?.link + "2.jpg";
+    const availableImages = (images || []).flatMap((item) => {
+      if (item?.img?.direct) {
+        const url = item.img.originalUrl || item.img.link;
+        return url ? [url] : [];
+      }
+      return item?.img?.link ? [`${item.img.link}2.jpg`] : [];
+    });
+    if (!availableImages.length) return null;
+    return availableImages[Math.floor(Math.random() * availableImages.length)];
   };
 
   const imgSrc = type === "region" ? getRandomRegionImage() : getRandomThemeImage();

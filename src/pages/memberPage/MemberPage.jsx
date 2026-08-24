@@ -14,7 +14,7 @@ import {
   useKakaoLoader,
 } from "react-kakao-maps-sdk";
 import { useLanguage } from "@/shared/hooks/useLanguage";
-import { ApiError, memberApi, placePath } from "@/shared/api/memberApi";
+import { ApiError, memberApi, placeImageUrl, placePath } from "@/shared/api/memberApi";
 // Device Size
 import { useResponsive } from "@/shared/hooks/useResponsive";
 // Pagination
@@ -264,7 +264,7 @@ function FavoriteCard({ favorite, lang, labels, onRemove }) {
   const [isShareComplete, setIsShareComplete] = useState(false);
 
   const shareFavorite = async () => {
-    const url = `${window.location.origin}${placePath(favorite.placeType, favorite.placeId)}`;
+    const url = `${window.location.origin}${placePath(favorite.placeType, favorite.placeId, favorite.place?.source)}`;
     try {
       if (typeof navigator.share === "function") {
         await navigator.share({ title: name, text: name, url });
@@ -287,7 +287,7 @@ function FavoriteCard({ favorite, lang, labels, onRemove }) {
   return (
     <article className="placeCard">
       <div className="placeCardImage">
-        <img src={`${favorite.place?.img?.link}3R.jpg`} alt={name} />
+        <img src={placeImageUrl(favorite.place)} alt={name} />
         <span className="placeCardRegion">
           {regionOf(favorite, lang, labels.unknownRegion)}
         </span>
@@ -306,7 +306,7 @@ function FavoriteCard({ favorite, lang, labels, onRemove }) {
       <div className="placeCardBody">
         <h3>{name}</h3>
         <div className="placeCardActions">
-          <Link to={placePath(favorite.placeType, favorite.placeId)}>
+          <Link to={placePath(favorite.placeType, favorite.placeId, favorite.place?.source)}>
             {labels.open}
           </Link>
           <button
@@ -421,7 +421,7 @@ function FavoriteMap({ favorites, lang, labels }) {
           <CustomOverlayMap position={{ lat, lng }} yAnchor={2.5}>
             <Link
               className="favoriteMapLabel"
-              to={placePath(favorite.placeType, favorite.placeId)}
+              to={placePath(favorite.placeType, favorite.placeId, favorite.place?.source)}
             >
               {nameOf(favorite, lang)}
             </Link>
@@ -1428,7 +1428,7 @@ const MemberPage = ({ shared = false }) => {
                               <div className="savedCourseImage">
                                 {cover ? (
                                   <img
-                                    src={`${cover.place.img.link}3R.jpg`}
+                                    src={placeImageUrl(cover.place)}
                                     alt=""
                                   />
                                 ) : (
@@ -1592,7 +1592,7 @@ const MemberPage = ({ shared = false }) => {
                               <div className="savedCourseImage">
                                 {cover ? (
                                   <img
-                                    src={`${cover.place.img.link}3R.jpg`}
+                                    src={placeImageUrl(cover.place)}
                                     alt=""
                                   />
                                 ) : (
@@ -1838,7 +1838,7 @@ const MemberPage = ({ shared = false }) => {
                         {visitPagination.pagedList.map((visit) => (
                           <article className="visitRecordCard" key={visit._id}>
                             <img
-                              src={`${visit.place?.img?.link}3R.jpg`}
+                              src={placeImageUrl(visit.place)}
                               alt=""
                             />
                             <div className="visitRecordBody">

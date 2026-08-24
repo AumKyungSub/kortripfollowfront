@@ -47,6 +47,8 @@ const Header = () => {
     "/myTravel",
     "/courses",
     "/itineraries/",
+    "/operator/",
+    "/external-place",
   ];
 
   // 2. 현재 URL 경로가 LIGHT_HEADER_PATHS 중 하나로 시작하는지 체크

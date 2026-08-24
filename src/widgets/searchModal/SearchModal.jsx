@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 import { API_URL } from '@/shared/config/apiUrl';
+import { placeImageUrl, placePath } from '@/shared/api/memberApi';
 /*------------------------/custom hooks-----------------------------------*/
 
 // Components
@@ -48,7 +49,11 @@ const SearchModal = ({ onClose }) => {
       const response = await fetch(`${apiUrl}/${group.endpoint}`, { signal: controller.signal });
       if (!response.ok) throw new Error(`Search API error: ${group.endpoint}`);
       const data = await response.json();
-      return data.map((item) => ({ ...item, searchCategory: group.category, searchPath: group.path(item.id) }));
+      return data.map((item) => ({
+        ...item,
+        searchCategory: group.category,
+        searchPath: placePath(group.category, item.id, item.source),
+      }));
     }))
       .then((groups) => {
         const uniqueItems = new Map();
@@ -161,7 +166,7 @@ const SearchModal = ({ onClose }) => {
           {results.map((item) => (
             <li key={`${item.searchCategory}-${item.id}`}>
               <button type="button" onClick={() => selectResult(item)}>
-                <img src={`${item.img?.link}3R.jpg`} alt="" />
+                <img src={placeImageUrl(item)} alt="" />
                 <span className="searchResultText">
                   <span className="searchResultTitle">
                     <strong>{item.location?.name?.[activeLang]}</strong>

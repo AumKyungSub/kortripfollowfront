@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "@/widgets/header/Header";
 import Footer from "@/widgets/footer/Footer";
 import Pagination from "@/widgets/pagination/Pagination";
-import { ApiError, memberApi } from "@/shared/api/memberApi";
+import { ApiError, memberApi, placeImageUrl } from "@/shared/api/memberApi";
 import { useLanguage } from "@/shared/hooks/useLanguage";
 import { usePagination } from "@/shared/hooks/usePagination";
 import { useResponsive } from "@/shared/hooks/useResponsive";
@@ -183,7 +183,7 @@ export default function CourseListPage() {
                             <div className="publicCourseImage">
                               {cover ? (
                                 <img
-                                  src={`${cover.place.img.link}3R.jpg`}
+                                  src={placeImageUrl(cover.place)}
                                   alt=""
                                 />
                               ) : (

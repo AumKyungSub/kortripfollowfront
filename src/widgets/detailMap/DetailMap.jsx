@@ -64,14 +64,18 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
         .join(', ');
     const englishParkingAddress = data?.parking?.address?.en;
     const googleParkingDestination = englishParkingAddress || `${latP},${lngP}`;
+    const kakaoDestinationName = encodeURIComponent(name || '목적지');
+    const kakaoParkingName = encodeURIComponent(
+        `${name || '목적지'} ${t("locationPage.parking.parkingArea")}`
+    );
     const mapLinkByLanguage = {
-        ko:`https://map.kakao.com/link/to/${name},${lat},${lng}`,
+        ko:`https://map.kakao.com/link/to/${kakaoDestinationName},${lat},${lng}`,
         en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
     }  
     const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;
     const parkingLinkByLanguage = {
         ko: hasParking
-                ? `https://map.kakao.com/link/to/${name} ${t("locationPage.parking.parkingArea")},${latP},${lngP}`
+                ? `https://map.kakao.com/link/to/${kakaoParkingName},${latP},${lngP}`
                 : null,
         en: hasParking
                 ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(englishParkingAddress)}`

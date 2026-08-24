@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { CustomOverlayMap, Map, MapMarker, useKakaoLoader } from "react-kakao-maps-sdk";
 import Header from "@/widgets/header/Header";
 import Footer from "@/widgets/footer/Footer";
-import { ApiError, memberApi, placePath } from "@/shared/api/memberApi";
+import { ApiError, memberApi, placeImageUrl, placePath } from "@/shared/api/memberApi";
 import { useLanguage } from "@/shared/hooks/useLanguage";
 import "./CourseDetailPage.style.css";
 
@@ -32,7 +32,6 @@ const text = {
 
 const dateValue = value => value ? String(value).slice(0, 10) : "";
 const placeName = (place, lang) => place?.place?.location?.name?.[lang] || place?.place?.location?.name?.ko || place?.location?.name?.[lang] || place?.location?.name?.ko || "";
-
 function CourseMap({ places, lang, labels }) {
   useKakaoLoader();
   const markers = places.flatMap(place => {
@@ -197,7 +196,7 @@ export default function CourseDetailPage() {
   return <><Header /><main className="courseDetailPage">
     <div className="courseDetailTop"><Link to="/myTravel">← {labels.back}</Link>{!course.canEdit && <span>{session?.authenticated ? labels.viewOnly : labels.loginRequired}</span>}</div>
     <section className="courseHero">
-      {cover ? <img src={`${cover.place.img.link}3R.jpg`} alt="" /> : <div className="courseHeroFallback" />}
+      {cover ? <img src={placeImageUrl(cover.place)} alt="" /> : <div className="courseHeroFallback" />}
       <div className="courseHeroShade" /><div className="courseHeroCopy"><span className={`courseVisibility ${course.visibility}`}>{labels[course.visibility]}</span><h1>{course.title}</h1><p>{dates.length ? `${dates[0]} ~ ${dates.at(-1)}` : labels.period}</p></div>
     </section>
     <div className="courseDashboard">
@@ -215,7 +214,7 @@ export default function CourseDetailPage() {
             <div className="coursePlaceEditor wide"><h3>{labels.places}</h3><div className="placeSearchBox"><input value={placeSearch} placeholder={labels.placeSearch} onChange={e => setPlaceSearch(e.target.value)} /></div>{placeSearch.trim() && <ul className="placeSearchResults">{placeResults.length ? placeResults.map(result => <li key={`${result.placeType}:${result.placeId}`}><span>{placeName(result, lang)}</span><button type="button" onClick={() => addDraftPlace(result)}>{labels.addPlace}</button></li>) : <li className="noResult">{labels.noPlaceResult}</li>}</ul>}<ol className="draftPlaceList">{draftDays.flatMap(day => day.places || []).map((place, index, orderedPlaces) => <li key={`${place.placeType}:${place.placeId}`}><span>{index + 1}. {placeName(place, lang)}</span><div className="placeOrderButtons"><button type="button" disabled={index === 0} onClick={() => moveDraftPlace(index, -1)}>↑ {labels.moveUp}</button><button type="button" disabled={index === orderedPlaces.length - 1} onClick={() => moveDraftPlace(index, 1)}>↓ {labels.moveDown}</button><button type="button" className="removePlaceButton" onClick={() => removeDraftPlace(place)}>{labels.removePlace}</button></div></li>)}</ol></div>
             <div className="formButtons wide"><button type="button" onClick={() => setEditingInfo(false)}>{labels.cancel}</button><button className="primaryButton">{labels.save}</button></div>
           </form> : <div className="courseOverview"><article><h3>{labels.description}</h3><p>{course.description || labels.noDescription}</p></article><article><h3>{labels.period}</h3><p>{dates.length ? `${dates[0]} ~ ${dates.at(-1)}` : "-"}</p></article></div>}
-          <h3 className="subheading">{labels.places}</h3>{places.length ? <ol className="coursePlaceList">{places.map((place, index) => <li key={`${place.placeType}:${place.placeId}`}><span>{index + 1}</span><Link to={placePath(place.placeType, place.placeId)}>{placeName(place, lang)}</Link></li>)}</ol> : <div className="courseDetailEmpty">{labels.noPlaces}</div>}
+          <h3 className="subheading">{labels.places}</h3>{places.length ? <ol className="coursePlaceList">{places.map((place, index) => <li key={`${place.placeType}:${place.placeId}`}><span>{index + 1}</span><Link to={placePath(place.placeType, place.placeId, place.place?.source)}>{placeName(place, lang)}</Link></li>)}</ol> : <div className="courseDetailEmpty">{labels.noPlaces}</div>}
           <h3 className="subheading">{labels.map}</h3><CourseMap places={places} lang={lang} labels={labels} />
         </section>}
         {active === "schedule" && <section><div className="courseSectionHeading"><div><span>DAILY PLAN</span><h2>{labels.schedule}</h2><p>{labels.scheduleHint}</p></div></div>

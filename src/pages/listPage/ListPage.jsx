@@ -98,8 +98,15 @@ const ListPage = ({ mode }) => {
   // 필터링 
   const filteredList = useMemo(() => {
     const koCollator = new Intl.Collator('ko', { sensitivity: 'base', numeric: true });
-    const sortByName = (a, b) =>
-      koCollator.compare(a?.location?.name?.ko || '', b?.location?.name?.ko || '');
+    const sortByVisitPriority = (a, b) => {
+      const aPriority = a?.source === 'tourApi' ? 1 : 0;
+      const bPriority = b?.source === 'tourApi' ? 1 : 0;
+      if (aPriority !== bPriority) return aPriority - bPriority;
+      return koCollator.compare(
+        a?.location?.name?.ko || '',
+        b?.location?.name?.ko || '',
+      );
+    };
 
     if (isThemeMode) {
       const themeDataMap = {
@@ -110,7 +117,7 @@ const ListPage = ({ mode }) => {
       };
       return (themeDataMap[selected] || [])
         .filter(item => item.visibility === true)
-        .sort(sortByName);
+        .sort(sortByVisitPriority);
     }
 
     const regionFiltered =
@@ -120,7 +127,7 @@ const ListPage = ({ mode }) => {
 
     return regionFiltered
       .filter(item => item.visibility === true)
-      .sort(sortByName);
+      .sort(sortByVisitPriority);
 
   }, [
     isThemeMode,

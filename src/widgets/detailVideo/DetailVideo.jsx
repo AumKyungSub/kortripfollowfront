@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 // Language
-import { useLanguage } from '@/shared/hooks/useLanguage';
+import { useLanguage } from "@/shared/hooks/useLanguage";
 
-import './DetailVideo.style.css'
+import "./DetailVideo.style.css";
 
-const VIDEO_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+const VIDEO_ALLOW =
+  "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
 
-const getYoutubeVideoId = (link = '') => (
-  link.match(/\/embed\/([^?&/]+)/)?.[1] ?? null
-);
+const getYoutubeVideoId = (link = "") =>
+  link.match(/\/embed\/([^?&/]+)/)?.[1] ?? null;
 
-const VideoIframe = ({src, title}) => (
+const VideoIframe = ({ src, title }) => (
   <iframe
     src={src}
     title={title}
@@ -21,7 +21,7 @@ const VideoIframe = ({src, title}) => (
   />
 );
 
-const PlayIcon = ({size = 14}) => (
+const PlayIcon = ({ size = 14 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -71,12 +71,18 @@ const EmptyVideoIcon = () => (
   </svg>
 );
 
-const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
-  const {lang, t} = useLanguage();
+const DetailVideo = ({
+  video,
+  data,
+  isFullMobile,
+  variant = "default",
+  pendingDescription,
+}) => {
+  const { lang, t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
 
   const hasVideo = Boolean(video?.existence && video?.link);
-  const isFeatureVariant = variant === 'feature';
+  const isFeatureVariant = variant === "feature";
 
   if (!isFeatureVariant) {
     if (!hasVideo) return null;
@@ -86,11 +92,11 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
         <section className="detailVideo">
           {!isFullMobile ? (
             <>
-              <h4>{t('detailVideo.title')}</h4>
+              <h4>{t("detailVideo.title")}</h4>
               <div className="emptyLine1px"></div>
             </>
           ) : (
-            <h4>{t('detailVideo.title')}</h4>
+            <h4>{t("detailVideo.title")}</h4>
           )}
           <div className="detailVideoFrameWrap">
             <div className="detailVideoFrame">
@@ -111,7 +117,7 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
     ? `https://www.youtube.com/shorts/${videoId}`
     : null;
   const autoplayUrl = hasVideo
-    ? `${video.link}${video.link.includes('?') ? '&' : '?'}autoplay=1`
+    ? `${video.link}${video.link.includes("?") ? "&" : "?"}autoplay=1`
     : null;
   const locationName = data?.location?.name?.[lang];
   const playVideo = () => setIsPlaying(true);
@@ -122,9 +128,9 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
         <div className="detailVideoFeatureHeading">
           <p className="preTitle14px600b54a2f">
             <span className="preTitle14px600b54a2fLine"></span>
-            Links
+            Shorts
           </p>
-          <p className="title18px20px700">{t('detailVideo.featureTitle')}</p>
+          <p className="title18px20px700">{t("detailVideo.featureTitle")}</p>
         </div>
 
         <div className="detailVideoFeatureCard">
@@ -132,13 +138,13 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
             {hasVideo && isPlaying ? (
               <VideoIframe
                 src={autoplayUrl}
-                title={`${locationName || ''} YouTube Shorts`}
+                title={`${locationName || ""} YouTube Shorts`}
               />
             ) : hasVideo ? (
               <button
                 type="button"
                 className="detailVideoFeatureThumbnail"
-                aria-label={t('detailVideo.play')}
+                aria-label={t("detailVideo.play")}
                 onClick={playVideo}
               >
                 <img src={thumbnailUrl} alt="" />
@@ -156,29 +162,33 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
           </div>
 
           <div className="detailVideoFeatureContent">
-            <span className={`detailVideoFeatureBadge${hasVideo ? '' : ' detailVideoFeatureBadge--pending'}`}>
-              {hasVideo ? t('detailVideo.youtubeShorts') : t('detailVideo.pending')}
+            <span
+              className={`detailVideoFeatureBadge${hasVideo ? "" : " detailVideoFeatureBadge--pending"}`}
+            >
+              {hasVideo
+                ? t("detailVideo.youtubeShorts")
+                : t("detailVideo.pending")}
             </span>
             <h3>
               {hasVideo
-                ? t('detailVideo.videoTitle', { name: locationName })
-                : t('detailVideo.pendingTitle')}
+                ? t("detailVideo.videoTitle", { name: locationName })
+                : t("detailVideo.pendingTitle")}
             </h3>
             <p>
               {hasVideo
-                ? t('detailVideo.description')
-                : t('detailVideo.pendingDescription')}
+                ? t("detailVideo.description")
+                : pendingDescription || t("detailVideo.pendingDescription")}
             </p>
 
             {hasVideo && (
               <div className="detailVideoFeatureActions">
                 <button type="button" onClick={playVideo}>
                   <PlayIcon />
-                  {t('detailVideo.play')}
+                  {t("detailVideo.play")}
                 </button>
                 <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
                   <ExternalLinkIcon />
-                  {t('detailVideo.viewOnYoutube')}
+                  {t("detailVideo.viewOnYoutube")}
                 </a>
               </div>
             )}
@@ -187,7 +197,7 @@ const DetailVideo = ({video, data, isFullMobile, variant = 'default'}) => {
       </section>
       {isFullMobile && <div className="emptyLine"></div>}
     </>
-  )
-}
+  );
+};
 
-export default DetailVideo
+export default DetailVideo;

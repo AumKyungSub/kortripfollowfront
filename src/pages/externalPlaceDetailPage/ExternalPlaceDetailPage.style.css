@@ -1,0 +1,316 @@
+.externalPlacePage {
+  padding: 96px 16px 64px;
+  color: #202020;
+  background: #fff;
+}
+.externalPlaceContent {
+  width: 100%;
+  max-width: 1232px;
+  margin: 0 auto;
+}
+.externalPlaceBack {
+  margin: 0 0 14px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.externalPlaceHero {
+  overflow: hidden;
+  border: 1px solid #e9e6e1;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(28, 39, 54, 0.08);
+}
+.externalPlaceHeroImage {
+  overflow: hidden;
+  background: #f3f4f6;
+}
+.externalPlaceHeroImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.externalPlaceHeroText {
+  padding: 26px 20px 30px;
+}
+.externalPlaceRegion {
+  margin: 0 0 7px;
+  color: #b54a2f;
+  font-size: 12px;
+  font-weight: 800;
+}
+.externalPlaceHeroText h1 {
+  margin: 0;
+  color: #17243c;
+  font-size: 30px;
+  line-height: 1.2;
+}
+.externalPlaceAddress {
+  margin: 12px 0 0;
+  color: #737373;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.externalPlaceSummary {
+  margin: 14px 0 0;
+  color: #303030;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.externalPlaceHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.externalPlaceHeroActions .favoriteButton,
+.externalPlaceHeroActions .shareBtn {
+  min-height: 38px;
+  padding: 8px 15px;
+  border: 1px solid #5a5a5a;
+  border-radius: 999px;
+  background: #fff;
+  color: #282828;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.externalPlaceHeroActions .favoriteButton.active {
+  border-color: #b54a2f;
+  background: #b54a2f;
+  color: #fff;
+}
+.externalPlaceDetailGrid {
+  display: grid;
+  gap: 22px;
+  margin-top: 28px;
+}
+.externalPlaceMainColumn,
+.externalPlaceSideColumn {
+  min-width: 0;
+}
+.externalPlaceAbout,
+.externalPlaceLinks {
+  padding: 16px 0;
+}
+.externalSectionHeading {
+  margin-bottom: 14px;
+}
+.externalSectionHeading > span {
+  display: inline-block;
+  position: relative;
+  top: -9px;
+  padding-right: 10px;
+  background: #fff;
+  color: #b54a2f;
+  font-size: 11px;
+  font-weight: 700;
+}
+.externalSectionHeading h2 {
+  margin: -3px 0 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+.externalPlaceAboutImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.externalPlaceAbout h3 {
+  margin: 20px 0 10px;
+  color: #222;
+  font-size: 22px;
+  line-height: 1.45;
+}
+.externalPlaceDescription {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: #505050;
+  font-size: 14px;
+  line-height: 1.9;
+  white-space: pre-line;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+.externalPlaceDescription.expanded {
+  display: block;
+  overflow: visible;
+}
+.externalPlaceMore {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 8px 0 0 auto;
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: #b54a2f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.externalPlaceMore span {
+  font-size: 16px;
+}
+.externalPlaceLinksDesktop {
+  display: none;
+}
+.externalPlaceLinkIcons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.externalPlaceLinkIcons a {
+  min-width: 96px;
+  padding: 12px 14px;
+  border: 1px solid #ece8e3;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.externalPlaceLinkIcons img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+.externalPlaceLinkIcons p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+.externalPlaceSideColumn .detailMapWrapper {
+  padding: 16px 0;
+}
+.externalPlaceSideColumn .detailReviewWrapper {
+  padding: 16px 0;
+}
+.externalPlaceCredit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #f3f6fa;
+  color: #68758a;
+  font-size: 11px;
+}
+.externalPlaceCredit strong {
+  color: #263650;
+}
+.externalPlaceState {
+  min-height: 60vh;
+  display: grid;
+  place-content: center;
+  gap: 16px;
+  text-align: center;
+}
+.externalPlaceState button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #142d53;
+  color: #fff;
+}
+
+.externalMoreIcon {
+  transition: transform 0.2s ease;
+}
+
+.externalPlaceMore[aria-expanded="true"] .externalMoreIcon {
+  transform: rotate(180deg);
+}
+
+@media only all and (min-width: 480px) {
+  .externalPlacePage {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  .externalPlaceHeroText {
+    padding: 32px;
+  }
+  .externalPlaceHeroText h1 {
+    font-size: 36px;
+  }
+  .externalPlaceAbout,
+  .externalPlaceLinks {
+    padding: 20px 0;
+  }
+}
+
+@media only all and (min-width: 768px) {
+  .externalPlacePage {
+    padding-top: 120px;
+  }
+  .externalPlaceHero {
+    display: flex;
+  }
+  .externalPlaceHeroImage {
+    width: 50%;
+    aspect-ratio: 3/2;
+  }
+  .externalPlaceHeroText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(38px, 5vw, 68px);
+  }
+  .externalPlaceHeroText h1 {
+    font-size: 44px;
+  }
+  .externalPlaceDetailGrid {
+    grid-template-columns: minmax(0, 65.333%) minmax(0, 30.666%);
+    gap: 4%;
+    margin-top: 34px;
+  }
+  .externalPlaceAbout,
+  .externalPlaceLinks {
+    padding: 18px 0;
+  }
+  .externalPlaceAboutImage {
+    aspect-ratio: 16/8.5;
+  }
+  .externalPlaceLinksDesktop {
+    display: block;
+  }
+  .externalPlaceLinksMobile {
+    display: none;
+  }
+  .externalPlaceSideColumn .detailMapWrapper {
+    padding: 0 0 16px;
+  }
+  .externalPlaceSideColumn .detailReviewWrapper {
+    margin-top: 18px;
+    padding: 0 0 16px;
+  }
+  .externalPlaceSideColumn .detailReviewCard {
+    padding: 22px 18px;
+  }
+  .externalPlaceCredit {
+    margin-top: 28px;
+  }
+}
+
+@media only all and (min-width: 1921px) {
+  .externalPlaceContent {
+    max-width: 1440px;
+  }
+}

@@ -71,7 +71,7 @@ const DetailBanner = ({
         .filter(Boolean)
         .join(', ');
     const mapLinkByLanguage = {
-        ko:`https://map.kakao.com/link/to/${name},${lat},${lng}`,
+        ko:`https://map.kakao.com/link/to/${encodeURIComponent(name || '목적지')},${lat},${lng}`,
         en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
     }  
     const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;

@@ -53,9 +53,15 @@ const HomeBanner = ({
 
   // ---------- 초기 데이터 세팅 ----------
   useEffect(() => {
-    if (!Array.isArray(rankingsData) || rankingsData.length === 0) return;
+    if (!Array.isArray(rankingsData)) {
+      setItems([]);
+      return;
+    }
 
-    const data = [...rankingsData]
+    const data = rankingsData
+      .filter((item) => item?.source !== 'tourApi')
+      .filter((item) => item?.visibility === true && item?.img?.link)
+      .slice()
       .sort(() => Math.random() - 0.5)
       .slice(0, 6); 
 

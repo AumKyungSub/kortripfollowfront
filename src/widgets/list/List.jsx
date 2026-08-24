@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 import PlaceRating from '@/features/placeRating/PlaceRating';
+import { placeImageUrl } from '@/shared/api/memberApi';
 /*------------------------/custom hooks-----------------------------------*/
 
 // Page CSS
@@ -21,6 +22,10 @@ const List = ({ filteredList, link, selectedTheme }) => {
     // Navigate
     const navigate = useNavigate();
     const handleClick = (data) => {
+        if (data?.source === "tourApi") {
+            navigate(`/external-place/${data.id}`);
+            return;
+        }
         if (link === "location") {
             navigate(`/location/${data?.id}`);
             return;
@@ -37,7 +42,12 @@ const List = ({ filteredList, link, selectedTheme }) => {
             {filteredList.map((data) => (
                 <div key={data.id} className='listCover'>
                     <div className="listImgCover">
-                        <img className='listImg' src={`${data?.img?.link}3R.jpg`} alt={data?.location?.name?.[lang]} />
+                        <span className={`listVisitBadge ${data?.source === "tourApi" ? "beforeVisit" : "visited"}`}>
+                            {data?.source === "tourApi"
+                                ? (isEn ? "Not Visited Yet" : "방문 전")
+                                : (isEn ? "Visited" : "직접 방문")}
+                        </span>
+                        <img className='listImg' src={placeImageUrl(data)} alt={data?.location?.name?.[lang]} />
                     </div>
                     <div className="listTextCover">
                         <p className="listName subFont">
