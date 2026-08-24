@@ -22,7 +22,7 @@ const List = ({ filteredList, link, selectedTheme }) => {
     // Navigate
     const navigate = useNavigate();
     const handleClick = (data) => {
-        if (data?.source === "tourApi") {
+        if (["tourApi", "manual"].includes(data?.source)) {
             navigate(`/external-place/${data.id}`);
             return;
         }
@@ -42,8 +42,8 @@ const List = ({ filteredList, link, selectedTheme }) => {
             {filteredList.map((data) => (
                 <div key={data.id} className='listCover'>
                     <div className="listImgCover">
-                        <span className={`listVisitBadge ${data?.source === "tourApi" ? "beforeVisit" : "visited"}`}>
-                            {data?.source === "tourApi"
+                        <span className={`listVisitBadge ${["tourApi", "manual"].includes(data?.source) ? "beforeVisit" : "visited"}`}>
+                            {["tourApi", "manual"].includes(data?.source)
                                 ? (isEn ? "Not Visited Yet" : "방문 전")
                                 : (isEn ? "Visited" : "직접 방문")}
                         </span>

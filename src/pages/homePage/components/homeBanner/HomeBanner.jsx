@@ -59,7 +59,7 @@ const HomeBanner = ({
     }
 
     const data = rankingsData
-      .filter((item) => item?.source !== 'tourApi')
+      .filter((item) => !['tourApi', 'manual'].includes(item?.source))
       .filter((item) => item?.visibility === true && item?.img?.link)
       .slice()
       .sort(() => Math.random() - 0.5)

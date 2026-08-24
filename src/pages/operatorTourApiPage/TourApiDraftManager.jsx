@@ -26,9 +26,11 @@ const toForm = draft => ({
   descriptionEn: draft?.descriptionEn || "",
   homepage: draft?.officialLinks?.homepage || "",
   instagram: draft?.officialLinks?.instagram || "",
+  latitude: draft?.coordinates?.latitude ?? "",
+  longitude: draft?.coordinates?.longitude ?? "",
 });
 
-const TourApiDraftManager = ({ refreshRequest }) => {
+const TourApiDraftManager = ({ refreshRequest, source = "tourApi" }) => {
   const [drafts, setDrafts] = useState([]);
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(toForm());
@@ -36,7 +38,7 @@ const TourApiDraftManager = ({ refreshRequest }) => {
 
   const loadDrafts = async (focusExternalId = "") => {
     try {
-      const data = await memberApi("/operator/external-places");
+      const data = await memberApi(`/operator/external-places?source=${source}`);
       const items = data || [];
       setDrafts(items);
       if (focusExternalId) {
@@ -45,6 +47,9 @@ const TourApiDraftManager = ({ refreshRequest }) => {
           setSelected(savedPlace);
           setForm(toForm(savedPlace));
         }
+      } else {
+        setSelected(null);
+        setForm(toForm());
       }
       setStatus(value => ({ ...value, loading: false, error: "" }));
     } catch (error) {
@@ -53,13 +58,26 @@ const TourApiDraftManager = ({ refreshRequest }) => {
   };
 
   useEffect(() => {
+    setStatus(value => ({ ...value, loading: true, error: "", saved: false }));
     loadDrafts(refreshRequest?.externalId || "");
-  }, [refreshRequest?.version]);
+  }, [refreshRequest?.version, source]);
 
   const chooseDraft = draft => {
     setSelected(draft);
     setForm(toForm(draft));
     setStatus(value => ({ ...value, error: "", saved: false }));
+  };
+
+  const createManualDraft = async () => {
+    if (source !== "manual" || status.saving) return;
+    setStatus(value => ({ ...value, saving: true, error: "", saved: false }));
+    try {
+      const draft = await memberApi("/operator/manual-places/draft", { method: "POST" });
+      await loadDrafts(draft.externalId);
+      setStatus(value => ({ ...value, saving: false, error: "" }));
+    } catch (error) {
+      setStatus(value => ({ ...value, saving: false, error: error.message }));
+    }
   };
 
   const update = event => setForm(value => ({ ...value, [event.target.name]: event.target.value }));
@@ -89,6 +107,8 @@ const TourApiDraftManager = ({ refreshRequest }) => {
     !form.shortDescriptionEn.trim() && "영어 짧은 소개",
     !form.description.trim() && "한국어 상세 설명",
     !form.descriptionEn.trim() && "영어 상세 설명",
+    source === "manual" && form.latitude === "" && "위도",
+    source === "manual" && form.longitude === "" && "경도",
   ].filter(Boolean);
 
   const publish = async () => {
@@ -126,7 +146,8 @@ const TourApiDraftManager = ({ refreshRequest }) => {
 
   return (
     <section className="tourDraftManager">
-      <div className="tourApiSectionHeading"><span>STEP 3</span><div><h2>장소 정보 관리</h2><p>한국어와 대응되는 영문 TourAPI 자료가 있으면 자동 입력되며, 없는 항목만 직접 작성합니다.</p></div></div>
+      <div className="tourApiSectionHeading"><span>{source === "manual" ? "DIRECT" : "STEP 3"}</span><div><h2>장소 정보 관리</h2><p>{source === "tourApi" ? "한국어와 대응되는 영문 TourAPI 자료가 있으면 자동 입력되며, 없는 항목만 직접 작성합니다." : "장소 정보를 모두 직접 입력해 초안으로 저장하고 사이트에 공개합니다."}</p></div></div>
+      {source === "manual" && <button className="tourDraftCreate" type="button" onClick={createManualDraft} disabled={status.saving}>{status.saving ? "만드는 중" : "+ 새 장소 입력"}</button>}
       {status.publishedId && <p className="tourApiSuccess">장소를 공개했습니다. 공개 ID: {status.publishedId}</p>}
       {status.deletedName && <p className="tourApiSuccess">“{status.deletedName}” 장소를 DB에서 삭제했습니다.</p>}
       {status.loading ? <p className="tourApiEmpty">초안을 불러오고 있습니다.</p> : status.error && !selected ? <p className="tourApiError">{status.error}</p> : (
@@ -137,19 +158,20 @@ const TourApiDraftManager = ({ refreshRequest }) => {
               {draft.selectedImage?.thumbnailUrl
                 ? <img src={draft.selectedImage.thumbnailUrl} alt="" />
                 : <span className="tourDraftNoImage">사진<br />준비 중</span>}
-              <span><strong>{draft.name}</strong><small>{regionOptions.find(region => region.code === draft.regionCode)?.ko || draft.address}</small><small><em className={`tourDraftBadge ${draft.status}`}>{draft.status === "published" ? "공개" : "초안"}</em> TourAPI ID {draft.externalId}</small></span>
+              <span><strong>{draft.name}</strong><small>{regionOptions.find(region => region.code === draft.regionCode)?.ko || draft.address}</small><small><em className={`tourDraftBadge ${draft.status}`}>{draft.status === "published" ? "공개" : "초안"}</em> {draft.source === "manual" ? "직접 입력" : `TourAPI ID ${draft.externalId}`}</small></span>
             </button>)}
           </div>
           {!selected ? <p className="tourApiEmpty">편집할 초안을 선택하세요.</p> : <form className="tourDraftForm" onSubmit={save}>
             <div className="tourDraftPreview">
               {selected.selectedImage?.thumbnailUrl
                 ? <img src={selected.selectedImage.thumbnailUrl} alt={selected.name} />
-                : <div className="tourDraftPreviewEmpty"><img src="/images/emptyBanner.jpg" alt="" /><strong>등록된 사진이 없어 대체 이미지를 사용합니다.</strong></div>}
+                : <div className="tourDraftPreviewEmpty"><img src="/images/emptyImage.jpg" alt="" /><strong>등록된 사진이 없어 대체 이미지를 사용합니다.</strong></div>}
               {selected.selectedImage?.provider && <span>사진 제공: {selected.selectedImage.provider}</span>}
             </div>
             <div className="tourDraftTwo"><label>장소 유형<select name="placeType" value={form.placeType} onChange={update}><option value="attraction">관광지</option><option value="cafe">카페</option><option value="restaurant">음식점</option><option value="lodging">숙박</option><option value="food">지역 음식</option></select></label><label>지역 코드<select name="regionCode" value={form.regionCode} onChange={update}>{regionOptions.map(region => <option key={region.code} value={region.code}>{region.ko} / {region.en}</option>)}</select></label></div>
             <div className="tourDraftTwo"><label>한국어 이름<input required maxLength={200} name="name" value={form.name} onChange={update} /></label><label>영어 이름<input maxLength={200} name="nameEn" value={form.nameEn} onChange={update} /></label></div>
             <div className="tourDraftTwo"><label>한국어 주소<input maxLength={500} name="address" value={form.address} onChange={update} /></label><label>영어 주소<input maxLength={500} name="addressEn" value={form.addressEn} onChange={update} /></label></div>
+            <div className="tourDraftTwo"><label>위도<input type="number" step="any" name="latitude" value={form.latitude} onChange={update} placeholder="예: 37.5796" /></label><label>경도<input type="number" step="any" name="longitude" value={form.longitude} onChange={update} placeholder="예: 126.9770" /></label></div>
             <fieldset className="tourDraftLinkFields"><legend>공식 채널 링크 <small>선택 입력</small></legend><div className="tourDraftTwo"><label>공식 홈페이지<input type="url" maxLength={1000} name="homepage" value={form.homepage} onChange={update} placeholder="https://www.example.com" /></label><label>인스타그램<input type="url" maxLength={1000} name="instagram" value={form.instagram} onChange={update} placeholder="https://www.instagram.com/account" /></label></div></fieldset>
             <div className="tourDraftTwo"><label>한국어 짧은 소개<textarea maxLength={500} rows={4} name="shortDescription" value={form.shortDescription} onChange={update} placeholder="TourAPI 개요에서 자동 생성됩니다." /></label><label>영어 짧은 소개<textarea maxLength={500} rows={4} name="shortDescriptionEn" value={form.shortDescriptionEn} onChange={update} placeholder="영문 자료가 없으면 직접 번역해 입력하세요." /></label></div>
             <div className="tourDraftTwo"><label>한국어 상세 설명<textarea maxLength={5000} rows={9} name="description" value={form.description} onChange={update} placeholder="TourAPI 개요가 자동 입력됩니다." /></label><label>영어 상세 설명<textarea maxLength={5000} rows={9} name="descriptionEn" value={form.descriptionEn} onChange={update} placeholder="영문 자료가 없으면 직접 번역해 입력하세요." /></label></div>

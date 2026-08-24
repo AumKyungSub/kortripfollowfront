@@ -99,8 +99,8 @@ const ListPage = ({ mode }) => {
   const filteredList = useMemo(() => {
     const koCollator = new Intl.Collator('ko', { sensitivity: 'base', numeric: true });
     const sortByVisitPriority = (a, b) => {
-      const aPriority = a?.source === 'tourApi' ? 1 : 0;
-      const bPriority = b?.source === 'tourApi' ? 1 : 0;
+      const aPriority = ['tourApi', 'manual'].includes(a?.source) ? 1 : 0;
+      const bPriority = ['tourApi', 'manual'].includes(b?.source) ? 1 : 0;
       if (aPriority !== bPriority) return aPriority - bPriority;
       return koCollator.compare(
         a?.location?.name?.ko || '',

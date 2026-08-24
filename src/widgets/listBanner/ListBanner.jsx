@@ -40,7 +40,7 @@ const ListBanner = ({title, count, type = "theme", selected, images = []}) => {
   return (
     <div 
       className="listBannerWrapper bannerImg" 
-      style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : { backgroundImage: 'url(/images/emptyBanner.jpg)' }}
+      style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : { backgroundImage: 'url(/images/emptyImage.jpg)' }}
     >
       <div className="listBannerTextWholeCover">
         <div className="listBannerTextCover">

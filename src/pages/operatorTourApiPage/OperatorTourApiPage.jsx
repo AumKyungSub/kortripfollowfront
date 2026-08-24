@@ -11,6 +11,7 @@ const idle = { loading: false, error: "" };
 const OperatorTourApiPage = () => {
   const [session, setSession] = useState(null);
   const [sessionLoading, setSessionLoading] = useState(true);
+  const [activeApi, setActiveApi] = useState("tourApi");
   const [keyword, setKeyword] = useState("");
   const [places, setPlaces] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -62,6 +63,17 @@ const OperatorTourApiPage = () => {
       setPlaces([]);
       setPlaceStatus({ loading: false, error: error.message });
     }
+  };
+
+  const switchApi = source => {
+    setActiveApi(source);
+    setKeyword("");
+    setPlaces([]);
+    setSelectedPlace(null);
+    setImages([]);
+    setPlaceStatus(idle);
+    setImageStatus(idle);
+    setSaveStatus({ loadingSerial: "", savedSerial: "", error: "" });
   };
 
   const loadImages = async (place) => {
@@ -137,7 +149,11 @@ const OperatorTourApiPage = () => {
   } else {
     content = (
       <>
-        <div className="tourApiWorkspace">
+        <nav className="operatorApiTabs" aria-label="외부 장소 API 선택">
+          <button type="button" className={activeApi === "tourApi" ? "active" : ""} onClick={() => switchApi("tourApi")}>TOURAPI</button>
+          <button type="button" className={activeApi === "manual" ? "active" : ""} onClick={() => switchApi("manual")}>직접 입력</button>
+        </nav>
+        {activeApi === "tourApi" && <div className="tourApiWorkspace">
           <section className="tourApiPanel">
             <div className="tourApiSectionHeading">
               <span>STEP 1</span>
@@ -284,8 +300,8 @@ const OperatorTourApiPage = () => {
               ))}
             </div>
           </section>
-        </div>
-        <TourApiDraftManager refreshRequest={draftRefresh} />
+        </div>}
+        <TourApiDraftManager refreshRequest={draftRefresh} source={activeApi} />
       </>
     );
   }
@@ -296,9 +312,9 @@ const OperatorTourApiPage = () => {
       <main className="operatorTourApiPage">
         <section className="tourApiHero">
           <span>OPERATOR TOOL</span>
-          <h1>TourAPI 사진 찾기</h1>
+          <h1>장소 등록 관리</h1>
           <p>
-            장소를 검색하고 한국관광공사의 공공누리 제1유형 사진을 확인합니다.
+            TourAPI 관광정보를 가져오거나 장소 정보를 직접 입력해 관리합니다.
           </p>
         </section>
         {content}

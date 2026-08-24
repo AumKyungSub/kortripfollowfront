@@ -29,7 +29,7 @@ export async function memberApi(path, options = {}) {
 }
 
 export function placePath(placeType, placeId, source) {
-  if (source === 'tourApi' || Number(placeId) >= 1_000_000_000) {
+  if (['tourApi', 'manual'].includes(source) || Number(placeId) >= 1_000_000_000) {
     return `/external-place/${placeId}`;
   }
   return placeType === 'attraction'
@@ -38,10 +38,10 @@ export function placePath(placeType, placeId, source) {
 }
 
 export function placeImageUrl(place) {
-  const fallback = '/images/emptyBanner.jpg';
+  const fallback = '/images/emptyImage.jpg';
   const image = place?.img;
   if (!image) return fallback;
-  if (place.source === 'tourApi' || image.direct || image.originalUrl) {
+  if (['tourApi', 'manual'].includes(place.source) || image.direct || image.originalUrl) {
     return image.originalUrl || image.link || fallback;
   }
   return image.link ? `${image.link}3R.jpg` : fallback;

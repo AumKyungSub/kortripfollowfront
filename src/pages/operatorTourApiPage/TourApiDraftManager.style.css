@@ -226,3 +226,27 @@
   font-size: 11px;
   font-weight: 500;
 }
+.tourDraftSourceInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #eef4ff;
+  color: #475467;
+}
+.tourDraftSourceInfo strong { width: 100%; color: #13213a; }
+.tourDraftSourceInfo a { color: #246bfd; font-weight: 700; }
+.tourDraftCreate {
+  display: block;
+  margin: -8px 0 22px auto;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: #246bfd;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.tourDraftCreate:disabled { opacity: .5; cursor: default; }

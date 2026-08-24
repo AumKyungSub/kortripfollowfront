@@ -31,6 +31,27 @@
   max-width: 1180px;
   margin: 0 auto;
 }
+.operatorApiTabs {
+  display: flex;
+  gap: 10px;
+  max-width: 1180px;
+  margin: 0 auto 20px;
+}
+.operatorApiTabs button {
+  min-width: 150px;
+  padding: 13px 24px;
+  border: 1px solid #cfd7e6;
+  border-radius: 999px;
+  background: #fff;
+  color: #667085;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.operatorApiTabs button.active { border-color: #246bfd; background: #246bfd; color: #fff; }
+@media (max-width: 760px) {
+  .operatorApiTabs button { flex: 1; min-width: 0; padding-inline: 12px; }
+}
 .tourApiPanel,
 .tourApiNotice {
   padding: clamp(22px, 3vw, 34px);
