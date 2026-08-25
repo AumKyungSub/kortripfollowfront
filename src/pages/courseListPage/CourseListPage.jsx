@@ -26,6 +26,7 @@ const copy = {
     member: "회원 추천",
     popular: "인기 추천",
     importCount: "가져오기",
+    viewDetails: "자세히 보기",
     importCourse: "코스 가져오기",
     alreadyImported: "이미 가져옴",
     importing: "가져오는 중...",
@@ -47,12 +48,18 @@ const copy = {
     member: "Member picks",
     popular: "Popular",
     importCount: "Imports",
+    viewDetails: "View details",
     importCourse: "Import course",
     alreadyImported: "Already imported",
     importing: "Importing...",
     loginRequired: "Please sign in before importing a course.",
     copyError: "Could not import the course.",
   },
+};
+
+const tripDurationLabel = (value) => {
+  const days = Math.max(1, Number(value) || 1);
+  return `${days} ${days === 1 ? "DAY" : "DAYS"}`;
 };
 
 export default function CourseListPage() {
@@ -217,15 +224,25 @@ export default function CourseListPage() {
                               <p className="publicCourseDescription">
                                 {course.description || labels.noDescription}
                               </p>
-                              {dates.length > 0 && (
+                              {course.dateMode === "flexible" ? (
+                                <time>
+                                  {tripDurationLabel(course.durationDays)}
+                                </time>
+                              ) : dates.length > 0 ? (
                                 <time>
                                   {dates[0]}
                                   {dates.length > 1 ? ` ~ ${dates.at(-1)}` : ""}
                                 </time>
-                              )}
+                              ) : null}
                             </div>
                           </Link>
                           <div className="publicCourseActions">
+                            <Link
+                              className="publicCourseDetailsButton"
+                              to={`/itineraries/${course._id}`}
+                            >
+                              {labels.viewDetails}
+                            </Link>
                             <button
                               type="button"
                               className={course.imported ? "imported" : ""}
