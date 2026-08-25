@@ -280,15 +280,5 @@
   }
 }
 
-@media only all and (min-width: 768px) {
-  /*----------Content Width Design----------*/
-  .contentWidth {
-    /* 1440px */
-    max-width: 1440px;
-  }
-  .contentWidthException {
-    /* 1920px */
-    max-width: 1920px;
-  }
-  /*-----------------------------------*/
+@media only all and (min-width: 1024px) {
 }

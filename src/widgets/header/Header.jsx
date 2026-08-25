@@ -46,7 +46,7 @@ const Header = () => {
     "/terms",
     "/myTravel",
     "/courses",
-    "/itineraries/",
+    // "/itineraries/",
     "/operator/",
     "/external-place",
   ];

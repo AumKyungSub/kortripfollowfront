@@ -15,6 +15,7 @@ import {
   placePath,
 } from "@/shared/api/memberApi";
 import { useLanguage } from "@/shared/hooks/useLanguage";
+import { usePagination } from "@/shared/hooks/usePagination";
 import "./CourseDetailPage.style.css";
 
 const text = {
@@ -48,12 +49,23 @@ const text = {
     noDescription: "등록된 설명이 없습니다.",
     noPlaces: "코스에 담긴 장소가 없습니다.",
     noMap: "지도에 표시할 장소가 없습니다.",
+    searchMode: "검색",
+    favoritesMode: "내 찜",
     placeSearch: "장소명·지역·주소 검색",
     addPlace: "추가",
+    addedPlace: "추가됨",
     removePlace: "빼기",
     moveUp: "올리기",
     moveDown: "내리기",
     noPlaceResult: "검색된 장소가 없습니다.",
+    favoritesLoading: "찜한 장소를 불러오는 중입니다.",
+    noFavorites: "아직 찜한 장소가 없습니다.",
+    allRegions: "전체 지역",
+    selectRegion: "지역 선택",
+    emptyFavoriteRegion: "이 지역에는 찜한 장소가 없습니다.",
+    previousPage: "이전 페이지",
+    nextPage: "다음 페이지",
+    favoritesPages: "찜 장소 페이지",
     scheduleHint: "날짜별 이동과 활동 시간을 계획해 보세요.",
     addPlan: "일정 추가",
     date: "날짜",
@@ -121,12 +133,23 @@ const text = {
     noDescription: "No description provided.",
     noPlaces: "No places in this itinerary.",
     noMap: "No locations to show.",
+    searchMode: "Search",
+    favoritesMode: "Saved",
     placeSearch: "Search by place, region, or address",
     addPlace: "Add",
+    addedPlace: "Added",
     removePlace: "Remove",
     moveUp: "Move up",
     moveDown: "Move down",
     noPlaceResult: "No places found.",
+    favoritesLoading: "Loading your saved places.",
+    noFavorites: "No saved places yet.",
+    allRegions: "All regions",
+    selectRegion: "Select region",
+    emptyFavoriteRegion: "There are no saved places in this region.",
+    previousPage: "Previous page",
+    nextPage: "Next page",
+    favoritesPages: "Saved places pages",
     scheduleHint: "Plan activities for each day.",
     addPlan: "Add plan",
     date: "Date",
@@ -173,6 +196,86 @@ const placeName = (place, lang) =>
   place?.location?.name?.[lang] ||
   place?.location?.name?.ko ||
   "";
+const placeRegion = (place, lang) =>
+  place?.place?.location?.region?.[lang] ||
+  place?.place?.location?.region?.ko ||
+  place?.location?.region?.[lang] ||
+  place?.location?.region?.ko ||
+  "";
+const placeKey = (place) => `${place.placeType}:${place.placeId}`;
+const FAVORITE_REGION_ORDER = [
+  "SEOUL",
+  "GGICN",
+  "GANGWON",
+  "CCDAEJEON",
+  "GSBUSANDAEGUULSAN",
+  "JRGWANGJU",
+  "JEJU",
+  "OTHER",
+];
+const FAVORITE_REGION_LABELS = {
+  SEOUL: { ko: "서울", en: "Seoul" },
+  GGICN: { ko: "경기도/인천", en: "Gyeonggi/Incheon" },
+  GANGWON: { ko: "강원도", en: "Gangwon" },
+  CCDAEJEON: { ko: "충청도", en: "Chungcheong" },
+  GSBUSANDAEGUULSAN: { ko: "경상도", en: "Gyeongsang" },
+  JRGWANGJU: { ko: "전라도", en: "Jeolla" },
+  JEJU: { ko: "제주도", en: "Jeju Island" },
+  OTHER: { ko: "기타 지역", en: "Other regions" },
+};
+function SelectWithChevron({
+  children,
+  className = "",
+  onBlur,
+  onChange,
+  onKeyDown,
+  onPointerDown,
+  ...props
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`courseSelectControl ${className}`.trim()}>
+      <select
+        {...props}
+        onPointerDown={(event) => {
+          setOpen(true);
+          onPointerDown?.(event);
+        }}
+        onKeyDown={(event) => {
+          if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key))
+            setOpen(true);
+          if (event.key === "Escape") setOpen(false);
+          onKeyDown?.(event);
+        }}
+        onBlur={(event) => {
+          setOpen(false);
+          onBlur?.(event);
+        }}
+        onChange={(event) => {
+          setOpen(false);
+          onChange?.(event);
+        }}
+      >
+        {children}
+      </select>
+      <svg
+        className={open ? "open" : ""}
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </div>
+  );
+}
 function CourseMap({ allPlaces, visitPlan, lang, labels }) {
   useKakaoLoader();
   const [mode, setMode] = useState("visitPlan");
@@ -262,8 +365,12 @@ export default function CourseDetailPage() {
   const [editPassword, setEditPassword] = useState("");
   const [accessMessage, setAccessMessage] = useState("");
   const [draftDays, setDraftDays] = useState([]);
+  const [placePickerMode, setPlacePickerMode] = useState("search");
   const [placeSearch, setPlaceSearch] = useState("");
   const [placeResults, setPlaceResults] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesLoading, setFavoritesLoading] = useState(false);
+  const [favoriteRegion, setFavoriteRegion] = useState("ALL");
   const [savingVisitPlan, setSavingVisitPlan] = useState(false);
 
   const load = useCallback(async () => {
@@ -315,8 +422,10 @@ export default function CourseDetailPage() {
       end: dates.at(-1) || "",
     });
     setDraftDays(structuredClone(course.days || []));
+    setPlacePickerMode("search");
     setPlaceSearch("");
     setPlaceResults([]);
+    setFavoriteRegion("ALL");
     setEditingInfo(true);
   };
   useEffect(() => {
@@ -340,6 +449,49 @@ export default function CourseDetailPage() {
       window.clearTimeout(timer);
     };
   }, [editingInfo, placeSearch]);
+  useEffect(() => {
+    if (!editingInfo || placePickerMode !== "favorites" || favorites.length)
+      return;
+    let activeRequest = true;
+    setFavoritesLoading(true);
+    memberApi("/favorites")
+      .then((results) => {
+        if (activeRequest) setFavorites(results);
+      })
+      .catch(() => {
+        if (activeRequest) setFavorites([]);
+      })
+      .finally(() => {
+        if (activeRequest) setFavoritesLoading(false);
+      });
+    return () => {
+      activeRequest = false;
+    };
+  }, [editingInfo, favorites.length, placePickerMode]);
+  const filteredFavorites = useMemo(
+    () =>
+      favoriteRegion === "ALL"
+        ? favorites
+        : favorites.filter(
+            (favorite) =>
+              favorite?.place?.location?.region?.code === favoriteRegion,
+          ),
+    [favoriteRegion, favorites],
+  );
+  const favoritePagination = usePagination(
+    filteredFavorites,
+    7,
+    favoriteRegion,
+  );
+  const draftPlaceKeys = useMemo(
+    () =>
+      new Set(
+        draftDays
+          .flatMap((day) => day.places || [])
+          .map((place) => placeKey(place)),
+      ),
+    [draftDays],
+  );
   const patchCourse = async (body) => {
     setError("");
     try {
@@ -410,6 +562,12 @@ export default function CourseDetailPage() {
     ];
     setDraftDays(next);
   };
+  const addFavoritePlace = (favorite) =>
+    addDraftPlace({
+      ...favorite.place,
+      placeType: favorite.placeType,
+      placeId: favorite.placeId,
+    });
   const removeDraftPlace = (target) =>
     setDraftDays(
       draftDays.map((day) => ({
@@ -628,15 +786,7 @@ export default function CourseDetailPage() {
     <>
       <Header />
       <main className="courseDetailPage">
-        <div className="courseDetailTop">
-          <Link to="/myTravel">← {labels.back}</Link>
-          {!course.canEdit && (
-            <span>
-              {session?.authenticated ? labels.viewOnly : labels.loginRequired}
-            </span>
-          )}
-        </div>
-        <section className="courseHero">
+        <section className="courseHero bannerImg">
           {cover ? (
             <img src={placeImageUrl(cover.place)} alt="" />
           ) : (
@@ -653,7 +803,7 @@ export default function CourseDetailPage() {
             </p>
           </div>
         </section>
-        <div className="courseDashboard">
+        <div className="courseDashboard contentWidth">
           <aside className="courseSideNav" aria-label="Course detail sections">
             {nav.map(([key, label]) => (
               <button
@@ -707,7 +857,7 @@ export default function CourseDetailPage() {
                     {course.isOwner ? (
                       <label>
                         {labels.visibility}
-                        <select
+                        <SelectWithChevron
                           value={infoForm.visibility}
                           onChange={(e) =>
                             setInfoForm({
@@ -719,7 +869,7 @@ export default function CourseDetailPage() {
                           <option value="private">{labels.private}</option>
                           <option value="unlisted">{labels.unlisted}</option>
                           <option value="public">{labels.public}</option>
-                        </select>
+                        </SelectWithChevron>
                       </label>
                     ) : (
                       <label>
@@ -762,32 +912,182 @@ export default function CourseDetailPage() {
                       />
                     </label>
                     <div className="coursePlaceEditor wide">
-                      <h3>{labels.places}</h3>
-                      <div className="placeSearchBox">
-                        <input
-                          value={placeSearch}
-                          placeholder={labels.placeSearch}
-                          onChange={(e) => setPlaceSearch(e.target.value)}
-                        />
+                      <div className="coursePlaceEditorHeader">
+                        <h3>{labels.places}</h3>
+                        <div
+                          className="coursePlaceModeSwitch"
+                          role="group"
+                          aria-label={labels.places}
+                        >
+                          <button
+                            type="button"
+                            className={
+                              placePickerMode === "search" ? "active" : ""
+                            }
+                            aria-pressed={placePickerMode === "search"}
+                            onClick={() => setPlacePickerMode("search")}
+                          >
+                            {labels.searchMode}
+                          </button>
+                          <button
+                            type="button"
+                            className={
+                              placePickerMode === "favorites" ? "active" : ""
+                            }
+                            aria-pressed={placePickerMode === "favorites"}
+                            onClick={() => setPlacePickerMode("favorites")}
+                          >
+                            {labels.favoritesMode}
+                          </button>
+                        </div>
                       </div>
-                      {placeSearch.trim() && (
-                        <ul className="placeSearchResults">
-                          {placeResults.length ? (
-                            placeResults.map((result) => (
-                              <li key={`${result.placeType}:${result.placeId}`}>
-                                <span>{placeName(result, lang)}</span>
-                                <button
-                                  type="button"
-                                  onClick={() => addDraftPlace(result)}
-                                >
-                                  {labels.addPlace}
-                                </button>
-                              </li>
-                            ))
-                          ) : (
-                            <li className="noResult">{labels.noPlaceResult}</li>
+                      {placePickerMode === "search" ? (
+                        <>
+                          <div className="placeSearchBox">
+                            <input
+                              value={placeSearch}
+                              placeholder={labels.placeSearch}
+                              onChange={(e) => setPlaceSearch(e.target.value)}
+                            />
+                          </div>
+                          {placeSearch.trim() && (
+                            <ul className="placeSearchResults">
+                              {placeResults.length ? (
+                                placeResults.map((result) => {
+                                  const added = draftPlaceKeys.has(
+                                    placeKey(result),
+                                  );
+                                  return (
+                                    <li
+                                      key={`${result.placeType}:${result.placeId}`}
+                                    >
+                                      <span>{placeName(result, lang)}</span>
+                                      <button
+                                        type="button"
+                                        disabled={added}
+                                        onClick={() => addDraftPlace(result)}
+                                      >
+                                        {added
+                                          ? labels.addedPlace
+                                          : labels.addPlace}
+                                      </button>
+                                    </li>
+                                  );
+                                })
+                              ) : (
+                                <li className="noResult">
+                                  {labels.noPlaceResult}
+                                </li>
+                              )}
+                            </ul>
                           )}
-                        </ul>
+                        </>
+                      ) : (
+                        <div className="courseFavoritePicker">
+                          <SelectWithChevron
+                            className="courseFavoriteRegionControl"
+                            value={favoriteRegion}
+                            aria-label={labels.selectRegion}
+                            onChange={(event) => {
+                              setFavoriteRegion(event.target.value);
+                            }}
+                          >
+                            <option value="ALL">{labels.allRegions}</option>
+                            {FAVORITE_REGION_ORDER.map((code) => (
+                              <option key={code} value={code}>
+                                {
+                                  FAVORITE_REGION_LABELS[code][
+                                    lang === "ko" ? "ko" : "en"
+                                  ]
+                                }
+                              </option>
+                            ))}
+                          </SelectWithChevron>
+                          {favoritesLoading ? (
+                            <p className="courseFavoriteEmpty">
+                              {labels.favoritesLoading}
+                            </p>
+                          ) : favoritePagination.pagedList.length ? (
+                            <ul className="courseFavoriteList">
+                              {favoritePagination.pagedList.map((favorite) => {
+                                const added = draftPlaceKeys.has(
+                                  placeKey(favorite),
+                                );
+                                const regionCode =
+                                  favorite.place?.location?.region?.code;
+                                return (
+                                  <li key={favorite._id || placeKey(favorite)}>
+                                    <label>
+                                      <input
+                                        type="checkbox"
+                                        checked={added}
+                                        onChange={(event) =>
+                                          event.target.checked
+                                            ? addFavoritePlace(favorite)
+                                            : removeDraftPlace(favorite)
+                                        }
+                                      />
+                                      <span>
+                                        <strong>
+                                          {placeName(favorite, lang)}
+                                        </strong>
+                                      </span>
+                                    </label>
+                                    <em>
+                                      {FAVORITE_REGION_LABELS[regionCode]?.[
+                                        lang === "ko" ? "ko" : "en"
+                                      ] || placeRegion(favorite, lang)}
+                                    </em>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          ) : (
+                            <p className="courseFavoriteEmpty">
+                              {favorites.length
+                                ? labels.emptyFavoriteRegion
+                                : labels.noFavorites}
+                            </p>
+                          )}
+                          {favoritePagination.totalPages > 1 && (
+                            <nav
+                              className="courseFavoritePagination"
+                              aria-label={labels.favoritesPages}
+                            >
+                              <button
+                                type="button"
+                                disabled={favoritePagination.currentPage === 1}
+                                aria-label={labels.previousPage}
+                                onClick={() =>
+                                  favoritePagination.handlePageChange(
+                                    favoritePagination.currentPage - 1,
+                                  )
+                                }
+                              >
+                                ‹
+                              </button>
+                              <span>
+                                {favoritePagination.currentPage} /{" "}
+                                {favoritePagination.totalPages}
+                              </span>
+                              <button
+                                type="button"
+                                disabled={
+                                  favoritePagination.currentPage ===
+                                  favoritePagination.totalPages
+                                }
+                                aria-label={labels.nextPage}
+                                onClick={() =>
+                                  favoritePagination.handlePageChange(
+                                    favoritePagination.currentPage + 1,
+                                  )
+                                }
+                              >
+                                ›
+                              </button>
+                            </nav>
+                          )}
+                        </div>
                       )}
                       <ul className="draftPlaceList">
                         {draftDays
@@ -968,7 +1268,7 @@ export default function CourseDetailPage() {
                         setPlanForm({ ...planForm, title: e.target.value })
                       }
                     />
-                    <select
+                    <SelectWithChevron
                       aria-label={labels.place}
                       value={planForm.placeKey}
                       onChange={(e) =>
@@ -984,7 +1284,7 @@ export default function CourseDetailPage() {
                           {placeName(place, lang)}
                         </option>
                       ))}
-                    </select>
+                    </SelectWithChevron>
                     <input
                       aria-label={labels.memo}
                       placeholder={labels.memo}

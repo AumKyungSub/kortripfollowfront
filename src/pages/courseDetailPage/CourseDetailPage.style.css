@@ -1,7 +1,4 @@
 .courseDetailPage {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 34px 28px 100px;
   color: #243247;
 }
 .courseDetailTop {
@@ -22,14 +19,12 @@
 }
 .courseHero {
   width: 100%;
-  aspect-ratio: 4/1;
-  border-radius: 26px;
   position: relative;
   overflow: hidden;
   background: #dce3e4;
 }
 .courseHero > img {
-  object-position: center bottom;
+  object-position: right bottom;
 }
 .courseHero > img,
 .courseHeroFallback {
@@ -453,9 +448,6 @@
   background: #555d68;
 }
 @media (max-width: 800px) {
-  .courseDetailPage {
-    padding: 16px 0 70px;
-  }
   .courseDetailTop {
     padding: 0 18px;
   }
@@ -612,7 +604,38 @@
   background: #f7f7f4;
 }
 .coursePlaceEditor h3 {
-  margin: 0 0 12px;
+  margin: 0;
+}
+.coursePlaceEditorHeader {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.coursePlaceModeSwitch {
+  padding: 3px;
+  border: 1px solid #ddd9d2;
+  border-radius: 999px;
+  background: #fff;
+  display: flex;
+}
+.coursePlaceModeSwitch button {
+  min-width: 72px;
+  padding: 8px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #737b86;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.coursePlaceModeSwitch button.active {
+  background: #a83f27;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(168, 63, 39, 0.2);
 }
 .placeSearchBox input {
   width: 100%;
@@ -649,6 +672,10 @@
   font-weight: 700;
   cursor: pointer;
 }
+.placeSearchResults button:disabled {
+  color: #9ba1a8;
+  cursor: default;
+}
 .placeSearchResults .noResult {
   color: #89909a;
   justify-content: center;
@@ -659,6 +686,141 @@
 .courseInfoForm input:disabled {
   background: #efefec;
   color: #69717e;
+}
+.courseFavoritePicker {
+  display: grid;
+  gap: 10px;
+}
+.courseSelectControl {
+  position: relative;
+  min-width: 0;
+}
+.courseSelectControl select {
+  width: 100%;
+  padding-right: 42px;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.courseSelectControl > svg {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: #737b86;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.18s ease;
+}
+.courseSelectControl > svg.open {
+  transform: translateY(-50%) rotate(180deg);
+}
+.courseFavoriteRegionControl select {
+  padding: 12px 42px 12px 13px;
+  border: 1px solid #ddd8d0;
+  border-radius: 10px;
+  background: #fff;
+  color: #505966;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+.courseFavoriteList {
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e5e5e1;
+  border-radius: 10px;
+  background: #fff;
+  list-style: none;
+  overflow: hidden;
+}
+.courseFavoriteList li {
+  padding: 10px 13px;
+  border-bottom: 1px solid #ececea;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.courseFavoriteList li:last-child {
+  border-bottom: 0;
+}
+.courseFavoriteList label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+}
+.courseFavoriteList input {
+  width: 17px;
+  height: 17px;
+  accent-color: #a83f27;
+}
+.courseFavoriteList label > span {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+.courseFavoriteList strong,
+.courseFavoriteList small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.courseFavoriteList strong {
+  font-size: 13px;
+}
+.courseFavoriteList small {
+  color: #8b929d;
+  font-size: 11px;
+  font-weight: 400;
+}
+.courseFavoriteList em {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f4ecdf;
+  color: #806b51;
+  font-size: 10px;
+  font-weight: 500;
+  font-style: normal;
+}
+.courseFavoriteEmpty {
+  margin: 0;
+  padding: 25px 12px;
+  border: 1px dashed #ddd8d0;
+  border-radius: 10px;
+  color: #89909a;
+  text-align: center;
+  font-size: 13px;
+}
+.courseFavoritePagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.courseFavoritePagination button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #ddd8d0;
+  border-radius: 50%;
+  background: #fff;
+  color: #a83f27;
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.courseFavoritePagination button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.courseFavoritePagination span {
+  color: #707986;
+  font-size: 12px;
+  font-weight: 700;
 }
 .placeOrderButtons {
   display: flex;
@@ -682,6 +844,19 @@
   margin-left: 3px;
 }
 @media (max-width: 600px) {
+  .coursePlaceEditorHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .coursePlaceModeSwitch {
+    align-self: stretch;
+  }
+  .coursePlaceModeSwitch button {
+    flex: 1;
+  }
+  .courseFavoriteList li {
+    align-items: flex-start;
+  }
   .draftPlaceList li {
     align-items: flex-start;
     flex-direction: column;
@@ -724,4 +899,7 @@
   margin: -8px 0 20px;
   color: #7b8390;
   font-size: 12px;
+}
+
+@media only all and (min-width: 768px) {
 }
