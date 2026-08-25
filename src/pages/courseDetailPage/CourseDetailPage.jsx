@@ -202,6 +202,10 @@ const text = {
 };
 
 const dateValue = (value) => (value ? String(value).slice(0, 10) : "");
+const tripDurationLabel = (value) => {
+  const days = Math.max(1, Number(value) || 1);
+  return `${days} ${days === 1 ? "DAY" : "DAYS"}`;
+};
 const dateRange = (start, end) => {
   if (!start) return [];
   const first = Date.parse(`${start}T00:00:00Z`);
@@ -930,7 +934,7 @@ export default function CourseDetailPage() {
             <h1>{course.title}</h1>
             <p>
               {courseDateMode === "flexible"
-                ? `DAY ${durationDays}`
+                ? tripDurationLabel(durationDays)
                 : dates.length
                   ? `${dates[0]} ~ ${dates.at(-1)}`
                   : labels.period}
@@ -1099,7 +1103,7 @@ export default function CourseDetailPage() {
                         >
                           {Array.from({ length: 31 }, (_, index) => (
                             <option key={index + 1} value={index + 1}>
-                              DAY {index + 1}
+                              {tripDurationLabel(index + 1)}
                             </option>
                           ))}
                         </SelectWithChevron>
@@ -1322,7 +1326,7 @@ export default function CourseDetailPage() {
                       <h3>{labels.period}</h3>
                       <p>
                         {courseDateMode === "flexible"
-                          ? `DAY ${durationDays}`
+                          ? tripDurationLabel(durationDays)
                           : dates.length
                             ? `${dates[0]} ~ ${dates.at(-1)}`
                             : "-"}

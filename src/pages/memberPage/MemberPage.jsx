@@ -233,6 +233,10 @@ const regionOf = (favorite, lang, fallback) =>
   favorite?.place?.location?.region?.ko ||
   fallback;
 const keyOf = (item) => `${item.placeType}:${item.placeId}`;
+const tripDurationLabel = (value) => {
+  const days = Math.max(1, Number(value) || 1);
+  return `${days} ${days === 1 ? "DAY" : "DAYS"}`;
+};
 const inclusiveDayCount = (start, end) => {
   if (!start || !end) return 1;
   const difference = Math.round(
@@ -1316,7 +1320,7 @@ const MemberPage = ({ shared = false }) => {
                             >
                               {Array.from({ length: 31 }, (_, index) => (
                                 <option key={index + 1} value={index + 1}>
-                                  DAY {index + 1}
+                                  {tripDurationLabel(index + 1)}
                                 </option>
                               ))}
                             </select>
@@ -1630,7 +1634,9 @@ const MemberPage = ({ shared = false }) => {
                                   {course.description || labels.noDescription}
                                 </p>
                                 {course.dateMode === "flexible" ? (
-                                  <time>DAY {course.durationDays || 1}</time>
+                                  <time>
+                                    {tripDurationLabel(course.durationDays)}
+                                  </time>
                                 ) : datedDays.length > 0 ? (
                                   <time>
                                     {datedDays
@@ -1775,7 +1781,9 @@ const MemberPage = ({ shared = false }) => {
                                   {course.description || labels.noDescription}
                                 </p>
                                 {course.dateMode === "flexible" ? (
-                                  <time>DAY {course.durationDays || 1}</time>
+                                  <time>
+                                    {tripDurationLabel(course.durationDays)}
+                                  </time>
                                 ) : datedDays.length > 0 ? (
                                   <time>
                                     {datedDays
