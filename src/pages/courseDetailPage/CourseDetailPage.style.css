@@ -22,11 +22,14 @@
 }
 .courseHero {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 4/1;
   border-radius: 26px;
   position: relative;
   overflow: hidden;
   background: #dce3e4;
+}
+.courseHero > img {
+  object-position: center bottom;
 }
 .courseHero > img,
 .courseHeroFallback {
@@ -193,6 +196,60 @@
   color: white;
   font-size: 12px;
 }
+.courseAllPlaceList input {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  accent-color: #b4482e;
+}
+.visitPlanHeading p {
+  margin: -6px 0 14px;
+  color: #77808d;
+  font-size: 13px;
+}
+.visitPlanList li {
+  flex-wrap: wrap;
+}
+.visitPlanList a {
+  flex: 1;
+}
+.visitOrderButtons {
+  display: flex;
+  gap: 5px;
+}
+.visitOrderButtons button,
+.courseMapModes button {
+  border: 1px solid #dedbd5;
+  border-radius: 8px;
+  background: #fff;
+  color: #5d6673;
+  padding: 7px 9px;
+  cursor: pointer;
+}
+.visitOrderButtons button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.courseMapWrap {
+  position: relative;
+}
+.courseMapModes {
+  position: absolute;
+  z-index: 5;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+}
+.courseMapModes button {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  font-weight: 700;
+}
+.courseMapModes button.active {
+  border-color: #a83f27;
+  background: #a83f27;
+  color: #fff;
+}
 .coursePlaceList a {
   color: #344054;
   text-decoration: none;
@@ -238,6 +295,7 @@
 .courseInfoForm select,
 .courseInfoForm textarea,
 .planForm input,
+.planForm select,
 .checkForm input {
   border: 1px solid #dfe2e5;
   border-radius: 10px;
@@ -265,7 +323,7 @@
 }
 .planForm {
   display: grid;
-  grid-template-columns: 140px 110px 1.2fr 1fr auto;
+  grid-template-columns: 140px 110px 1.2fr minmax(130px, 0.8fr) 1fr auto;
   gap: 9px;
   margin-bottom: 26px;
 }
@@ -294,6 +352,16 @@
 }
 .scheduleRow strong {
   font-size: 15px;
+}
+.schedulePlace {
+  display: inline-flex;
+  margin-left: 9px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fff1eb;
+  color: #a83f27;
+  font-size: 12px;
+  font-weight: 700;
 }
 .scheduleRow p {
   margin: 6px 0 0;
@@ -467,6 +535,55 @@
   }
   .courseInfoForm .wide {
     grid-column: auto;
+  }
+  .planForm {
+    grid-template-columns: 1fr 1fr;
+  }
+  .planForm input:nth-of-type(n + 3),
+  .planForm button {
+    grid-column: 1/-1;
+  }
+}
+@media (min-width: 801px) {
+  .courseDashboard {
+    display: block;
+    margin-top: 0;
+  }
+  .courseSideNav {
+    display: none;
+  }
+  .courseMobileNav {
+    display: flex;
+    overflow-x: auto;
+    background: #fff;
+    border-bottom: 1px solid #e6e3df;
+    scrollbar-width: none;
+  }
+  .courseMobileNav button {
+    flex: 1 1 0;
+    min-width: 120px;
+    text-align: center;
+    border-radius: 0;
+    padding: 18px 15px;
+    position: relative;
+  }
+  .courseMobileNav button.active {
+    color: #a53e27;
+  }
+  .courseMobileNav button.active::after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    bottom: 0;
+    height: 3px;
+    background: #a53e27;
+  }
+  .coursePanel {
+    border: 0;
+    border-radius: 0;
+    padding: 34px 16px;
+    box-shadow: none;
   }
   .planForm {
     grid-template-columns: 1fr 1fr;

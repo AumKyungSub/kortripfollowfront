@@ -1492,6 +1492,7 @@
   .memberTabs {
     /* Flex */
     justify-content: flex-start;
+    gap: 12px;
   }
   .memberTabs button {
     width: auto;
