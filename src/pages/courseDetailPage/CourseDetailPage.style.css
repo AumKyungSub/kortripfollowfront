@@ -337,6 +337,7 @@
 .courseInfoForm textarea,
 .planForm input,
 .planForm select,
+.planForm textarea,
 .checkForm input {
   border: 1px solid #dfe2e5;
   border-radius: 10px;
@@ -368,6 +369,10 @@
   align-items: end;
   gap: 9px;
   margin-bottom: 26px;
+}
+.planForm textarea {
+  min-height: 46px;
+  resize: vertical;
 }
 .scheduleDatePicker {
   min-width: 0;
@@ -444,6 +449,8 @@
   margin: 6px 0 0;
   color: #7b8390;
   font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .checkForm {
   display: flex;

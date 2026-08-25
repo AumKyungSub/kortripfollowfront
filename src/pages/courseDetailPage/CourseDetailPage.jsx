@@ -1436,7 +1436,10 @@ export default function CourseDetailPage() {
                   </div>
                 </div>
                 {course.canEdit && (
-                  <form className="planForm" onSubmit={addPlan}>
+                  <form
+                    className="planForm"
+                    onSubmit={(event) => event.preventDefault()}
+                  >
                     <div className="scheduleDatePicker">
                       <div
                         className="scheduleDateModes"
@@ -1527,7 +1530,7 @@ export default function CourseDetailPage() {
                         </option>
                       ))}
                     </SelectWithChevron>
-                    <input
+                    <textarea
                       className="planMemoInput"
                       aria-label={labels.memo}
                       placeholder={labels.memo}
@@ -1536,7 +1539,11 @@ export default function CourseDetailPage() {
                         setPlanForm({ ...planForm, memo: e.target.value })
                       }
                     />
-                    <button className="primaryButton">
+                    <button
+                      type="button"
+                      className="primaryButton"
+                      onClick={addPlan}
+                    >
                       + {labels.addPlan}
                     </button>
                   </form>
