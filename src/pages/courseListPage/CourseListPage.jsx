@@ -65,7 +65,7 @@ export default function CourseListPage() {
   const [error, setError] = useState("");
   const [copyingId, setCopyingId] = useState("");
   const [copyError, setCopyError] = useState("");
-  const [category, setCategory] = useState("member");
+  const [category, setCategory] = useState("operator");
   const pagination = usePagination(
     courses,
     isFullMobile ? 6 : isTablet ? 8 : 9,
