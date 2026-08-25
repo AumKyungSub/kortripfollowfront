@@ -41,6 +41,10 @@ const text = {
     cancel: "취소",
     start: "여행 시작일",
     end: "여행 종료일",
+    dateStatus: "여행 날짜",
+    dateFixed: "날짜 확정",
+    dateFlexible: "날짜 미확정",
+    tripDays: "여행 일수",
     title: "코스 이름",
     visibility: "공개 범위",
     private: "비공개",
@@ -67,6 +71,8 @@ const text = {
     nextPage: "다음 페이지",
     favoritesPages: "찜 장소 페이지",
     scheduleHint: "날짜별 이동과 활동 시간을 계획해 보세요.",
+    dateInputMode: "월일 입력",
+    dayInputMode: "DAY 입력",
     addPlan: "일정 추가",
     date: "날짜",
     time: "시간",
@@ -125,6 +131,10 @@ const text = {
     cancel: "Cancel",
     start: "Start date",
     end: "End date",
+    dateStatus: "Travel dates",
+    dateFixed: "Dates confirmed",
+    dateFlexible: "Dates undecided",
+    tripDays: "Trip length",
     title: "Title",
     visibility: "Visibility",
     private: "Private",
@@ -151,6 +161,8 @@ const text = {
     nextPage: "Next page",
     favoritesPages: "Saved places pages",
     scheduleHint: "Plan activities for each day.",
+    dateInputMode: "Date input",
+    dayInputMode: "DAY input",
     addPlan: "Add plan",
     date: "Date",
     time: "Time",
@@ -190,6 +202,19 @@ const text = {
 };
 
 const dateValue = (value) => (value ? String(value).slice(0, 10) : "");
+const dateRange = (start, end) => {
+  if (!start) return [];
+  const first = Date.parse(`${start}T00:00:00Z`);
+  const last = Date.parse(`${end || start}T00:00:00Z`);
+  if (!Number.isFinite(first) || !Number.isFinite(last) || last < first)
+    return [];
+  const result = [];
+  const oneDay = 24 * 60 * 60 * 1000;
+  for (let time = first; time <= last && result.length < 366; time += oneDay) {
+    result.push(new Date(time).toISOString().slice(0, 10));
+  }
+  return result;
+};
 const placeName = (place, lang) =>
   place?.place?.location?.name?.[lang] ||
   place?.place?.location?.name?.ko ||
@@ -350,6 +375,8 @@ export default function CourseDetailPage() {
     title: "",
     description: "",
     visibility: "private",
+    dateMode: "fixed",
+    durationDays: 1,
     start: "",
     end: "",
   });
@@ -360,6 +387,7 @@ export default function CourseDetailPage() {
     placeKey: "",
     memo: "",
   });
+  const [scheduleDateMode, setScheduleDateMode] = useState("date");
   const [checkText, setCheckText] = useState("");
   const [checklistCategory, setChecklistCategory] = useState("common");
   const [editPassword, setEditPassword] = useState("");
@@ -412,12 +440,47 @@ export default function CourseDetailPage() {
         .sort(),
     [course],
   );
+  const courseDateMode = course?.dateMode || "fixed";
+  const durationDays = Math.min(
+    31,
+    Math.max(1, Number(course?.durationDays) || dateRange(dates[0], dates.at(-1)).length || 1),
+  );
+  const scheduleDayOptions = useMemo(
+    () =>
+      courseDateMode === "flexible"
+        ? Array.from({ length: durationDays }, (_, index) => String(index + 1))
+        : dateRange(dates[0], dates.at(-1)),
+    [courseDateMode, dates, durationDays],
+  );
+  const changeScheduleDateMode = (mode) => {
+    if (courseDateMode === "flexible" && mode === "date") return;
+    setScheduleDateMode(mode);
+    if (
+      mode === "day" &&
+      !scheduleDayOptions.includes(planForm.date)
+    ) {
+      setPlanForm({ ...planForm, date: scheduleDayOptions[0] || "" });
+    }
+  };
+  useEffect(() => {
+    if (courseDateMode === "flexible") {
+      setScheduleDateMode("day");
+      setPlanForm((previous) => ({
+        ...previous,
+        date: scheduleDayOptions.includes(previous.date)
+          ? previous.date
+          : scheduleDayOptions[0] || "",
+      }));
+    }
+  }, [courseDateMode, scheduleDayOptions]);
   const cover = places.find((place) => place.place?.img?.link);
   const beginInfoEdit = () => {
     setInfoForm({
       title: course.title,
       description: course.description || "",
       visibility: course.visibility,
+      dateMode: courseDateMode,
+      durationDays,
       start: dates[0] || "",
       end: dates.at(-1) || "",
     });
@@ -513,19 +576,66 @@ export default function CourseDetailPage() {
   };
   const saveInfo = async (event) => {
     event.preventDefault();
-    const days = structuredClone(draftDays);
-    if (!days.length)
-      days.push({ date: infoForm.start || null, title: "", places: [] });
-    else days[0] = { ...days[0], date: infoForm.start || null };
-    if (infoForm.end && infoForm.end !== infoForm.start) {
-      if (days.length === 1)
-        days.push({ date: infoForm.end, title: "", places: [] });
-      else days[days.length - 1] = { ...days.at(-1), date: infoForm.end };
+    const nextDateMode = infoForm.dateMode;
+    const nextDurationDays =
+      nextDateMode === "flexible"
+        ? Math.min(31, Math.max(1, Number(infoForm.durationDays) || 1))
+        : Math.max(1, dateRange(infoForm.start, infoForm.end || infoForm.start).length);
+    const draftPlaces = draftDays.flatMap((day) => day.places || []);
+    const firstDay = draftDays[0] || { title: "", places: [] };
+    const days = [
+      {
+        ...firstDay,
+        date: nextDateMode === "fixed" ? infoForm.start || null : null,
+        dayNumber: nextDateMode === "flexible" ? 1 : null,
+        places: draftPlaces.map((place, order) => ({ ...place, order })),
+      },
+    ];
+    if (
+      nextDateMode === "fixed" &&
+      infoForm.end &&
+      infoForm.end !== infoForm.start
+    ) {
+      days.push({ date: infoForm.end, dayNumber: null, title: "", places: [] });
     }
+
+    const oldFixedDates = dateRange(dates[0], dates.at(-1));
+    const nextFixedDates = dateRange(infoForm.start, infoForm.end || infoForm.start);
+    const convertedSchedule = (course.schedule || [])
+      .map((day) => {
+        const oldDayNumber =
+          courseDateMode === "flexible"
+            ? Number(day.dayNumber) || 1
+            : Math.max(1, oldFixedDates.indexOf(dateValue(day.date)) + 1);
+        if (nextDateMode === "flexible") {
+          if (oldDayNumber > nextDurationDays) return null;
+          return { ...day, date: null, dayNumber: oldDayNumber };
+        }
+        const nextDate = nextFixedDates[oldDayNumber - 1];
+        return nextDate ? { ...day, date: nextDate, dayNumber: null } : null;
+      })
+      .filter(Boolean)
+      .reduce((result, day) => {
+        const key =
+          nextDateMode === "flexible"
+            ? `day:${day.dayNumber}`
+            : `date:${dateValue(day.date)}`;
+        const existing = result.find((item) => item.key === key);
+        if (existing) existing.value.items.push(...(day.items || []));
+        else result.push({ key, value: { ...day, items: [...(day.items || [])] } });
+        return result;
+      }, [])
+      .map(({ value }) => ({
+        ...value,
+        items: value.items.sort((a, b) => a.time.localeCompare(b.time)),
+      }));
     const body = {
       title: infoForm.title,
       description: infoForm.description,
+      dateMode: nextDateMode,
+      durationDays: nextDurationDays,
       days,
+      schedule: convertedSchedule,
       visitPlan: (course.visitPlan || []).filter((plannedPlace) =>
         days
           .flatMap((day) => day.places || [])
@@ -537,7 +647,11 @@ export default function CourseDetailPage() {
       ),
     };
     if (course.isOwner) body.visibility = infoForm.visibility;
-    if (await patchCourse(body)) setEditingInfo(false);
+    if (await patchCourse(body)) {
+      setScheduleDateMode(nextDateMode === "flexible" ? "day" : "date");
+      setPlanForm((previous) => ({ ...previous, date: "" }));
+      setEditingInfo(false);
+    }
   };
   const addDraftPlace = (result) => {
     const key = `${result.placeType}:${result.placeId}`;
@@ -549,7 +663,12 @@ export default function CourseDetailPage() {
       return;
     const next = structuredClone(draftDays);
     if (!next.length)
-      next.push({ date: infoForm.start || null, title: "", places: [] });
+      next.push({
+        date: infoForm.dateMode === "fixed" ? infoForm.start || null : null,
+        dayNumber: infoForm.dateMode === "flexible" ? 1 : null,
+        title: "",
+        places: [],
+      });
     next[0].places = [
       ...(next[0].places || []),
       {
@@ -614,9 +733,16 @@ export default function CourseDetailPage() {
     event.preventDefault();
     if (!planForm.date || !planForm.time || !planForm.title.trim()) return;
     const schedule = structuredClone(course.schedule || []);
-    let day = schedule.find((item) => dateValue(item.date) === planForm.date);
+    let day = schedule.find((item) =>
+      courseDateMode === "flexible"
+        ? Number(item.dayNumber) === Number(planForm.date)
+        : dateValue(item.date) === planForm.date,
+    );
     if (!day) {
-      day = { date: planForm.date, items: [] };
+      day =
+        courseDateMode === "flexible"
+          ? { date: null, dayNumber: Number(planForm.date), items: [] }
+          : { date: planForm.date, dayNumber: null, items: [] };
       schedule.push(day);
     }
     day.items.push({
@@ -631,7 +757,11 @@ export default function CourseDetailPage() {
       memo: planForm.memo.trim(),
     });
     day.items.sort((a, b) => a.time.localeCompare(b.time));
-    schedule.sort((a, b) => dateValue(a.date).localeCompare(dateValue(b.date)));
+    schedule.sort((a, b) =>
+      courseDateMode === "flexible"
+        ? Number(a.dayNumber) - Number(b.dayNumber)
+        : dateValue(a.date).localeCompare(dateValue(b.date)),
+    );
     if (await patchCourse({ schedule }))
       setPlanForm({
         date: planForm.date,
@@ -793,13 +923,17 @@ export default function CourseDetailPage() {
             <div className="courseHeroFallback" />
           )}
           <div className="courseHeroShade" />
-          <div className="courseHeroCopy">
+          <div className="courseHeroCopy contentWidth">
             <span className={`courseVisibility ${course.visibility}`}>
               {labels[course.visibility]}
             </span>
             <h1>{course.title}</h1>
             <p>
-              {dates.length ? `${dates[0]} ~ ${dates.at(-1)}` : labels.period}
+              {courseDateMode === "flexible"
+                ? `DAY ${durationDays}`
+                : dates.length
+                  ? `${dates[0]} ~ ${dates.at(-1)}`
+                  : labels.period}
             </p>
           </div>
         </section>
@@ -890,27 +1024,87 @@ export default function CourseDetailPage() {
                         }
                       />
                     </label>
-                    <label>
-                      {labels.start}
-                      <input
-                        type="date"
-                        value={infoForm.start}
-                        onChange={(e) =>
-                          setInfoForm({ ...infoForm, start: e.target.value })
-                        }
-                      />
-                    </label>
-                    <label>
-                      {labels.end}
-                      <input
-                        type="date"
-                        min={infoForm.start}
-                        value={infoForm.end}
-                        onChange={(e) =>
-                          setInfoForm({ ...infoForm, end: e.target.value })
-                        }
-                      />
-                    </label>
+                    <fieldset className="courseDateStatusEditor wide">
+                      <legend>{labels.dateStatus}</legend>
+                      <div>
+                        {[
+                          { value: "fixed", label: labels.dateFixed },
+                          { value: "flexible", label: labels.dateFlexible },
+                        ].map((option) => (
+                          <label
+                            key={option.value}
+                            className={
+                              infoForm.dateMode === option.value ? "active" : ""
+                            }
+                          >
+                            <input
+                              type="radio"
+                              name="detailDateMode"
+                              value={option.value}
+                              checked={infoForm.dateMode === option.value}
+                              onChange={(event) =>
+                                setInfoForm({
+                                  ...infoForm,
+                                  dateMode: event.target.value,
+                                })
+                              }
+                            />
+                            <span>{option.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
+                    {infoForm.dateMode === "fixed" ? (
+                      <>
+                        <label>
+                          {labels.start}
+                          <input
+                            type="date"
+                            value={infoForm.start}
+                            onChange={(e) =>
+                              setInfoForm({
+                                ...infoForm,
+                                start: e.target.value,
+                                end:
+                                  infoForm.end && infoForm.end < e.target.value
+                                    ? e.target.value
+                                    : infoForm.end,
+                              })
+                            }
+                          />
+                        </label>
+                        <label>
+                          {labels.end}
+                          <input
+                            type="date"
+                            min={infoForm.start}
+                            value={infoForm.end}
+                            onChange={(e) =>
+                              setInfoForm({ ...infoForm, end: e.target.value })
+                            }
+                          />
+                        </label>
+                      </>
+                    ) : (
+                      <label>
+                        {labels.tripDays}
+                        <SelectWithChevron
+                          value={infoForm.durationDays}
+                          onChange={(event) =>
+                            setInfoForm({
+                              ...infoForm,
+                              durationDays: Number(event.target.value),
+                            })
+                          }
+                        >
+                          {Array.from({ length: 31 }, (_, index) => (
+                            <option key={index + 1} value={index + 1}>
+                              DAY {index + 1}
+                            </option>
+                          ))}
+                        </SelectWithChevron>
+                      </label>
+                    )}
                     <div className="coursePlaceEditor wide">
                       <div className="coursePlaceEditorHeader">
                         <h3>{labels.places}</h3>
@@ -1127,7 +1321,11 @@ export default function CourseDetailPage() {
                     <article>
                       <h3>{labels.period}</h3>
                       <p>
-                        {dates.length ? `${dates[0]} ~ ${dates.at(-1)}` : "-"}
+                        {courseDateMode === "flexible"
+                          ? `DAY ${durationDays}`
+                          : dates.length
+                            ? `${dates[0]} ~ ${dates.at(-1)}`
+                            : "-"}
                       </p>
                     </article>
                   </div>
@@ -1239,17 +1437,60 @@ export default function CourseDetailPage() {
                 </div>
                 {course.canEdit && (
                   <form className="planForm" onSubmit={addPlan}>
-                    <input
-                      aria-label={labels.date}
-                      type="date"
-                      min={dates[0]}
-                      max={dates.at(-1)}
-                      value={planForm.date}
-                      required
-                      onChange={(e) =>
-                        setPlanForm({ ...planForm, date: e.target.value })
-                      }
-                    />
+                    <div className="scheduleDatePicker">
+                      <div
+                        className="scheduleDateModes"
+                        role="group"
+                        aria-label={labels.date}
+                      >
+                        <button
+                          type="button"
+                          className={scheduleDateMode === "date" ? "active" : ""}
+                          aria-pressed={scheduleDateMode === "date"}
+                          disabled={courseDateMode === "flexible"}
+                          onClick={() => changeScheduleDateMode("date")}
+                        >
+                          {labels.dateInputMode}
+                        </button>
+                        <button
+                          type="button"
+                          className={scheduleDateMode === "day" ? "active" : ""}
+                          aria-pressed={scheduleDateMode === "day"}
+                          disabled={!scheduleDayOptions.length}
+                          onClick={() => changeScheduleDateMode("day")}
+                        >
+                          {labels.dayInputMode}
+                        </button>
+                      </div>
+                      {courseDateMode === "fixed" && scheduleDateMode === "date" ? (
+                        <input
+                          aria-label={labels.dateInputMode}
+                          type="date"
+                          min={dates[0]}
+                          max={dates.at(-1)}
+                          value={planForm.date}
+                          required
+                          onChange={(e) =>
+                            setPlanForm({ ...planForm, date: e.target.value })
+                          }
+                        />
+                      ) : (
+                        <SelectWithChevron
+                          aria-label={labels.dayInputMode}
+                          value={planForm.date}
+                          required
+                          onChange={(e) =>
+                            setPlanForm({ ...planForm, date: e.target.value })
+                          }
+                        >
+                          {scheduleDayOptions.map((date, index) => (
+                            <option key={date} value={date}>
+                              DAY {index + 1}
+                            </option>
+                          ))}
+                        </SelectWithChevron>
+                      )}
+                    </div>
                     <input
                       aria-label={labels.time}
                       type="time"
@@ -1260,6 +1501,7 @@ export default function CourseDetailPage() {
                       }
                     />
                     <input
+                      className="planTitleInput"
                       aria-label={labels.plan}
                       placeholder={labels.plan}
                       value={planForm.title}
@@ -1286,6 +1528,7 @@ export default function CourseDetailPage() {
                       ))}
                     </SelectWithChevron>
                     <input
+                      className="planMemoInput"
                       aria-label={labels.memo}
                       placeholder={labels.memo}
                       value={planForm.memo}
@@ -1301,8 +1544,12 @@ export default function CourseDetailPage() {
                 {(course.schedule || []).length ? (
                   <div className="scheduleDays">
                     {course.schedule.map((day, dayIndex) => (
-                      <article key={day._id || day.date}>
-                        <h3>{dateValue(day.date)}</h3>
+                      <article key={day._id || day.date || `day-${day.dayNumber}`}>
+                        <h3>
+                          {courseDateMode === "flexible"
+                            ? `DAY ${day.dayNumber || dayIndex + 1}`
+                            : dateValue(day.date)}
+                        </h3>
                         {day.items.map((item, itemIndex) => (
                           <div
                             className="scheduleRow"

@@ -661,6 +661,50 @@
   padding: 0;
   font-size: 14px;
 }
+.memberForm .courseDateStatusPicker {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.courseDateStatusPicker legend {
+  margin-bottom: 9px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.courseDateStatusOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.memberForm .courseDateStatusOptions label {
+  min-height: 48px;
+  padding: 0 15px;
+  border: 1px solid #ded3c5;
+  border-radius: 9px;
+  background: #fffdf9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+}
+.memberForm .courseDateStatusOptions label.selected {
+  border-color: #b54a2f;
+  background: #fff9f7;
+  color: #a63d25;
+  box-shadow: 0 0 0 1px rgba(181, 74, 47, 0.12);
+}
+.memberForm .courseDateStatusOptions input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  accent-color: #b54a2f;
+}
+.courseDurationField {
+  max-width: calc(50% - 6px);
+}
 .memberForm .courseVisibilityOption {
   min-height: 64px;
   padding: 12px 14px;
@@ -1433,6 +1477,9 @@
     min-width: 0;
     padding: 10px 7px;
     font-size: 12px;
+  }
+  .courseDurationField {
+    max-width: none;
   }
   .memberForm .courseVisibilityOption {
     padding: 11px 12px;

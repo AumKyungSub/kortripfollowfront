@@ -38,6 +38,8 @@ const emptyCourse = {
   title: "",
   description: "",
   visibility: "private",
+  dateMode: "fixed",
+  durationDays: 1,
   date: "",
   endDate: "",
   editPassword: "",
@@ -121,6 +123,10 @@ const copy = {
       "해당 비밀번호를 아는 사람들과 함께 계획 수정이 가능합니다.",
     startDate: "여행 시작일",
     endDate: "여행 종료일",
+    dateStatus: "여행 날짜",
+    dateFixed: "날짜 확정",
+    dateFlexible: "날짜 미확정",
+    tripDays: "여행 일수",
     savedCourses: "저장된 코스",
     courseSortLabel: "코스 정렬 기준",
     sortByTravelDate: "날짜순",
@@ -201,6 +207,10 @@ const copy = {
       "People who know this password can edit the plan with you.",
     startDate: "Start date",
     endDate: "End date",
+    dateStatus: "Travel dates",
+    dateFixed: "Dates confirmed",
+    dateFlexible: "Dates undecided",
+    tripDays: "Trip length",
     savedCourses: "Saved itineraries",
     courseSortLabel: "Sort itineraries",
     sortByTravelDate: "Date",
@@ -223,6 +233,25 @@ const regionOf = (favorite, lang, fallback) =>
   favorite?.place?.location?.region?.ko ||
   fallback;
 const keyOf = (item) => `${item.placeType}:${item.placeId}`;
+const inclusiveDayCount = (start, end) => {
+  if (!start || !end) return 1;
+  const difference = Math.round(
+    (Date.parse(`${end}T00:00:00`) - Date.parse(`${start}T00:00:00`)) /
+      86400000,
+  );
+  return Math.max(1, difference + 1);
+};
+const itineraryDateRange = (start, end) => {
+  if (!start) return [];
+  const first = Date.parse(`${start}T00:00:00Z`);
+  const last = Date.parse(`${end || start}T00:00:00Z`);
+  if (!Number.isFinite(first) || !Number.isFinite(last) || last < first)
+    return [];
+  return Array.from(
+    { length: Math.min(31, Math.floor((last - first) / 86400000) + 1) },
+    (_, index) => new Date(first + index * 86400000).toISOString().slice(0, 10),
+  );
+};
 const FAVORITE_REGION_ORDER = [
   "SEOUL",
   "GGICN",
@@ -697,23 +726,66 @@ const MemberPage = ({ shared = false }) => {
   const submitCourse = async (event) => {
     event.preventDefault();
     setError("");
+    const originalCourse = editingCourse
+      ? courses.find((course) => course._id === editingCourse)
+      : null;
+    const previousDates = itineraryDateRange(
+      originalCourse?.days?.find((day) => day.date)?.date?.slice(0, 10),
+      [...(originalCourse?.days || [])]
+        .reverse()
+        .find((day) => day.date)
+        ?.date?.slice(0, 10),
+    );
+    const nextDates = itineraryDateRange(
+      courseForm.date,
+      courseForm.endDate || courseForm.date,
+    );
+    const nextDurationDays =
+      courseForm.dateMode === "flexible"
+        ? Number(courseForm.durationDays)
+        : inclusiveDayCount(courseForm.date, courseForm.endDate || courseForm.date);
+    const convertedSchedule = originalCourse
+      ? (originalCourse.schedule || [])
+          .map((day) => {
+            const dayNumber =
+              (originalCourse.dateMode || "fixed") === "flexible"
+                ? Number(day.dayNumber) || 1
+                : Math.max(
+                    1,
+                    previousDates.indexOf(String(day.date || "").slice(0, 10)) + 1,
+                  );
+            if (courseForm.dateMode === "flexible") {
+              return dayNumber <= nextDurationDays
+                ? { ...day, date: null, dayNumber }
+                : null;
+            }
+            return nextDates[dayNumber - 1]
+              ? { ...day, date: nextDates[dayNumber - 1], dayNumber: null }
+              : null;
+          })
+          .filter(Boolean)
+      : undefined;
     const body = {
       title: courseForm.title,
       description: courseForm.description,
       visibility: courseForm.visibility,
+      dateMode: courseForm.dateMode,
+      durationDays: nextDurationDays,
+      ...(convertedSchedule ? { schedule: convertedSchedule } : {}),
       ...(!editingCourse && courseForm.editPassword
         ? { editPassword: courseForm.editPassword }
         : {}),
       days: [
         {
-          date: courseForm.date || null,
+          date: courseForm.dateMode === "fixed" ? courseForm.date || null : null,
+          dayNumber: courseForm.dateMode === "flexible" ? 1 : null,
           title: "",
           places: courseForm.selected.map((key, order) => {
             const [placeType, placeId] = key.split(":");
             return { placeType, placeId: Number(placeId), order, memo: "" };
           }),
         },
-        ...(courseForm.endDate
+        ...(courseForm.dateMode === "fixed" && courseForm.endDate
           ? [{ date: courseForm.endDate, title: "", places: [] }]
           : []),
       ],
@@ -747,6 +819,8 @@ const MemberPage = ({ shared = false }) => {
       title: course.title,
       description: course.description || "",
       visibility: course.visibility,
+      dateMode: course.dateMode || "fixed",
+      durationDays: Math.min(31, Math.max(1, Number(course.durationDays) || 1)),
       date: day?.date ? day.date.slice(0, 10) : "",
       endDate: course.days?.[1]?.date ? course.days[1].date.slice(0, 10) : "",
       editPassword: "",
@@ -1161,35 +1235,93 @@ const MemberPage = ({ shared = false }) => {
                             {courseForm.description.length}/200
                           </small>
                         </label>
-                        <div className="formRow courseDateRow">
-                          <label>
-                            {labels.startDate}
-                            <input
-                              type="date"
-                              value={courseForm.date}
-                              onChange={(e) =>
+                        <fieldset className="courseDateStatusPicker">
+                          <legend>{labels.dateStatus}</legend>
+                          <div className="courseDateStatusOptions">
+                            {[
+                              { value: "fixed", label: labels.dateFixed },
+                              { value: "flexible", label: labels.dateFlexible },
+                            ].map((option) => (
+                              <label
+                                key={option.value}
+                                className={
+                                  courseForm.dateMode === option.value
+                                    ? "selected"
+                                    : ""
+                                }
+                              >
+                                <input
+                                  type="radio"
+                                  name="courseDateMode"
+                                  value={option.value}
+                                  checked={courseForm.dateMode === option.value}
+                                  onChange={(event) =>
+                                    setCourseForm({
+                                      ...courseForm,
+                                      dateMode: event.target.value,
+                                    })
+                                  }
+                                />
+                                <span>{option.label}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </fieldset>
+                        {courseForm.dateMode === "fixed" ? (
+                          <div className="formRow courseDateRow">
+                            <label>
+                              {labels.startDate}
+                              <input
+                                type="date"
+                                value={courseForm.date}
+                                onChange={(e) =>
+                                  setCourseForm({
+                                    ...courseForm,
+                                    date: e.target.value,
+                                    endDate:
+                                      courseForm.endDate &&
+                                      courseForm.endDate < e.target.value
+                                        ? e.target.value
+                                        : courseForm.endDate,
+                                  })
+                                }
+                              />
+                            </label>
+                            <label>
+                              {labels.endDate}
+                              <input
+                                type="date"
+                                min={courseForm.date || undefined}
+                                value={courseForm.endDate}
+                                onChange={(e) =>
+                                  setCourseForm({
+                                    ...courseForm,
+                                    endDate: e.target.value,
+                                  })
+                                }
+                              />
+                            </label>
+                          </div>
+                        ) : (
+                          <label className="courseDurationField">
+                            {labels.tripDays}
+                            <select
+                              value={courseForm.durationDays}
+                              onChange={(event) =>
                                 setCourseForm({
                                   ...courseForm,
-                                  date: e.target.value,
+                                  durationDays: Number(event.target.value),
                                 })
                               }
-                            />
+                            >
+                              {Array.from({ length: 31 }, (_, index) => (
+                                <option key={index + 1} value={index + 1}>
+                                  DAY {index + 1}
+                                </option>
+                              ))}
+                            </select>
                           </label>
-                          <label>
-                            {labels.endDate}
-                            <input
-                              type="date"
-                              min={courseForm.date || undefined}
-                              value={courseForm.endDate}
-                              onChange={(e) =>
-                                setCourseForm({
-                                  ...courseForm,
-                                  endDate: e.target.value,
-                                })
-                              }
-                            />
-                          </label>
-                        </div>
+                        )}
                         <label>
                           {labels.editPassword}
                           <input
@@ -1497,7 +1629,9 @@ const MemberPage = ({ shared = false }) => {
                                 <p className="lineClamp2">
                                   {course.description || labels.noDescription}
                                 </p>
-                                {datedDays.length > 0 && (
+                                {course.dateMode === "flexible" ? (
+                                  <time>DAY {course.durationDays || 1}</time>
+                                ) : datedDays.length > 0 ? (
                                   <time>
                                     {datedDays
                                       .map((day) =>
@@ -1507,7 +1641,7 @@ const MemberPage = ({ shared = false }) => {
                                       )
                                       .join(" ~ ")}
                                   </time>
-                                )}
+                                ) : null}
                                 <div className="courseCardActions">
                                   {!shared && course.canEdit !== false && (
                                     <button
@@ -1640,7 +1774,9 @@ const MemberPage = ({ shared = false }) => {
                                 <p className="lineClamp2">
                                   {course.description || labels.noDescription}
                                 </p>
-                                {datedDays.length > 0 && (
+                                {course.dateMode === "flexible" ? (
+                                  <time>DAY {course.durationDays || 1}</time>
+                                ) : datedDays.length > 0 ? (
                                   <time>
                                     {datedDays
                                       .map((day) =>
@@ -1650,7 +1786,7 @@ const MemberPage = ({ shared = false }) => {
                                       )
                                       .join(" ~ ")}
                                   </time>
-                                )}
+                                ) : null}
                                 <div className="courseCardActions">
                                   <span>{labels.open}</span>
                                 </div>
