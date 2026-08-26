@@ -20,6 +20,7 @@ import FailedData from '@/features/failedData/FailedData';
 // Components
 import Header from '@/widgets/header/Header'
 import HomeBanner from '@/pages/homePage/components/homeBanner/HomeBanner';
+import HomePlannerGuide from '@/pages/homePage/components/homePlannerGuide/HomePlannerGuide';
 import HomeReview from '@/pages/homePage/components/homeReview/HomeReview';
 import HomeCategory from '@/pages/homePage/components/homeCategory/HomeCategory';
 import HomeRegion from '@/pages/homePage/components/homeRegion/HomeRegion'
@@ -52,6 +53,8 @@ const Homepage = () => {
       <HomeBanner 
         rankingsData={rankings}
       />
+      {/* 2. Trip Planner Guide */}
+      <HomePlannerGuide />
       {/* 2. Category (Only '~ 767px') */}
       {isFullMobile && <HomeCategory />}
       {/* 3. Blog Review */}

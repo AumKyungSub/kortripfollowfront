@@ -703,6 +703,18 @@
   justify-content: space-between;
   gap: 14px;
 }
+.coursePlacePickerControls {
+  width: 100%;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+}
+.coursePlacePickerControls .placeSearchBox,
+.coursePlacePickerControls .courseSelectControl {
+  min-width: 0;
+}
 .coursePlaceModeSwitch {
   padding: 3px;
   border: 1px solid #ddd9d2;
@@ -740,6 +752,10 @@
   border: 1px solid #e5e5e1;
   border-radius: 10px;
   overflow: hidden;
+}
+.placeSearchResults {
+  max-height: 360px;
+  overflow-y: auto;
 }
 .placeSearchResults li,
 .draftPlaceList li {
@@ -934,6 +950,13 @@
   margin-left: 3px;
 }
 @media (max-width: 600px) {
+  .coursePlacePickerControls {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .coursePlacePickerControls .coursePlaceModeSwitch {
+    width: auto;
+  }
   .coursePlaceEditorHeader {
     align-items: flex-start;
     flex-direction: column;
@@ -942,7 +965,8 @@
     align-self: stretch;
   }
   .coursePlaceModeSwitch button {
-    flex: 1;
+    min-width: 54px;
+    padding: 8px 9px;
   }
   .courseFavoriteList li {
     align-items: flex-start;

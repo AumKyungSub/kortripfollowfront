@@ -25,7 +25,7 @@ const Footer = () => {
   const openMyTravel = () => {
     window.dispatchEvent(
       new CustomEvent("kortrip:open-auth", {
-        detail: { redirectPath: "/myTravel" },
+        detail: { redirectPath: "/myTravel?tab=courses" },
       }),
     );
   };

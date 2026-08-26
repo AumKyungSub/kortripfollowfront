@@ -204,6 +204,25 @@ export default {
     /*---------------------------------------*/
 
   homepage: {
+    homePlannerGuide: {
+      title: "여행 계획, 어렵지 않아요",
+      description: "가고 싶은 여행지를 찾고 일정에 담으면 나만의 여행 코스가 완성됩니다.",
+      cta: "일정 만들기 시작",
+      steps: {
+        find: {
+          title: "여행지 찾기",
+          description: "지역과 테마를 둘러보며 가고 싶은 장소를 찾아보세요."
+        },
+        add: {
+          title: "장소 담기",
+          description: "마음에 드는 여행지를 내 일정에 간편하게 추가하세요."
+        },
+        plan: {
+          title: "일정 완성하기",
+          description: "방문 순서를 정리하고 친구들과 함께 여행을 계획하세요."
+        }
+      }
+    },
     homeReview: {
       author: "by 카윰"
     },
@@ -262,7 +281,7 @@ export default {
     theme: "테마별",
     collection: "컬렉션",
     courses: "코스별",
-    myTrip: "내 여행",
+    myTrip: "플래너",
     about: "소개",
     blog: "블로그",
     insta: "인스타",

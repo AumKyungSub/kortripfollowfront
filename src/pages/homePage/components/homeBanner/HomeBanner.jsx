@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 /*------------------------hooks-----------------------------------*/
 // Navigate
@@ -15,6 +16,11 @@ import { useLanguage } from '@/shared/hooks/useLanguage'
 // Page css
 import './HomeBanner.style.css';
 
+const plannerBannerItem = {
+  id: 'trip-planner-banner',
+  isPlannerBanner: true,
+};
+
 const HomeBanner = ({ 
   rankingsData = []
 }) => {
@@ -29,14 +35,24 @@ const HomeBanner = ({
 
   // Device Size Hook 사용
   const {isFullMobile, isDesktop} = useResponsive();
+  const isBannerPc = useMediaQuery({ minWidth: 1280 });
   
   // Language Hook 사용
-  const { lang, t, changeLanguage, isKo, isEn } = useLanguage();
+  const { lang, t, isKo, isEn } = useLanguage();
 
   // return 문 안의 JSX 영역-------------------------
   // 헬퍼 모음 (추후 추가 및 수정 가능성 있음)
   // 1. 베너 이미지 경로 헬퍼
-  const getImageSrc = (link) => {
+  const getImageSrc = (item) => {
+    if (item?.isPlannerBanner) {
+      const languageSuffix = isKo ? 'Ko' : 'En';
+      if (isFullMobile) return `/images/banner/mobile${languageSuffix}.jpg`;
+      if (isBannerPc) return `/images/banner/pc${languageSuffix}.jpg`;
+      if (isDesktop) return `/images/banner/smpc${languageSuffix}.jpg`;
+      return `/images/banner/tablet${languageSuffix}.jpg`;
+    }
+
+    const link = item?.img?.link;
     if(!link) return '';
     if(isFullMobile) return `${link}3M.jpg`
     if(isDesktop) return `${link}3.jpg`
@@ -54,7 +70,7 @@ const HomeBanner = ({
   // ---------- 초기 데이터 세팅 ----------
   useEffect(() => {
     if (!Array.isArray(rankingsData)) {
-      setItems([]);
+      setItems([plannerBannerItem]);
       return;
     }
 
@@ -63,9 +79,9 @@ const HomeBanner = ({
       .filter((item) => item?.visibility === true && item?.img?.link)
       .slice()
       .sort(() => Math.random() - 0.5)
-      .slice(0, 6); 
+      .slice(0, 3);
 
-    setItems(data);
+    setItems([plannerBannerItem, ...data]);
   }, [rankingsData]);
 
   // ---------- 자동 재생 ----------
@@ -73,14 +89,18 @@ const HomeBanner = ({
     if (items.length < 2) return;
 
     autoplayRef.current = setInterval(() => {
-      if (!transitioning) handleThumbSelect(0);
+      if (transitioning) return;
+
+      setTransitioning(true);
+      setItems((prev) => prev.slice(1).concat(prev.slice(0, 1)));
+      setTimeout(() => setTransitioning(false), 100);
     }, 6000);
 
     return () => clearInterval(autoplayRef.current);
   }, [items, transitioning]);
 
   const mainItem = items[0];
-  const thumbs = items.slice(1, 5);
+  const thumbs = items.slice(1, 4);
 
   // ------------유틸---------------
 
@@ -105,20 +125,32 @@ const HomeBanner = ({
   };
 
   const goToLocationDetail = () => {
+    if (mainItem?.isPlannerBanner) {
+      window.dispatchEvent(
+        new CustomEvent('kortrip:open-auth', {
+          detail: { redirectPath: '/myTravel?tab=courses' },
+        }),
+      );
+      return;
+    }
     if (mainItem?.id) navigate(`/location/${mainItem.id}`);
   };
 
   const backgroundImage = mainItem
-  ? `url(${getImageSrc(mainItem.img.link)})`
+  ? `url(${getImageSrc(mainItem)})`
   : "none";
   /* ========================================================= */
 
   return (
-    <section className="homeBannerBackground bannerImg contentTopBottomSpacing" style={{ backgroundImage }}>
+    <section
+      className={`homeBannerBackground bannerImg contentTopBottomSpacing ${mainItem?.isPlannerBanner ? 'plannerBanner' : ''}`}
+      style={{ backgroundImage }}
+      onClick={mainItem?.isPlannerBanner ? goToLocationDetail : undefined}
+    >
       {/* 메인 배너 이미지 */}
       <div className="homeBannerWrapper contentWidth">
           {/* 텍스트 영역 */}
-          <div className="homeBannerTextCover">
+          {!mainItem?.isPlannerBanner && <div className="homeBannerTextCover">
             <p className='homeBannerLocation'>
               {getLocationTitle(mainItem?.location)}
             </p>
@@ -134,7 +166,7 @@ const HomeBanner = ({
             <span className='homeBannerLearnMore' onClick={goToLocationDetail} style={{ cursor: "pointer" }}>
               {t("button.learnMore")}
             </span>
-          </div>
+          </div>}
     
           {/* 썸네일 그룹 */}
           <div className="homeBannerThumbCover">
@@ -143,11 +175,14 @@ const HomeBanner = ({
               key={item.id}
               className="homeBannerThumbItem"
               ref={(el) => (thumbRefs.current[idx] = el)}
-              onClick={() => handleThumbSelect(idx)}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleThumbSelect(idx);
+              }}
               >
                 <img
-                  src={getImageSrc(item.img.link)}
-                  alt={item.location?.name?.[lang]}
+                  src={getImageSrc(item)}
+                  alt={item.isPlannerBanner ? t('menu.myTrip') : item.location?.name?.[lang]}
                   />
               </div>
             ))}

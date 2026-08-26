@@ -506,7 +506,7 @@ export default function CourseDetailPage() {
         const results = await memberApi(
           `/places/search?q=${encodeURIComponent(placeSearch.trim())}`,
         );
-        if (activeRequest) setPlaceResults(results.slice(0, 8));
+        if (activeRequest) setPlaceResults(results);
       } catch {
         if (activeRequest) setPlaceResults([]);
       }
@@ -1112,6 +1112,37 @@ export default function CourseDetailPage() {
                     <div className="coursePlaceEditor wide">
                       <div className="coursePlaceEditorHeader">
                         <h3>{labels.places}</h3>
+                      </div>
+                      <div className="coursePlacePickerControls">
+                        {placePickerMode === "search" ? (
+                          <div className="placeSearchBox">
+                            <input
+                              value={placeSearch}
+                              placeholder={labels.placeSearch}
+                              onChange={(e) => setPlaceSearch(e.target.value)}
+                            />
+                          </div>
+                        ) : (
+                          <SelectWithChevron
+                            className="courseFavoriteRegionControl"
+                            value={favoriteRegion}
+                            aria-label={labels.selectRegion}
+                            onChange={(event) => {
+                              setFavoriteRegion(event.target.value);
+                            }}
+                          >
+                            <option value="ALL">{labels.allRegions}</option>
+                            {FAVORITE_REGION_ORDER.map((code) => (
+                              <option key={code} value={code}>
+                                {
+                                  FAVORITE_REGION_LABELS[code][
+                                    lang === "ko" ? "ko" : "en"
+                                  ]
+                                }
+                              </option>
+                            ))}
+                          </SelectWithChevron>
+                        )}
                         <div
                           className="coursePlaceModeSwitch"
                           role="group"
@@ -1141,13 +1172,6 @@ export default function CourseDetailPage() {
                       </div>
                       {placePickerMode === "search" ? (
                         <>
-                          <div className="placeSearchBox">
-                            <input
-                              value={placeSearch}
-                              placeholder={labels.placeSearch}
-                              onChange={(e) => setPlaceSearch(e.target.value)}
-                            />
-                          </div>
                           {placeSearch.trim() && (
                             <ul className="placeSearchResults">
                               {placeResults.length ? (
@@ -1182,25 +1206,6 @@ export default function CourseDetailPage() {
                         </>
                       ) : (
                         <div className="courseFavoritePicker">
-                          <SelectWithChevron
-                            className="courseFavoriteRegionControl"
-                            value={favoriteRegion}
-                            aria-label={labels.selectRegion}
-                            onChange={(event) => {
-                              setFavoriteRegion(event.target.value);
-                            }}
-                          >
-                            <option value="ALL">{labels.allRegions}</option>
-                            {FAVORITE_REGION_ORDER.map((code) => (
-                              <option key={code} value={code}>
-                                {
-                                  FAVORITE_REGION_LABELS[code][
-                                    lang === "ko" ? "ko" : "en"
-                                  ]
-                                }
-                              </option>
-                            ))}
-                          </SelectWithChevron>
                           {favoritesLoading ? (
                             <p className="courseFavoriteEmpty">
                               {labels.favoritesLoading}

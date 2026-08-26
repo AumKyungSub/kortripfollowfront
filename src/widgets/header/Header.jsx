@@ -20,6 +20,7 @@ import LoginPage from "@/widgets/modalPage/loginPage/LoginPage";
 import "./Header.style.css";
 
 const AUTH_REDIRECT_KEY = "kortripAuthRedirect";
+const PLANNER_PATH = "/myTravel?tab=courses";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -141,10 +142,10 @@ const Header = () => {
 
   const handleMyTravelClick = () => {
     if (authUser) {
-      navigate("/myTravel");
+      navigate(PLANNER_PATH);
       return;
     }
-    openAuthModal("/myTravel");
+    openAuthModal(PLANNER_PATH);
   };
 
   const handleGnbClick = (key, path) =>
@@ -153,7 +154,7 @@ const Header = () => {
   useEffect(() => {
     const handleAuthRequest = (event) => {
       const redirectPath = event.detail?.redirectPath;
-      if (redirectPath !== "/myTravel") return;
+      if (redirectPath !== "/myTravel" && redirectPath !== PLANNER_PATH) return;
 
       if (authUser) {
         navigate(redirectPath);

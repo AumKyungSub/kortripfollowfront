@@ -1,0 +1,182 @@
+.homePlannerGuideBackground {
+  background: #faf8f3;
+}
+
+.homePlannerGuideWrapper {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.homePlannerGuideHeader {
+  margin-bottom: 24px;
+}
+
+.homePlannerGuidePreTitle {
+  margin-bottom: 10px;
+  color: #b54a2f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.homePlannerGuideHeader h2 {
+  margin-bottom: 10px;
+  color: #202638;
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.homePlannerGuideDescription {
+  padding-right: 10px;
+  max-width: 620px;
+  color: #666d7d;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.homePlannerGuideSteps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.homePlannerGuideStep {
+  min-height: 170px;
+  padding: 22px;
+  border: 1px solid #e4e0d8;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.homePlannerGuideStepTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.homePlannerGuideStepNumber {
+  color: #b54a2f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.homePlannerGuideStepIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eef3ff;
+  color: #4567f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homePlannerGuideStepIcon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.homePlannerGuideStep h3 {
+  margin-bottom: 8px;
+  color: #202638;
+  font-size: 1.0625rem;
+}
+
+.homePlannerGuideStep > p {
+  color: #737888;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.homePlannerGuideCta {
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #b54a2f;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.homePlannerGuideCta:hover {
+  background: #4567f2;
+  transform: translateY(-2px);
+}
+
+.homePlannerGuideCta.desktop {
+  display: none;
+}
+
+.homePlannerGuideCta.mobile {
+  width: 100%;
+  margin-top: 18px;
+}
+
+@media only all and (min-width: 768px) {
+  .homePlannerGuideWrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .homePlannerGuideHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 34px;
+  }
+
+  .homePlannerGuideHeader h2 {
+    font-size: 2.25rem;
+  }
+
+  .homePlannerGuideSteps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .homePlannerGuideStep {
+    min-height: 220px;
+    padding: 26px;
+  }
+
+  .homePlannerGuideCta.desktop {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .homePlannerGuideCta.mobile {
+    display: none;
+  }
+}
+
+@media only all and (min-width: 1280px) {
+  .homePlannerGuideWrapper {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .homePlannerGuideStep {
+    min-height: 230px;
+    padding: 30px;
+  }
+}

@@ -207,6 +207,25 @@ export default {
   /*---------------------------------------*/
 
   homepage: {
+    homePlannerGuide: {
+      title: "Planning your trip is easy",
+      description: "Find places you love, add them to your schedule, and build a trip that's uniquely yours.",
+      cta: "Start planning",
+      steps: {
+        find: {
+          title: "Find places",
+          description: "Explore destinations by region and theme to find places you want to visit."
+        },
+        add: {
+          title: "Add destinations",
+          description: "Save your favorite places directly to your travel schedule."
+        },
+        plan: {
+          title: "Complete your itinerary",
+          description: "Arrange your stops and plan the journey together with your friends."
+        }
+      }
+    },
     homeRecommended: {
       title: "Editor's Review",
       type1: "Attraction Reviews",
@@ -271,7 +290,7 @@ export default {
     theme: "Theme",
     collection: "Collection",
     courses: "Courses",
-    myTrip: "My Trip",
+    myTrip: "Planner",
     about: "About",
     blog: "Blog",
     insta: "Insta",

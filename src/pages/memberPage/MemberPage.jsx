@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import {
   Map as KakaoMap,
   MapMarker,
@@ -44,6 +44,7 @@ const emptyCourse = {
   endDate: "",
   editPassword: "",
   selected: [],
+  selectedPlaces: [],
 };
 const emptyVisit = {
   placeKey: "",
@@ -81,7 +82,13 @@ const copy = {
     description: "설명",
     visibility: "공개 범위",
     date: "여행 날짜",
-    places: "코스에 담을 찜 장소",
+    places: "코스에 담을 장소",
+    searchMode: "검색",
+    favoritesMode: "내 찜",
+    placeSearch: "장소명·지역·주소 검색",
+    addPlace: "추가",
+    addedPlace: "추가됨",
+    removePlace: "빼기",
     selectRegion: "지역 선택",
     allRegions: "전체 지역",
     emptyCourseRegion: "이 지역에는 찜한 장소가 없어요",
@@ -166,7 +173,13 @@ const copy = {
     description: "Description",
     visibility: "Visibility",
     date: "Travel date",
-    places: "Saved places in this itinerary",
+    places: "Places to add to this itinerary",
+    searchMode: "Search",
+    favoritesMode: "Saved",
+    placeSearch: "Search by place, region, or address",
+    addPlace: "Add",
+    addedPlace: "Added",
+    removePlace: "Remove",
     selectRegion: "Select region",
     allRegions: "All regions",
     emptyCourseRegion: "There are no saved places in this region.",
@@ -485,10 +498,14 @@ const MemberPage = ({ shared = false }) => {
   const labels = copy[lang === "ko" ? "ko" : "en"];
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [tab, setTab] = useState("favorites");
+  const [tab, setTab] = useState(() =>
+    requestedTab === "courses" ? "courses" : "favorites",
+  );
   const [favorites, setFavorites] = useState([]);
   const [favoriteView, setFavoriteView] = useState("default");
   const [selectedFavoriteRegion, setSelectedFavoriteRegion] = useState("SEOUL");
@@ -499,6 +516,9 @@ const MemberPage = ({ shared = false }) => {
   const [courseSort, setCourseSort] = useState("travelDate");
   const [visits, setVisits] = useState([]);
   const [courseForm, setCourseForm] = useState(emptyCourse);
+  const [coursePlaceMode, setCoursePlaceMode] = useState("search");
+  const [coursePlaceSearch, setCoursePlaceSearch] = useState("");
+  const [coursePlaceResults, setCoursePlaceResults] = useState([]);
   const [coursePlaceRegion, setCoursePlaceRegion] = useState("ALL");
   const [visitForm, setVisitForm] = useState(emptyVisit);
   const [editingCourse, setEditingCourse] = useState(null);
@@ -509,6 +529,34 @@ const MemberPage = ({ shared = false }) => {
   const [visitPlaces, setVisitPlaces] = useState([]);
   const [visitPlacesLoading, setVisitPlacesLoading] = useState(false);
   const [copied, setCopied] = useState("");
+
+  useEffect(() => {
+    setTab(requestedTab === "courses" ? "courses" : "favorites");
+  }, [requestedTab]);
+
+  useEffect(() => {
+    if (shared || tab !== "courses" || !coursePlaceSearch.trim()) {
+      setCoursePlaceResults([]);
+      return;
+    }
+
+    let activeRequest = true;
+    const timer = window.setTimeout(async () => {
+      try {
+        const results = await memberApi(
+          `/places/search?q=${encodeURIComponent(coursePlaceSearch.trim())}`,
+        );
+        if (activeRequest) setCoursePlaceResults(results);
+      } catch {
+        if (activeRequest) setCoursePlaceResults([]);
+      }
+    }, 250);
+
+    return () => {
+      activeRequest = false;
+      window.clearTimeout(timer);
+    };
+  }, [coursePlaceSearch, shared, tab]);
 
   // Device Size
   const { isFullMobile, isTablet } = useResponsive();
@@ -718,6 +766,30 @@ const MemberPage = ({ shared = false }) => {
     );
   }, [coursePlacePagination.currentPage, coursePlacePagination.totalPages]);
 
+  const addCoursePlace = (place) => {
+    const key = keyOf(place);
+    setCourseForm((current) =>
+      current.selected.includes(key)
+        ? current
+        : {
+            ...current,
+            selected: [...current.selected, key],
+            selectedPlaces: [...current.selectedPlaces, place],
+          },
+    );
+  };
+
+  const removeCoursePlace = (place) => {
+    const key = typeof place === "string" ? place : keyOf(place);
+    setCourseForm((current) => ({
+      ...current,
+      selected: current.selected.filter((item) => item !== key),
+      selectedPlaces: current.selectedPlaces.filter(
+        (item) => keyOf(item) !== key,
+      ),
+    }));
+  };
+
   const removeFavorite = async (favorite) => {
     await memberApi(`/favorites/${favorite.placeType}/${favorite.placeId}`, {
       method: "DELETE",
@@ -809,6 +881,9 @@ const MemberPage = ({ shared = false }) => {
       }
       setCourseForm(emptyCourse);
       setCoursePlaceRegion("ALL");
+      setCoursePlaceMode("search");
+      setCoursePlaceSearch("");
+      setCoursePlaceResults([]);
       setEditingCourse(null);
       await load();
       setTab("courses");
@@ -831,7 +906,13 @@ const MemberPage = ({ shared = false }) => {
       selected: (course.days || [])
         .flatMap((courseDay) => courseDay.places || [])
         .map(keyOf),
+      selectedPlaces: (course.days || []).flatMap(
+        (courseDay) => courseDay.places || [],
+      ),
     });
+    setCoursePlaceMode("search");
+    setCoursePlaceSearch("");
+    setCoursePlaceResults([]);
     setEditingCourse(course._id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -1348,141 +1429,213 @@ const MemberPage = ({ shared = false }) => {
                         </label>
                         <fieldset className="coursePlacePicker">
                           <legend>{labels.places}</legend>
-                          <select
-                            className="coursePlaceRegionSelect"
-                            value={coursePlaceRegion}
-                            onChange={(event) =>
-                              setCoursePlaceRegion(event.target.value)
-                            }
-                            aria-label={labels.selectRegion}
-                          >
-                            <option value="ALL">{labels.allRegions}</option>
-                            {favoriteCategoryOptions.map((region) => (
-                              <option value={region.code} key={region.code}>
-                                {region.label}
-                              </option>
-                            ))}
-                          </select>
-                          <svg
-                            className="coursePlaceRegionChevron"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            aria-hidden="true"
-                          >
-                            <path d="m6 9 6 6 6-6" />
-                          </svg>
-                          {coursePlaceFavorites.length ? (
-                            coursePlacePagination.pagedList.map((favorite) => (
-                              <label className="checkPlace" key={favorite._id}>
-                                <span className="coursePlaceIdentity">
-                                  <input
-                                    type="checkbox"
-                                    checked={courseForm.selected.includes(
-                                      keyOf(favorite),
-                                    )}
-                                    onChange={(e) =>
-                                      setCourseForm({
-                                        ...courseForm,
-                                        selected: e.target.checked
-                                          ? [
-                                              ...courseForm.selected,
-                                              keyOf(favorite),
-                                            ]
-                                          : courseForm.selected.filter(
-                                              (key) => key !== keyOf(favorite),
-                                            ),
-                                      })
-                                    }
-                                  />
-                                  <span>{nameOf(favorite, lang)}</span>
-                                </span>
-                                <em>
-                                  {regionOf(
-                                    favorite,
-                                    lang,
-                                    labels.unknownRegion,
-                                  )}
-                                </em>
-                              </label>
-                            ))
-                          ) : (
-                            <p className="coursePlaceEmpty">
-                              {coursePlaceRegion === "ALL"
-                                ? labels.emptyFavorite
-                                : labels.emptyCourseRegion}
-                            </p>
-                          )}
-                          {coursePlacePagination.totalPages > 1 && (
-                            <nav
-                              className="coursePlacePagination"
-                              aria-label={
-                                lang === "ko"
-                                  ? "찜 장소 페이지"
-                                  : "Saved places pages"
-                              }
+                          <div className="coursePlacePickerControls">
+                            {coursePlaceMode === "search" ? (
+                              <input
+                                value={coursePlaceSearch}
+                                placeholder={labels.placeSearch}
+                                onChange={(event) =>
+                                  setCoursePlaceSearch(event.target.value)
+                                }
+                              />
+                            ) : (
+                              <div className="coursePlaceRegionControl">
+                                <select
+                                  className="coursePlaceRegionSelect"
+                                  value={coursePlaceRegion}
+                                  onChange={(event) =>
+                                    setCoursePlaceRegion(event.target.value)
+                                  }
+                                  aria-label={labels.selectRegion}
+                                >
+                                  <option value="ALL">{labels.allRegions}</option>
+                                  {favoriteCategoryOptions.map((region) => (
+                                    <option value={region.code} key={region.code}>
+                                      {region.label}
+                                    </option>
+                                  ))}
+                                </select>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <path d="m6 9 6 6 6-6" />
+                                </svg>
+                              </div>
+                            )}
+                            <div
+                              className="coursePlaceModeSwitch"
+                              role="group"
+                              aria-label={labels.places}
                             >
                               <button
                                 type="button"
-                                className="coursePlacePageArrow"
-                                onClick={() =>
-                                  coursePlacePagination.handlePageChange(
-                                    coursePlacePagination.currentPage - 1,
-                                  )
-                                }
-                                disabled={
-                                  coursePlacePagination.currentPage === 1
-                                }
-                                aria-label={
-                                  lang === "ko"
-                                    ? "이전 페이지"
-                                    : "Previous page"
-                                }
+                                className={coursePlaceMode === "search" ? "active" : ""}
+                                aria-pressed={coursePlaceMode === "search"}
+                                onClick={() => setCoursePlaceMode("search")}
                               >
-                                ‹
+                                {labels.searchMode}
                               </button>
-                              {coursePlacePageNumbers.map((page) => (
-                                <button
-                                  type="button"
-                                  key={page}
-                                  className={`coursePlacePageNumber ${coursePlacePagination.currentPage === page ? "active" : ""}`}
-                                  onClick={() =>
-                                    coursePlacePagination.handlePageChange(page)
-                                  }
-                                  aria-current={
-                                    coursePlacePagination.currentPage === page
-                                      ? "page"
-                                      : undefined
-                                  }
-                                >
-                                  {page}
-                                </button>
-                              ))}
                               <button
                                 type="button"
-                                className="coursePlacePageArrow"
-                                onClick={() =>
-                                  coursePlacePagination.handlePageChange(
-                                    coursePlacePagination.currentPage + 1,
-                                  )
-                                }
-                                disabled={
-                                  coursePlacePagination.currentPage ===
-                                  coursePlacePagination.totalPages
-                                }
-                                aria-label={
-                                  lang === "ko" ? "다음 페이지" : "Next page"
-                                }
+                                className={coursePlaceMode === "favorites" ? "active" : ""}
+                                aria-pressed={coursePlaceMode === "favorites"}
+                                onClick={() => setCoursePlaceMode("favorites")}
                               >
-                                ›
+                                {labels.favoritesMode}
                               </button>
-                            </nav>
+                            </div>
+                          </div>
+
+                          {coursePlaceMode === "search" ? (
+                            <div className="coursePlaceSearchPicker">
+                              {coursePlaceSearch.trim() && (
+                                <ul className="coursePlaceSearchResults">
+                                  {coursePlaceResults.length ? (
+                                    coursePlaceResults.map((result) => {
+                                      const added = courseForm.selected.includes(
+                                        keyOf(result),
+                                      );
+                                      return (
+                                        <li key={keyOf(result)}>
+                                          <span>{placeNameOf(result, lang)}</span>
+                                          <button
+                                            type="button"
+                                            disabled={added}
+                                            onClick={() => addCoursePlace(result)}
+                                          >
+                                            {added
+                                              ? labels.addedPlace
+                                              : labels.addPlace}
+                                          </button>
+                                        </li>
+                                      );
+                                    })
+                                  ) : (
+                                    <li className="noResult">
+                                      {labels.noPlaceResult}
+                                    </li>
+                                  )}
+                                </ul>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="coursePlaceFavoritePicker">
+                              {coursePlaceFavorites.length ? (
+                                coursePlacePagination.pagedList.map((favorite) => (
+                                  <label className="checkPlace" key={favorite._id}>
+                                    <span className="coursePlaceIdentity">
+                                      <input
+                                        type="checkbox"
+                                        checked={courseForm.selected.includes(
+                                          keyOf(favorite),
+                                        )}
+                                        onChange={(event) =>
+                                          event.target.checked
+                                            ? addCoursePlace(favorite)
+                                            : removeCoursePlace(favorite)
+                                        }
+                                      />
+                                      <span>{nameOf(favorite, lang)}</span>
+                                    </span>
+                                    <em>
+                                      {regionOf(
+                                        favorite,
+                                        lang,
+                                        labels.unknownRegion,
+                                      )}
+                                    </em>
+                                  </label>
+                                ))
+                              ) : (
+                                <p className="coursePlaceEmpty">
+                                  {coursePlaceRegion === "ALL"
+                                    ? labels.emptyFavorite
+                                    : labels.emptyCourseRegion}
+                                </p>
+                              )}
+                              {coursePlacePagination.totalPages > 1 && (
+                                <nav
+                                  className="coursePlacePagination"
+                                  aria-label={
+                                    lang === "ko"
+                                      ? "찜 장소 페이지"
+                                      : "Saved places pages"
+                                  }
+                                >
+                                  <button
+                                    type="button"
+                                    className="coursePlacePageArrow"
+                                    onClick={() =>
+                                      coursePlacePagination.handlePageChange(
+                                        coursePlacePagination.currentPage - 1,
+                                      )
+                                    }
+                                    disabled={coursePlacePagination.currentPage === 1}
+                                    aria-label={lang === "ko" ? "이전 페이지" : "Previous page"}
+                                  >
+                                    ‹
+                                  </button>
+                                  {coursePlacePageNumbers.map((page) => (
+                                    <button
+                                      type="button"
+                                      key={page}
+                                      className={`coursePlacePageNumber ${coursePlacePagination.currentPage === page ? "active" : ""}`}
+                                      onClick={() =>
+                                        coursePlacePagination.handlePageChange(page)
+                                      }
+                                      aria-current={
+                                        coursePlacePagination.currentPage === page
+                                          ? "page"
+                                          : undefined
+                                      }
+                                    >
+                                      {page}
+                                    </button>
+                                  ))}
+                                  <button
+                                    type="button"
+                                    className="coursePlacePageArrow"
+                                    onClick={() =>
+                                      coursePlacePagination.handlePageChange(
+                                        coursePlacePagination.currentPage + 1,
+                                      )
+                                    }
+                                    disabled={
+                                      coursePlacePagination.currentPage ===
+                                      coursePlacePagination.totalPages
+                                    }
+                                    aria-label={lang === "ko" ? "다음 페이지" : "Next page"}
+                                  >
+                                    ›
+                                  </button>
+                                </nav>
+                              )}
+                            </div>
+                          )}
+
+                          {courseForm.selectedPlaces.length > 0 && (
+                            <ul className="courseSelectedPlaceList">
+                              {courseForm.selectedPlaces.map((place) => (
+                                <li key={keyOf(place)}>
+                                  <span>{placeNameOf(place.place || place, lang)}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeCoursePlace(place)}
+                                  >
+                                    {labels.removePlace}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
                           )}
                         </fieldset>
                         <div className="formActions courseFormActions">
@@ -1500,6 +1653,9 @@ const MemberPage = ({ shared = false }) => {
                               onClick={() => {
                                 setEditingCourse(null);
                                 setCourseForm(emptyCourse);
+                                setCoursePlaceMode("search");
+                                setCoursePlaceSearch("");
+                                setCoursePlaceResults([]);
                               }}
                             >
                               {labels.cancel}
