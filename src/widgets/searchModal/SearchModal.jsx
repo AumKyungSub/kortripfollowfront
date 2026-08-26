@@ -23,6 +23,10 @@ const SEARCH_GROUPS = [
   { endpoint: 'restaurants', category: 'restaurant', path: (id) => `/theme/restaurant/${id}` },
   { endpoint: 'lodgings', category: 'lodging', path: (id) => `/theme/lodging/${id}` },
   { endpoint: 'foods', category: 'food', path: (id) => `/theme/food/${id}` },
+  { endpoint: 'markets', category: 'market', path: (id) => `/theme/market/${id}` },
+  { endpoint: 'parks', category: 'park', path: (id) => `/theme/park/${id}` },
+  { endpoint: 'oceans', category: 'ocean', path: (id) => `/theme/ocean/${id}` },
+  { endpoint: 'drives', category: 'drive', path: (id) => `/theme/drive/${id}` },
 ];
 
 const normalize = (value) => String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase();

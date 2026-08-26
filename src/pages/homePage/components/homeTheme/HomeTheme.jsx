@@ -35,6 +35,10 @@ const HomeTheme = () => {
           <HomeThemeComponent img={"restaurant"} homeThemeP={t("homepage.homeTheme.restP")} homeThemePSnd={t("homepage.homeTheme.restName")} themeCode={"RESTAURANT"} />
           <HomeThemeComponent img={"lodging"} homeThemeP={t("homepage.homeTheme.lodgingP")} homeThemePSnd={t("homepage.homeTheme.lodgingName")} themeCode={"LODGING"} />
           <HomeThemeComponent img={"food"} homeThemeP={t("homepage.homeTheme.foodP")} homeThemePSnd={t("homepage.homeTheme.foodName")} themeCode={"FOOD"} />
+          <HomeThemeComponent img={"market"} homeThemeP={t("homepage.homeTheme.marketP")} homeThemePSnd={t("homepage.homeTheme.marketName")} themeCode={"MARKET"} />
+          <HomeThemeComponent img={"park"} homeThemeP={t("homepage.homeTheme.parkP")} homeThemePSnd={t("homepage.homeTheme.parkName")} themeCode={"PARK"} />
+          <HomeThemeComponent img={"ocean"} homeThemeP={t("homepage.homeTheme.oceanP")} homeThemePSnd={t("homepage.homeTheme.oceanName")} themeCode={"OCEAN"} />
+          <HomeThemeComponent img={"drive"} homeThemeP={t("homepage.homeTheme.driveP")} homeThemePSnd={t("homepage.homeTheme.driveName")} themeCode={"DRIVE"} />
         </div>
     </section>
   )

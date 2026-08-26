@@ -13,6 +13,10 @@ export const useReadDB = () => {
         restaurants: [],
         lodgings: [],
         foods: [],
+        markets: [],
+        parks: [],
+        oceans: [],
+        drives: [],
     });
 
     const [loading, setLoading] = useState(true);
@@ -33,6 +37,10 @@ export const useReadDB = () => {
                 restaurants: `${dbURL}/restaurants`,
                 lodgings: `${dbURL}/lodgings`,
                 foods: `${dbURL}/foods`,
+                markets: `${dbURL}/markets`,
+                parks: `${dbURL}/parks`,
+                oceans: `${dbURL}/oceans`,
+                drives: `${dbURL}/drives`,
             };
 
             const responses = await Promise.all([
@@ -43,6 +51,10 @@ export const useReadDB = () => {
                 fetch(urls.restaurants),
                 fetch(urls.lodgings),
                 fetch(urls.foods),
+                fetch(urls.markets),
+                fetch(urls.parks),
+                fetch(urls.oceans),
+                fetch(urls.drives),
             ]);
 
       // 하나라도 실패하면 throw
@@ -58,6 +70,10 @@ export const useReadDB = () => {
                 restaurants,
                 lodgings,
                 foods,
+                markets,
+                parks,
+                oceans,
+                drives,
             ] = await Promise.all(responses.map((res) => res.json()));
 
             setData({
@@ -68,6 +84,10 @@ export const useReadDB = () => {
                 restaurants,
                 lodgings,
                 foods,
+                markets,
+                parks,
+                oceans,
+                drives,
             });
         } catch (err) {
             console.error("데이터 로딩 실패:", err);

@@ -84,7 +84,11 @@ export default {
           CAFE: "여행의 여유를 더해주는 감성 카페와 개성 있는 공간들을 소개합니다.",
           RESTAURANT: "현지의 맛과 여행의 즐거움을 함께 느낄 수 있는 맛집을 만나보세요.",
           LODGING: "편안한 휴식과 특별한 하루를 완성해 줄 다양한 숙소를 소개합니다.",
-          FOOD: "지역의 개성과 정성이 담긴 다양한 먹거리와 간식을 만나보세요."
+          FOOD: "지역의 개성과 정성이 담긴 다양한 먹거리와 간식을 만나보세요.",
+          MARKET: "지역의 삶과 정겨운 풍경이 살아 있는 전통시장과 지역시장을 소개합니다.",
+          PARK: "도심과 자연 속에서 여유롭게 쉬어갈 수 있는 다양한 공원을 만나보세요.",
+          OCEAN: "푸른 바다와 아름다운 해안 풍경을 즐길 수 있는 해수욕장을 소개합니다.",
+          DRIVE: "계절과 풍경을 따라 달리는 국내의 아름다운 드라이브 코스를 만나보세요."
         }
       }
     },
@@ -160,7 +164,11 @@ export default {
         cafe: '카페', 
         restaurant: '맛집', 
         lodging: '숙소', 
-        food: '먹거리' 
+        food: '먹거리',
+        market: '시장',
+        park: '공원',
+        ocean: '해수욕장',
+        drive: '드라이브'
       },
       close: '검색 닫기', 
       clear: '검색어 지우기', 
@@ -229,7 +237,15 @@ export default {
       lodgingP: "즐거운 여행을 위한 충전",
       lodgingName: "숙소",
       foodP: "때로는 식사보다 더 중요한",
-      foodName: "먹거리"
+      foodName: "먹거리",
+      marketP: "지역의 삶을 만나는 곳",
+      marketName: "시장",
+      parkP: "자연 속에서 쉬어가는 시간",
+      parkName: "공원",
+      oceanP: "푸른 바다와 함께하는 여행",
+      oceanName: "해수욕장",
+      driveP: "풍경을 따라 달리는 길",
+      driveName: "드라이브"
     }
   },
   common: {
@@ -462,6 +478,30 @@ export default {
       leftText: "천안옛날호두과자",
       rightTitle: "대표 메뉴",
       rightText: "앙버터"
+    },
+    market: {
+      title: "지역의 정겨움이 모이는 곳",
+      text: "지역마다 다른 먹거리와 사람들의 이야기가 살아 있는 전통시장과 지역시장을 만나보세요.",
+      leftTitle: "추천 장소", leftText: "지역시장",
+      rightTitle: "추천 테마", rightText: "지역 먹거리"
+    },
+    park: {
+      title: "자연 속에서 쉬어가는 시간",
+      text: "푸른 자연과 산책길, 여유로운 풍경이 있는 전국의 다양한 공원을 소개합니다.",
+      leftTitle: "추천 장소", leftText: "도시공원",
+      rightTitle: "추천 활동", rightText: "산책"
+    },
+    ocean: {
+      title: "여행과 바다가 만나는 곳",
+      text: "잔잔한 백사장부터 아름다운 해안 풍경까지 국내의 매력적인 해수욕장을 만나보세요.",
+      leftTitle: "추천 장소", leftText: "국내 해수욕장",
+      rightTitle: "추천 계절", rightText: "여름"
+    },
+    drive: {
+      title: "풍경을 따라 이어지는 길",
+      text: "산과 바다, 계절의 변화를 차창 밖으로 즐길 수 있는 국내의 아름다운 드라이브 코스를 소개합니다.",
+      leftTitle: "추천 장소", leftText: "풍경길",
+      rightTitle: "추천 활동", rightText: "로드트립"
     }
   },
   collection: {

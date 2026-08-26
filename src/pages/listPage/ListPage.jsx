@@ -86,7 +86,7 @@ const ListPage = ({ mode }) => {
 
   // DB 불러오기
   const { data, loading, error } = useReadDB();
-  const { cafes, restaurants, lodgings, foods, rankings } = data;
+  const { cafes, restaurants, lodgings, foods, markets, parks, oceans, drives, rankings } = data;
 
   // Theme List
   const { themeMap } = useThemeList();
@@ -135,7 +135,11 @@ const ListPage = ({ mode }) => {
     RESTAURANT: restaurants,
     LODGING: lodgings,
     FOOD: foods,
-  }), [cafes, restaurants, lodgings, foods]);
+    MARKET: markets,
+    PARK: parks,
+    OCEAN: oceans,
+    DRIVE: drives,
+  }), [cafes, restaurants, lodgings, foods, markets, parks, oceans, drives]);
 
   const themeBaseList = useMemo(
     () => isThemeMode ? (themeDataMap[selected] || []) : [],

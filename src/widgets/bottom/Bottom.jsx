@@ -33,7 +33,14 @@ const Bottom = ({type}) => {
               </div>
             </div>
             <div className="bottomImgCover">
-              <img src={`/images/flag/${typeName}.jpg`} alt={`/images/flag/${typeName}.jpg`} />
+              <img
+                src={`/images/flag/${typeName}.jpg`}
+                alt=""
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = '/images/emptyImage.jpg';
+                }}
+              />
             </div>
         </div>
     </article>

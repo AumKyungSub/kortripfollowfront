@@ -17,6 +17,10 @@ export const useReadOneDB = (collection, id) => {
         restaurant: "restaurants",
         lodging: "lodgings",
         food: "foods",
+        market: "markets",
+        park: "parks",
+        ocean: "oceans",
+        drive: "drives",
         collection: "collections",
         ranking: "rankings",
         season: "seasons"

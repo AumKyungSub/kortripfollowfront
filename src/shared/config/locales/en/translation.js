@@ -85,7 +85,11 @@ export default {
         CAFE: "Discover charming cafes and unique spaces that make every journey even more memorable.",
         RESTAURANT: "Enjoy local flavors and discover restaurants loved by travelers and locals alike.",
         LODGING: "Find comfortable accommodations for a relaxing and memorable stay in Korea.",
-        FOOD: "Taste Korea through regional specialties, local street food, and traditional treats."
+        FOOD: "Taste Korea through regional specialties, local street food, and traditional treats.",
+        MARKET: "Discover traditional and local markets filled with regional flavors and everyday life.",
+        PARK: "Relax in parks where city life and nature come together.",
+        OCEAN: "Explore beautiful beaches with blue seas and scenic coastlines.",
+        DRIVE: "Enjoy scenic drives through Korea's changing seasons and landscapes."
       }
     }
   },
@@ -165,7 +169,11 @@ export default {
       cafe: 'Cafe', 
       restaurant: 'Restaurant', 
       lodging: 'Lodging', 
-      food: 'Food' 
+      food: 'Food',
+      market: 'Market',
+      park: 'Park',
+      ocean: 'Beach',
+      drive: 'Scenic Drive'
     },
     close: 'Close search', clear: 'Clear search', search: 'Search destinations',
   },
@@ -238,7 +246,15 @@ export default {
       lodgingP: "Recharge for an enjoyable journey",
       lodgingName: "Lodging",
       foodP: "Sometimes more important than a meal",
-      foodName: "Food"
+      foodName: "Food",
+      marketP: "Meet the heart of local life",
+      marketName: "Market",
+      parkP: "Take a break in nature",
+      parkName: "Park",
+      oceanP: "Travel beside the blue sea",
+      oceanName: "Beach",
+      driveP: "Follow the scenic road",
+      driveName: "Scenic Drive"
     }
   },
   common: {
@@ -471,6 +487,30 @@ export default {
       leftText: "CheonanWalnutCakes",
       rightTitle: "Signature Menu",
       rightText: "Amber butter"
+    },
+    market: {
+      title: "The warmth of local markets",
+      text: "Discover the flavors, stories, and everyday life of each region in Korea's traditional and local markets.",
+      leftTitle: "Recommended", leftText: "Local Market",
+      rightTitle: "Best For", rightText: "Local Flavors"
+    },
+    park: {
+      title: "A restful pause in nature",
+      text: "Enjoy green spaces, walking paths, and peaceful scenery in parks across Korea.",
+      leftTitle: "Recommended", leftText: "City Park",
+      rightTitle: "Best For", rightText: "A Walk"
+    },
+    ocean: {
+      title: "Where the journey meets the sea",
+      text: "Meet Korea's beautiful beaches, from calm stretches of sand to dramatic coastal scenery.",
+      leftTitle: "Recommended", leftText: "Korean Beach",
+      rightTitle: "Best Season", rightText: "Summer"
+    },
+    drive: {
+      title: "Follow the road into the scenery",
+      text: "Discover scenic drives that reveal Korea's mountains, coasts, and changing seasons along the way.",
+      leftTitle: "Recommended", leftText: "Scenic Route",
+      rightTitle: "Best For", rightText: "Road Trip"
     }
   },
   collection: {

@@ -32,7 +32,7 @@ const HomeThemeComponent = ({homeThemeP, homeThemePSnd, img, themeCode}) => {
         <div 
             className="homeThemeCover" 
             onClick={goToTheme} 
-            style={{backgroundImage: `url(images/theme/${img}.jpg)`}}
+            style={{backgroundImage: `url(/images/theme/${img}.jpg), url(/images/emptyImage.jpg)`}}
         >
             {!isFullMobile ?
             <div className='homeThemeTextCover'>
