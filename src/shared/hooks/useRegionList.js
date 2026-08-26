@@ -1,45 +1,47 @@
 import { useMemo, useCallback } from "react";
 import { useLanguage } from "@/shared/hooks/useLanguage";
 
+const REGION_MAP = {
+  ALL: {
+    ko: "대한민국",
+    en: "Republic of Korea"
+  },
+  SEOUL: {
+    ko: "서울",
+    en: "Seoul"
+  },
+  GGICN: {
+    ko: "경기도 / 인천",
+    en: "Gyeonggi / Incheon"
+  },
+  GANGWON: {
+    ko: "강원특별자치도",
+    en: "Gangwon"
+  },
+  CCDAEJEON: {
+    ko: "충청도",
+    en: "Chungcheong"
+  },
+  GSBUSANDAEGUULSAN: {
+    ko: "경상도",
+    en: "Gyeongsang",
+  },
+  JRGWANGJU: {
+    ko: "전라도",
+    en: "Jeolla"
+  },
+  JEJU: {
+    ko: "제주도",
+    en: "Jeju Island"
+  },
+};
+
 export const useRegionList = ({ data = []}) => {
   
-  const { lang, isEn } = useLanguage();
+  const { isEn } = useLanguage();
   const currentLang = isEn ? "en" : "ko";
 
-    const regionMap = {
-        ALL: { 
-            ko: "대한민국", 
-            en: "Republic of Korea" 
-        },
-        SEOUL: { 
-            ko: "서울", 
-            en: "Seoul" 
-        },
-        GGICN: { 
-            ko: "경기도 / 인천", 
-            en: "Gyeonggi / Incheon" 
-        },
-        GANGWON: { 
-            ko: "강원특별자치도", 
-            en: "Gangwon" 
-        },
-        CCDAEJEON: { 
-            ko: "충청도", 
-            en: "Chungcheong" 
-        },
-        GSBUSANDAEGUULSAN: {
-            ko: "경상도",
-            en: "Gyeongsang",
-        },
-        JRGWANGJU: { 
-            ko: "전라도", 
-            en: "Jeolla" 
-        },
-        JEJU: { 
-            ko: "제주도", 
-            en: "Jeju Island" 
-        },
-    };
+  const regionMap = REGION_MAP;
 
   /* ---------------- 지역 옵션 (UI용) ---------------- */
   const regionOptions = useMemo(
@@ -55,7 +57,7 @@ export const useRegionList = ({ data = []}) => {
   /* ---------------- 지역별 카운트 ---------------- */
   const regionCounts = useMemo(() => {
     return data.reduce((acc, item) => {
-      const code = item?.location?.region?.code;
+      const code = item?.location?.region?.code || item?.regionCode;
       if (!code) return acc;
       acc[code] = (acc[code] || 0) + 1;
       return acc;
@@ -67,7 +69,7 @@ export const useRegionList = ({ data = []}) => {
     (code) => {
       if (code === "ALL") return data;
       return data.filter(
-        (item) => item?.location?.region?.code === code
+        (item) => (item?.location?.region?.code || item?.regionCode) === code
       );
     },
     [data]

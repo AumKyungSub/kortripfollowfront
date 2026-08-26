@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 
 /*------------------------API hooks-----------------------------------*/
 // Read DB
@@ -30,6 +30,7 @@ import Header from '@/widgets/header/Header';
 import ListBanner from '@/widgets/listBanner/ListBanner';
 import ListCategory from '@/widgets/listCategory/ListCategory';
 import ListCount from '@/widgets/listCount/ListCount';
+import ThemeRegionFilter from '@/widgets/themeRegionFilter/ThemeRegionFilter';
 import List from '@/widgets/list/List';
 import EmptyState from '@/widgets/emptyState/EmptyState';
 import Bottom from '@/widgets/bottom/Bottom';
@@ -40,13 +41,45 @@ import Pagination from '@/widgets/pagination/Pagination';
 
 import './ListPage.style.css'
 
+const DISTRICT_ALL = "__ALL_DISTRICTS__";
+const REGION_ALL = "__ALL_REGIONS__";
+
+const getDistrict = (item) => {
+  const koreanAddress = item?.address1 || item?.location?.address?.ko;
+  const koreanText = Array.isArray(koreanAddress)
+    ? koreanAddress.join(" ")
+    : koreanAddress || "";
+  const koreanTokens = koreanText
+    .replace(/[(),]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const koreanName =
+    koreanTokens.slice(1).find((token) => /(?:시|군|구)$/.test(token)) ||
+    koreanTokens.find((token) => /(?:시|군|구)$/.test(token));
+
+  if (!koreanName) return null;
+
+  const englishAddress = item?.addressEn || item?.location?.address?.en;
+  const englishText = Array.isArray(englishAddress)
+    ? englishAddress.join(", ")
+    : englishAddress || "";
+  const englishName = englishText.match(/[A-Za-z][A-Za-z'’.-]*-(?:si|gun|gu)\b/i)?.[0];
+
+  return {
+    code: koreanName,
+    ko: koreanName,
+    en: englishName || koreanName,
+  };
+};
+
 
 const ListPage = ({ mode }) => {
   // Transition Language
-  const { lang, t, isEn, isKo } = useLanguage();
+  const { lang, t, isEn } = useLanguage();
 
   // Device Size
-  const { isMobile, isFullMobile, isDesktop } = useResponsive();
+  const { isFullMobile } = useResponsive();
 
   // Get Navigate State
   const location = useLocation();
@@ -68,7 +101,7 @@ const ListPage = ({ mode }) => {
   });
 
   // 영문 s/es 한국어 이/가 구분
-  const getThemeNameWithParticle = (themeCode, text, lang) => {
+  const getThemeNameWithParticle = (text) => {
     if (isEn) {
       return `${text}s`;
     }  
@@ -93,6 +126,111 @@ const ListPage = ({ mode }) => {
   const initialSelected = navigateSelected || saved || defaultKey;
 
   const [selected, setSelected] = useState(initialSelected);
+  const [selectedDistrict, setSelectedDistrict] = useState(DISTRICT_ALL);
+  const [selectedThemeRegion, setSelectedThemeRegion] = useState(REGION_ALL);
+  const [selectedThemeDistrict, setSelectedThemeDistrict] = useState(DISTRICT_ALL);
+
+  const themeDataMap = useMemo(() => ({
+    CAFE: cafes,
+    RESTAURANT: restaurants,
+    LODGING: lodgings,
+    FOOD: foods,
+  }), [cafes, restaurants, lodgings, foods]);
+
+  const themeBaseList = useMemo(
+    () => isThemeMode ? (themeDataMap[selected] || []) : [],
+    [isThemeMode, themeDataMap, selected]
+  );
+
+  const themeRegionOptions = useMemo(() => {
+    if (!isThemeMode) return [];
+    const regionCodes = new Set(
+      themeBaseList
+        .filter((item) => item.visibility === true)
+        .map((item) => item?.location?.region?.code || item?.regionCode)
+        .filter(Boolean)
+    );
+
+    return [
+      { code: REGION_ALL, label: isEn ? "All" : "전체" },
+      ...Object.entries(regionMap)
+        .filter(([code]) => code !== "ALL" && regionCodes.has(code))
+        .map(([code, labels]) => ({
+          code,
+          label: labels?.[lang] || labels?.[isEn ? "en" : "ko"] || code,
+        })),
+    ];
+  }, [isThemeMode, themeBaseList, regionMap, lang, isEn]);
+
+  const themeRegionList = useMemo(() => {
+    if (selectedThemeRegion === REGION_ALL) return themeBaseList;
+    return themeBaseList.filter(
+      (item) => (item?.location?.region?.code || item?.regionCode) === selectedThemeRegion
+    );
+  }, [themeBaseList, selectedThemeRegion]);
+
+  const themeDistrictOptions = useMemo(() => {
+    if (!isThemeMode || selectedThemeRegion === REGION_ALL) return [];
+    const districts = new Map();
+    themeRegionList
+      .filter((item) => item.visibility === true)
+      .forEach((item) => {
+        const district = getDistrict(item);
+        if (district && !districts.has(district.code)) {
+          districts.set(district.code, district);
+        }
+      });
+
+    const collator = new Intl.Collator(isEn ? "en" : "ko", {
+      sensitivity: "base",
+      numeric: true,
+    });
+
+    return [
+      { code: DISTRICT_ALL, label: isEn ? "All" : "전체" },
+      ...Array.from(districts.values())
+        .sort((a, b) => collator.compare(a[isEn ? "en" : "ko"], b[isEn ? "en" : "ko"]))
+        .map((district) => ({
+          code: district.code,
+          label: district[isEn ? "en" : "ko"],
+        })),
+    ];
+  }, [isThemeMode, selectedThemeRegion, themeRegionList, isEn]);
+
+  const regionBaseList = useMemo(() => {
+    if (isThemeMode) return [];
+    return selected === "ALL" ? rankings : filterByRegion(selected);
+  }, [isThemeMode, selected, rankings, filterByRegion]);
+
+  const districtOptions = useMemo(() => {
+    if (isThemeMode || selected === "ALL") return [];
+
+    const districts = new Map();
+    regionBaseList
+      .filter((item) => item.visibility === true)
+      .forEach((item) => {
+        const district = getDistrict(item);
+        if (district && !districts.has(district.code)) {
+          districts.set(district.code, district);
+        }
+      });
+
+    const collator = new Intl.Collator(isEn ? 'en' : 'ko', {
+      sensitivity: 'base',
+      numeric: true,
+    });
+    const options = Array.from(districts.values())
+      .sort((a, b) => collator.compare(a[isEn ? 'en' : 'ko'], b[isEn ? 'en' : 'ko']))
+      .map((district) => ({
+        code: district.code,
+        label: district[isEn ? 'en' : 'ko'],
+      }));
+
+    return [
+      { code: DISTRICT_ALL, label: isEn ? "All" : "전체" },
+      ...options,
+    ];
+  }, [isThemeMode, selected, regionBaseList, isEn]);
 
 
   // 필터링 
@@ -109,21 +247,21 @@ const ListPage = ({ mode }) => {
     };
 
     if (isThemeMode) {
-      const themeDataMap = {
-        CAFE: cafes,
-        RESTAURANT: restaurants,
-        LODGING: lodgings,
-        FOOD: foods,
-      };
-      return (themeDataMap[selected] || [])
+      const themeFiltered = selectedThemeDistrict === DISTRICT_ALL
+        ? themeRegionList
+        : themeRegionList.filter(
+          (item) => getDistrict(item)?.code === selectedThemeDistrict
+        );
+      return themeFiltered
         .filter(item => item.visibility === true)
         .sort(sortByVisitPriority);
     }
 
-    const regionFiltered =
-      selected === "ALL"
-        ? rankings
-        : filterByRegion(selected);
+    const regionFiltered = selectedDistrict === DISTRICT_ALL
+      ? regionBaseList
+      : regionBaseList.filter(
+        (item) => getDistrict(item)?.code === selectedDistrict
+      );
 
     return regionFiltered
       .filter(item => item.visibility === true)
@@ -131,13 +269,10 @@ const ListPage = ({ mode }) => {
 
   }, [
     isThemeMode,
-    selected,
-    cafes,
-    restaurants,
-    lodgings,
-    foods,
-    rankings,
-    filterByRegion,
+    themeRegionList,
+    selectedThemeDistrict,
+    regionBaseList,
+    selectedDistrict,
   ]);
 
   // 페이지네이션
@@ -149,7 +284,11 @@ const ListPage = ({ mode }) => {
     totalPages,
     pagedList,
     handlePageChange,
-  } = usePagination(filteredList, ITEMS_PER_PAGE, selected);
+  } = usePagination(
+    filteredList,
+    ITEMS_PER_PAGE,
+    `${selected}:${selectedDistrict}:${selectedThemeRegion}:${selectedThemeDistrict}`
+  );
 
 
   // Bottom Type 결정 
@@ -165,6 +304,40 @@ const ListPage = ({ mode }) => {
     // selected가 정상일 경우에만 저장
     sessionStorage.setItem(`filter-${mode}`, selected);
   }, [selected, map, mode, defaultKey]);
+
+  useEffect(() => {
+    setSelectedDistrict(DISTRICT_ALL);
+    setSelectedThemeRegion(REGION_ALL);
+    setSelectedThemeDistrict(DISTRICT_ALL);
+  }, [selected, mode]);
+
+  useEffect(() => {
+    if (
+      selectedDistrict !== DISTRICT_ALL &&
+      !districtOptions.some((option) => option.code === selectedDistrict)
+    ) {
+      setSelectedDistrict(DISTRICT_ALL);
+    }
+  }, [districtOptions, selectedDistrict]);
+
+  useEffect(() => {
+    if (
+      selectedThemeRegion !== REGION_ALL &&
+      !themeRegionOptions.some((option) => option.code === selectedThemeRegion)
+    ) {
+      setSelectedThemeRegion(REGION_ALL);
+      setSelectedThemeDistrict(DISTRICT_ALL);
+    }
+  }, [themeRegionOptions, selectedThemeRegion]);
+
+  useEffect(() => {
+    if (
+      selectedThemeDistrict !== DISTRICT_ALL &&
+      !themeDistrictOptions.some((option) => option.code === selectedThemeDistrict)
+    ) {
+      setSelectedThemeDistrict(DISTRICT_ALL);
+    }
+  }, [themeDistrictOptions, selectedThemeDistrict]);
 
   // region -> theme 이동 시 state 초기화
   useEffect(() => {
@@ -191,7 +364,7 @@ const ListPage = ({ mode }) => {
     isThemeMode
       ? t("theme.totalCount", {
         count: filteredList.length,
-        themeName: getThemeNameWithParticle(selected, selectedText, lang),
+        themeName: getThemeNameWithParticle(selectedText),
       })
       : t("regionPage.totalCount", { count: filteredList.length });
 
@@ -221,13 +394,43 @@ const ListPage = ({ mode }) => {
         isFullMobile={isFullMobile}
       />
 
+      {!isThemeMode && selected !== "ALL" && districtOptions.length > 1 && (
+        <ListCategory
+          options={districtOptions}
+          selected={selectedDistrict}
+          setSelected={setSelectedDistrict}
+          isFullMobile={isFullMobile}
+          isSecondary
+        />
+      )}
+
       {filteredList.length > 0 ? (
         <>
           <ListCount 
             preTitle = {preTitle}
             title = {title}
             countText = {countText}
-          />
+          >
+            {isThemeMode && (
+              <ThemeRegionFilter
+                regionOptions={themeRegionOptions}
+                districtOptions={themeDistrictOptions}
+                selectedRegion={selectedThemeRegion}
+                selectedDistrict={selectedThemeDistrict}
+                onRegionChange={(regionCode) => {
+                  setSelectedThemeRegion(regionCode);
+                  setSelectedThemeDistrict(DISTRICT_ALL);
+                }}
+                onDistrictChange={setSelectedThemeDistrict}
+                onReset={() => {
+                  setSelectedThemeRegion(REGION_ALL);
+                  setSelectedThemeDistrict(DISTRICT_ALL);
+                }}
+                resultCount={filteredList.length}
+                isEn={isEn}
+              />
+            )}
+          </ListCount>
           <List
             filteredList={pagedList}
             link={isThemeMode ? "theme" : "location"}

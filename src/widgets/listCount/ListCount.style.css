@@ -1,35 +1,44 @@
 .listTitleCover {
-    max-width: 1236px;
-    margin: 0 auto;
-    padding: 40px 16px 0;
-    /* Flex */
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+  max-width: 1236px;
+  margin: 0 auto;
+  padding: 40px 16px 0;
+  /* Flex */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .listTitleCover h3 {
-    /* Font */
-    font-weight: 700;
+  /* Font */
+  font-weight: 700;
 }
 
 .listTitleCover p {
-    font-weight: 600;
+  font-weight: 600;
+}
+
+.listCountMeta {
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (max-width: 479px) {
-}
 
 @media only all and (min-width: 768px) {
+  .listCountMeta {
+    align-items: flex-end;
+  }
 }
 
 @media only all and (min-width: 1024px) {
 }
 
 @media only all and (min-width: 1921px) {
-    .listTitleCover {
-        max-width: 1440px;
-    }
+  .listTitleCover {
+    max-width: 1440px;
+  }
 }

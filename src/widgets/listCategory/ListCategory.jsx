@@ -1,38 +1,46 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 
-import { useStickyCategory } from '@/shared/hooks/useStickyCategory';
+import "./ListCategory.style.css";
 
-import './ListCategory.style.css'
-
-const ListCategory = ({ options, selected, setSelected, isFullMobile }) => {
+const ListCategory = ({
+  options,
+  selected,
+  setSelected,
+  isFullMobile,
+  isSecondary = false,
+}) => {
   const categoryRef = useRef(null);
 
   return (
     <>
-      <div ref={categoryRef} className='listCategoryCover'>
-        <ul className="ListCategoryUl">
+      <div
+        ref={categoryRef}
+        className={`listCategoryCover ${isSecondary ? "listCategoryCover--secondary" : ""}`}
+      >
+        <ul
+          className={`ListCategoryUl ${isSecondary ? "ListCategoryUl--secondary" : ""}`}
+        >
           {options.map((item) => (
             <li
               key={item.code}
-              className={`ListCategoryLi ${selected === item.code ? 'active' : ''
-                }`}
+              className={`ListCategoryLi ${isSecondary ? "ListCategoryLi--secondary" : ""} ${
+                selected === item.code ? "active" : ""
+              }`}
               onClick={() => setSelected(item.code)}
               style={
-                !isFullMobile
+                !isFullMobile && !isSecondary
                   ? { width: `${100 / options.length}%` }
                   : undefined
               }
             >
-              <p>
-                {item.label}
-              </p>
+              <p>{item.label}</p>
             </li>
           ))}
         </ul>
       </div>
       <div className="emptyLine1px"></div>
     </>
-  )
-}
+  );
+};
 
-export default ListCategory
+export default ListCategory;
