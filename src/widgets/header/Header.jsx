@@ -19,12 +19,15 @@ import LoginPage from "@/widgets/modalPage/loginPage/LoginPage";
 // Page css
 import "./Header.style.css";
 
+const AUTH_REDIRECT_KEY = "kortripAuthRedirect";
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authRedirectPath, setAuthRedirectPath] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const languageMenuRef = useRef(null);
@@ -115,20 +118,57 @@ const Header = () => {
       label: t("menu.collection"),
       icon: "collectionIcon",
     },
-    ...(authUser
-      ? [
-          {
-            key: "myTravel",
-            path: "/myTravel",
-            startsWith: "/itineraries/",
-            label: t("menu.myTrip"),
-            icon: "travel",
-          },
-        ]
-      : []),
+    {
+      key: "myTravel",
+      path: "/myTravel",
+      startsWith: "/itineraries/",
+      label: t("menu.myTrip"),
+      icon: "travel",
+    },
     { key: "about", path: "/about", label: t("menu.about"), icon: "infoIcon" },
   ];
   // ----------------------------------------------
+
+  const openAuthModal = (redirectPath = null) => {
+    setAuthRedirectPath(redirectPath);
+    if (redirectPath) {
+      sessionStorage.setItem(AUTH_REDIRECT_KEY, redirectPath);
+    } else {
+      sessionStorage.removeItem(AUTH_REDIRECT_KEY);
+    }
+    setIsAuthModalOpen(true);
+  };
+
+  const handleMyTravelClick = () => {
+    if (authUser) {
+      navigate("/myTravel");
+      return;
+    }
+    openAuthModal("/myTravel");
+  };
+
+  const handleGnbClick = (key, path) =>
+    key === "myTravel" ? handleMyTravelClick : goTo(path);
+
+  useEffect(() => {
+    const handleAuthRequest = (event) => {
+      const redirectPath = event.detail?.redirectPath;
+      if (redirectPath !== "/myTravel") return;
+
+      if (authUser) {
+        navigate(redirectPath);
+        return;
+      }
+
+      setAuthRedirectPath(redirectPath);
+      sessionStorage.setItem(AUTH_REDIRECT_KEY, redirectPath);
+      setIsAuthModalOpen(true);
+    };
+
+    window.addEventListener("kortrip:open-auth", handleAuthRequest);
+    return () =>
+      window.removeEventListener("kortrip:open-auth", handleAuthRequest);
+  }, [authUser, navigate]);
 
   // 스크롤 이벤트 감지
   useEffect(() => {
@@ -192,7 +232,14 @@ const Header = () => {
         });
         if (!response.ok) throw new Error("Unable to load session");
         const data = await response.json();
-        if (isMounted) setAuthUser(data.authenticated ? data.user : null);
+        if (isMounted) {
+          setAuthUser(data.authenticated ? data.user : null);
+          const redirectPath = sessionStorage.getItem(AUTH_REDIRECT_KEY);
+          if (data.authenticated && redirectPath) {
+            sessionStorage.removeItem(AUTH_REDIRECT_KEY);
+            navigate(redirectPath, { replace: true });
+          }
+        }
       } catch {
         if (isMounted) setAuthUser(null);
       } finally {
@@ -216,7 +263,7 @@ const Header = () => {
     return () => {
       isMounted = false;
     };
-  }, [apiUrl]);
+  }, [apiUrl, navigate]);
 
   const selectLanguage = (language) => {
     changeLanguage(language);
@@ -240,7 +287,7 @@ const Header = () => {
                     ${showDarkHeader ? "gnbListSc" : "gnbList"}
                     ${isActive(path, startsWith) ? "active" : ""}
                   `}
-                  onClick={goTo(path)}
+                  onClick={handleGnbClick(key, path)}
                 >
                   {label}
                 </li>
@@ -275,7 +322,7 @@ const Header = () => {
               <button
                 type="button"
                 className={`desktopProfileBtn ${showDarkHeader ? "dark" : ""} ${authUser ? "authenticated" : ""}`}
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => openAuthModal()}
                 aria-label={authUser ? authUser.displayName : t("header.login")}
               >
                 <svg
@@ -377,7 +424,7 @@ const Header = () => {
               <button
                 type="button"
                 className={`profileBtn ${showDarkHeader ? "dark" : ""} ${authUser ? "authenticated" : ""}`}
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => openAuthModal()}
                 aria-label={authUser ? authUser.displayName : t("header.login")}
               >
                 <svg
@@ -430,7 +477,7 @@ const Header = () => {
                   ${showDarkHeader ? "gnbListSc" : "gnbList"}
                   ${isActive(path, startsWith) ? "active" : ""}
                 `}
-                onClick={goTo(path)}
+                onClick={handleGnbClick(key, path)}
               >
                 {label}
               </li>
@@ -446,6 +493,11 @@ const Header = () => {
           onClose={() => setIsAuthModalOpen(false)}
           onAuthUserChange={(user) => {
             setAuthUser(user);
+            if (user && authRedirectPath) {
+              sessionStorage.removeItem(AUTH_REDIRECT_KEY);
+              navigate(authRedirectPath);
+              setAuthRedirectPath(null);
+            }
             if (!user) setIsMenuOpen(false);
           }}
         />
@@ -524,7 +576,7 @@ const Header = () => {
                   className={isActive(path, startsWith) ? "active" : ""}
                   onClick={() => {
                     setIsMenuOpen(false);
-                    goTo(path)();
+                    handleGnbClick(key, path)();
                   }}
                 >
                   <div className="menuItemLeft">

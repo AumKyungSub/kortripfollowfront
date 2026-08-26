@@ -2,7 +2,7 @@
 header {
   width: 100%;
   background: transparent;
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
   /* Position */
   position: fixed;
   top: 0;
@@ -62,13 +62,13 @@ header.scrolled {
 .googleLoginBtn {
   height: 35px;
   padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, .65);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 8px;
-  background: rgba(0, 0, 0, .12);
+  background: rgba(0, 0, 0, 0.12);
   color: #fafaf8;
   cursor: pointer;
   font: inherit;
-  font-size: .86rem;
+  font-size: 0.86rem;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -88,7 +88,7 @@ header.scrolled {
 .desktopAuth {
   height: 35px;
   padding-left: 10px;
-  border: 1px solid rgba(255, 255, 255, .65);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 8px;
   color: #fafaf8;
   display: flex;
@@ -106,7 +106,7 @@ header.scrolled {
 .desktopAuthName {
   max-width: 90px;
   overflow: hidden;
-  font-size: .84rem;
+  font-size: 0.84rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -115,12 +115,12 @@ header.scrolled {
   align-self: stretch;
   padding: 0 10px;
   border: 0;
-  border-left: 1px solid rgba(160, 160, 160, .35);
+  border-left: 1px solid rgba(160, 160, 160, 0.35);
   background: transparent;
   color: inherit;
   cursor: pointer;
   font: inherit;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .languageBtn {
@@ -172,14 +172,14 @@ header.scrolled {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, .65);
-  background: rgba(0, 0, 0, .12);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
 
 .mobileUtility > .profileBtn {
-  border: 1px solid rgba(255, 255, 255, .65);
-  background: rgba(0, 0, 0, .12);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .mobileUtility > .profileBtn.dark {
@@ -288,7 +288,7 @@ header.scrolled {
   overflow: hidden;
   color: #a0a4b0;
   font: inherit;
-  font-size: .9rem;
+  font-size: 0.9rem;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -438,7 +438,8 @@ header.scrolled {
 
 /* ---------------------------------------------------- */
 /* 반응형 디자인 media query */
-@media only all and (min-width: 480px) {}
+@media only all and (min-width: 480px) {
+}
 
 @media only all and (min-width: 768px) {
   header {
@@ -484,9 +485,9 @@ header.scrolled {
     position: relative;
     width: 34px;
     height: 34px;
-    border: 1px solid rgba(255, 255, 255, .65);
+    border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 50%;
-    background: rgba(0, 0, 0, .12);
+    background: rgba(0, 0, 0, 0.12);
     color: #fafaf8;
     cursor: pointer;
     /* Flex */
@@ -503,7 +504,7 @@ header.scrolled {
 
   .desktopLanguage {
     width: 92px;
-    height: 35px;  
+    height: 35px;
     /* Font */
     color: #fafaf8;
     /* Position */
@@ -520,18 +521,20 @@ header.scrolled {
     padding: 0 2px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgba(0, 0, 0, .12);
+    background: rgba(0, 0, 0, 0.12);
     cursor: pointer;
     /* Font */
     font: inherit;
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 500;
     color: inherit;
     /* Flex */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background-color .2s ease, border-color .2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .desktopLanguage.dark .desktopLanguageTrigger {
@@ -540,7 +543,7 @@ header.scrolled {
   }
 
   .desktopLanguageTrigger:hover {
-    background: rgba(255, 255, 255, .14);
+    background: rgba(255, 255, 255, 0.14);
   }
 
   .desktopLanguage.dark .desktopLanguageTrigger:hover {
@@ -548,7 +551,7 @@ header.scrolled {
   }
 
   .desktopLanguageTrigger svg {
-    transition: transform .2s ease;
+    transition: transform 0.2s ease;
   }
 
   .desktopLanguageTrigger svg.open {
@@ -564,11 +567,14 @@ header.scrolled {
     border: 1px solid #e6e1db;
     border-radius: 9px;
     background: #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .16);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
     visibility: hidden;
     opacity: 0;
     transform: translateY(-5px);
-    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0.18s ease;
   }
 
   .desktopLanguageMenu.open {
@@ -608,7 +614,7 @@ header.scrolled {
     align-items: center;
     justify-content: flex-start;
   }
-  
+
   .gnbContainer {
     height: 100%;
     /* Flex */
@@ -626,7 +632,7 @@ header.scrolled {
     /* Position */
     position: relative;
   }
-  
+
   .gnbListSc {
     cursor: pointer;
     margin: 0 10px;
@@ -687,5 +693,5 @@ header.scrolled {
   }
 }
 
-@media only all and (min-width: 1921px) {}
-
+@media only all and (min-width: 1921px) {
+}
