@@ -239,6 +239,33 @@
   transform: rotate(180deg);
 }
 
+@media only all and (max-width: 767px) {
+  .externalPlaceMainColumn,
+  .externalPlaceSideColumn {
+    display: contents;
+  }
+
+  .externalPlaceAbout {
+    order: 1;
+  }
+
+  .externalPlaceSideColumn .detailMapWrapper {
+    order: 2;
+  }
+
+  .externalPlaceLinksMobile {
+    order: 3;
+  }
+
+  .externalPlaceMainColumn .detailVideoFeature {
+    order: 4;
+  }
+
+  .externalPlaceSideColumn .detailReviewWrapper {
+    order: 5;
+  }
+}
+
 @media only all and (min-width: 480px) {
   .externalPlacePage {
     padding-right: 24px;
