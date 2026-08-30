@@ -425,6 +425,7 @@ export default {
     theme: "테마별 추천",
     collection: "컬렉션",
     about: "소개",
+    routeData: "드라이브 경로 데이터",
     terms: "이용약관",
     privacy: "개인정보처리방침"
   },

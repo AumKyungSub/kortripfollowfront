@@ -163,6 +163,12 @@ const Footer = () => {
       <div className="footerCopyrightTextCover contentWidthException">
         <div>
           <p className="warnings subFont">{t("footer.warning")}</p>
+          <p className="footerMapAttribution subFont">
+            {t("footer.routeData")} ©{" "}
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+              OpenStreetMap contributors
+            </a>
+          </p>
         </div>
         <p className="footerCopyRight subFont">
           COPYRIGHT&copy; 2025 By Aum Kyung Sub. All RIGHT's RESERVED

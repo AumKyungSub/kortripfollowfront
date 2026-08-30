@@ -11,6 +11,7 @@ import { useLanguage } from '@/shared/hooks/useLanguage';
 import ShareBtn from '@/widgets/shareBtn/ShareBtn';
 import FavoriteButton from '@/features/favoriteButton/FavoriteButton';
 import PlaceRating from '@/features/placeRating/PlaceRating';
+import { createMapDirectionsLink } from '@/shared/lib/mapDirections';
 
 // Page css
 import './DetailBanner.style.css'
@@ -58,23 +59,7 @@ const DetailBanner = ({
 
     if (!latLng) return null
 
-    const [lat, lng] = latLng.split(',').map(Number) 
-
-    /*
-        각 언어별 지도 주소
-    */
-    const englishName = data?.location?.name?.en;
-    const englishAddress =
-        data?.location?.address?.en?.[1] ??
-        data?.location?.address?.en?.[0];
-    const googleMapQuery = [englishName, englishAddress]
-        .filter(Boolean)
-        .join(', ');
-    const mapLinkByLanguage = {
-        ko:`https://map.kakao.com/link/to/${encodeURIComponent(name || '목적지')},${lat},${lng}`,
-        en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
-    }  
-    const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;
+    const mapLink = createMapDirectionsLink(data, lang);
         
     return (
         <section

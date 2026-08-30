@@ -3,20 +3,18 @@ import React from 'react'
 /*------------------------/hooks-----------------------------------*/
 
 /*------------------------custom hooks-----------------------------------*/
-// Device Size
-import { useResponsive } from '@/shared/hooks/useResponsive'
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 /*------------------------/custom hooks-----------------------------------*/
 
 // Kakao Map API Import
-import { Map, MapMarker, CustomOverlayMap, useKakaoLoader } from 'react-kakao-maps-sdk';
+import { Map, MapMarker, CustomOverlayMap, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
+import { createMapDirectionsLink, hasDriveDirections } from '@/shared/lib/mapDirections';
 
 // Page css
 import './DetailMap.style.css'
 
 const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
-    const {isFullMobile} = useResponsive();
     const { lang, t } = useLanguage()
     useKakaoLoader()
 
@@ -25,6 +23,8 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
     const parkingLatLng = data?.parking?.latLng;    
     const parkingLevel = data?.parking?.level;
     const name = data.location?.name?.[lang];    
+    const driveRoute = data?.driveRoute;
+    const isDriveRoute = hasDriveDirections(data);
     /*-------------*/
 
     if (!latLng) return null
@@ -37,7 +37,20 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
         ? parkingLatLng.split(',').map(Number)
         : []
 
-    const markerPositions = [
+    const driveMarkerPositions = isDriveRoute ? [
+        {
+            title: driveRoute.start?.name?.[lang] || driveRoute.start?.name?.ko || name,
+            lat: Number(driveRoute.start.latitude),
+            lng: Number(driveRoute.start.longitude)
+        },
+        {
+            title: driveRoute.destination?.name?.[lang] || driveRoute.destination?.name?.ko || t("detailPage.common.map.destination", { defaultValue: "도착지" }),
+            lat: Number(driveRoute.destination.latitude),
+            lng: Number(driveRoute.destination.longitude)
+        }
+    ] : [];
+
+    const markerPositions = isDriveRoute ? driveMarkerPositions : [
         { title: name, lat, lng },
         ...(hasParking
             ? [{
@@ -48,37 +61,36 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
             : [])
     ]
 
-    const center = hasParking
+    const drivePath = isDriveRoute
+        ? (driveRoute.routePath || [])
+            .map(point => ({ lat: Number(point.latitude), lng: Number(point.longitude) }))
+            .filter(point => Number.isFinite(point.lat) && Number.isFinite(point.lng))
+        : [];
+
+    const routeBoundsPoints = drivePath.length ? drivePath : driveMarkerPositions;
+    const center = isDriveRoute && routeBoundsPoints.length
+        ? {
+            lat: routeBoundsPoints.reduce((sum, point) => sum + point.lat, 0) / routeBoundsPoints.length,
+            lng: routeBoundsPoints.reduce((sum, point) => sum + point.lng, 0) / routeBoundsPoints.length
+        }
+        : hasParking
         ? { lat: (lat + latP) / 2, lng: (lng + lngP) / 2 }
         : { lat, lng }
 
     /*
         각 언어별 지도 주소
     */
-    const englishName = data?.location?.name?.en;
-    const englishAddress =
-        data?.location?.address?.en?.[1] ??
-        data?.location?.address?.en?.[0];
-    const googleMapQuery = [englishName, englishAddress]
-        .filter(Boolean)
-        .join(', ');
     const englishParkingAddress = data?.parking?.address?.en;
-    const googleParkingDestination = englishParkingAddress || `${latP},${lngP}`;
-    const kakaoDestinationName = encodeURIComponent(name || '목적지');
     const kakaoParkingName = encodeURIComponent(
         `${name || '목적지'} ${t("locationPage.parking.parkingArea")}`
     );
-    const mapLinkByLanguage = {
-        ko:`https://map.kakao.com/link/to/${kakaoDestinationName},${lat},${lng}`,
-        en: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(googleMapQuery)}`
-    }  
-    const mapLink = mapLinkByLanguage[lang] ?? mapLinkByLanguage.ko;
+    const mapLink = createMapDirectionsLink(data, lang);
     const parkingLinkByLanguage = {
         ko: hasParking
                 ? `https://map.kakao.com/link/to/${kakaoParkingName},${latP},${lngP}`
                 : null,
         en: hasParking
-                ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(englishParkingAddress)}`
+                ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(englishParkingAddress || `${latP},${lngP}`)}`
                 : null
     }  
     const parkingLink = parkingLinkByLanguage[lang] ?? parkingLinkByLanguage.ko;
@@ -98,13 +110,26 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
                     id="map"
                     className={showParkingInfo ? "detailMapRectangle" : "detailMapSquare"}
                     center={center}
-                    level={parkingLevel || 3}
+                    level={isDriveRoute ? 8 : (parkingLevel || 3)}
+                    onCreate={map => {
+                        if (!isDriveRoute || routeBoundsPoints.length < 2 || !window.kakao?.maps) return;
+                        const bounds = new window.kakao.maps.LatLngBounds();
+                        routeBoundsPoints.forEach(point => bounds.extend(new window.kakao.maps.LatLng(point.lat, point.lng)));
+                        map.setBounds(bounds, 40, 40, 40, 40);
+                    }}
                 >
+                    {drivePath.length >= 2 && <Polyline
+                        path={drivePath}
+                        strokeWeight={5}
+                        strokeColor="#2f9f70"
+                        strokeOpacity={0.9}
+                        strokeStyle="solid"
+                    />}
                     {markerPositions.map((pos, i) => (
                         <React.Fragment key={i}>
                             <MapMarker position={{ lat: pos.lat, lng: pos.lng }} />
                     
-                            {showParkingInfo && (
+                            {(showParkingInfo || isDriveRoute) && (
                                 <CustomOverlayMap position={{ lat: pos.lat, lng: pos.lng }}>
                                     <div
                                         style={{
@@ -148,6 +173,12 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
                     )}
                 </div>
             </div>
+            {isDriveRoute && <p className="detailMapAttribution">
+                {lang === "en" ? "Route data" : "경로 데이터"} © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener noreferrer">ODbL</a><br />
+                {lang === "en"
+                    ? "The displayed route may differ from current road conditions and navigation guidance."
+                    : "표시된 경로는 실제 도로 상황 및 내비게이션 안내와 다를 수 있습니다."}
+            </p>}
 
         </section>
         </>

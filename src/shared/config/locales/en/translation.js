@@ -434,6 +434,7 @@ export default {
     theme: "Theme",
     collection: "Collection",
     about: "About",
+    routeData: "Drive route data",
     terms: "Terms",
     privacy: "Privacy Policy"
   },

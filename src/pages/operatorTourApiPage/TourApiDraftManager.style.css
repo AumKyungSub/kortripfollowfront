@@ -250,3 +250,113 @@
   cursor: pointer;
 }
 .tourDraftCreate:disabled { opacity: .5; cursor: default; }
+.tourDraftDriveFields {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid #bdd8cb;
+  border-radius: 14px;
+  background: #f5fbf8;
+}
+.tourDraftDriveFields legend {
+  padding: 0 7px;
+  color: #174e38;
+  font-size: 15px;
+  font-weight: 800;
+}
+.tourDraftDriveFields legend small,
+.tourDraftDriveFields label small {
+  color: #6b7d74;
+  font-size: 11px;
+  font-weight: 500;
+}
+.tourDraftDrivePoint {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #d8e8df;
+  border-radius: 12px;
+  background: #fff;
+}
+.tourDraftDrivePointHeading,
+.tourDraftDriveWaypointHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #173f31;
+}
+.tourDraftDrivePointHeading button,
+.tourDraftDriveWaypointHeading button {
+  padding: 7px 11px;
+  border: 1px solid #8ebca6;
+  border-radius: 9px;
+  background: #fff;
+  color: #216b4c;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tourDraftDriveWaypointHeading button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+.tourDraftDriveGoogle {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+.tourDraftDriveGoogle input {
+  width: auto !important;
+}
+.tourDraftRoutePath {
+  display: grid;
+  gap: 7px;
+}
+.tourDraftRoutePath textarea {
+  width: 100%;
+  resize: vertical;
+  font-family: Consolas, monospace;
+  line-height: 1.6;
+}
+.tourDraftGeoJsonImport {
+  display: grid;
+  gap: 10px;
+  padding: 15px;
+  border: 1px dashed #78ae94;
+  border-radius: 12px;
+  background: #eef8f3;
+}
+.tourDraftGeoJsonImport > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #173f31;
+}
+.tourDraftGeoJsonImport p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.tourDraftGeoJsonButton {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #216b4c;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+.tourDraftGeoJsonButton input {
+  position: absolute;
+  width: 1px !important;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

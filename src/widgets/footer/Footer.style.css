@@ -128,6 +128,23 @@ footer {
   font-weight: 500;
 }
 
+.footerMapAttribution {
+  width: auto;
+  margin-bottom: 10px;
+  color: #8b8984;
+  font-size: 12px;
+}
+
+.footerMapAttribution a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footerMapAttribution a:hover {
+  color: #fff;
+}
+
 .footerPolicyLinks {
   /* Flex */
   display: flex;
