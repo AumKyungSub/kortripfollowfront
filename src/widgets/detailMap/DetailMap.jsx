@@ -9,7 +9,7 @@ import { useLanguage } from '@/shared/hooks/useLanguage';
 
 // Kakao Map API Import
 import { Map, MapMarker, CustomOverlayMap, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
-import { createMapDirectionsLink, hasDriveDirections } from '@/shared/lib/mapDirections';
+import { createKakaoDriveDirectionsLink, createMapDirectionsLink, hasDriveDirections } from '@/shared/lib/mapDirections';
 
 // Page css
 import './DetailMap.style.css'
@@ -85,6 +85,8 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
         `${name || '목적지'} ${t("locationPage.parking.parkingArea")}`
     );
     const mapLink = createMapDirectionsLink(data, lang);
+    const showEnglishKakaoDirections = isDriveRoute && lang === "en";
+    const kakaoDriveLink = showEnglishKakaoDirections ? createKakaoDriveDirectionsLink(data) : "";
     const parkingLinkByLanguage = {
         ko: hasParking
                 ? `https://map.kakao.com/link/to/${kakaoParkingName},${latP},${lngP}`
@@ -160,6 +162,18 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
                         {t("detailPage.common.map.navigate")}
                     </a>
 
+                    {showEnglishKakaoDirections && (
+                        <a
+                            href={kakaoDriveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="detailMapBtnFull"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mouse-pointer2-icon lucide-mouse-pointer-2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>
+                            Kakao Map
+                        </a>
+                    )}
+
                     {hasParking && (
                         <a 
                             href={parkingLink} 
@@ -178,6 +192,7 @@ const DetailMap = ({data, showParkingInfo/*true = location detail*/}) => {
                 {lang === "en"
                     ? "The displayed route may differ from current road conditions and navigation guidance."
                     : "표시된 경로는 실제 도로 상황 및 내비게이션 안내와 다를 수 있습니다."}
+                {lang === "en" && <span className="detailMapKakaoRecommendation">For driving in Korea, we recommend checking the route on Kakao Map.</span>}
             </p>}
 
         </section>

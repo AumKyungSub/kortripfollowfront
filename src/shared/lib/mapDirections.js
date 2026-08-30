@@ -19,6 +19,17 @@ export const hasDriveDirections = data => {
     && validCoordinate(route?.destination?.longitude);
 };
 
+export const createKakaoDriveDirectionsLink = data => {
+  if (!hasDriveDirections(data)) return "";
+  const route = data.driveRoute;
+  const points = [
+    namedKakaoPoint(route.start, "드라이브 출발점"),
+    ...(route.waypoints || []).slice(0, 5).map((point, index) => namedKakaoPoint(point, `경유지 ${index + 1}`)),
+    namedKakaoPoint(route.destination, "드라이브 도착점"),
+  ];
+  return `https://map.kakao.com/link/by/car/${points.join("/")}`;
+};
+
 export const createMapDirectionsLink = (data, lang) => {
   if (hasDriveDirections(data)) {
     const route = data.driveRoute;
@@ -39,12 +50,7 @@ export const createMapDirectionsLink = (data, lang) => {
       return `https://www.google.com/maps/dir/?${params.toString()}`;
     }
 
-    const points = [
-      namedKakaoPoint(route.start, "드라이브 출발점"),
-      ...(route.waypoints || []).slice(0, 5).map((point, index) => namedKakaoPoint(point, `경유지 ${index + 1}`)),
-      namedKakaoPoint(route.destination, "드라이브 도착점"),
-    ];
-    return `https://map.kakao.com/link/by/car/${points.join("/")}`;
+    return createKakaoDriveDirectionsLink(data);
   }
 
   const latLng = data?.location?.latLng;
