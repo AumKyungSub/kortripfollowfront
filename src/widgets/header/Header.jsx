@@ -22,7 +22,7 @@ import "./Header.style.css";
 const AUTH_REDIRECT_KEY = "kortripAuthRedirect";
 const PLANNER_PATH = "/myTravel?tab=courses";
 
-const Header = () => {
+const Header = ({ activeMenuKey = "" }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -70,7 +70,8 @@ const Header = () => {
   const goTo = (path) => () => navigate(path);
 
   // 각페이지와 디테일 페이지 연결
-  const isActive = (path, startsWith) =>
+  const isActive = (key, path, startsWith) =>
+    activeMenuKey === key ||
     location.pathname === path ||
     (startsWith && location.pathname.startsWith(startsWith));
 
@@ -286,7 +287,7 @@ const Header = () => {
                   key={key}
                   className={`
                     ${showDarkHeader ? "gnbListSc" : "gnbList"}
-                    ${isActive(path, startsWith) ? "active" : ""}
+                    ${isActive(key, path, startsWith) ? "active" : ""}
                   `}
                   onClick={handleGnbClick(key, path)}
                 >
@@ -476,7 +477,7 @@ const Header = () => {
                 key={key}
                 className={`
                   ${showDarkHeader ? "gnbListSc" : "gnbList"}
-                  ${isActive(path, startsWith) ? "active" : ""}
+                  ${isActive(key, path, startsWith) ? "active" : ""}
                 `}
                 onClick={handleGnbClick(key, path)}
               >
@@ -574,7 +575,7 @@ const Header = () => {
               {gnbList.map(({ key, path, startsWith, label, icon }) => (
                 <li
                   key={key}
-                  className={isActive(path, startsWith) ? "active" : ""}
+                  className={isActive(key, path, startsWith) ? "active" : ""}
                   onClick={() => {
                     setIsMenuOpen(false);
                     handleGnbClick(key, path)();

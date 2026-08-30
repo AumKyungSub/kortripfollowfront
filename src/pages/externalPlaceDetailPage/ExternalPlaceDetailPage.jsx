@@ -15,6 +15,17 @@ import { useLanguage } from "@/shared/hooks/useLanguage";
 import { useResponsive } from "@/shared/hooks/useResponsive";
 import "./ExternalPlaceDetailPage.style.css";
 
+const THEME_PLACE_TYPES = new Set([
+  "cafe",
+  "restaurant",
+  "lodging",
+  "food",
+  "market",
+  "park",
+  "ocean",
+  "drive",
+]);
+
 const ExternalPlaceDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -84,6 +95,7 @@ const ExternalPlaceDetailPage = () => {
   const homepage = place.officialLinks?.homepage;
   const instagram = place.officialLinks?.instagram;
   const hasLinks = Boolean(homepage || instagram);
+  const activeMenuKey = THEME_PLACE_TYPES.has(place.placeType) ? "theme" : "region";
 
   const linkContent = (
     <div className="externalPlaceLinkIcons">
@@ -111,7 +123,7 @@ const ExternalPlaceDetailPage = () => {
 
   return (
     <>
-      <Header />
+      <Header activeMenuKey={activeMenuKey} />
       <main className="externalPlacePage">
         <div className="externalPlaceContent">
           <section className="externalPlaceHero">
