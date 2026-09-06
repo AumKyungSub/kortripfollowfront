@@ -340,3 +340,5 @@
         max-width: 1440px; 
     }
 }
+
+.homeReviewGoToBtn:disabled { opacity: .55; cursor: default; }

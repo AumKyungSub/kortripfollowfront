@@ -1,6 +1,7 @@
 import { readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url))
 const clientRoot = path.resolve(scriptDirectory, '..')
@@ -8,6 +9,8 @@ const detailLocationRoot = path.join(clientRoot, 'public', 'images', 'detailLoca
 const detailThemeRoot = path.join(clientRoot, 'public', 'images', 'detailTheme')
 const manifestPath = path.join(clientRoot, 'src', 'shared', 'data', 'gallery-manifest.json')
 const supportedExtensions = new Set(['.avif', '.jpeg', '.jpg', '.png', '.webp'])
+
+export async function generateGalleryManifest() {
 const manifest = {}
 
 const locationDirectories = await readdir(detailLocationRoot, {withFileTypes: true})
@@ -45,29 +48,38 @@ for (const locationDirectory of locationDirectories) {
     manifest[`/images/detailLocation/${locationDirectory.name}/gallery/`] = galleryImages
 }
 
-// Theme detail images are stored directly in each place directory instead of
-// a nested gallery directory. Expose them under the same virtual `gallery/`
-// key that DetailGallery derives from the place's main image URL.
+// Theme galleries use the same gallery-folder convention as location pages.
+// Legacy numbered images in the place root remain supported until each place
+// is migrated to its own gallery folder.
 const themeDirectories = await readdir(detailThemeRoot, {withFileTypes: true})
 
 for (const themeDirectory of themeDirectories) {
     if (!themeDirectory.isDirectory()) continue
 
-    const themeEntries = await readdir(
-        path.join(detailThemeRoot, themeDirectory.name),
-        {withFileTypes: true},
-    )
+    const placeDirectory = path.join(detailThemeRoot, themeDirectory.name)
+    const galleryDirectory = path.join(placeDirectory, 'gallery')
+    let galleryEntries
+    let usesGalleryDirectory = true
+
+    try {
+        galleryEntries = await readdir(galleryDirectory, {withFileTypes: true})
+    } catch (error) {
+        if (error.code !== 'ENOENT') throw error
+        usesGalleryDirectory = false
+        galleryEntries = await readdir(placeDirectory, {withFileTypes: true})
+    }
+
     const escapedDirectoryName = themeDirectory.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const galleryFilePattern = new RegExp(`^${escapedDirectoryName}(\\d+)\\.[^.]+$`, 'i')
-
-    const galleryImages = themeEntries
-        .filter((entry) => {
-            if (!entry.isFile()) return false
-            if (!supportedExtensions.has(path.extname(entry.name).toLowerCase())) return false
-
-            const match = entry.name.match(galleryFilePattern)
-            return match && Number(match[1]) >= 5
-        })
+    const legacyGalleryFilePattern = new RegExp(`^${escapedDirectoryName}(\\d+)\\.[^.]+$`, 'i')
+    const galleryImages = galleryEntries
+        .filter((entry) => (
+            entry.isFile()
+            && supportedExtensions.has(path.extname(entry.name).toLowerCase())
+            && (
+                usesGalleryDirectory
+                || Number(entry.name.match(legacyGalleryFilePattern)?.[1]) >= 5
+            )
+        ))
         .map((entry) => entry.name)
         .sort((firstName, secondName) => firstName.localeCompare(
             secondName,
@@ -75,7 +87,7 @@ for (const themeDirectory of themeDirectories) {
             {numeric: true, sensitivity: 'base'},
         ))
         .map((fileName) => (
-            `/images/detailTheme/${themeDirectory.name}/${fileName}`
+            `/images/detailTheme/${themeDirectory.name}/${usesGalleryDirectory ? 'gallery/' : ''}${fileName}`
         ))
 
     if (galleryImages.length === 0) continue
@@ -91,3 +103,9 @@ const imageCount = Object.values(manifest).reduce(
 )
 
 console.log(`Gallery manifest: ${Object.keys(manifest).length} galleries, ${imageCount} images`)
+}
+
+const executedFile = process.argv[1] ? path.resolve(process.argv[1]) : ''
+if (executedFile === fileURLToPath(import.meta.url)) {
+    await generateGalleryManifest()
+}

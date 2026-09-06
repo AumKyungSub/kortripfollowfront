@@ -1,3 +1,4 @@
+import OperatorCrudPlacesPage from "@/pages/operatorCrudPlacesPage/OperatorCrudPlacesPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
@@ -20,6 +21,7 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/operator/crud-places" element={<OperatorCrudPlacesPage />} />
                 <Route path='/' element={<Homepage />} />
                 <Route path="/theme" element={<ListPage mode="theme" />} />
                 <Route path="/region" element={<ListPage mode="region" />} />

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { reviewBackground, reviewLink } from './reviewMedia';
 
 /*------------------------hooks-----------------------------------*/
 /*------------------------/hooks-----------------------------------*/
@@ -35,9 +36,9 @@ const HomeReview = ({
     const displayTotal = String(eventList.length > 0 ? eventList.length : 5).padStart(2, '0');
 
     // Device Size Hook 사용
-    const {isFullMobile, isDesktop} = useResponsive();
+    const {isFullMobile} = useResponsive();
     // Language Hook 사용
-    const {lang, t, isKo, isEn} = useLanguage();
+    const {lang, t, isEn} = useLanguage();
     
     /*-------------- 데이터 병합(Merge) blogs + (rankings || cafes || restaurants) --------------*/
     useEffect(() => {
@@ -49,7 +50,7 @@ const HomeReview = ({
             restaurants: restaurantsData,
         };
 
-        const merged = [...blogsData]
+        const merged = blogsData.filter(blog => blog.visibility !== false)
             .sort((a, b) => b.id - a.id)  
             .map(blog => {
                 const table = tableMap[blog.typeTable];
@@ -61,17 +62,15 @@ const HomeReview = ({
                 if (!detail) return null;
 
                 return {
-                    ...blog,
                     ...detail,
+                    ...blog,
                     blogId: blog.id,
                 };
             })
             .filter(Boolean);
         setEventList(merged);
 
-        if (merged.length > 0) {
-            setSelectedAll(merged[0]);
-        }
+        setSelectedAll(merged[0] || null);
 
     }, [
         blogsData,
@@ -160,7 +159,7 @@ const HomeReview = ({
 
     const goToReview = (e, item) => {
         e?.stopPropagation();
-        const targetLink = item?.review?.link || selectedAll?.review?.link;
+        const targetLink = reviewLink(item);
         if (targetLink) {
             window.open(targetLink, '_blank', 'noopener,noreferrer');
         }
@@ -170,7 +169,7 @@ const HomeReview = ({
     // return 문 안의 JSX 영역-------------------------
     // 헬퍼 모음 (추후 추가 및 수정 가능성 있음)
     // 1. 배경 이미지
-    const bgcImg = selectedAll?.img?.link ? `${selectedAll.img.link}Review.jpg` : '';
+    const bgcImg = reviewBackground(selectedAll);
     // 2. Title28px40px700 영역
     const getHeaderTitle = () => {
         const typeTitleMap = {
@@ -208,6 +207,8 @@ const HomeReview = ({
         return `${state} ${others}`.trim();
     };
     // ----------------------------------------------
+
+    if (!eventList.length) return null;
 
     return (
         <section className="homeReviewBackground contentTopBottomSpacing">
@@ -254,7 +255,7 @@ const HomeReview = ({
                     {isFullMobile ? (
                         /* 모바일 뷰: 카드 리스트 출력 */
                         mobileItems.map((menu) => {
-                            const cardBg = menu?.img?.link ? `${menu.img.link}Review.jpg` : '';
+                            const cardBg = reviewBackground(menu);
                             return (
                                 <div
                                     key={menu.blogId || menu.id}
@@ -264,14 +265,15 @@ const HomeReview = ({
                                     <div className="homeReviewCardImgCover">
                                         <div
                                             className="homeReviewImg"
-                                            style={{ backgroundImage: `url(${cardBg})` }}
+                                            style={{ backgroundImage: cardBg }}
                                         >
                                             <span className="homeReviewStars">★ {Number(menu?.stars).toFixed(1)}</span>
                                             <button
                                                 className="homeReviewGoToBtn"
                                                 onClick={(e) => goToReview(e, menu)}
+                                                disabled={!reviewLink(menu)}
                                             >
-                                                {t('button.viewReview')}
+                                                {reviewLink(menu) ? t('button.viewReview') : (lang === 'ko' ? '리뷰 준비 중' : 'Review coming soon')}
                                             </button>
                                         </div>
                                     </div>
@@ -296,7 +298,7 @@ const HomeReview = ({
                             <div className="homeReviewBodyTopCover">
                                 <div
                                     className="homeReviewImg"
-                                    style={{ backgroundImage: `url(${bgcImg})` }}
+                                    style={{ backgroundImage: bgcImg }}
                                 >
                                     <span className="homeReviewStars">★ {Number(selectedAll?.stars).toFixed(1)}</span>
                                 </div>
@@ -332,8 +334,8 @@ const HomeReview = ({
                                     </div>
                                         
                                     <div className="homeReviewGoToBtnCover">
-                                        <button className="homeReviewGoToBtn" onClick={(e) => goToReview(e, selectedAll)}>
-                                            {t('button.viewReview')}
+                                        <button className="homeReviewGoToBtn" disabled={!reviewLink(selectedAll)} onClick={(e) => goToReview(e, selectedAll)}>
+                                            {reviewLink(selectedAll) ? t('button.viewReview') : (lang === 'ko' ? '리뷰 준비 중' : 'Review coming soon')}
                                         </button>
                                     </div>
                                 </div>
