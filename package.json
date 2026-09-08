@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sitemap": "node --env-file=../.env scripts/generateSitemap.mjs public/sitemap.xml",
+    "rss": "node --env-file=../.env scripts/generateRss.mjs public/rss.xml",
     "gallery:manifest": "node scripts/createGalleryManifest.js",
     "prestart": "npm run gallery:manifest",
     "start": "vite --host",
