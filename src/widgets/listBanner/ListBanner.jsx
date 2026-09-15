@@ -1,9 +1,12 @@
 import React from 'react'
 
 /*------------------------hooks-----------------------------------*/
+import { useMediaQuery } from 'react-responsive';
 /*------------------------/hooks-----------------------------------*/
 
 /*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive';
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 /*------------------------/custom hooks-----------------------------------*/
@@ -13,28 +16,37 @@ import './ListBanner.style.css'
 
 const ListBanner = ({title, count, type = "theme", selected, images = []}) => {
 
-  const {t} = useLanguage();
+  const {t, isKo} = useLanguage();
+  const {isFullMobile, isDesktop} = useResponsive();
+  const isBannerPc = useMediaQuery({ minWidth: 1280 });
 
-  // theme 배너 랜덤 이미지 선택
-  const getRandomThemeImage = () => {
-
-    return `/images/theme/themeBanner1${t("language.shortWord")}.jpg`;
+  const getScreenSuffix = () => {
+    if (isFullMobile) return "M";
+    if (isBannerPc) return "D";
+    if (isDesktop) return "SD";
+    return "T";
   };
 
-  // region 배너 랜덤 이미지 선택
+  // theme 배너 화면 크기와 언어별 고정 이미지 선택
+  const getThemeImage = () => {
+    const languageSuffix = isKo ? "Ko" : "En";
+    if (isFullMobile) return `/images/theme/themeBannermobile${languageSuffix}.jpg`;
+    if (isBannerPc) return `/images/theme/themeBannerpc${languageSuffix}.jpg`;
+    if (isDesktop) return `/images/theme/themeBannersmpc${languageSuffix}.jpg`;
+    return `/images/theme/themeBannertablet${languageSuffix}.jpg`;
+  };
+
+  // region 배너: 기존 rankings 장소 중 랜덤 이미지 선택
   const getRandomRegionImage = () => {
-    const availableImages = (images || []).flatMap((item) => {
-      if (item?.img?.direct) {
-        const url = item.img.originalUrl || item.img.link;
-        return url ? [url] : [];
-      }
-      return item?.img?.link ? [`${item.img.link}2.jpg`] : [];
-    });
+    const screenSuffix = getScreenSuffix();
+    const availableImages = (images || [])
+      .filter((item) => !["tourApi", "manual"].includes(item?.source))
+      .flatMap((item) => item?.img?.link ? [`${item.img.link}2${screenSuffix}.jpg`] : []);
     if (!availableImages.length) return null;
     return availableImages[Math.floor(Math.random() * availableImages.length)];
   };
 
-  const imgSrc = type === "region" ? getRandomRegionImage() : getRandomThemeImage();
+  const imgSrc = type === "region" ? getRandomRegionImage() : getThemeImage();
 
 
   return (

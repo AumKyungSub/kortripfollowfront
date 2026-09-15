@@ -1,8 +1,11 @@
 import React from 'react'
 /*------------------------hooks-----------------------------------*/
+import { useMediaQuery } from 'react-responsive';
 /*------------------------/hooks-----------------------------------*/
 
 /*------------------------custom hooks-----------------------------------*/
+// Device Size
+import { useResponsive } from '@/shared/hooks/useResponsive';
 // Language
 import { useLanguage } from '@/shared/hooks/useLanguage';
 /*------------------------/custom hooks-----------------------------------*/
@@ -23,18 +26,22 @@ const DetailBanner = ({
 }) => {
 
     const {lang, t} = useLanguage();
+    const {isFullMobile, isDesktop} = useResponsive();
+    const isBannerPc = useMediaQuery({ minWidth: 1280 });
 
     /*
         베너 이미지 불러오기
         화면 비율별 사진 따로
     */
-    const imgLink = `${data?.img?.link}2.jpg`;
-    /* 디바이스 별 이미지 따로 작업하게 되면 사용
-    const bgi = isDesktop
-        ? `${imgLink}2.jpg`
-        : isFullMobile
-        ? `${imgLink}2.jpg`
-        : `${imgLink}2.jpg`*/
+    const getImageSrc = () => {
+        const link = data?.img?.link;
+        if (!link) return '';
+        if (isFullMobile) return `${link}2M.jpg`;
+        if (isBannerPc) return `${link}2D.jpg`;
+        if (isDesktop) return `${link}2SD.jpg`;
+        return `${link}2T.jpg`;
+    };
+    const imgLink = getImageSrc();
 
     /* 
         언어별 주소 데이터 가져오기

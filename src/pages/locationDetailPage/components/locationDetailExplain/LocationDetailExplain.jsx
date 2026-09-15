@@ -20,7 +20,7 @@ const LocationDetailExplain = ({ rankingData }) => {
   const explainRef = useRef(null);
   const explainId = useId();
 
-  const textBackImg = `${rankingData?.img?.link}3.jpg`;
+  const textBackImg = `${rankingData?.img?.link}1.jpg`;
   const mainText = rankingData?.description?.main?.[lang];
 
   useEffect(() => {

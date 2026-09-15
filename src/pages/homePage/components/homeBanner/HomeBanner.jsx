@@ -55,7 +55,8 @@ const HomeBanner = ({
     const link = item?.img?.link;
     if(!link) return '';
     if(isFullMobile) return `${link}3M.jpg`
-    if(isDesktop) return `${link}3.jpg`
+    if(isBannerPc) return `${link}3D.jpg`
+    if(isDesktop) return `${link}3SD.jpg`
     return `${link}3T.jpg`
   }
 

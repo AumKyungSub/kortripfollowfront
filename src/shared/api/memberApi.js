@@ -44,5 +44,5 @@ export function placeImageUrl(place) {
   if (['tourApi', 'manual'].includes(place.source) || image.direct || image.originalUrl) {
     return image.originalUrl || image.link || fallback;
   }
-  return image.link ? `${image.link}3R.jpg` : fallback;
+  return image.link ? `${image.link}0.jpg` : fallback;
 }
