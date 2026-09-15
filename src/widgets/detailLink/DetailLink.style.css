@@ -4,19 +4,32 @@
 
 .detailLinkCover {
     padding: 16px 0;
-    cursor: pointer;
     /* Flex */
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .detailLinkIcon {
-    width: 35px;
-    aspect-ratio: 1/1;
+    min-width: 96px;
+    padding: 12px 14px;
+    border: 1px solid #ece8e3;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: inherit;
 }
 
 .detailLinkIcon img {
-    width: 100%;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
 }
 
 .detailLinkNoLink {

@@ -7,20 +7,24 @@ import './DetailLink.style.css'
 
 const DetailLink = ({data, isFullMobile}) => {
 
-    const {t} = useTranslation();
+    const {t, i18n} = useTranslation();
+    const homepage = data?.location?.homepage;
+    const instagram = data?.location?.instagram;
+    const hasLinks = Boolean(homepage || instagram);
+    const isEnglish = i18n.resolvedLanguage?.startsWith('en');
 
     const goToHomepage = () => {
-        window.open(data?.location?.homepage, "_blank", "noopener,noreferrer");
+        window.open(homepage, "_blank", "noopener,noreferrer");
     }
 
     const goToInstagram = () => {
-        window.open(data?.location?.instagram, "_blank", "noopener,noreferrer");
+        window.open(instagram, "_blank", "noopener,noreferrer");
     }
 
     return (
         <>
             <section className="detailLinkWrapper">
-                {data?.location?.homepage
+                {hasLinks
                 ?
                     <>
                         <p className="preTitle14px600b54a2f">
@@ -30,15 +34,17 @@ const DetailLink = ({data, isFullMobile}) => {
                         <p className="title18px20px700">{t("detailPage.common.link.title")}</p>
 
                         <div className="detailLinkCover">
-                            {data?.location?.homepage &&
-                                <span className='detailLinkIcon' onClick={goToHomepage}>
-                                    <img src="/images/icon/homepageIcon.png" alt="homepage" />
-                                </span> 
+                            {homepage &&
+                                <button type="button" className='detailLinkIcon' onClick={goToHomepage}>
+                                    <img src="/images/icon/homepageIcon.png" alt="" />
+                                    <span>{isEnglish ? 'Website' : '홈페이지'}</span>
+                                </button> 
                             }
-                            {data?.location?.instagram &&
-                                <span className='detailLinkIcon' onClick={goToInstagram}>
-                                    <img src="/images/logo/instaIcon.png" alt="instagram" />
-                                </span>
+                            {instagram &&
+                                <button type="button" className='detailLinkIcon' onClick={goToInstagram}>
+                                    <img src="/images/logo/instaIcon.png" alt="" />
+                                    <span>Instagram</span>
+                                </button>
                             }
                         </div>
                     </>
