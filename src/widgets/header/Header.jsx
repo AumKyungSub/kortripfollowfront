@@ -61,7 +61,7 @@ const Header = ({ activeMenuKey = "" }) => {
   );
 
   // 3. 스크롤이 되었거나, 흰 배경 페이지일 때 검은색 로고/텍스트 상태로 전환
-  const showDarkHeader = isLightPage || isScrolled;
+  const showDarkHeader = location.pathname === "/" || isLightPage || isScrolled;
 
   // Language Hook 사용
   const { t, changeLanguage, isKo, isEn } = useLanguage();

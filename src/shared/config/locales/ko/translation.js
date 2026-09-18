@@ -1,4 +1,19 @@
 export default {
+  homeHero: {
+  "preTitle": "GOOD TRIP, KOREA",
+  "title": "발길이 닿았던 곳에서\n시작되는 여행",
+  "description": "취향에 맞는 지역과 테마를 찾아\n나만의 일정을 그려보세요.",
+  "searchPlaceholder": "여행지나 지역을 검색해보세요",
+  "explore": "지역별 둘러보기",
+  "plan": "일정 만들기",
+  "slides": "직접 방문한 여행지",
+  "slideLabel": "{{index}}번 슬라이드 보기",
+  "previous": "이전 슬라이드",
+  "next": "다음 슬라이드",
+  "pause": "슬라이드 자동 재생 일시 정지",
+  "play": "슬라이드 자동 재생 시작",
+  "empty": "여행지를 준비하고 있어요"
+},
     /*--------------- 언어 ---------------*/
     language: {
         shortWord: "Kor" // HomeRegion, ListBanner

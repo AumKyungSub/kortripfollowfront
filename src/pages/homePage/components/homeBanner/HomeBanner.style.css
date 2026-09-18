@@ -1,216 +1,484 @@
-/* Mobile First 모바일 퍼스트 */
-.homeBannerBackground {
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Position */
-  position: relative;
+.homeHero {
+  --hero-header-height: 72px;
+  background: #fff;
+  padding-top: var(--hero-header-height);
 }
-
-.homeBannerBackground.plannerBanner {
+.homeHeroLayout {
+  display: grid;
+  gap: 12px;
+  padding-top: 12px;
+  padding-bottom: max(16px, calc((100svh - var(--hero-header-height)) * 0.05));
+}
+.homeHeroIntro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px 0 28px;
+  background: url("/images/banner/bannerMobile.jpg") left bottom / cover
+    no-repeat;
+}
+.homeHeroIntro > .title28px40px700 {
+  white-space: pre-line;
+  line-height: 1.25;
+}
+.homeHeroDescription {
+  color: #686d78;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-line;
+  margin: 0 0 16px;
+}
+.homeHeroSearch {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.homeHeroSearchTrigger {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid #deddd9;
+  border-radius: 14px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: #747986;
+  text-align: left;
   cursor: pointer;
 }
-
-.homeBannerBackground.plannerBanner::after {
-  display: block;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.62) 0%,
-    rgba(15, 23, 42, 0.38) 12%,
-    rgba(15, 23, 42, 0.12) 22%,
-    rgba(15, 23, 42, 0) 34%
-  );
+.homeHeroSearchTrigger > span {
+  font-size: 26px;
+  line-height: 1;
 }
-
-.homeBannerWrapper {
-  white-space: pre-wrap;
-  height: 100%;
-  /* Flex */
+.homeHeroActions {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* Position */
-  position: relative;
-  z-index: 99;
+  gap: 8px;
+  width: 100%;
 }
-
-.homeBannerBackground::after {
+.homeHeroActions button {
+  white-space: nowrap;
+}
+.homeHeroActions button {
+  flex: 1;
+  min-height: 44px;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #deddd9;
+  border-radius: 999px;
+  background: #ffffffed;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.homeHeroActions svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: #3478ff;
+  stroke-width: 2;
+}
+.homeHeroPhoto {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  align-self: center;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #e6e1d8;
+}
+.homeHeroPhoto > .swiper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
+.homeHeroPhoto .swiper,
+.homeHeroPhoto .swiper-wrapper,
+.homeHeroPhoto .swiper-slide {
+  height: 100%;
+}
+.homeHeroSlide {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+.homeHeroSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.homeHeroSlide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 35%, rgba(0, 0, 0, 0.72));
+  pointer-events: none;
+}
+.homeHeroCaption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 56px;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+}
+.homeHeroSlideDescription {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+.homeHeroCaption strong {
+  font-size: 26px;
+  line-height: 1.25;
+}
+.homeHeroPhoto .swiper-pagination {
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.homeHeroPhoto .swiper-pagination-bullet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  border-radius: 0;
+  background: transparent;
+  opacity: 1;
+  margin: 0 !important;
+}
+.homeHeroPhoto .swiper-pagination-bullet::after {
   content: "";
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.6),
-    60%,
-    rgba(255, 255, 255, 0.1)
-  );
-  /* Position */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.homeBannerTextCover {
-  width: 100%;
-  /* Font */
-  color: #fff;
-  text-align: center;
-}
-
-.homeBannerLocation {
-  width: 100%;
-  padding: 15px 0;
-  /* Font */
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #fafaf8;
-  line-height: 1.17;
-}
-
-.homeBannerTextLine {
-  width: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  margin: 0 auto;
-}
-
-.homeBannerName {
-  padding: 15px 0;
-  /* Font */
-  font-size: 1.5rem;
-  color: #fafaf8;
-  line-height: 1.17;
-}
-
-.homeBannerDetail {
-  height: auto;
-  margin-bottom: 15px;
-  /* Font */
-  font-size: 1rem;
-}
-
-.homeBannerLearnMore {
-  display: inline-block;
-  padding: 15px 50px;
+  height: 3px;
   border-radius: 999px;
-  border: 1px solid #fff;
-  background: transparent;
-  /* Font */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+  background: #ffffff70;
 }
-
-.homeBannerLearnMore:hover {
-  border: none;
+.homeHeroPhoto .swiper-pagination-bullet-active::after {
+  height: 6px;
   background: #fff;
-  color: #000;
 }
-
-.mainBannerImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-  opacity: 1;
-  transition: opacity 0.6s ease;
+.homeHeroArrow {
+  display: none;
 }
-
-/* 썸네일 – 항상 최상단 */
-.homeBannerThumbCover {
-  width: 100%;
-  padding: 0 16px;
-  margin: 0 auto;
-  /* Flex */
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  /* Position */
+.homeHeroPause {
   position: absolute;
-  bottom: 0;
-  z-index: 97;
-}
-
-.homeBannerThumbItem {
-  width: 20vw;
-  aspect-ratio: 3/2;
-  overflow: hidden;
-  border-radius: 10px;
+  z-index: 4;
+  bottom: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ffffff80;
+  border-radius: 50%;
+  background: #0005;
+  color: #fff;
   cursor: pointer;
 }
-
-.homeBannerThumbItem img {
-  width: 100%;
+.homeHeroEmpty {
+  display: grid;
+  place-items: center;
   height: 100%;
-  object-fit: cover;
-  object-position: center center;
+  padding: 24px;
+  color: #56514a;
+}
+.homeHero button:focus-visible,
+.homeHero .swiper-pagination-bullet:focus-visible {
+  outline: 3px solid #3478ff;
+  outline-offset: -3px;
+}
+.homeHeroSearch .searchModalEmbedded {
+  position: relative;
+  height: auto;
+  max-width: none;
+  border: 1px solid #deddd9;
+  border-radius: 14px;
+  overflow: visible;
+  background: #fff;
+}
+.homeHeroSearch .searchModalInputRow {
+  border-bottom: 0;
+  padding: 14px 16px;
+}
+.homeHeroSearch .searchModalInputRow input {
+  width: 0;
+  min-width: 0;
+  font-weight: 400;
+}
+.homeHeroSearch .searchModalEmbeddedBody {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  max-height: min(420px, 55dvh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #deddd9;
+  border-radius: 14px;
+  background: #faf9f8;
+  box-shadow: 0 12px 28px #0002;
+}
+.homeHeroSearch .searchModalState {
+  min-height: 160px;
+  padding: 24px;
+}
+@media (min-width: 768px) {
+  .homeHeroLayout {
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+  .homeHeroIntro {
+    min-height: 0;
+    padding: 24px 16px 48px;
+    background-image: url("/images/banner/bannerTablet.jpg");
+  }
+  .homeHeroDescription {
+    font-size: 16px;
+  }
+  .homeHeroActions {
+    align-self: flex-start;
+    width: max-content;
+    max-width: 100%;
+  }
+  .homeHeroActions button {
+    flex: none;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .homeHeroCaption {
+    left: 28px;
+    right: 28px;
+  }
+  .homeHeroCaption strong {
+    font-size: 32px;
+  }
+  .homeHeroSlideDescription {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .homeHeroLayout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 32px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .homeHeroIntro {
+    min-height: 0;
+    padding: 24px 0 48px;
+    background-image: url("/images/banner/bannerPc.jpg");
+  }
+
+  .homeHeroArrow {
+    display: block;
+    position: absolute;
+    z-index: 4;
+    top: 45%;
+    width: 40px;
+    height: 48px;
+    border: 0;
+    border-radius: 8px;
+    background: #0002;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+  }
+  .homeHeroPrevious {
+    left: 12px;
+  }
+  .homeHeroNext {
+    right: 12px;
+  }
+}
+@media (max-width: 374px) {
+  .homeHeroIntro > .title28px40px700 {
+    font-size: 24px;
+  }
+  .homeHeroActions button {
+    font-size: 12px;
+  }
 }
 
-@media only all and (min-width: 480px) {
-}
-
-@media only all and (min-width: 768px) {
-  .homeBannerBackground {
-    aspect-ratio: 1 / 1;
-  }
-
-  .homeBannerLocation {
-    /* Font */
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .homeBannerName {
-    /* Font */
-    font-size: 2.25rem;
-    line-height: 1.5;
-  }
-
-  .homeBannerDetail {
-    height: auto;
-    margin-bottom: 67px;
-  }
-
-  /* 썸네일 – 항상 최상단 */
-  .homeBannerThumbCover {
-    padding: 0 24px;
-    /* Flex */
-    justify-content: flex-end;
-    gap: 25px;
-  }
-
-  .homeBannerThumbItem {
-    width: 11.98vw;
-    aspect-ratio: 16/10;
+@media (min-width: 1280px) {
+  .homeHeroLayout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
   }
 }
 
-@media only all and (min-width: 1024px) {
-  .homeBannerBackground {
-    aspect-ratio: 3 / 2;
+/* Match the existing two-row tablet header (104px). */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homeHero {
+    --hero-header-height: 104px;
   }
-
-  /* 썸네일 – 항상 최상단 */
-  .homeBannerThumbCover {
-    padding: 0 40px;
+}
+/* Let the 3:2 photo determine the shared row height. */
+@media (min-width: 1024px) {
+  .homeHeroIntro {
+    contain: size;
+    align-self: stretch;
+    min-height: 0;
+    padding: 8px 0;
+  }
+  .homeHeroIntro > .title28px40px700 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  .homeHeroDescription {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .homeHeroSearch .searchModalInputRow {
+    padding: 12px 16px;
+  }
+  .homeHeroActions button {
+    padding: 10px 16px;
+  }
+}
+@media (min-width: 1280px) {
+  .homeHeroIntro {
+    padding: 16px 0;
+  }
+  .homeHeroIntro > .title28px40px700 {
+    font-size: 40px;
+    line-height: 1.25;
+  }
+  .homeHeroDescription {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .homeHeroSearch .searchModalInputRow {
+    padding: 14px 16px;
+  }
+  .homeHeroActions button {
+    padding: 12px 20px;
+  }
+}
+/* Keep the ivory illustration card distinct from the white hero section.
+   Do not clip overflow: live search results must extend beyond the card. */
+.homeHeroIntro {
+  border-radius: 18px;
+  background-color: #faf8f3;
+  padding: 16px 16px 70px;
+}
+@media (min-width: 768px) {
+  .homeHeroIntro {
+    padding: 24px 24px 70px;
+  }
+}
+@media (min-width: 1024px) {
+  .homeHeroIntro {
+    padding: 8px 20px;
+  }
+}
+@media (min-width: 1280px) {
+  .homeHeroIntro {
+    padding: 16px 24px;
+  }
+}
+@media (max-width: 374px) {
+  .homeHeroActions button {
+    padding-left: 4px;
+    padding-right: 4px;
+    gap: 4px;
+  }
+  .homeHeroActions svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+/* Outer hero spacing; the layout contributes no extra vertical padding. */
+.homeHero {
+  padding-top: calc(var(--hero-header-height) + 16px);
+  padding-bottom: 16px;
+}
+.homeHero .homeHeroLayout {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+@media (min-width: 768px) {
+  .homeHero {
+    padding-top: calc(var(--hero-header-height) + 30px);
+    padding-bottom: 30px;
   }
 }
 
-@media only all and (min-width: 1280px) {
-  .homeBannerBackground {
-    aspect-ratio: 3 / 1;
+/* Hero typography; shared title classes stay unchanged. */
+.homeHeroIntro > .preTitle14px600b54a2f {
+  font-size: 12px;
+}
+.homeHeroIntro > .title28px40px700 {
+  font-size: 24px;
+  line-height: 1.25;
+}
+.homeHeroDescription {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.homeHeroSearchTrigger,
+.homeHeroSearch .searchModalInputRow input {
+  font-size: 16px;
+}
+.homeHeroActions button {
+  font-size: 13px;
+}
+@media (min-width: 768px) {
+  .homeHeroIntro > .title28px40px700 {
+    font-size: 26px;
   }
-  .homeBannerDetail {
-    height: auto;
-    margin-bottom: 48px;
+  .homeHeroDescription {
+    font-size: 16px;
   }
-  .homeBannerThumbItem {
-    width: 4.95vw;
-    aspect-ratio: 16/10;
+  .homeHeroActions button {
+    font-size: 14px;
   }
 }
-
-@media only all and (min-width: 1921px) {
+@media (min-width: 1024px) {
+  .homeHeroDescription {
+    font-size: 14px;
+  }
+  .homeHeroSearch .searchModalInputRow input {
+    font-size: 14px;
+  }
+  .homeHeroActions button {
+    font-size: 13px;
+  }
+}
+@media (min-width: 1280px) {
+  .homeHeroIntro > .title28px40px700 {
+    font-size: 32px;
+  }
+  .homeHeroDescription {
+    font-size: 16px;
+  }
+  .homeHeroSearch .searchModalInputRow input {
+    font-size: 16px;
+  }
+  .homeHeroActions button {
+    font-size: 14px;
+  }
 }

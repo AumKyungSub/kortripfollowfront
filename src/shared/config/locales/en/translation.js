@@ -1,4 +1,19 @@
 export default {
+  homeHero: {
+  "preTitle": "GOOD TRIP, KOREA",
+  "title": "Journeys begin\nwhere we’ve been",
+  "description": "Find regions and themes that suit your taste,\nand map out your own itinerary.",
+  "searchPlaceholder": "Search for a place or region",
+  "explore": "Explore regions",
+  "plan": "Plan a trip",
+  "slides": "Places we have visited",
+  "slideLabel": "Go to slide {{index}}",
+  "previous": "Previous slide",
+  "next": "Next slide",
+  "pause": "Pause slideshow",
+  "play": "Play slideshow",
+  "empty": "Destinations are coming soon"
+},
   /*--------------- 언어 ---------------*/
   language: {
       shortWord: "Eng" // HomeRegion, ListBanner

@@ -31,7 +31,7 @@ const SEARCH_GROUPS = [
 
 const normalize = (value) => String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase();
 
-const SearchModal = ({ onClose }) => {
+const SearchModal = ({ onClose, embedded = false, placeholder }) => {
   const { lang, t } = useLanguage();
 
   const activeLang = lang?.startsWith('en') ? 'en' : 'ko';
@@ -72,11 +72,12 @@ const SearchModal = ({ onClose }) => {
         if (error.name !== 'AbortError') setStatus('error');
       });
 
-    inputRef.current?.focus();
+    if (!embedded) inputRef.current?.focus();
     return () => controller.abort();
-  }, []);
+  }, [embedded]);
 
   useEffect(() => {
+    if (embedded) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     document.body.classList.add('search-modal-open');
@@ -87,7 +88,7 @@ const SearchModal = ({ onClose }) => {
       document.body.classList.remove('search-modal-open');
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [embedded, onClose]);
 
   const results = useMemo(() => {
     const keyword = normalize(query);
@@ -109,6 +110,7 @@ const SearchModal = ({ onClose }) => {
   }, [activeLang, items, query, status]);
 
   const selectResult = (item) => {
+    setQuery('');
     onClose();
     navigate(item.searchPath);
   };
@@ -189,28 +191,32 @@ const SearchModal = ({ onClose }) => {
     );
   };
 
-  return (
-    <div className="searchModalOverlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <section className="searchModal" role="dialog" aria-modal="true" aria-label={t('searchModal.search')}>
-        <div className="searchModalInputRow">
+  const content = (
+    <section className={embedded ? "searchModal searchModalEmbedded" : "searchModal"} role={embedded ? "region" : "dialog"} aria-modal={embedded ? undefined : true} aria-label={t('searchModal.search')}>
+      <div className="searchModalInputRow">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg> 
           <input 
             ref={inputRef} 
             value={query} 
-            onChange={(event) => setQuery(event.target.value)} 
-            placeholder={t('searchModal.placeholder')} 
+            onChange={(event) => setQuery(event.target.value)}
+            onKeyDown={(event) => { if (embedded && event.key === 'Escape') setQuery(''); }} 
+            placeholder={placeholder || t('searchModal.placeholder')} 
             aria-label={t('searchModal.search')} 
           />
           {query && 
           <button type="button" className="searchClearBtn" onClick={() => { setQuery(''); inputRef.current?.focus(); }} aria-label={t('searchModal.clear')}>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fafafa" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>}
-          <button type="button" className="searchCloseBtn" onClick={onClose} aria-label={t('searchModal.close')}>
+          {!embedded && <button type="button" className="searchCloseBtn" onClick={onClose} aria-label={t('searchModal.close')}>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#918a84" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
+          </button>}
         </div>
-        <div className={!query.trim() ? 'searchModalBodyBasic' : 'searchModalBody'}>{renderState()}</div>
+        {(!embedded || query.trim()) && <div className={embedded ? 'searchModalEmbeddedBody' : !query.trim() ? 'searchModalBodyBasic' : 'searchModalBody'}>{renderState()}</div>}
       </section>
+  );
+  return embedded ? content : (
+    <div className="searchModalOverlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      {content}
     </div>
   );
 };
